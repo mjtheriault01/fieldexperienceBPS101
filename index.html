@@ -2439,8 +2439,7 @@
     });
 
     // ─── GOOGLE SHEET INTEGRATION ─────────────────────────────────────
-    const SHEET_CSV_URL_PROXY  = '/api/sheet.csv';
-    const SHEET_CSV_URL_DIRECT = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThv1ErH_g0w2jrzFEchiZD57plzs2zAraZFvfyqeXrLZWU-PybYoq_Qbf6WdMx1tQBRfvVZFVSpirP/pub?gid=819912657&single=true&output=csv';
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeHACK_6TtpOYYpo32qM5AGa962uiHOnE8-UF13x8hDqjeozKwpXbYtL7bOqTbZoBwNg/exec';
 
     const CLUSTER_MAP = {
       'business & finance':                  'finance',
@@ -2508,61 +2507,47 @@
     allBusinesses = STATIC_BUSINESSES;
     let sheetStatus = 'ready'; // start ready with static data; fetch will update
 
-    function parseRows(results) {
-      return results.data.map((row, idx) => {
-        const sector = (row['Industry/Sector:'] || '').trim();
-        return {
-          idx,
-          name:            (row['Company Name'] || '').trim(),
-          sector,
-          website:         (row['Company Website'] || '').trim(),
-          logo:            toDriveImg(row['Company Logo '] || ''),
-          mission:         (row['Brief Mission Statement'] || '').trim(),
-          role:            (row['Internship Role Title  (e.g., marketing assistant, shadow, architect). '] || '').trim(),
-          tasks:           (row['Primary Tasks & Responsibilities (Use Bullet Points)'] || '').trim(),
-          skills:          (row['Top 3 Skills Student will develop'] || '').trim(),
-          environment:     (row['Work Environment'] || '').trim(),
-          compensation:    (row['Compensation'] || '').trim(),
-          hours:           (row['Weekly Time Commitment'] || '').trim(),
-          reqs:            (row['Student Requirements'] || '').trim(),
-          specificReqs:    (row['What are the specific requirements?'] || '').trim(),
-          numStudents:     (row['Number of students Requested'] || '').trim(),
-          mentorName:      (row['Primary Mentor Name'] || '').trim(),
-          mentorEmail:     (row['Mentor Email'] || '').trim(),
-          appLink:         (row['Direct Application Link (If you have your own portal that you require).'] || '').trim(),
-          appInstructions: (row['Application Instructions'] || '').trim(),
-          idealCandidate:  (row['What is your ideal candidate?'] || '').trim(),
-          otherInfo:       (row['Any other important information to share'] || '').trim(),
-          clusterId:       CLUSTER_MAP[sector.toLowerCase()] || null,
-        };
-      });
-    }
-
-    function onSheetLoaded(results) {
-      const fresh = parseRows(results);
-      if (fresh.length > 0) allBusinesses = fresh;
-      sheetStatus = 'ready';
-      // If a cluster modal is currently open, refresh its employer grid
-      const clusterModal = document.getElementById('modal-cluster');
-      if (clusterModal.style.display === 'flex' && clusterModal.dataset.clusterId) {
-        renderEmployerCards(clusterModal.dataset.clusterId);
-      }
-    }
-
     function loadBusinesses() {
-      sheetStatus = 'loading';
-      // Try Netlify proxy first; fall back to direct URL if proxy isn't available yet
-      Papa.parse(SHEET_CSV_URL_PROXY, {
-        download: true, header: true, skipEmptyLines: true,
-        complete: onSheetLoaded,
-        error: function() {
-          Papa.parse(SHEET_CSV_URL_DIRECT, {
-            download: true, header: true, skipEmptyLines: true,
-            complete: onSheetLoaded,
-            error: function() { sheetStatus = 'error'; }
+      fetch(APPS_SCRIPT_URL)
+        .then(r => r.json())
+        .then(rows => {
+          const fresh = rows.map((row, idx) => {
+            const sector = (row['Industry/Sector:'] || '').trim();
+            return {
+              idx,
+              name:            (row['Company Name'] || '').trim(),
+              sector,
+              website:         (row['Company Website'] || '').trim(),
+              logo:            toDriveImg(row['Company Logo '] || ''),
+              mission:         (row['Brief Mission Statement'] || '').trim(),
+              role:            (row['Internship Role Title  (e.g., marketing assistant, shadow, architect). '] || '').trim(),
+              tasks:           (row['Primary Tasks & Responsibilities (Use Bullet Points)'] || '').trim(),
+              skills:          (row['Top 3 Skills Student will develop'] || '').trim(),
+              environment:     (row['Work Environment'] || '').trim(),
+              compensation:    (row['Compensation'] || '').trim(),
+              hours:           (row['Weekly Time Commitment'] || '').trim(),
+              reqs:            (row['Student Requirements'] || '').trim(),
+              specificReqs:    (row['What are the specific requirements?'] || '').trim(),
+              numStudents:     (row['Number of students Requested'] || '').trim(),
+              mentorName:      (row['Primary Mentor Name'] || '').trim(),
+              mentorEmail:     (row['Mentor Email'] || '').trim(),
+              appLink:         (row['Direct Application Link (If you have your own portal that you require).'] || '').trim(),
+              appInstructions: (row['Application Instructions'] || '').trim(),
+              idealCandidate:  (row['What is your ideal candidate?'] || '').trim(),
+              otherInfo:       (row['Any other important information to share'] || '').trim(),
+              clusterId:       CLUSTER_MAP[sector.toLowerCase()] || null,
+            };
           });
-        }
-      });
+          if (fresh.length > 0) {
+            allBusinesses = fresh;
+            sheetStatus = 'ready';
+            const modal = document.getElementById('modal-cluster');
+            if (modal.style.display === 'flex' && modal.dataset.clusterId) {
+              renderEmployerCards(modal.dataset.clusterId);
+            }
+          }
+        })
+        .catch(() => { /* keep static data on network failure */ });
     }
 
     document.addEventListener('DOMContentLoaded', loadBusinesses);
