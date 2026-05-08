@@ -100,6 +100,8 @@
     /* Smooth scroll */
     html { scroll-behavior: smooth; }
 
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     /* Logo mark */
     .logo-mark {
       position: relative;
@@ -2386,10 +2388,11 @@
       ).join('');
 
       // Populate employers from Google Sheet
+      const modal = document.getElementById('modal-cluster');
+      modal.dataset.clusterId = clusterId;
       renderEmployerCards(clusterId);
 
       // Show modal
-      const modal = document.getElementById('modal-cluster');
       document.body.style.overflow = 'hidden';
       modal.style.display = 'flex';
       modal.offsetHeight;
@@ -2436,7 +2439,8 @@
     });
 
     // ─── GOOGLE SHEET INTEGRATION ─────────────────────────────────────
-    const SHEET_CSV_URL = '/api/sheet.csv';
+    const SHEET_CSV_URL_PROXY  = '/api/sheet.csv';
+    const SHEET_CSV_URL_DIRECT = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThv1ErH_g0w2jrzFEchiZD57plzs2zAraZFvfyqeXrLZWU-PybYoq_Qbf6WdMx1tQBRfvVZFVSpirP/pub?gid=819912657&single=true&output=csv';
 
     const CLUSTER_MAP = {
       'business & finance':                  'finance',
@@ -2487,41 +2491,61 @@
       </div>`;
     }
 
+    let sheetStatus = 'loading'; // 'loading' | 'ready' | 'error'
+
+    function parseRows(results) {
+      return results.data.map((row, idx) => {
+        const sector = (row['Industry/Sector:'] || '').trim();
+        return {
+          idx,
+          name:            (row['Company Name'] || '').trim(),
+          sector,
+          website:         (row['Company Website'] || '').trim(),
+          logo:            toDriveImg(row['Company Logo '] || ''),
+          mission:         (row['Brief Mission Statement'] || '').trim(),
+          role:            (row['Internship Role Title  (e.g., marketing assistant, shadow, architect). '] || '').trim(),
+          tasks:           (row['Primary Tasks & Responsibilities (Use Bullet Points)'] || '').trim(),
+          skills:          (row['Top 3 Skills Student will develop'] || '').trim(),
+          environment:     (row['Work Environment'] || '').trim(),
+          compensation:    (row['Compensation'] || '').trim(),
+          hours:           (row['Weekly Time Commitment'] || '').trim(),
+          reqs:            (row['Student Requirements'] || '').trim(),
+          specificReqs:    (row['What are the specific requirements?'] || '').trim(),
+          numStudents:     (row['Number of students Requested'] || '').trim(),
+          mentorName:      (row['Primary Mentor Name'] || '').trim(),
+          mentorEmail:     (row['Mentor Email'] || '').trim(),
+          appLink:         (row['Direct Application Link (If you have your own portal that you require).'] || '').trim(),
+          appInstructions: (row['Application Instructions'] || '').trim(),
+          idealCandidate:  (row['What is your ideal candidate?'] || '').trim(),
+          otherInfo:       (row['Any other important information to share'] || '').trim(),
+          clusterId:       CLUSTER_MAP[sector.toLowerCase()] || null,
+        };
+      });
+    }
+
+    function onSheetLoaded(results) {
+      allBusinesses = parseRows(results);
+      sheetStatus = 'ready';
+      // If a cluster modal is currently open, refresh its employer grid
+      const clusterModal = document.getElementById('modal-cluster');
+      if (clusterModal.style.display === 'flex' && clusterModal.dataset.clusterId) {
+        renderEmployerCards(clusterModal.dataset.clusterId);
+      }
+    }
+
     function loadBusinesses() {
-      Papa.parse(SHEET_CSV_URL, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-          allBusinesses = results.data.map((row, idx) => {
-            const sector = (row['Industry/Sector:'] || '').trim();
-            return {
-              idx,
-              name:            (row['Company Name'] || '').trim(),
-              sector,
-              website:         (row['Company Website'] || '').trim(),
-              logo:            toDriveImg(row['Company Logo '] || ''),
-              mission:         (row['Brief Mission Statement'] || '').trim(),
-              role:            (row['Internship Role Title  (e.g., marketing assistant, shadow, architect). '] || '').trim(),
-              tasks:           (row['Primary Tasks & Responsibilities (Use Bullet Points)'] || '').trim(),
-              skills:          (row['Top 3 Skills Student will develop'] || '').trim(),
-              environment:     (row['Work Environment'] || '').trim(),
-              compensation:    (row['Compensation'] || '').trim(),
-              hours:           (row['Weekly Time Commitment'] || '').trim(),
-              reqs:            (row['Student Requirements'] || '').trim(),
-              specificReqs:    (row['What are the specific requirements?'] || '').trim(),
-              numStudents:     (row['Number of students Requested'] || '').trim(),
-              mentorName:      (row['Primary Mentor Name'] || '').trim(),
-              mentorEmail:     (row['Mentor Email'] || '').trim(),
-              appLink:         (row['Direct Application Link (If you have your own portal that you require).'] || '').trim(),
-              appInstructions: (row['Application Instructions'] || '').trim(),
-              idealCandidate:  (row['What is your ideal candidate?'] || '').trim(),
-              otherInfo:       (row['Any other important information to share'] || '').trim(),
-              clusterId:       CLUSTER_MAP[sector.toLowerCase()] || null,
-            };
+      sheetStatus = 'loading';
+      // Try Netlify proxy first; fall back to direct URL if proxy isn't available yet
+      Papa.parse(SHEET_CSV_URL_PROXY, {
+        download: true, header: true, skipEmptyLines: true,
+        complete: onSheetLoaded,
+        error: function() {
+          Papa.parse(SHEET_CSV_URL_DIRECT, {
+            download: true, header: true, skipEmptyLines: true,
+            complete: onSheetLoaded,
+            error: function() { sheetStatus = 'error'; }
           });
-        },
-        error: function() { /* sheet unavailable — modals will show "coming soon" */ }
+        }
       });
     }
 
@@ -2529,8 +2553,16 @@
 
     // ─── EMPLOYER LOGO GRID (inside cluster modal) ────────────────────
     function renderEmployerCards(clusterId) {
-      const businesses = allBusinesses.filter(b => b.clusterId === clusterId);
       const el = document.getElementById('cluster-employers');
+      if (!el) return;
+
+      if (sheetStatus === 'loading') {
+        el.className = '';
+        el.innerHTML = '<div class="flex items-center justify-center gap-3 py-6"><div style="width:20px;height:20px;border:2px solid #AC161D;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite"></div><p class="text-navy-500 text-sm">Loading partner businesses…</p></div>';
+        return;
+      }
+
+      const businesses = allBusinesses.filter(b => b.clusterId === clusterId);
       el.className = 'grid grid-cols-2 sm:grid-cols-3 gap-3';
       if (!businesses.length) {
         el.innerHTML = '<div class="col-span-full bg-navy-50 border border-dashed border-navy-200 rounded-lg px-4 py-6 text-center"><p class="text-navy-400 text-sm">Partner employers coming soon — check back as we build these connections.</p></div>';
