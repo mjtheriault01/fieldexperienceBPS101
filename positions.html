@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     tailwind.config = {
       theme: { extend: {
@@ -72,12 +71,20 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     .spinner{width:36px;height:36px;border:3px solid #e5e5e5;border-top-color:#AC161D;border-radius:50%;animation:spin .8s linear infinite}
 
-    /* Print styles — hides everything except the target card */
     @media print {
-      body{background:#fff!important}
-      .no-print{display:none!important}
-      .position-card{box-shadow:none!important;border-radius:0!important}
-      .download-btn{display:none!important}
+      body { background:#fff !important; }
+      header, footer, .no-print { display:none !important; }
+      main { padding:0 !important; max-width:100% !important; }
+
+      /* Print one card: hide everything except the target */
+      body.print-one .position-card { display:none !important; }
+      body.print-one .cluster-section { display:none !important; }
+      body.print-one #card-print-target { display:block !important; box-shadow:none !important; border-radius:0 !important; }
+
+      /* Print all: one card per page */
+      body:not(.print-one) .position-card { page-break-after:always; break-after:page; box-shadow:none !important; }
+      body:not(.print-one) .position-card:last-child { page-break-after:avoid; break-after:avoid; }
+      body:not(.print-one) .cluster-section-header { page-break-after:avoid; break-after:avoid; }
     }
   </style>
 </head>
@@ -96,8 +103,8 @@
     <div class="flex items-center gap-3 flex-wrap">
       <span id="position-count" class="text-xs text-navy-400 font-heading font-semibold"></span>
       <button onclick="downloadAll()" id="download-all-btn" class="download-btn hidden">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-        Download All as PDF
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        Print All Positions
       </button>
     </div>
   </div>
@@ -232,8 +239,8 @@ function buildCard(b, idx) {
         style="background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4)"
         onmouseover="this.style.background='rgba(255,255,255,.35)'"
         onmouseout="this.style.background='rgba(255,255,255,.2)'">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-        Download PDF
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        Print / Save as PDF
       </button>
     </div>
 
@@ -304,43 +311,26 @@ function buildCard(b, idx) {
 }
 
 function downloadCard(idx) {
-  const el = document.getElementById(`card-${idx}`);
-  if (!el) return;
-  const name = allPositions[idx]?.name || `position-${idx}`;
-  const filename = name.toLowerCase().replace(/[^a-z0-9]+/g,'-') + '.pdf';
-  html2pdf().set({
-    margin: 8,
-    filename,
-    image: { type:'jpeg', quality:.95 },
-    html2canvas: { scale:2, useCORS:true },
-    jsPDF: { unit:'mm', format:'letter', orientation:'portrait' }
-  }).from(el).save();
+  const card = document.getElementById(`card-${idx}`);
+  if (!card) return;
+
+  // Tag the target, switch body to single-card print mode
+  card.id = 'card-print-target';
+  document.body.classList.add('print-one');
+
+  window.print();
+
+  // Restore after dialog closes (slight delay for Safari)
+  setTimeout(() => {
+    card.id = `card-${idx}`;
+    document.body.classList.remove('print-one');
+  }, 500);
 }
 
 function downloadAll() {
-  const btn = document.getElementById('download-all-btn');
-  btn.textContent = 'Generating…';
-  btn.disabled = true;
-
-  let chain = Promise.resolve();
-  allPositions.forEach((b, idx) => {
-    chain = chain.then(() => new Promise(resolve => {
-      const el = document.getElementById(`card-${idx}`);
-      if (!el) return resolve();
-      const name = (b.name||`position-${idx}`).toLowerCase().replace(/[^a-z0-9]+/g,'-');
-      html2pdf().set({
-        margin:8, filename:`${name}.pdf`,
-        image:{type:'jpeg',quality:.95},
-        html2canvas:{scale:2,useCORS:true},
-        jsPDF:{unit:'mm',format:'letter',orientation:'portrait'}
-      }).from(el).save().then(() => setTimeout(resolve, 600));
-    }));
-  });
-
-  chain.then(() => {
-    btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Download All as PDF';
-    btn.disabled = false;
-  });
+  // Remove single-card mode so all cards print, one per page
+  document.body.classList.remove('print-one');
+  window.print();
 }
 
 async function loadPositions() {
@@ -390,8 +380,9 @@ function render() {
     if (!groups[cid]?.length) return;
     const colors = CLUSTER_COLORS[cid] || { bg:'#374151', light:'#f3f4f6' };
     const section = document.createElement('div');
+    section.className = 'cluster-section';
     section.innerHTML = `
-      <div class="no-print flex items-center gap-4 mb-6">
+      <div class="no-print cluster-section-header flex items-center gap-4 mb-6">
         <div class="flex-1 h-px" style="background:${colors.bg};opacity:.3"></div>
         <h2 class="font-heading font-black text-lg tracking-tight" style="color:${colors.bg}">${CLUSTER_NAMES[cid] || cid}</h2>
         <div class="flex-1 h-px" style="background:${colors.bg};opacity:.3"></div>
