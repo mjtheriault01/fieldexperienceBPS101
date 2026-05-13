@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources — Field Experience BHS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: {
+          crimson: { 50:'#fef2f2',100:'#fee2e2',200:'#fdcbcb',300:'#fba5a6',400:'#f56d6f',500:'#eb4044',600:'#d72429',700:'#b91c22',800:'#AC161D',900:'#851519',950:'#490808' },
+          navy:    { 50:'#f5f5f5',100:'#e5e5e5',200:'#D9D9D9',300:'#b3b3b3',400:'#8a8a8a',500:'#5D5D5D',600:'#4a4a4a',700:'#333333',800:'#1a1a1a',900:'#000000' },
+          gold:    { 50:'#fffde6',100:'#fffabd',200:'#fff48a',300:'#ffe94d',400:'#fde020',500:'#FBCD07',600:'#DAB107',700:'#9a7305',800:'#7d5c0b',900:'#66490f' },
+        },
+        fontFamily: { heading:['Montserrat','system-ui','sans-serif'], body:['Open Sans','system-ui','sans-serif'] }
+      }}
+    }
+  </script>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#fff;color:#000;overflow-x:hidden}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    ::selection{background:#AC161D;color:#fff}
+    html{scroll-behavior:smooth}
+
+    @keyframes fadeSlideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    .animate-in{animation:fadeSlideUp .8s cubic-bezier(.16,1,.3,1) forwards}
+    .delay-1{animation-delay:.1s} .delay-2{animation-delay:.2s} .delay-3{animation-delay:.3s}
+
+    .top-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #e5e5e5}
+    .section-label{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#AC161D}
+
+    /* Resource cards */
+    .resource-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:16px;transition:all .3s cubic-bezier(.16,1,.3,1);overflow:hidden}
+    .resource-card:hover{border-color:#AC161D;box-shadow:0 16px 48px -12px rgba(172,22,29,.18);transform:translateY(-4px)}
+
+    /* Calendar iframe */
+    .cal-wrapper{border-radius:16px;overflow:hidden;border:1.5px solid #e5e5e5;box-shadow:0 8px 32px rgba(0,0,0,.07)}
+
+    #mobile-menu{display:none}
+    #mobile-menu.open{display:block}
+  </style>
+</head>
+
+<body class="bg-white text-navy-900 antialiased overflow-hidden">
+
+<!-- ── PASSWORD SCREEN ── -->
+<div id="password-screen" class="fixed inset-0 z-[999] bg-navy-900 flex items-center justify-center px-6">
+  <div class="w-full max-w-sm text-center">
+    <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="BHS Field Experience" class="h-14 mx-auto mb-8 brightness-0 invert opacity-90"/>
+    <p class="text-navy-300 text-sm uppercase tracking-widest font-semibold mb-6">Enter Password to Continue</p>
+    <form onsubmit="checkPassword(event)" class="space-y-4">
+      <input id="password-input" type="password" autocomplete="off" placeholder="Password"
+        class="w-full px-5 py-4 bg-navy-800 border border-navy-700 rounded text-white text-center text-sm tracking-wider focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-colors placeholder:text-navy-500"/>
+      <button type="submit" class="w-full bg-crimson-800 text-white px-8 py-4 text-sm font-semibold uppercase tracking-wider hover:bg-crimson-700 transition-colors">Enter</button>
+      <p id="password-error" class="text-crimson-400 text-sm hidden">Incorrect password. Try again.</p>
+    </form>
+  </div>
+</div>
+<script>
+  const PASS_HASH = 'e38fa83e534c7abb32ed373abf73f49981e57731308548868635497f4b53b64d';
+  function clearPasswordScreen() {
+    const s = document.getElementById('password-screen');
+    s.style.transition = 'opacity .4s ease'; s.style.opacity = '0';
+    document.body.classList.remove('overflow-hidden');
+    setTimeout(()=>s.remove(), 400);
+  }
+  async function checkPassword(e) {
+    e.preventDefault();
+    const val = document.getElementById('password-input').value;
+    const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(val)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+    if (hash === PASS_HASH) {
+      sessionStorage.setItem('fe_auth','1');
+      clearPasswordScreen();
+    } else {
+      document.getElementById('password-error').classList.remove('hidden');
+      document.getElementById('password-input').value = '';
+      document.getElementById('password-input').focus();
+    }
+  }
+  if (sessionStorage.getItem('fe_auth') === '1') {
+    clearPasswordScreen();
+  } else {
+    document.getElementById('password-input').focus();
+  }
+</script>
+
+<!-- ── NAV ── -->
+<nav class="top-nav">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="BHS Field Experience" class="h-10 md:h-12 w-auto"/>
+      <div class="hidden sm:block">
+        <p class="font-heading font-bold text-navy-900 text-sm md:text-base leading-tight">BHS Field Experience</p>
+        <p class="text-[10px] md:text-xs text-navy-500 uppercase tracking-wider">Work-Based Learning</p>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html#careers" class="text-navy-600 hover:text-crimson-800 text-sm font-medium transition-colors font-heading">Career Pathways</a>
+      <a href="index.html#bootcamp" class="text-navy-600 hover:text-crimson-800 text-sm font-medium transition-colors font-heading">Bootcamp</a>
+      <a href="index.html#skills" class="text-navy-600 hover:text-crimson-800 text-sm font-medium transition-colors font-heading">Employability Skills</a>
+      <a href="resources.html" class="text-crimson-800 font-semibold text-sm transition-colors font-heading border-b-2 border-crimson-800 pb-0.5">Resources</a>
+      <a href="mailto:michael@bps101.net" class="bg-crimson-800 text-white px-6 py-2.5 text-sm font-semibold hover:bg-crimson-700 transition-colors font-heading">Contact</a>
+    </div>
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden p-2 rounded text-navy-700">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-white border-t border-navy-100 px-6 py-4 space-y-1">
+    <a href="index.html#careers" class="block py-3 text-navy-700 font-medium border-b border-navy-50 hover:text-crimson-800 font-heading">Career Pathways</a>
+    <a href="index.html#bootcamp" class="block py-3 text-navy-700 font-medium border-b border-navy-50 hover:text-crimson-800 font-heading">Bootcamp</a>
+    <a href="index.html#skills" class="block py-3 text-navy-700 font-medium border-b border-navy-50 hover:text-crimson-800 font-heading">Employability Skills</a>
+    <a href="resources.html" class="block py-3 text-crimson-800 font-semibold border-b border-navy-50 font-heading">Resources</a>
+    <a href="mailto:michael@bps101.net" class="block py-3 text-crimson-800 font-semibold font-heading">Contact Instructor</a>
+  </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<section class="pt-28 pb-14 px-6 md:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <a href="index.html" class="inline-flex items-center gap-2 text-navy-500 hover:text-crimson-800 text-sm font-medium font-heading transition-colors mb-8 opacity-0 animate-in">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Back to Dashboard
+    </a>
+    <div class="opacity-0 animate-in delay-1">
+      <p class="section-label mb-3">Student Resources</p>
+      <h1 class="font-heading text-4xl md:text-5xl font-black tracking-tight text-navy-900 leading-tight mb-4">
+        Everything you need,<br class="hidden sm:block"> <span class="text-crimson-800">in one place.</span>
+      </h1>
+      <p class="text-navy-500 text-lg max-w-xl leading-relaxed">
+        Course documents, weekly logs, reflection forms, and your class calendar — all here.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESOURCE CARDS ── -->
+<section class="pb-16 px-6 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Course Expectations -->
+      <div class="resource-card flex flex-col">
+        <div class="p-7 flex-1">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#AC161D,#d72429)">
+            <!-- Document icon -->
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <p class="section-label mb-2">Google Doc</p>
+          <h2 class="font-heading text-xl font-bold text-navy-900 mb-3">Course Expectations</h2>
+          <p class="text-navy-500 text-sm leading-relaxed">
+            Review class policies, grading criteria, workplace requirements, and everything you need to succeed in Field Experience.
+          </p>
+        </div>
+        <div class="px-7 pb-7">
+          <a href="https://docs.google.com/document/d/1gj2rydlR0JWdTtJuBWm7TmV_g2y7SSqKPQ-Oj17bvjw/edit?usp=sharing"
+             target="_blank" rel="noopener"
+             class="flex items-center justify-between w-full bg-crimson-800 text-white px-5 py-3.5 text-sm font-semibold font-heading hover:bg-crimson-700 transition-colors rounded-lg group">
+            <span>Open Document</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Weekly Hours Log -->
+      <div class="resource-card flex flex-col">
+        <div class="p-7 flex-1">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#1d4ed8,#2563eb)">
+            <!-- Spreadsheet icon -->
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18M6 3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6a3 3 0 013-3z"/>
+            </svg>
+          </div>
+          <p class="section-label mb-2" style="color:#1d4ed8">Google Sheet</p>
+          <h2 class="font-heading text-xl font-bold text-navy-900 mb-3">Weekly Hours Log</h2>
+          <p class="text-navy-500 text-sm leading-relaxed">
+            Track your weekly work hours at your placement. Opens a personal copy to your Google Drive — fill it out each week and keep it updated.
+          </p>
+        </div>
+        <div class="px-7 pb-7">
+          <a href="https://docs.google.com/spreadsheets/d/1cjlkw7Pz3cbC9wjAEG5VeYqoVRs3oWCVOrvzGQtAeQc/copy"
+             target="_blank" rel="noopener"
+             class="flex items-center justify-between w-full text-white px-5 py-3.5 text-sm font-semibold font-heading transition-colors rounded-lg group"
+             style="background:#1d4ed8" onmouseover="this.style.background='#1e40af'" onmouseout="this.style.background='#1d4ed8'">
+            <span>Copy to My Drive</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Weekly Reflection Form -->
+      <div class="resource-card flex flex-col">
+        <div class="p-7 flex-1">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#7c3aed,#9333ea)">
+            <!-- Form/pencil icon -->
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+          </div>
+          <p class="section-label mb-2" style="color:#7c3aed">Google Form</p>
+          <h2 class="font-heading text-xl font-bold text-navy-900 mb-3">Weekly Reflection</h2>
+          <p class="text-navy-500 text-sm leading-relaxed">
+            Submit your weekly reflection on what you learned, challenges you faced, and skills you practiced at your field placement.
+          </p>
+        </div>
+        <div class="px-7 pb-7">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIioovjDY9OgL4VlEddAHlOOuwm8ZKEdRY5yWbYiTIL0prkw/viewform?usp=header"
+             target="_blank" rel="noopener"
+             class="flex items-center justify-between w-full text-white px-5 py-3.5 text-sm font-semibold font-heading transition-colors rounded-lg group"
+             style="background:#7c3aed" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">
+            <span>Submit Reflection</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── DIVIDER ── -->
+<div class="max-w-7xl mx-auto px-6 md:px-8">
+  <hr class="border-navy-100">
+</div>
+
+<!-- ── CALENDAR ── -->
+<section class="py-16 px-6 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-8">
+      <p class="section-label mb-3">Class Calendar</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-black text-navy-900 mb-3">What's coming up</h2>
+      <p class="text-navy-500 text-base max-w-lg">Deadlines, field trips, and class events. Stay on top of everything happening this semester.</p>
+    </div>
+    <div class="cal-wrapper">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=c_1d562a1ba796d11aef144a7aa410cef3c69637dd2994944bba9ebbf9249d46c3%40group.calendar.google.com&ctz=America%2FChicago&showTitle=0&showNav=1&showPrint=0&showTabs=0&showCalendars=0&mode=MONTH&color=%23AC161D"
+        style="border:0;width:100%;height:600px;display:block;"
+        frameborder="0"
+        scrolling="no"
+        title="Field Experience Class Calendar">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="py-10 px-6 md:px-8" style="background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="BHS Field Experience" class="h-8 w-auto brightness-0 invert opacity-70"/>
+      <div>
+        <p class="font-heading font-bold text-white text-sm opacity-80">BHS Field Experience</p>
+        <p class="text-[10px] text-white/40 uppercase tracking-wider">Batavia Public Schools 101</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a href="index.html" class="text-white/50 hover:text-white text-xs font-heading uppercase tracking-wider transition-colors">Dashboard</a>
+      <a href="index.html#careers" class="text-white/50 hover:text-white text-xs font-heading uppercase tracking-wider transition-colors">Career Pathways</a>
+      <a href="index.html#bootcamp" class="text-white/50 hover:text-white text-xs font-heading uppercase tracking-wider transition-colors">Bootcamp</a>
+      <a href="index.html#skills" class="text-white/50 hover:text-white text-xs font-heading uppercase tracking-wider transition-colors">Skills</a>
+      <a href="resources.html" class="text-gold-500 hover:text-gold-400 text-xs font-heading uppercase tracking-wider transition-colors">Resources</a>
+    </div>
+    <p class="text-white/30 text-xs text-center">&copy; 2025 Batavia Public Schools 101</p>
+  </div>
+</footer>
+
+</body>
+</html>

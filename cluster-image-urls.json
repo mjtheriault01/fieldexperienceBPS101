@@ -1,0 +1,247 @@
+{
+  "agriculture": {
+    "name": "Agriculture, Food & Natural Resources",
+    "subsectors": [
+      {
+        "id": "farming",
+        "label": "Agriculture & Farming",
+        "prompt": "Aerial photo of lush green farm fields with crops at golden hour, sustainable agriculture, cinematic wide shot, professional photography, vibrant colors",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678655/field-experience/clusters/agriculture/farming.png"
+      },
+      {
+        "id": "food-science",
+        "label": "Food Science",
+        "prompt": "Food scientist in bright modern laboratory testing food samples with clean equipment, professional white coat, sharp focus, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678669/field-experience/clusters/agriculture/food-science.png"
+      },
+      {
+        "id": "environmental",
+        "label": "Environmental Science",
+        "prompt": "Environmental scientist collecting water samples at a clear river in a forest, outdoor field research, natural sunlight, professional photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678685/field-experience/clusters/agriculture/environmental.png"
+      },
+      {
+        "id": "horticulture",
+        "label": "Horticulture",
+        "prompt": "Beautiful greenhouse interior with rows of lush green plants and flowers, warm golden light filtering through glass, professional photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678700/field-experience/clusters/agriculture/horticulture.png"
+      },
+      {
+        "id": "veterinary",
+        "label": "Veterinary Science",
+        "prompt": "Veterinarian in professional clinic gently examining a healthy animal, clean clinical environment, warm caring expression, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678712/field-experience/clusters/agriculture/veterinary.png"
+      }
+    ]
+  },
+  "arts": {
+    "name": "Arts & Communication",
+    "subsectors": [
+      {
+        "id": "graphic-design",
+        "label": "Graphic Design",
+        "prompt": "Graphic designer at modern workstation with dual monitors showing vibrant colorful design work, creative studio, professional lighting, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679439/field-experience/clusters/arts/graphic-design.png"
+      },
+      {
+        "id": "journalism",
+        "label": "Journalism & Media",
+        "prompt": "News anchor at professional broadcast desk with studio cameras and lighting, modern newsroom, confident professional pose, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678738/field-experience/clusters/arts/journalism.png"
+      },
+      {
+        "id": "photography",
+        "label": "Photography",
+        "prompt": "Photographer with professional camera capturing a dramatic shot in creative studio, colorful backdrop, artistic lighting, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678752/field-experience/clusters/arts/photography.png"
+      },
+      {
+        "id": "film",
+        "label": "Film & Video Production",
+        "prompt": "Film crew on a cinematic set with camera equipment and professional lighting rigs, behind the scenes production, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678764/field-experience/clusters/arts/film.png"
+      },
+      {
+        "id": "marketing",
+        "label": "Marketing & Advertising",
+        "prompt": "Marketing team in bright modern office collaborating around whiteboard with colorful campaign ideas, dynamic energy, professional photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678780/field-experience/clusters/arts/marketing.png"
+      }
+    ]
+  },
+  "finance": {
+    "name": "Finance & Business Services",
+    "subsectors": [
+      {
+        "id": "banking",
+        "label": "Banking & Finance",
+        "prompt": "Modern bank interior with professional teller windows, clean corporate atmosphere, warm lighting, high quality architectural photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678793/field-experience/clusters/finance/banking.png"
+      },
+      {
+        "id": "accounting",
+        "label": "Accounting",
+        "prompt": "Accountant analyzing financial charts and data on computer screens in modern office, professional business attire, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678807/field-experience/clusters/finance/accounting.png"
+      },
+      {
+        "id": "management",
+        "label": "Business Management",
+        "prompt": "Business team in bright corporate boardroom, leader presenting growth strategy on screen, professional environment, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678820/field-experience/clusters/finance/management.png"
+      },
+      {
+        "id": "entrepreneurship",
+        "label": "Entrepreneurship",
+        "prompt": "Young entrepreneur in modern startup office with whiteboard business plan, energetic creative workspace, natural light, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678834/field-experience/clusters/finance/entrepreneurship.png"
+      },
+      {
+        "id": "real-estate",
+        "label": "Real Estate & Insurance",
+        "prompt": "Real estate agent showing beautiful modern home exterior to a young couple, professional handshake, suburban neighborhood, blue sky, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678849/field-experience/clusters/finance/real-estate.png"
+      }
+    ]
+  },
+  "health": {
+    "name": "Health Sciences & Technology",
+    "subsectors": [
+      {
+        "id": "nursing",
+        "label": "Nursing & Patient Care",
+        "prompt": "Compassionate nurse in bright hospital corridor wearing scrubs, warm smile, clean modern medical environment, professional photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678863/field-experience/clusters/health/nursing.png"
+      },
+      {
+        "id": "medical-tech",
+        "label": "Medical Technology",
+        "prompt": "Medical technician operating advanced MRI diagnostic equipment in clean hospital setting, professional scrubs, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678876/field-experience/clusters/health/medical-tech.png"
+      },
+      {
+        "id": "physical-therapy",
+        "label": "Physical Therapy",
+        "prompt": "Physical therapist helping patient with rehabilitation exercises in bright therapy room, caring interaction, modern equipment, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678888/field-experience/clusters/health/physical-therapy.png"
+      },
+      {
+        "id": "pharmacy",
+        "label": "Pharmacy",
+        "prompt": "Pharmacist in modern pharmacy reviewing prescriptions, organized medicine shelves with warm lighting, professional white coat, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678901/field-experience/clusters/health/pharmacy.png"
+      },
+      {
+        "id": "mental-health",
+        "label": "Mental Health & Counseling",
+        "prompt": "Counselor in warm comfortable therapy office having compassionate conversation, cozy armchairs, soft natural lighting, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678916/field-experience/clusters/health/mental-health.png"
+      }
+    ]
+  },
+  "human": {
+    "name": "Human & Public Services",
+    "subsectors": [
+      {
+        "id": "education",
+        "label": "Education & Teaching",
+        "prompt": "Energetic teacher at front of bright modern classroom engaging students with hands raised, colorful classroom, natural light, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678928/field-experience/clusters/human/education.png"
+      },
+      {
+        "id": "social-work",
+        "label": "Social Work",
+        "prompt": "Social worker in community center having supportive conversation with a family, warm compassionate setting, professional photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678942/field-experience/clusters/human/social-work.png"
+      },
+      {
+        "id": "government",
+        "label": "Government & Public Admin",
+        "prompt": "Government official at professional public service building, American flag, clean administrative setting, confident professional, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678953/field-experience/clusters/human/government.png"
+      },
+      {
+        "id": "public-safety",
+        "label": "Public Safety",
+        "prompt": "Police officer in friendly community engagement with citizens outdoors, approachable public safety professional, bright daylight, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678965/field-experience/clusters/human/public-safety.png"
+      },
+      {
+        "id": "nonprofit",
+        "label": "Nonprofit & Community",
+        "prompt": "Diverse group of volunteers cheerfully working together at community food bank event, teamwork and positive energy, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678978/field-experience/clusters/human/nonprofit.png"
+      }
+    ]
+  },
+  "it": {
+    "name": "Information Technology",
+    "subsectors": [
+      {
+        "id": "software",
+        "label": "Software Development",
+        "prompt": "Software developer focused on coding at multiple monitors with glowing code on screens, sleek modern tech office, professional photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778678995/field-experience/clusters/it/software.png"
+      },
+      {
+        "id": "cybersecurity",
+        "label": "Cybersecurity",
+        "prompt": "Cybersecurity analyst at monitoring station with multiple screens displaying network security dashboards, dramatic dark tech environment, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679008/field-experience/clusters/it/cybersecurity.png"
+      },
+      {
+        "id": "networking",
+        "label": "Network Administration",
+        "prompt": "IT technician working in server room with rows of illuminated blue server racks, professional environment, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679024/field-experience/clusters/it/networking.png"
+      },
+      {
+        "id": "data-science",
+        "label": "Data Science & Analytics",
+        "prompt": "Data scientist working with colorful data visualizations and analytics dashboards on large monitors, modern tech office, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679037/field-experience/clusters/it/data-science.png"
+      },
+      {
+        "id": "ai-ml",
+        "label": "AI & Machine Learning",
+        "prompt": "AI researcher at advanced computing workstation with neural network visualizations on screen, futuristic clean tech lab, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679051/field-experience/clusters/it/ai-ml.png"
+      }
+    ]
+  },
+  "manufacturing": {
+    "name": "Manufacturing, Engineering & Trades",
+    "subsectors": [
+      {
+        "id": "engineering",
+        "label": "Engineering",
+        "prompt": "Civil engineer in hard hat reviewing blueprints at modern construction site, professional planning, dramatic sky background, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679066/field-experience/clusters/manufacturing/engineering.png"
+      },
+      {
+        "id": "manufacturing",
+        "label": "Manufacturing",
+        "prompt": "Modern automated manufacturing facility with clean production line and robotic equipment in operation, bright industrial environment, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679081/field-experience/clusters/manufacturing/manufacturing.png"
+      },
+      {
+        "id": "construction",
+        "label": "Construction & Carpentry",
+        "prompt": "Skilled construction worker framing a new building structure, professional tools, clear blue sky background, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679091/field-experience/clusters/manufacturing/construction.png"
+      },
+      {
+        "id": "automotive",
+        "label": "Automotive & Mechanics",
+        "prompt": "Automotive technician working on a vehicle engine in a clean modern garage, professional tools, focused professional, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679103/field-experience/clusters/manufacturing/automotive.png"
+      },
+      {
+        "id": "electrical",
+        "label": "Electrical Trades & HVAC",
+        "prompt": "Licensed electrician carefully working on electrical panel in clean residential setting, professional tools and safety gear, high quality photography",
+        "url": "https://res.cloudinary.com/dikkdclum/image/upload/v1778679118/field-experience/clusters/manufacturing/electrical.png"
+      }
+    ]
+  }
+}
