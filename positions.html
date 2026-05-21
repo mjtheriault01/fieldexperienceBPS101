@@ -362,15 +362,43 @@ async function loadPositions() {
   try {
     const res = await fetch(APPS_SCRIPT_URL);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    const businesses = Array.isArray(data) ? data : (data.businesses || data.data || []);
+    const rows = await res.json();
+    const data = Array.isArray(rows) ? rows : [];
 
-    // Merge with static businesses (dedup by name)
-    const staticNames = new Set(STATIC_BUSINESSES.map(b => b.name.toLowerCase()));
-    const sheetOnly = businesses.filter(b => !staticNames.has((b.name||'').toLowerCase()));
-    allPositions = [...STATIC_BUSINESSES, ...sheetOnly];
+    const normalized = data.map((row, idx) => {
+      const sector = (row['Industry/Sector:'] || '').trim();
+      return {
+        idx,
+        name:            (row['Company Name']||'').trim(),
+        sector,
+        website:         (row['Company Website']||'').trim(),
+        logo:            (row['Company Logo ']||'').trim(),
+        mission:         (row['Brief Mission Statement']||'').trim(),
+        role:            (row['Internship Role Title  (e.g., marketing assistant, shadow, architect). ']||'').trim(),
+        tasks:           (row['Primary Tasks & Responsibilities (Use Bullet Points)']||'').trim(),
+        skills:          (row['Top Skills Student will develop']||row['Top 3 Skills Student will develop']||'').trim(),
+        environment:     (row['Work Environment']||'').trim(),
+        compensation:    (row['Compensation - Hourly, Scholarship, stipend, etc']||'').trim(),
+        hours:           (row['Weekly Time Commitment']||'').trim(),
+        reqs:            (row['Student Requirements']||'').trim(),
+        specificReqs:    (row['What are the specific requirements?']||'').trim(),
+        numStudents:     (row['Number of students Requested']||'').trim(),
+        mentorName:      (row['Primary Mentor Name']||'').trim(),
+        mentorEmail:     (row['Mentor Email']||'').trim(),
+        appLink:         (row['Direct Application Link (If you have your own portal that you require).']||'').trim(),
+        appInstructions: (row['Application Instructions']||'').trim(),
+        idealCandidate:  (row['What is your ideal candidate?']||'').trim(),
+        otherInfo:       (row['Any other important information to share']||'').trim(),
+        clusterId:       normalizeCluster(sector),
+      };
+    }).filter(b => b.name);
 
-    render();
+    if (normalized.length > 0) {
+      allPositions = normalized;
+      render();
+    } else {
+      throw new Error('empty response');
+    }
   } catch(e) {
     console.warn('Sheet fetch failed, using static data:', e.message);
     allPositions = [...STATIC_BUSINESSES];
