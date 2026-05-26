@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script>
     tailwind.config = {
       theme: { extend: {
@@ -102,9 +103,10 @@
       letter-spacing:.04em;text-transform:uppercase;
       text-align:center;cursor:pointer;border:none;
       background:#2d6a4f;color:#fff;
-      transition:all .2s ease;margin-top:auto;
+      box-shadow:0 4px 14px rgba(0,0,0,0.22);transition:all .2s ease;margin-top:auto;
     }
-    .apply-btn:hover{opacity:.88;transform:translateY(-1px);}
+    .apply-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.30);filter:brightness(1.08);}
+    .apply-btn:active{transform:translateY(0) scale(0.98);box-shadow:0 2px 8px rgba(0,0,0,0.18);transition-duration:.08s;}
 
     .env-badge{
       display:inline-flex;align-items:center;gap:.3rem;
@@ -127,6 +129,8 @@
     .modal-backdrop.active .modal-content{transform:translateY(0);opacity:1;}
 
     @keyframes spin{to{transform:rotate(360deg)}}
+    .job-card{cursor:pointer;}
+
 
     .section-label{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2d6a4f;}
 
@@ -303,7 +307,10 @@
 
 <script>
   // ── DATA ──────────────────────────────────────────────────────────────
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeHACK_6TtpOYYpo32qM5AGa962uiHOnE8-UF13x8hDqjeozKwpXbYtL7bOqTbZoBwNg/exec';
+  const _SB = supabase.createClient(
+    'https://bsgrkpykysvqcdqikcym.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzZ3JrcHlreXN2cWNkcWlrY3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MTE5NzUsImV4cCI6MjA5NTA4Nzk3NX0.brdA4f7v0GC89fRXPTVPZV11KIdZxXyCkLTWWsoe0o0'
+  );
   const CLUSTER_ID = 'agriculture';
   const CLUSTER_COLOR = '#2d6a4f';
 
@@ -330,6 +337,7 @@
 
   let allBusinesses = STATIC_BUSINESSES;
   let sheetLoaded = false;
+
 
   // ── HELPERS ───────────────────────────────────────────────────────────
   function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -372,7 +380,7 @@
 
   // ── RENDER JOBS ───────────────────────────────────────────────────────
   function renderJobs() {
-    const businesses = allBusinesses.filter(b => b.clusterId === CLUSTER_ID);
+    const businesses = allBusinesses.filter(b => Array.isArray(b.clusterId) ? b.clusterId.includes(CLUSTER_ID) : b.clusterId === CLUSTER_ID);
     const loading = document.getElementById('jobs-loading');
     const grid    = document.getElementById('jobs-grid');
     const empty   = document.getElementById('jobs-empty');
@@ -402,7 +410,7 @@
         .map(e=>`<span class="env-badge">${esc(e)}</span>`).join('');
 
       return `
-        <div class="job-card">
+        <div class="job-card" onclick="openJobModal(${b.idx})">
           <div class="flex items-start gap-4 mb-4">
             <div class="w-16 h-16 rounded-xl ${cardLogoBorder} overflow-hidden flex-shrink-0 flex items-center justify-center" style="${cardLogoBg}">
               ${logoHtml}
@@ -426,7 +434,7 @@
 
           ${b.mission ? `<p class="text-sm text-gray-500 leading-relaxed mb-4" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(b.mission)}</p>` : ''}
 
-          <button class="apply-btn" onclick="openJobModal(${b.idx})">View Full Position →</button>
+          <div class="apply-btn">View Full Position →</div>
         </div>`;
     }).join('');
 
@@ -447,20 +455,20 @@
     if (!b) return;
     const logoUrl = getLogoUrl(b);
     const isBpsModal = (b.name || '').toLowerCase().includes('bps');
-    const modalLogoBg = isBpsModal ? '#AC161D' : '#ffffff';
+    const modalLogoBg = isBpsModal ? '#2d6a4f' : '#ffffff';
     const logoHtml = logoUrl
-      ? `<img src="${logoUrl}" alt="${esc(b.name)}" class="h-10 max-w-[100px] object-contain" onerror="this.style.display='none'">`
-      : `<span class="text-xl font-heading font-bold" style="color:${CLUSTER_COLOR}">${initials(b.name)}</span>`;
+      ? `<img src="${logoUrl}" alt="${esc(b.name)}" class="w-full h-full object-contain p-1.5" onerror="this.style.display='none'">`
+      : `<span class="text-xl font-heading font-bold" style="color:#2d6a4f">${initials(b.name)}</span>`;
 
     const appMethods = b.appInstructions.split(',').map(s=>s.trim()).filter(Boolean);
     const appHtml = appMethods.length
-      ? appMethods.map(m=>`<li class="flex items-start gap-2 text-sm text-gray-600"><span class="font-bold mt-0.5 flex-shrink-0" style="color:${CLUSTER_COLOR}">→</span><span>${esc(m)}</span></li>`).join('')
+      ? appMethods.map(m=>`<li class="flex items-start gap-2 text-sm text-gray-600"><span class="font-bold mt-0.5 flex-shrink-0" style="color:#2d6a4f">→</span><span>${esc(m)}</span></li>`).join('')
       : '<li class="text-sm text-gray-600">Contact the mentor listed below.</li>';
 
     document.getElementById('job-modal-inner').innerHTML = `
-      <div class="text-white px-6 py-5 flex items-start justify-between gap-4" style="background:${CLUSTER_COLOR}">
+      <div class="text-white px-6 py-5 flex items-start justify-between gap-4" style="background:#2d6a4f">
         <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 p-2" style="background:${modalLogoBg}">${logoHtml}</div>
+          <div class="w-14 h-14 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0" style="background:${modalLogoBg}">${logoHtml}</div>
           <div>
             <p class="text-xs uppercase tracking-widest font-semibold opacity-75 mb-0.5">${esc(b.sector)}</p>
             <h2 class="font-heading text-xl font-bold leading-tight">${esc(b.name)}</h2>
@@ -480,14 +488,14 @@
           ${badge('👥','Openings', b.numStudents)}
         </div>
 
-        ${b.mission ? `<div class="border-l-4 pl-4" style="border-color:${CLUSTER_COLOR}">
+        ${b.mission ? `<div class="border-l-4 pl-4" style="border-color:#2d6a4f">
           <h3 class="font-heading font-bold text-sm uppercase tracking-wide text-navy-900 mb-1">About ${esc(b.name)}</h3>
           <p class="text-gray-600 text-sm leading-relaxed">${esc(b.mission)}</p>
         </div>` : ''}
 
         ${b.tasks ? `<div>
           <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
-            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${CLUSTER_COLOR}">✓</span>
+            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:#2d6a4f">✓</span>
             What You'll Do
           </h3>
           <ul class="space-y-1.5">${bulletLines(b.tasks)}</ul>
@@ -495,20 +503,20 @@
 
         ${b.skills ? `<div>
           <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
-            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${CLUSTER_COLOR}">★</span>
+            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:#2d6a4f">★</span>
             Skills You'll Develop
           </h3>
           <ul class="space-y-1.5">${bulletLines(b.skills)}</ul>
         </div>` : ''}
 
-        ${b.idealCandidate ? `<div class="rounded-xl p-4" style="background:${CLUSTER_COLOR}12">
+        ${b.idealCandidate ? `<div class="rounded-xl p-4" style="background:#2d6a4f12">
           <h3 class="font-heading font-bold text-sm text-navy-900 mb-1">Ideal Candidate</h3>
           <p class="text-sm text-gray-600 leading-relaxed">${esc(b.idealCandidate)}</p>
         </div>` : ''}
 
         ${b.specificReqs ? `<div>
           <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
-            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${CLUSTER_COLOR}">!</span>
+            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:#2d6a4f">!</span>
             Requirements
           </h3>
           <p class="text-sm text-gray-600">${esc(b.specificReqs)}</p>
@@ -516,7 +524,7 @@
 
         <div>
           <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
-            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${CLUSTER_COLOR}">→</span>
+            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:#2d6a4f">→</span>
             How to Apply
           </h3>
           <ul class="space-y-1.5">${appHtml}</ul>
@@ -524,12 +532,12 @@
 
         ${b.appLink ? `<a href="${esc(b.appLink)}" target="_blank" rel="noopener"
           class="block w-full text-center py-3.5 rounded-xl font-heading font-bold text-sm tracking-wide text-white transition-all hover:opacity-90"
-          style="background:${CLUSTER_COLOR}">Apply Now →</a>` : ''}
+          style="background:#2d6a4f">Apply Now →</a>` : ''}
 
         <div class="border-t border-gray-100 pt-4">
           <p class="text-xs text-gray-400 font-heading font-semibold uppercase tracking-wide mb-1">Primary Mentor</p>
           <p class="font-heading font-bold text-navy-900 text-sm">${esc(b.mentorName)}</p>
-          <a href="mailto:${esc(b.mentorEmail)}" class="text-sm hover:underline" style="color:${CLUSTER_COLOR}">${esc(b.mentorEmail)}</a>
+          <a href="mailto:${esc(b.mentorEmail)}" class="text-sm hover:underline" style="color:#2d6a4f">${esc(b.mentorEmail)}</a>
         </div>
 
         ${b.website ? `<a href="${esc(b.website)}" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-gray-400 hover:text-gray-700 transition-colors">
@@ -556,44 +564,43 @@
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeJobModal(); });
 
-  // ── GOOGLE SHEET LOAD ─────────────────────────────────────────────────
-  function loadFromSheet() {
-    fetch(APPS_SCRIPT_URL)
-      .then(r => r.json())
-      .then(rows => {
-        const fresh = rows.map((row, idx) => {
-          const sector = (row['Industry/Sector:'] || '').trim();
-          return {
-            idx,
-            name:            (row['Company Name']||'').trim(),
-            sector,
-            website:         (row['Company Website']||'').trim(),
-            logo:            (row['Company Logo ']||'').trim(),
-            mission:         (row['Brief Mission Statement']||'').trim(),
-            role:            (row['Internship Role Title  (e.g., marketing assistant, shadow, architect). ']||'').trim(),
-            tasks:           (row['Primary Tasks & Responsibilities (Use Bullet Points)']||'').trim(),
-            skills:          (row['Top 3 Skills Student will develop']||'').trim(),
-            environment:     (row['Work Environment']||'').trim(),
-            compensation:    (row['Compensation - Hourly, Scholarship, stipend, etc']||'').trim(),
-            hours:           (row['Weekly Time Commitment']||'').trim(),
-            reqs:            (row['Student Requirements']||'').trim(),
-            specificReqs:    (row['What are the specific requirements?']||'').trim(),
-            numStudents:     (row['Number of students Requested']||'').trim(),
-            mentorName:      (row['Primary Mentor Name']||'').trim(),
-            mentorEmail:     (row['Mentor Email']||'').trim(),
-            appLink:         (row['Direct Application Link (If you have your own portal that you require).']||'').trim(),
-            appInstructions: (row['Application Instructions']||'').trim(),
-            idealCandidate:  (row['What is your ideal candidate?']||'').trim(),
-            otherInfo:       (row['Any other important information to share']||'').trim(),
-            clusterId:       CLUSTER_MAP[sector.toLowerCase()] || null,
-          };
-        });
-        if (fresh.length > 0) {
-          allBusinesses = fresh;
-          renderJobs();
-        }
-      })
-      .catch(() => {}); // keep static data on failure
+  // ── SUPABASE LOAD ─────────────────────────────────────────────────────
+  async function loadFromSheet() {
+    try {
+      const { data, error } = await _SB
+        .from('job_listings')
+        .select('*')
+        .eq('is_active', true);
+      if (error || !data || data.length === 0) return;
+      const fresh = data.map((row, idx) => {
+        const sector = (row.industry || '').trim();
+        return {
+          idx,
+          name:            (row.company_name || '').trim(),
+          sector,
+          website:         (row.company_website || '').trim(),
+          logo:            (row.company_logo || '').trim(),
+          mission:         (row.mission_statement || '').trim(),
+          role:            (row.role_title || '').trim(),
+          tasks:           (row.tasks || '').trim(),
+          skills:          (row.top_skills || '').trim(),
+          environment:     (row.work_environment || '').trim(),
+          compensation:    (row.compensation || '').trim(),
+          hours:           (row.weekly_commitment || '').trim(),
+          reqs:            (row.student_requirements || '').trim(),
+          specificReqs:    (row.specific_requirements || '').trim(),
+          numStudents:     row.num_students ? String(row.num_students) : '',
+          mentorName:      (row.mentor_name || '').trim(),
+          mentorEmail:     (row.mentor_email || '').trim(),
+          appLink:         (row.application_link || '').trim(),
+          appInstructions: (row.application_instructions || '').trim(),
+          idealCandidate:  (row.ideal_candidate || '').trim(),
+          otherInfo:       (row.other_info || '').trim(),
+          clusterId:       sector.split(',').map(s => CLUSTER_MAP[s.trim().toLowerCase()]).filter(Boolean),
+        };
+      });
+      if (fresh.length > 0) { allBusinesses = fresh; renderJobs(); }
+    } catch(e) {} // keep static data on failure
   }
 
   // ── INIT ──────────────────────────────────────────────────────────────
