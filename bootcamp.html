@@ -164,6 +164,40 @@
       .capstone-grid{grid-template-columns:1fr}
       .launch-card-details{grid-template-columns:1fr}
     }
+
+    /* Time estimates */
+    .time-est{display:inline-flex;align-items:center;gap:.35rem;font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:600;color:rgba(255,255,255,.28);margin-top:.25rem;letter-spacing:.02em}
+
+    /* Phase pacing note */
+    .phase-period{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.28);letter-spacing:.04em;margin-top:.625rem;border-top:1px solid rgba(255,255,255,.07);padding-top:.625rem}
+
+    /* Employability skill tags */
+    .skill-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;margin-top:1rem;padding-top:.875rem;border-top:1px solid rgba(255,255,255,.06)}
+    .skill-tags-label{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);white-space:nowrap}
+    .skill-tag{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px;background:rgba(251,205,7,.08);border:1px solid rgba(251,205,7,.18);color:rgba(251,205,7,.65)}
+
+    /* Training agreement alert */
+    .training-alert{background:rgba(239,68,68,.07);border:1.5px solid rgba(239,68,68,.35);border-radius:10px;padding:1rem 1.25rem;margin:.875rem 0 0}
+    .training-alert-title{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f87171;margin-bottom:.5rem}
+    .training-alert-text{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6}
+
+    /* Bootcamp completion screen */
+    #completion-screen{position:fixed;inset:0;z-index:250;background:#0b1120;display:none;align-items:center;justify-content:center;padding:2rem;flex-direction:column;text-align:center}
+    #completion-screen.show{display:flex}
+    .cs-tag{display:inline-block;background:#AC161D;color:#fff;font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:.375rem 1rem;border-radius:999px;margin-bottom:1.5rem}
+    .cs-headline{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.5rem,7vw,4.5rem);letter-spacing:-.03em;color:#fff;margin-bottom:.375rem}
+    .cs-sub{font-size:.85rem;color:rgba(255,255,255,.35);margin-bottom:.375rem;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+    .cs-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;color:rgba(255,255,255,.4);margin-bottom:2rem}
+    .cs-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+    .cs-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.875rem 1.25rem;min-width:100px}
+    .cs-stat-val{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;color:#FBCD07;line-height:1.1}
+    .cs-stat-val.sm{font-size:.95rem;line-height:1.4;margin-top:.25rem}
+    .cs-stat-lbl{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:.2rem}
+    .cs-goal{background:rgba(172,22,29,.1);border:1px solid rgba(172,22,29,.3);border-radius:10px;padding:1rem 1.5rem;max-width:480px;width:100%;margin:0 auto 2rem;text-align:left}
+    .cs-goal-lbl{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FBCD07;margin-bottom:.375rem}
+    .cs-goal-text{font-size:.875rem;color:#fff;line-height:1.5;font-style:italic}
+    .cs-btn{padding:1rem 2.5rem;background:#AC161D;color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .15s}
+    .cs-btn:hover{background:#b91c22}
   </style>
 </head>
 <body>
@@ -192,6 +226,24 @@
       <button class="launch-dismiss" onclick="closeLaunchModal()">Dismiss for now</button>
     </div>
   </div>
+</div>
+
+<!-- Bootcamp Completion Screen -->
+<div id="completion-screen">
+  <div class="cs-tag font-heading">BHS Field Experience</div>
+  <div class="cs-headline font-heading">Bootcamp Complete.</div>
+  <div class="cs-sub font-heading">You're ready for the real thing.</div>
+  <div class="cs-name font-heading" id="cs-name">—</div>
+  <div class="cs-stats">
+    <div class="cs-stat"><div class="cs-stat-val font-heading">16</div><div class="cs-stat-lbl font-heading">Tasks Done</div></div>
+    <div class="cs-stat"><div class="cs-stat-val font-heading">4</div><div class="cs-stat-lbl font-heading">Phases</div></div>
+    <div class="cs-stat"><div class="cs-stat-val sm font-heading" id="cs-placement">—</div><div class="cs-stat-lbl font-heading">Placement</div></div>
+  </div>
+  <div class="cs-goal">
+    <div class="cs-goal-lbl font-heading">Your #1 Goal This Semester</div>
+    <div class="cs-goal-text" id="cs-goal">—</div>
+  </div>
+  <button class="cs-btn font-heading" onclick="window.location.href='dashboard.html'">Go to My Dashboard →</button>
 </div>
 
 <!-- Nav -->
@@ -280,6 +332,7 @@
     <div class="phase-num font-heading">Phase 1 of 4</div>
     <h2 class="phase-title font-heading">Professional Identity &amp; Course Launch</h2>
     <p class="phase-desc">Everything starts here. You'll learn what this course is, where it's going, and who you are as a professional. By the end of Phase 1, you'll have a resume in hand and an application submitted.</p>
+    <div class="phase-period font-heading">Plan for 4–5 class periods (90 min each) · Students should be applying by Day 3–4</div>
     <div class="phase-progress">
       <div class="progress-bar-track"><div class="progress-bar-fill" id="bar-1" style="width:0%"></div></div>
       <span class="progress-label font-heading" id="pct-label-1">0 / 5 complete</span>
@@ -290,8 +343,9 @@
     <div class="deliverables-label font-heading">What you'll have by the end of Phase 1</div>
     <div class="deliverables-list">
       <div class="deliverable-pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Career reflection + self-assessment</div>
+      <div class="deliverable-pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>LinkedIn profile set up</div>
       <div class="deliverable-pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Professional email signature</div>
-      <div class="deliverable-pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Completed resume</div>
+      <div class="deliverable-pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Completed resume (uploaded to LinkedIn)</div>
       <div class="deliverable-pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>At least 1 application submitted</div>
     </div>
   </div>
@@ -303,6 +357,7 @@
       <div class="activity-info">
         <div class="activity-title font-heading">Begin With the End in Mind</div>
         <div class="activity-subtitle">Course overview · Capstone preview · Syllabus · Website tour · Expectations</div>
+        <div class="time-est font-heading">~90 min · Day 1</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p1_course_overview">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p1_course_overview">▾</span>
@@ -317,6 +372,11 @@
         <li>Overview of the 7 career clusters and what placements are available</li>
         <li>Preview the 10 Illinois Essential Employability Skills you'll be assessed on</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Planning & Organizing</span>
+        <span class="skill-tag font-heading">Initiative</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Mark Complete</div>
         <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Your teacher will confirm this with the class. Mark complete once you've completed the course overview day.</p>
@@ -333,6 +393,7 @@
       <div class="activity-info">
         <div class="activity-title font-heading">Career &amp; Self-Assessment</div>
         <div class="activity-subtitle">Career interest reflection · Employability skills pre-assessment · Professional goals</div>
+        <div class="time-est font-heading">~90 min · Day 2</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p1_career_reflection">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p1_career_reflection">▾</span>
@@ -345,6 +406,24 @@
         <li>Write your professional goal for the semester — what do you want to walk away with?</li>
         <li>Class discussion: what do employers actually look for beyond skills?</li>
       </ul>
+      <div class="activity-section-label font-heading">Goal-writing scaffold</div>
+      <ul class="activity-bullets">
+        <li><strong style="color:rgba(255,255,255,.8)">What I want to do:</strong> A specific outcome — not "get better at communication" but "learn how to run a client meeting from start to finish"</li>
+        <li><strong style="color:rgba(255,255,255,.8)">Why it matters to me:</strong> Your honest reason, not what sounds good</li>
+        <li><strong style="color:rgba(255,255,255,.8)">How I'll know I got there:</strong> One thing you'll be able to show or do by the end of the semester</li>
+      </ul>
+      <div class="activity-section-label font-heading">Discussion prompts</div>
+      <ul class="activity-bullets">
+        <li>What career cluster excites you most — and what surprised you about your own answer?</li>
+        <li>What's one skill you have that employers might not see on paper?</li>
+        <li>If your employer asked "what do you want to get out of this?" — what would you actually say?</li>
+      </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Initiative</span>
+        <span class="skill-tag font-heading">Critical Thinking</span>
+        <span class="skill-tag font-heading">Communication</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Reflection</div>
         <textarea class="completion-textarea" id="input-p1_career_reflection" placeholder="Describe your career interests, what you want to get out of this placement, and one professional goal for the semester…" rows="4"></textarea>
@@ -360,7 +439,8 @@
       <div class="activity-num font-heading" id="num-p1_digital_footprint">3</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Your Professional Brand</div>
-        <div class="activity-subtitle">Digital footprint audit · Professional email signature · Social media + first impressions</div>
+        <div class="activity-subtitle">Digital footprint audit · LinkedIn setup · Professional email signature · Social media + first impressions</div>
+        <div class="time-est font-heading">~90 min · Day 2–3</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p1_digital_footprint">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p1_digital_footprint">▾</span>
@@ -374,6 +454,24 @@
         <li>Real examples: how a digital footprint has cost people jobs and opportunities</li>
         <li>Phone communication roleplay: cold-calling a potential employer</li>
       </ul>
+      <div class="activity-section-label font-heading">Social media audit checklist</div>
+      <ul class="activity-bullets">
+        <li>What's your profile photo — would an employer think it's professional?</li>
+        <li>What's your most recent public post — would you want your placement supervisor to see it?</li>
+        <li>Is anything tagged, shared, or public that needs to be removed or made private before interviews?</li>
+        <li>Does your bio describe you the way you want to be described professionally?</li>
+      </ul>
+      <div class="activity-section-label font-heading">LinkedIn setup</div>
+      <ul class="activity-bullets">
+        <li>Create your LinkedIn profile (or clean up an existing one) — professional photo, current city, high school listed</li>
+        <li>Write a headline that says more than your school: "Field Experience Student | Interested in Healthcare + Business" is more useful than just "Student at BHS"</li>
+        <li>We'll link your resume to this profile in Activity 4 — leave space for it</li>
+      </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Communication</span>
+        <span class="skill-tag font-heading">Initiative</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Your Email Signature</div>
         <textarea class="completion-textarea" id="input-p1_digital_footprint" placeholder="Paste your professional email signature here as written (name, title, school, contact)…" rows="3"></textarea>
@@ -389,7 +487,8 @@
       <div class="activity-num font-heading" id="num-p1_resume_complete">4</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Resume Workshop</div>
-        <div class="activity-subtitle">Build · Peer review · Conference · Final draft</div>
+        <div class="activity-subtitle">Build · AI feedback · Peer review · Conference · Final draft</div>
+        <div class="time-est font-heading">~90 min · Day 3–4</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p1_resume_complete">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p1_resume_complete">▾</span>
@@ -402,8 +501,15 @@
         <li>Action verb practice — the difference between listing a job and owning one</li>
         <li>References: how to ask professionally, who to ask, what they need to say</li>
         <li>In-class build time + peer review with a partner</li>
+        <li>Use AI to get a first-round review before your peer: paste your resume into Claude or ChatGPT and ask "What's weak on this resume and what would make it stronger?" — fix those first, then swap with a partner</li>
         <li>Teacher or partner conference on your draft before final</li>
+        <li>Once your resume is final, upload it to your LinkedIn profile — it becomes a portfolio artifact employers can see before they even open an application</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Communication</span>
+        <span class="skill-tag font-heading">Planning & Organizing</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Resume Link</div>
         <input type="url" class="completion-input" id="input-p1_resume_complete" placeholder="Paste your Google Drive resume link (make sure sharing is on)…">
@@ -419,7 +525,8 @@
       <div class="activity-num font-heading" id="num-p1_application_submitted">5</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Explore &amp; Apply</div>
-        <div class="activity-subtitle">Browse job menu · Research top choices · Meet with teacher · Submit application</div>
+        <div class="activity-subtitle">Browse job menu · Research employers · Meet with teacher · Apply · Follow-up</div>
+        <div class="time-est font-heading">~90 min · Day 4–5 (apply over weekend)</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p1_application_submitted">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p1_application_submitted">▾</span>
@@ -433,6 +540,23 @@
         <li>Meet with your teacher to talk through your choices and confirm your application plan</li>
         <li>Submit your application(s) — this starts the clock on employer paperwork, so the sooner the better</li>
       </ul>
+      <div class="activity-section-label font-heading">Employer research — know before you go</div>
+      <ul class="activity-bullets">
+        <li>Before applying: look up their website, LinkedIn, and Google reviews. What do they do? Who works there? Did they recently expand or hire?</li>
+        <li>Goal: walk into your interview able to say "I noticed you just opened a second location" or "I saw your team focuses heavily on youth programs" — not "so what do you guys do again?"</li>
+      </ul>
+      <div class="activity-section-label font-heading">After you apply</div>
+      <ul class="activity-bullets">
+        <li>Send a <strong style="color:rgba(255,255,255,.8)">follow-up email</strong> 5–7 business days after applying if you haven't heard back — brief, professional, confirms your interest</li>
+        <li>Send a <strong style="color:rgba(255,255,255,.8)">thank-you email</strong> within 24 hours of any interview — one paragraph, reference something specific from the conversation, confirm you want the role</li>
+        <li>Both emails go in your portfolio — they're evidence of professional communication, not just formalities</li>
+      </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Initiative</span>
+        <span class="skill-tag font-heading">Planning & Organizing</span>
+        <span class="skill-tag font-heading">Communication</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Your Application</div>
         <textarea class="completion-textarea" id="input-p1_application_submitted" placeholder="Which placement(s) did you apply to, and how did you submit? (e.g., 'Applied to Penrose Brewing and Batavia Public Library through the site on 8/28')" rows="2"></textarea>
@@ -451,6 +575,7 @@
     <div class="phase-num font-heading">Phase 2 of 4</div>
     <h2 class="phase-title font-heading">Interview Prep</h2>
     <p class="phase-desc">How do you actually earn the placement? This phase prepares you for the real interview — the pitch, the questions, the nerves, and the follow-through. Some of you may already have interviews scheduled. Good.</p>
+    <div class="phase-period font-heading">Plan for 3–4 class periods (90 min each) · Interviews should be scheduled or completed by end of Week 2</div>
     <div class="phase-progress">
       <div class="progress-bar-track"><div class="progress-bar-fill" id="bar-2" style="width:0%"></div></div>
       <span class="progress-label font-heading" id="pct-label-2">0 / 4 complete</span>
@@ -483,6 +608,7 @@
       <div class="activity-info">
         <div class="activity-title font-heading">Elevator Pitch</div>
         <div class="activity-subtitle">Write it · Workshop it · Record it</div>
+        <div class="time-est font-heading">~90 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p2_elevator_pitch">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p2_elevator_pitch">▾</span>
@@ -495,6 +621,10 @@
         <li>Deliver it to three different partners. Get real feedback: was it clear? Did you sound confident? Did it sound rehearsed?</li>
         <li>Refine and record your final video pitch — this becomes a portfolio piece and your capstone warmup</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Communication</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Elevator Pitch</div>
         <input type="url" class="completion-input" id="input-p2_elevator_pitch-url" placeholder="Paste your video link (Google Drive, Flipgrid, etc.)…">
@@ -510,8 +640,9 @@
     <div class="activity-header" onclick="toggleActivity('p2_star_practice')">
       <div class="activity-num font-heading" id="num-p2_star_practice">2</div>
       <div class="activity-info">
-        <div class="activity-title font-heading">STAR Method &amp; Interview Skills</div>
-        <div class="activity-subtitle">Situation · Task · Action · Result — how to answer anything</div>
+        <div class="activity-title font-heading">Interview Skills</div>
+        <div class="activity-subtitle">Real situations · What to wear · Body language · Communication</div>
+        <div class="time-est font-heading">~90 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p2_star_practice">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p2_star_practice">▾</span>
@@ -519,15 +650,21 @@
     <div class="activity-body" id="body-p2_star_practice">
       <div class="activity-section-label font-heading">What we do in class</div>
       <ul class="activity-bullets">
-        <li>STAR breakdown: Situation → Task → Action → Result. A formula for answering behavioral interview questions like "Tell me about a time when…"</li>
-        <li>Practice with real scenarios pulled from actual workplace situations</li>
-        <li>Common interview questions + how to prep answers without sounding robotic</li>
-        <li>Body language: what it says when you're nervous, how to correct for it</li>
-        <li>Professional appearance discussion: what appropriate looks like for different types of placements</li>
+        <li>Situational practice: "Tell me about a time when…" — you'll work through real scenarios from actual workplaces. The goal is having your own stories ready, not memorizing scripts.</li>
+        <li>Common interview questions + how to prep honest answers without sounding rehearsed</li>
+        <li>What to wear: professional appearance varies by placement type — a hospital, a restaurant, and a law firm all look different</li>
+        <li>Body language: what nervous looks like from the outside and how to correct for it — eye contact, posture, what to do with your hands</li>
+        <li>Communication: how to handle a question you don't know, how to ask for clarification, what to do when the answer honestly is "I'm not sure yet"</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Communication</span>
+        <span class="skill-tag font-heading">Adaptability</span>
+        <span class="skill-tag font-heading">Cultural Competency</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after your STAR practice session.</p>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after your interview skills session.</p>
         <button class="complete-btn font-heading" id="btn-p2_star_practice" onclick="markComplete('p2_star_practice', 2)">Mark Complete</button>
         <div class="status-msg" id="msg-p2_star_practice"></div>
       </div>
@@ -540,19 +677,32 @@
       <div class="activity-num font-heading" id="num-p2_mock_interview">3</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Mock Interview</div>
-        <div class="activity-subtitle">Formal interview · Real feedback · Peer or community partner</div>
+        <div class="activity-subtitle">Peer speed interviews · Formal mock · Real feedback · Question bank</div>
+        <div class="time-est font-heading">~90 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p2_mock_interview">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p2_mock_interview">▾</span>
     </div>
     <div class="activity-body" id="body-p2_mock_interview">
-      <div class="activity-section-label font-heading">What we do in class</div>
+      <div class="activity-section-label font-heading">Step 1 — Peer speed interviews (whole class)</div>
       <ul class="activity-bullets">
-        <li>Formal mock interview — peer partner, community member, HR professional, or administrator</li>
-        <li>Your interviewer completes a structured feedback form during your interview</li>
-        <li>You receive written feedback immediately after — specific, honest, actionable</li>
+        <li>Class splits in half: one side interviews, the other answers. Each pair gets 2–3 questions from a question bank, then rotate down the line.</li>
+        <li>After 30 minutes, switch sides — the interviewers become interviewees. Everyone practices both roles.</li>
+        <li>Interviewees don't know which questions are coming. That's the point — you get comfortable answering live, unrehearsed, for a rotating set of people.</li>
+      </ul>
+      <div class="activity-section-label font-heading">Step 2 — Formal mock interview (community partner)</div>
+      <ul class="activity-bullets">
+        <li>1-on-1 with a business partner, chamber member, or administrator — ideally someone you don't know well</li>
+        <li>Your interviewer uses a structured feedback form. You receive written feedback immediately after — specific, honest, actionable.</li>
+        <li>Goal is two interviews each during this block. When you're not in the chair, review the feedback from your last one.</li>
         <li>No one gets a perfect mock interview. That's the point. You find out what to fix before the real one.</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Communication</span>
+        <span class="skill-tag font-heading">Adaptability</span>
+        <span class="skill-tag font-heading">Critical Thinking</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Mock Interview Completed</div>
         <textarea class="completion-textarea" id="input-p2_mock_interview" placeholder="Who interviewed you and what was one piece of feedback you received?" rows="2"></textarea>
@@ -568,7 +718,8 @@
       <div class="activity-num font-heading" id="num-p2_interview_plan">4</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Interview Improvement Plan</div>
-        <div class="activity-subtitle">Review feedback · Identify gaps · Write action steps</div>
+        <div class="activity-subtitle">Review feedback · Identify gaps · Write action steps · AI practice partner</div>
+        <div class="time-est font-heading">~30–45 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p2_interview_plan">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p2_interview_plan">▾</span>
@@ -579,7 +730,13 @@
         <li>Review the feedback from your mock interview — what did you do well, what needs work?</li>
         <li>Identify 2–3 specific areas to improve before your real interview</li>
         <li>Write concrete action steps: not "be more confident" — "practice answering the 'tell me about yourself' question out loud three times before my interview"</li>
+        <li>Use AI as a practice partner between now and your real interview: open a chat and say "Act as the hiring manager at [company name]. Interview me for [role] and give me real questions. Rate my answers and tell me what to improve." — repeat until you feel ready.</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Critical Thinking</span>
+        <span class="skill-tag font-heading">Initiative</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Improvement Plan</div>
         <textarea class="completion-textarea" id="input-p2_interview_plan" placeholder="List 2–3 specific things you're working on before your real interview and your action steps for each…" rows="4"></textarea>
@@ -598,6 +755,7 @@
     <div class="phase-num font-heading">Phase 3 of 4</div>
     <h2 class="phase-title font-heading">Workplace Readiness</h2>
     <p class="phase-desc">You've applied. Interviews are happening. Now it's time to make sure you're ready for day one — not just to show up, but to show up right. Ethics, real scenarios, and the skills that make the difference between an employee people trust and one they don't.</p>
+    <div class="phase-period font-heading">Plan for 3–4 class periods (90 min each) · Placements should be confirmed before Phase 4</div>
     <div class="phase-progress">
       <div class="progress-bar-track"><div class="progress-bar-fill" id="bar-3" style="width:0%"></div></div>
       <span class="progress-label font-heading" id="pct-label-3">0 / 4 complete</span>
@@ -618,7 +776,8 @@
       <div class="activity-num font-heading" id="num-p3_ethics_scenarios">1</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Workplace Dilemma Stations</div>
-        <div class="activity-subtitle">Real scenarios · Small groups · Defend your decisions</div>
+        <div class="activity-subtitle">15 dilemmas · Carousel stations · Career clusters · Class debrief</div>
+        <div class="time-est font-heading">~90 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p3_ethics_scenarios">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p3_ethics_scenarios">▾</span>
@@ -626,12 +785,19 @@
     <div class="activity-body" id="body-p3_ethics_scenarios">
       <div class="activity-section-label font-heading">What we do in class</div>
       <ul class="activity-bullets">
-        <li>Small groups rotate through stations — each one has a real workplace scenario with no easy answer</li>
-        <li>Scenarios include: arriving late, a confidentiality situation, a conflict with a coworker, a dress code question, and an uncomfortable request from a supervisor</li>
-        <li>Groups discuss, decide, and prepare to defend their answer to the class</li>
-        <li>Special focus on confidentiality — especially important for education, health, and human services placements. What you can and cannot share, and what it means legally.</li>
-        <li>Full class debrief: what did different groups decide, and why does it matter?</li>
+        <li>Carousel activity: 15 dilemma stations set up around the room. Small groups rotate every few minutes, read the scenario, and discuss what they'd do.</li>
+        <li>Scenarios span all 7 career clusters — a healthcare confidentiality situation, a manufacturing safety shortcut, a supervisor asking something that feels wrong in an education setting, a customer conflict in retail, and more</li>
+        <li>After rotating, the class picks 2–3 scenarios to debrief together — groups share what they decided and why</li>
+        <li>You'll disagree with each other. That's the activity. There's often no single right answer — what matters is how you think it through.</li>
+        <li>If you were absent: all 15 dilemma scenarios are linked here so you can review them and mark complete</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Problem-Solving</span>
+        <span class="skill-tag font-heading">Decision-Making</span>
+        <span class="skill-tag font-heading">Teamwork</span>
+        <span class="skill-tag font-heading">Critical Thinking</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Mark Complete</div>
         <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after participating in the dilemma stations activity.</p>
@@ -646,8 +812,9 @@
     <div class="activity-header" onclick="toggleActivity('p3_skills_simulation')">
       <div class="activity-num font-heading" id="num-p3_skills_simulation">2</div>
       <div class="activity-info">
-        <div class="activity-title font-heading">Employability Skills Simulation</div>
-        <div class="activity-subtitle">Team challenges · Case studies · Conflict resolution · Receiving feedback</div>
+        <div class="activity-title font-heading">Meet Your 10 Employability Skills</div>
+        <div class="activity-subtitle">Quick overview · What each one actually means · Why you'll see them all semester</div>
+        <div class="time-est font-heading">~45–60 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p3_skills_simulation">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p3_skills_simulation">▾</span>
@@ -655,14 +822,18 @@
     <div class="activity-body" id="body-p3_skills_simulation">
       <div class="activity-section-label font-heading">What we do in class</div>
       <ul class="activity-bullets">
-        <li>Team-based challenges focused on adaptability, problem-solving, and collaboration — the kind of situations you'll actually face at a placement</li>
-        <li>Case study analysis: conflict resolution, working with a supervisor who gives confusing direction, being asked to do something outside your job description</li>
-        <li>How to receive feedback — good, bad, and vague — and what to do with it professionally</li>
-        <li>What success looks like in a workplace versus a classroom: different rules, different expectations, different relationships</li>
+        <li>This is your quick shot — a fast walkthrough of all 10 Illinois Essential Employability Skills before you rate yourself again in the post-assessment. We're going for breadth, not depth.</li>
+        <li>For each skill, you'll write one sentence in your own words: what does it actually mean, and where did you see it show up in Phase 1 or 2?</li>
+        <li>We'll clarify the ones that get confused with each other — critical thinking vs. problem-solving vs. decision-making are not the same thing, and the difference matters when you're in the field</li>
+        <li>By the end, you should be able to name all 10 and describe each one without looking at the list. You'll go deeper into each one throughout the semester — this is the foundation.</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills covered:</span>
+        <span class="skill-tag font-heading">All 10 Employability Skills</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after the skills simulation activity.</p>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after the employability skills overview.</p>
         <button class="complete-btn font-heading" id="btn-p3_skills_simulation" onclick="markComplete('p3_skills_simulation', 3)">Mark Complete</button>
         <div class="status-msg" id="msg-p3_skills_simulation"></div>
       </div>
@@ -676,6 +847,7 @@
       <div class="activity-info">
         <div class="activity-title font-heading">Post-Assessment</div>
         <div class="activity-subtitle">Re-rate your 10 employability skills · See your growth since Phase 1</div>
+        <div class="time-est font-heading">~30–45 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p3_self_assessment">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p3_self_assessment">▾</span>
@@ -688,6 +860,12 @@
         <li>This isn't about being perfect — it's about being honest so your placement experience can be intentional</li>
         <li>Write a short reflection: what surprised you about your growth? What do you want to focus on during your 60 hours?</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Critical Thinking</span>
+        <span class="skill-tag font-heading">Initiative</span>
+        <span class="skill-tag font-heading">Reliability</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Post-Assessment Reflection</div>
         <textarea class="completion-textarea" id="input-p3_self_assessment" placeholder="Where did you grow since Phase 1? What skill do you most want to develop during your placement?" rows="3"></textarea>
@@ -703,7 +881,8 @@
       <div class="activity-num font-heading" id="num-p3_placement_confirmed">4</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Placement Confirmed</div>
-        <div class="activity-subtitle">You got it — confirm your employer so we can get your paperwork started</div>
+        <div class="activity-subtitle">Confirm your employer · Training agreement · Onboarding paperwork</div>
+        <div class="time-est font-heading">Complete as soon as your offer is accepted</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p3_placement_confirmed">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p3_placement_confirmed">▾</span>
@@ -714,8 +893,18 @@
         <li>You've accepted an offer from a placement employer — congratulations</li>
         <li>Confirm your employer here so your teacher can start the hiring paperwork process</li>
         <li>The earlier this is confirmed, the more time your employer has to complete all required documents before your start date</li>
+        <li>Your employer may also have their own onboarding paperwork — especially if you're getting paid. This can include tax forms, direct deposit info, and ID verification. Sit down with a parent or guardian to complete these. Don't guess on legal documents.</li>
         <li>Don't have a confirmed placement yet? Keep at it. Talk to your teacher about next steps.</li>
       </ul>
+      <div class="training-alert">
+        <div class="training-alert-title font-heading">Required Before Day 1 — No Exceptions</div>
+        <div class="training-alert-text">Your <strong>Training Agreement</strong> must be signed by all four parties — <strong>you, a parent or guardian, your placement employer, and your teacher</strong> — and returned before your first day at your placement. This is a legal requirement. If you haven't received your agreement yet, contact your teacher immediately. You cannot start until this is in hand.</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Reliability</span>
+        <span class="skill-tag font-heading">Planning & Organizing</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Your Placement</div>
         <input type="text" class="completion-input" id="input-p3_placement_confirmed" placeholder="Employer name and your start date (e.g., 'Penrose Brewing — starting Sept 9')…">
@@ -734,6 +923,7 @@
     <div class="phase-num font-heading">Phase 4 of 4 — Final Phase</div>
     <h2 class="phase-title font-heading">Launch</h2>
     <p class="phase-desc">This is the send-off. You've built your resume, practiced your pitch, nailed the interview, and confirmed your placement. Now you set your intentions, make your commitment, and walk out ready. Your Launch Card generates when you complete this phase.</p>
+    <div class="phase-period font-heading">Plan for 2–3 class periods (90 min each) · Goal conferences run across 1–2 days</div>
     <div class="phase-progress">
       <div class="progress-bar-track"><div class="progress-bar-fill" id="bar-4" style="width:0%"></div></div>
       <span class="progress-label font-heading" id="pct-label-4">0 / 3 complete</span>
@@ -754,19 +944,35 @@
       <div class="activity-num font-heading" id="num-p4_goal_conference">1</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Goal Conference</div>
-        <div class="activity-subtitle">One-on-one with your teacher · Set 2–3 goals · Get your expectations cleared</div>
+        <div class="activity-subtitle">Prep your goals · One-on-one with your teacher · Get expectations cleared</div>
+        <div class="time-est font-heading">5–10 min per student · Runs across 1–2 class days</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p4_goal_conference">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p4_goal_conference">▾</span>
     </div>
     <div class="activity-body" id="body-p4_goal_conference">
+      <div class="activity-section-label font-heading">Come prepared</div>
+      <ul class="activity-bullets">
+        <li>Before your conference, draft your 2–3 goals. Your teacher shouldn't be the one prompting you to come up with them — arrive with answers ready.</li>
+        <li>Think through: What do you want to get out of this placement? What skill do you most want to improve? What would make this semester feel worth it?</li>
+        <li>Come with any questions or concerns too. What are you nervous about? What's still unclear? This is the place to name it — not Day 1 at your placement.</li>
+      </ul>
       <div class="activity-section-label font-heading">What we do in class</div>
       <ul class="activity-bullets">
         <li>5–10 minute one-on-one with your teacher — not a check-in, a real conversation about your placement and what you want from it</li>
         <li>Set 2–3 goals for your semester: specific, achievable, and tied to what you actually care about</li>
         <li>Review the time log and reflection process one more time — everyone does a test submission so there are no surprises</li>
-        <li>Any questions, concerns, or nerves? This is the place to name them.</li>
       </ul>
+      <div class="activity-section-label font-heading">While you wait for your conference</div>
+      <ul class="activity-bullets">
+        <li>Conferences run 1–2 full class days. When you're not in the chair, you'll get started on the first in-depth employability skill lesson or continue refining your elevator pitch for the capstone.</li>
+      </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Planning & Organizing</span>
+        <span class="skill-tag font-heading">Initiative</span>
+        <span class="skill-tag font-heading">Communication</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Mark Complete</div>
         <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after your one-on-one goal conference with your teacher.</p>
@@ -783,6 +989,7 @@
       <div class="activity-info">
         <div class="activity-title font-heading">Internship Plan of Success</div>
         <div class="activity-subtitle">Your roadmap for the semester · Professional intro email</div>
+        <div class="time-est font-heading">~45–60 min</div>
       </div>
       <span class="activity-badge badge-todo font-heading" id="badge-p4_internship_plan">To Do</span>
       <span class="activity-toggle font-heading" id="toggle-p4_internship_plan">▾</span>
@@ -792,8 +999,13 @@
       <ul class="activity-bullets">
         <li>Write your internship plan of success — your schedule, your goals, how you'll handle challenges, and how you'll track your 60 hours</li>
         <li>Draft a professional introduction or thank you email to your placement supervisor — your first real professional communication with them</li>
-        <li>Review: what does logging hours look like on the site? What does a good weekly reflection look like?</li>
+        <li>Review: what does logging hours look like on the site? What does a good weekly reflection look like? We'll do a live test submission together so everyone knows the process before it counts.</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Planning & Organizing</span>
+        <span class="skill-tag font-heading">Reliability</span>
+      </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Internship Plan</div>
         <textarea class="completion-textarea" id="input-p4_internship_plan" placeholder="Your placement, your schedule, your 2–3 goals for the semester, and how you plan to hit 60 hours…" rows="5"></textarea>
@@ -806,7 +1018,7 @@
   <!-- Activity 3 — LAUNCH -->
   <div class="activity-card" id="card-p4_commitment" style="border-color:rgba(172,22,29,.3)">
     <div class="activity-header" onclick="toggleActivity('p4_commitment')">
-      <div class="activity-num font-heading" id="num-p4_commitment" style="background:linear-gradient(135deg,#AC161D,#d72429)">4</div>
+      <div class="activity-num font-heading" id="num-p4_commitment" style="background:linear-gradient(135deg,#AC161D,#d72429)">3</div>
       <div class="activity-info">
         <div class="activity-title font-heading">Launch Day</div>
         <div class="activity-subtitle">Set your #1 goal · Submit &amp; Launch · Receive your Launch Card</div>
@@ -822,6 +1034,11 @@
         <li>Hit Submit &amp; Launch. Your Launch Card generates and lives on your dashboard permanently</li>
         <li>You are no longer a student preparing for a job. You're a student employee. Go make it count.</li>
       </ul>
+      <div class="skill-tags">
+        <span class="skill-tags-label font-heading">Skills practiced:</span>
+        <span class="skill-tag font-heading">Initiative</span>
+        <span class="skill-tag font-heading">Reliability</span>
+      </div>
       <div class="completion-zone" style="border-color:rgba(172,22,29,.3);background:rgba(172,22,29,.05)">
         <div class="completion-zone-label font-heading" style="color:#AC161D">Your #1 Goal This Semester</div>
         <textarea class="completion-textarea" id="input-p4_commitment" placeholder="One sentence. Specific and honest. What do you most want to accomplish or learn during your 60 hours?" rows="2" style="border-color:rgba(172,22,29,.3)"></textarea>
@@ -982,7 +1199,16 @@ function showLaunchCard(goal, date) {
   document.getElementById('launch-modal').classList.add('show');
 }
 
-function goToDashboard() { window.location.href = 'dashboard.html'; }
+function goToDashboard() {
+  const name = currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.given_name || currentUser?.email?.split('@')[0] || '—';
+  const goal = document.getElementById('input-p4_commitment')?.value?.trim() || userStudent?.semester_goal || '—';
+  const placement = userStudent?.placement_name || document.getElementById('input-p3_placement_confirmed')?.value || 'Pending';
+  document.getElementById('cs-name').textContent = name;
+  document.getElementById('cs-goal').textContent = '“' + goal + '”';
+  document.getElementById('cs-placement').textContent = placement;
+  document.getElementById('launch-modal').classList.remove('show');
+  document.getElementById('completion-screen').classList.add('show');
+}
 function closeLaunchModal() { document.getElementById('launch-modal').classList.remove('show'); }
 
 function showMsg(taskId, msg, type) {
