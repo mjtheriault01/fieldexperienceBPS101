@@ -72,6 +72,14 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     .spinner{width:36px;height:36px;border:3px solid #e5e5e5;border-top-color:#AC161D;border-radius:50%;animation:spin .8s linear infinite}
 
+    .position-card{cursor:pointer;transition:box-shadow .25s ease,transform .25s ease;}
+    .position-card:hover{box-shadow:0 8px 36px rgba(0,0,0,.14);transform:translateY(-2px);}
+
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:300;display:none;opacity:0;transition:opacity .35s cubic-bezier(.16,1,.3,1);}
+    .modal-backdrop.active{display:flex;opacity:1;}
+    .modal-content{transform:translateY(44px);opacity:0;transition:all .45s cubic-bezier(.16,1,.3,1) .08s;}
+    .modal-backdrop.active .modal-content{transform:translateY(0);opacity:1;}
+
     @media print {
       @page { margin: 0.35in; size: letter portrait; }
       body { background:#fff !important; }
@@ -88,6 +96,7 @@
       body:not(.print-one) .position-card:last-child { page-break-after:avoid; break-after:avoid; }
       body:not(.print-one) .cluster-section-header { page-break-after:avoid; break-after:avoid; }
 
+      .modal-backdrop { display:none !important; }
       /* ── Compress each card to fit one page ── */
       .position-card > div:nth-child(1) { padding: 0.4rem 0.65rem !important; }
       .position-card > div:nth-child(1) .w-14 { width: 2rem !important; height: 2rem !important; border-radius: 8px !important; }
@@ -150,6 +159,13 @@
 
 <!-- ── POSITIONS LIST ── -->
 <main id="positions-list" class="hidden max-w-5xl mx-auto px-6 py-10 space-y-10"></main>
+
+<!-- ── JOB DETAIL MODAL ── -->
+<div id="modal-job" class="modal-backdrop no-print items-center justify-center p-4">
+  <div class="modal-content bg-white w-full max-w-2xl max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+    <div id="job-modal-inner"></div>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer class="no-print py-8 px-6 text-center border-t border-gray-200 mt-10">
@@ -253,7 +269,7 @@ function buildCard(b, idx) {
     : `<span class="font-heading font-bold text-xl text-white">${esc((b.name||'?').charAt(0))}</span>`;
 
   return `
-  <div class="position-card" id="card-${idx}">
+  <div class="position-card" id="card-${idx}" onclick="openJobModal(${idx})">
 
     <!-- Card header -->
     <div class="px-7 py-5 flex items-start justify-between gap-4" style="background:${colors.bg}">
@@ -268,7 +284,7 @@ function buildCard(b, idx) {
         </div>
       </div>
       <button
-        onclick="downloadCard(${idx})"
+        onclick="event.stopPropagation();downloadCard(${idx})"
         class="download-btn no-print flex-shrink-0"
         style="background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4)"
         onmouseover="this.style.background='rgba(255,255,255,.35)'"
@@ -508,6 +524,131 @@ const STATIC_BUSINESSES = [
 ];
 
 loadPositions();
+
+function openJobModal(idx) {
+  const b = allPositions[idx];
+  if (!b) return;
+
+  const clusterId = normalizeCluster(b.clusterId || b.sector || '');
+  const colors = CLUSTER_COLORS[clusterId] || { bg:'#374151', light:'#f3f4f6' };
+  const logoUrl = getLogoUrl(b);
+  const logoBg  = getLogoBg(b);
+
+  const logoHtml = logoUrl
+    ? `<img src="${esc(logoUrl)}" alt="${esc(b.name)}" class="w-full h-full object-contain p-2" onerror="this.style.display='none'">`
+    : `<span class="text-xl font-heading font-bold text-white">${esc((b.name||'?').charAt(0))}</span>`;
+
+  function bl(text) {
+    if (!text) return '';
+    const sep = text.includes('\n') ? '\n' : ',';
+    return text.split(sep)
+      .map(l => l.replace(/^[-•*]\s*/,'').trim()).filter(Boolean)
+      .map(l => `<li class="flex items-start gap-2 text-sm text-gray-600"><span class="font-bold flex-shrink-0 mt-0.5" style="color:${colors.bg}">•</span><span>${esc(l)}</span></li>`)
+      .join('');
+  }
+
+  function badge(icon, label, val) {
+    if (!val) return '';
+    return `<div class="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
+      <div class="text-lg">${icon}</div>
+      <div class="text-xs text-gray-400 font-semibold font-heading mt-0.5">${label}</div>
+      <div class="text-xs font-heading font-bold text-gray-800 leading-tight mt-0.5">${esc(val)}</div>
+    </div>`;
+  }
+
+  const appMethods = (b.appInstructions||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const appHtml = appMethods.length
+    ? appMethods.map(m=>`<li class="flex items-start gap-2 text-sm text-gray-600"><span class="font-bold mt-0.5 flex-shrink-0" style="color:${colors.bg}">→</span><span>${esc(m)}</span></li>`).join('')
+    : '<li class="text-sm text-gray-600">Contact the mentor listed below.</li>';
+
+  document.getElementById('job-modal-inner').innerHTML = `
+    <div class="text-white px-6 py-5 flex items-start justify-between gap-4" style="background:${colors.bg}">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0" style="background:${logoBg}">${logoHtml}</div>
+        <div>
+          <p class="text-xs uppercase tracking-widest font-semibold opacity-75 mb-0.5">${esc(CLUSTER_NAMES[clusterId] || b.sector || '')}</p>
+          <h2 class="font-heading text-xl font-bold leading-tight">${esc(b.name)}</h2>
+          <p class="text-sm opacity-85 mt-0.5">${esc(b.role || 'Internship')}</p>
+        </div>
+      </div>
+      <button onclick="closeJobModal()" class="w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center flex-shrink-0 transition-colors mt-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-5 overflow-y-auto" style="max-height:calc(90vh - 112px)">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        ${badge('💰','Pay', b.compensation)}
+        ${badge('⏱','Hours/Wk', b.hours)}
+        ${badge('🏢','Setting', b.environment)}
+        ${badge('👥','Openings', b.numStudents)}
+      </div>
+      ${b.mission ? `<div class="border-l-4 pl-4" style="border-color:${colors.bg}">
+        <h3 class="font-heading font-bold text-sm uppercase tracking-wide text-navy-900 mb-1">About ${esc(b.name)}</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">${esc(b.mission)}</p>
+      </div>` : ''}
+      ${b.tasks ? `<div>
+        <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
+          <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${colors.bg}">✓</span>
+          What You'll Do
+        </h3>
+        <ul class="space-y-1.5">${bl(b.tasks)}</ul>
+      </div>` : ''}
+      ${b.skills ? `<div>
+        <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
+          <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${colors.bg}">★</span>
+          Skills You'll Develop
+        </h3>
+        <ul class="space-y-1.5">${bl(b.skills)}</ul>
+      </div>` : ''}
+      ${b.idealCandidate ? `<div class="rounded-xl p-4" style="background:${colors.light}">
+        <h3 class="font-heading font-bold text-sm text-navy-900 mb-1">Ideal Candidate</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">${esc(b.idealCandidate)}</p>
+      </div>` : ''}
+      ${b.reqs || b.specificReqs ? `<div>
+        <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
+          <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${colors.bg}">!</span>
+          Requirements
+        </h3>
+        <p class="text-sm text-gray-600">${esc([b.reqs,b.specificReqs].filter(Boolean).join(' · '))}</p>
+      </div>` : ''}
+      <div>
+        <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
+          <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${colors.bg}">→</span>
+          How to Apply
+        </h3>
+        <ul class="space-y-1.5">${appHtml}</ul>
+      </div>
+      ${b.appLink ? `<a href="${esc(b.appLink)}" target="_blank" rel="noopener"
+        class="block w-full text-center py-3.5 rounded-xl font-heading font-bold text-sm tracking-wide text-white transition-all hover:opacity-90"
+        style="background:${colors.bg}">Apply Now →</a>` : ''}
+      <div class="border-t border-gray-100 pt-4">
+        <p class="text-xs text-gray-400 font-heading font-semibold uppercase tracking-wide mb-1">Primary Mentor</p>
+        <p class="font-heading font-bold text-navy-900 text-sm">${esc(b.mentorName||'—')}</p>
+        ${b.mentorEmail ? `<a href="mailto:${esc(b.mentorEmail)}" class="text-sm hover:underline" style="color:${colors.bg}">${esc(b.mentorEmail)}</a>` : ''}
+      </div>
+      ${b.website ? `<a href="${esc(b.website)}" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-gray-400 hover:text-gray-700 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        Visit ${esc(b.name)} Website
+      </a>` : ''}
+    </div>`;
+
+  const modal = document.getElementById('modal-job');
+  document.body.style.overflow = 'hidden';
+  modal.style.display = 'flex';
+  modal.offsetHeight;
+  modal.classList.add('active');
+}
+
+function closeJobModal() {
+  const modal = document.getElementById('modal-job');
+  modal.classList.remove('active');
+  setTimeout(() => { modal.style.display = 'none'; document.body.style.overflow = ''; }, 380);
+}
+
+document.getElementById('modal-job').addEventListener('click', e => {
+  if (e.target.id === 'modal-job') closeJobModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeJobModal(); });
 </script>
 
 </body>
