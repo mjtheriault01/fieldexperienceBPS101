@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script>
     tailwind.config = {
       theme: { extend: {
@@ -270,6 +269,7 @@
     </div>
 
     <div id="jobs-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" style="display:none;"></div>
+    <div id="sb-status" class="text-xs text-gray-400 italic text-center mt-3 hidden"></div>
 
     <div id="jobs-empty" style="display:none;" class="text-center py-16 border-2 border-dashed border-gray-200 rounded-2xl">
       <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:#fef3c7;">
@@ -307,10 +307,8 @@
 
 <script>
   // ── DATA ──────────────────────────────────────────────────────────────
-  const _SB = supabase.createClient(
-    'https://bsgrkpykysvqcdqikcym.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzZ3JrcHlreXN2cWNkcWlrY3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MTE5NzUsImV4cCI6MjA5NTA4Nzk3NX0.brdA4f7v0GC89fRXPTVPZV11KIdZxXyCkLTWWsoe0o0'
-  );
+  const SUPABASE_URL = 'https://bsgrkpykysvqcdqikcym.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzZ3JrcHlreXN2cWNkcWlrY3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MTE5NzUsImV4cCI6MjA5NTA4Nzk3NX0.brdA4f7v0GC89fRXPTVPZV11KIdZxXyCkLTWWsoe0o0';
   const CLUSTER_ID = 'human';
   const CLUSTER_COLOR = '#c47a15';
 
@@ -568,12 +566,15 @@
 
   // ── SUPABASE LOAD ─────────────────────────────────────────────────────
   async function loadFromSheet() {
+    const sbStatus = document.getElementById('sb-status');
     try {
-      const { data, error } = await _SB
-        .from('job_listings')
-        .select('*')
-        .eq('is_active', true);
-      if (error || !data) return;
+      const resp = await fetch(
+        `${SUPABASE_URL}/rest/v1/job_listings?select=*&is_active=eq.true`,
+        { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
+      );
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      if (!Array.isArray(data) || !data.length) return;
       const fresh = data.map(row => {
         const sector = (row.industry || '').trim();
         return {
@@ -600,14 +601,16 @@
           clusterId:       (() => { const full = CLUSTER_MAP[sector.toLowerCase()]; if (full) return [full]; return sector.split(',').map(s => CLUSTER_MAP[s.trim().toLowerCase()]).filter(Boolean); })(),
         };
       });
-      // Merge: Supabase wins on name collision; keep static businesses not yet in Supabase
       const sbNames = new Set(fresh.map(r => (r.name||'').toLowerCase()));
       allBusinesses = [
         ...fresh,
         ...STATIC_BUSINESSES.filter(b => !sbNames.has((b.name||'').toLowerCase()))
       ].map((b, i) => ({ ...b, idx: i }));
       renderJobs();
-    } catch(e) {}
+    } catch(e) {
+      console.error('[FE] Supabase load error:', e.message, e);
+      if (sbStatus) { sbStatus.textContent = '⚠ Live listings unavailable'; sbStatus.classList.remove('hidden'); }
+    }
   }
 
   // ── INIT ──────────────────────────────────────────────────────────────
