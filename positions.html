@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script>
     tailwind.config = {
       theme: { extend: {
@@ -175,10 +174,8 @@
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeHACK_6TtpOYYpo32qM5AGa962uiHOnE8-UF13x8hDqjeozKwpXbYtL7bOqTbZoBwNg/exec';
 
-const _SB = supabase.createClient(
-  'https://bsgrkpykysvqcdqikcym.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzZ3JrcHlreXN2cWNkcWlrY3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MTE5NzUsImV4cCI6MjA5NTA4Nzk3NX0.brdA4f7v0GC89fRXPTVPZV11KIdZxXyCkLTWWsoe0o0'
-);
+const SUPABASE_URL = 'https://bsgrkpykysvqcdqikcym.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzZ3JrcHlreXN2cWNkcWlrY3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MTE5NzUsImV4cCI6MjA5NTA4Nzk3NX0.brdA4f7v0GC89fRXPTVPZV11KIdZxXyCkLTWWsoe0o0';
 
 const BPS_LOGO     = 'https://res.cloudinary.com/dikkdclum/image/upload/v1778676762/field-experience/logos/bps101.png';
 const LIB_LOGO     = 'https://res.cloudinary.com/dikkdclum/image/upload/v1780684358/field-experience/logos/batavia-library.svg';
@@ -413,8 +410,13 @@ function normalizeRow(row) {
 
 async function loadFromSupabase() {
   try {
-    const { data, error } = await _SB.from('job_listings').select('*').eq('is_active', true);
-    if (error || !data || !data.length) return [];
+    const resp = await fetch(
+      `${SUPABASE_URL}/rest/v1/job_listings?select=*&is_active=eq.true`,
+      { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
+    );
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    if (!Array.isArray(data) || !data.length) return [];
     return data.map(row => {
       const sector = (row.industry || '').split(',')[0].trim();
       return {
@@ -441,7 +443,7 @@ async function loadFromSupabase() {
         clusterId:       normalizeCluster(sector),
       };
     });
-  } catch(e) { return []; }
+  } catch(e) { console.error('[FE positions]', e.message, e); return []; }
 }
 
 async function loadPositions() {
