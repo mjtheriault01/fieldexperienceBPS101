@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Question Bank — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#fff}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+    .print-btn{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border:none;border-radius:6px;padding:.5rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.4rem}
+    .print-btn:hover{background:#e0b706}
+
+    main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+    .hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.75rem,4vw,2.5rem);letter-spacing:-.02em;margin-bottom:.75rem}
+    .page-sub{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:640px;margin-bottom:1.5rem}
+
+    .how-box{background:rgba(251,205,7,.07);border:1px solid rgba(251,205,7,.25);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+    .how-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FBCD07;margin-bottom:.625rem}
+    .how-box p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:.5rem}
+    .how-box p:last-child{margin-bottom:0}
+
+    .category{margin-bottom:2.25rem}
+    .category-header{display:flex;align-items:baseline;gap:.75rem;margin-bottom:.875rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.09)}
+    .category-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:#fff}
+    .category-note{font-size:.78rem;color:rgba(255,255,255,.4)}
+
+    .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    @media(max-width:600px){.q-grid{grid-template-columns:1fr}}
+    .q-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.875rem 1rem;display:flex;gap:.75rem;align-items:flex-start}
+    .q-num{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;color:#AC161D;flex-shrink:0;margin-top:.1rem}
+    .q-text{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.5}
+
+    .back-to-bootcamp{display:flex;justify-content:center;margin-top:2.5rem}
+    .back-to-bootcamp a{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.5rem;transition:all .15s}
+    .back-to-bootcamp a:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+
+    @media print{
+      nav, .how-box, .back-to-bootcamp{display:none}
+      body{background:#fff;color:#000}
+      main{max-width:100%;padding:1rem}
+      h1{color:#000}
+      .page-sub{display:none}
+      .category{page-break-inside:avoid;margin-bottom:1.5rem}
+      .category-title{color:#000}
+      .category-note{color:#555}
+      .q-card{border:1.5px dashed #999;background:#fff}
+      .q-num{color:#AC161D}
+      .q-text{color:#000}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="bootcamp.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
+    </a>
+    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span class="nav-title font-heading">Interview Question Bank</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m10-10V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7m10 0v6H7v-6m10 4h.01M7 17h10v4H7v-4z"/></svg>
+    Print Question Cards
+  </button>
+</nav>
+
+<main>
+  <p class="hero-eyebrow font-heading">Phase 2 · Step 1 — Peer Speed Interviews</p>
+  <h1 class="font-heading">Interview Question Bank</h1>
+  <p class="page-sub">36 real interview questions across 6 categories. Pulled 2–3 at a time during the speed-interview carousel, so you never know exactly what's coming — same as a real interview.</p>
+
+  <div class="how-box">
+    <div class="how-label font-heading">How this works</div>
+    <p><strong>In class:</strong> the class splits in half — interviewers and interviewees. Each pair draws 2–3 questions from this bank (teacher prints and cuts these into slips, or projects a category and calls a number). Interviewees answer live, unrehearsed. After ~30 minutes, switch sides.</p>
+    <p><strong>Prepping on your own?</strong> Read through every category below and practice answering a few out loud — not just in your head. Saying it out loud is what actually builds the muscle.</p>
+    <p>There's no single right answer to any of these. Interviewers are listening for how clearly and specifically you can talk about yourself.</p>
+  </div>
+
+  <div class="category">
+    <div class="category-header"><span class="category-title font-heading">Warm-Up</span><span class="category-note">Questions 1–5 · Break the ice, ease into the format</span></div>
+    <div class="q-grid">
+      <div class="q-card"><span class="q-num font-heading">01</span><span class="q-text">Tell me a little about yourself.</span></div>
+      <div class="q-card"><span class="q-num font-heading">02</span><span class="q-text">What's something you're proud of that isn't on a resume?</span></div>
+      <div class="q-card"><span class="q-num font-heading">03</span><span class="q-text">What do you like to do outside of school?</span></div>
+      <div class="q-card"><span class="q-num font-heading">04</span><span class="q-text">What's a class or activity you've genuinely enjoyed, and why?</span></div>
+      <div class="q-card"><span class="q-num font-heading">05</span><span class="q-text">How would a friend describe you in three words?</span></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header"><span class="category-title font-heading">Background &amp; Interest</span><span class="category-note">Questions 6–11 · Why this field, why now</span></div>
+    <div class="q-grid">
+      <div class="q-card"><span class="q-num font-heading">06</span><span class="q-text">Why are you interested in this career field?</span></div>
+      <div class="q-card"><span class="q-num font-heading">07</span><span class="q-text">What do you already know about this industry or role?</span></div>
+      <div class="q-card"><span class="q-num font-heading">08</span><span class="q-text">What skills do you already have that would be useful here?</span></div>
+      <div class="q-card"><span class="q-num font-heading">09</span><span class="q-text">What's something you hope to learn from this experience?</span></div>
+      <div class="q-card"><span class="q-num font-heading">10</span><span class="q-text">What made you choose this placement over the others available?</span></div>
+      <div class="q-card"><span class="q-num font-heading">11</span><span class="q-text">Where do you see this experience fitting into your future plans?</span></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header"><span class="category-title font-heading">Behavioral — "Tell Me About a Time…"</span><span class="category-note">Questions 12–19 · Real past examples, ideally with STAR structure</span></div>
+    <div class="q-grid">
+      <div class="q-card"><span class="q-num font-heading">12</span><span class="q-text">Tell me about a time you had to work with someone who was difficult to get along with.</span></div>
+      <div class="q-card"><span class="q-num font-heading">13</span><span class="q-text">Tell me about a time you made a mistake. What did you do about it?</span></div>
+      <div class="q-card"><span class="q-num font-heading">14</span><span class="q-text">Tell me about a time you had to meet a deadline under pressure.</span></div>
+      <div class="q-card"><span class="q-num font-heading">15</span><span class="q-text">Tell me about a time you had to learn something new quickly.</span></div>
+      <div class="q-card"><span class="q-num font-heading">16</span><span class="q-text">Tell me about a time you disagreed with someone in charge of you. How did you handle it?</span></div>
+      <div class="q-card"><span class="q-num font-heading">17</span><span class="q-text">Tell me about a time you went above and beyond what was expected of you.</span></div>
+      <div class="q-card"><span class="q-num font-heading">18</span><span class="q-text">Tell me about a time you had to juggle multiple responsibilities at once.</span></div>
+      <div class="q-card"><span class="q-num font-heading">19</span><span class="q-text">Tell me about a time you received tough feedback. How did you respond?</span></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header"><span class="category-title font-heading">Situational — "What Would You Do If…"</span><span class="category-note">Questions 20–26 · Hypothetical judgment calls</span></div>
+    <div class="q-grid">
+      <div class="q-card"><span class="q-num font-heading">20</span><span class="q-text">What would you do if you were given a task you didn't know how to do?</span></div>
+      <div class="q-card"><span class="q-num font-heading">21</span><span class="q-text">What would you do if you noticed a coworker doing something unsafe?</span></div>
+      <div class="q-card"><span class="q-num font-heading">22</span><span class="q-text">What would you do if you disagreed with a decision your supervisor made?</span></div>
+      <div class="q-card"><span class="q-num font-heading">23</span><span class="q-text">What would you do if you showed up and your supervisor forgot you were coming?</span></div>
+      <div class="q-card"><span class="q-num font-heading">24</span><span class="q-text">What would you do if a customer or client was upset with something out of your control?</span></div>
+      <div class="q-card"><span class="q-num font-heading">25</span><span class="q-text">What would you do if you finished all your assigned work early?</span></div>
+      <div class="q-card"><span class="q-num font-heading">26</span><span class="q-text">What would you do if you realized you were about to miss a deadline?</span></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header"><span class="category-title font-heading">Motivation &amp; Fit</span><span class="category-note">Questions 27–32 · Work ethic, values, self-awareness</span></div>
+    <div class="q-grid">
+      <div class="q-card"><span class="q-num font-heading">27</span><span class="q-text">What does being reliable mean to you?</span></div>
+      <div class="q-card"><span class="q-num font-heading">28</span><span class="q-text">How do you handle criticism?</span></div>
+      <div class="q-card"><span class="q-num font-heading">29</span><span class="q-text">What's a strength you bring to a team, and what's something you're working on?</span></div>
+      <div class="q-card"><span class="q-num font-heading">30</span><span class="q-text">How do you stay organized when you have a lot going on?</span></div>
+      <div class="q-card"><span class="q-num font-heading">31</span><span class="q-text">What kind of work environment brings out your best?</span></div>
+      <div class="q-card"><span class="q-num font-heading">32</span><span class="q-text">Why should this placement choose you over another student?</span></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-header"><span class="category-title font-heading">Closing</span><span class="category-note">Questions 33–36 · How you wrap up an interview</span></div>
+    <div class="q-grid">
+      <div class="q-card"><span class="q-num font-heading">33</span><span class="q-text">Do you have any questions for me?</span></div>
+      <div class="q-card"><span class="q-num font-heading">34</span><span class="q-text">Is there anything about your background you'd like to explain further?</span></div>
+      <div class="q-card"><span class="q-num font-heading">35</span><span class="q-text">What are you hoping to walk away with by the end of this experience?</span></div>
+      <div class="q-card"><span class="q-num font-heading">36</span><span class="q-text">Is there anything else you'd like me to know before we finish?</span></div>
+    </div>
+  </div>
+
+  <div class="back-to-bootcamp">
+    <a href="bootcamp.html" class="font-heading">← Back to Bootcamp</a>
+  </div>
+</main>
+</body>
+</html>

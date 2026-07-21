@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Guide — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#fff}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+    .copy-btn{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border:none;border-radius:6px;padding:.5rem 1rem;cursor:pointer}
+    .copy-btn:hover{background:#e0b706}
+
+    main{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+    .hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.5vw,2.75rem);letter-spacing:-.02em;margin-bottom:.75rem}
+    .page-sub{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.7;max-width:640px;margin-bottom:2.5rem}
+
+    .toc{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+    .toc a{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:.45rem .9rem;text-decoration:none;transition:all .15s}
+    .toc a:hover{color:#fff;border-color:rgba(251,205,7,.4)}
+
+    .section{margin-bottom:2.75rem;scroll-margin-top:80px}
+    .section-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FBCD07;margin-bottom:.5rem}
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:1rem;letter-spacing:-.01em}
+    .section p{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:.875rem}
+
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.5rem 1.625rem;margin-bottom:1rem}
+    .card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:#fff;margin-bottom:.625rem}
+    .bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .bullets li{display:flex;align-items:flex-start;gap:.625rem;font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .bullets li::before{content:'→';color:#AC161D;font-size:.75rem;margin-top:.15rem;flex-shrink:0}
+
+    /* Translation table */
+    .translate-table{width:100%;border-collapse:collapse;font-size:.83rem}
+    .translate-table th{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:left;padding:.6rem .875rem;border-bottom:1px solid rgba(255,255,255,.09)}
+    .translate-table td{padding:.75rem .875rem;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.75);vertical-align:top;line-height:1.5}
+    .translate-table tr:hover td{background:rgba(255,255,255,.02)}
+    .weak-phrase{color:rgba(255,255,255,.4);text-decoration:line-through;text-decoration-color:rgba(239,68,68,.4)}
+    .strong-phrase{color:#fff;font-weight:600}
+    .arrow-cell{color:#AC161D;text-align:center;width:2rem}
+
+    /* Verb bank */
+    .verb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+    .verb-cat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1.125rem 1.25rem}
+    .verb-cat-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:#FBCD07;margin-bottom:.625rem}
+    .verb-list{display:flex;flex-wrap:wrap;gap:.4rem}
+    .verb-pill{font-size:.78rem;color:rgba(255,255,255,.7);background:rgba(255,255,255,.05);border-radius:999px;padding:.25rem .7rem}
+
+    /* AI prompt box */
+    .prompt-box{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:12px;padding:1.25rem 1.5rem;margin-top:1rem}
+    .prompt-box-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#60a5fa;margin-bottom:.625rem}
+    .prompt-text{font-family:'JetBrains Mono','Courier New',monospace;font-size:.85rem;color:#dbeafe;line-height:1.6;background:rgba(0,0,0,.25);border-radius:8px;padding:.875rem 1rem}
+
+    /* Template */
+    .template-box{background:#fff;color:#111;border-radius:12px;padding:1.75rem 2rem;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.7;white-space:pre-wrap;margin-top:1rem}
+    .template-box b{font-weight:800}
+
+    .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.75rem;height:1.75rem;border-radius:50%;background:#AC161D;color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.75rem;flex-shrink:0}
+    .step-row{display:flex;gap:.875rem;align-items:flex-start;margin-bottom:1rem}
+    .step-text{font-size:.87rem;color:rgba(255,255,255,.7);line-height:1.6;padding-top:.15rem}
+    .step-text strong{color:#fff}
+
+    .back-to-bootcamp{display:flex;justify-content:center;margin-top:2.5rem}
+    .back-to-bootcamp a{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.5rem;transition:all .15s}
+    .back-to-bootcamp a:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+
+    @media(max-width:600px){.translate-table{font-size:.76rem}.translate-table th,.translate-table td{padding:.5rem .5rem}}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="bootcamp.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
+    </a>
+    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span class="nav-title font-heading">Resume Guide</span>
+  </div>
+</nav>
+
+<main>
+  <p class="hero-eyebrow font-heading">Phase 1 · Resume Workshop</p>
+  <h1 class="font-heading">Build Your First Real Resume</h1>
+  <p class="page-sub">This guide is written for a first resume — you probably don't have years of jobs to list, and that's normal. School, activities, and volunteer work count as real experience when you frame them right.</p>
+
+  <div class="toc">
+    <a href="#structure" class="font-heading">Structure</a>
+    <a href="#translate" class="font-heading">Translate Your Experience</a>
+    <a href="#verbs" class="font-heading">Action Verbs</a>
+    <a href="#references" class="font-heading">References</a>
+    <a href="#ai-review" class="font-heading">AI Review</a>
+    <a href="#peer-review" class="font-heading">Peer &amp; Teacher Review</a>
+    <a href="#template" class="font-heading">Starter Template</a>
+  </div>
+
+  <div class="section" id="structure">
+    <div class="section-eyebrow font-heading">Structure</div>
+    <div class="section-title font-heading">What Goes Where, and Why</div>
+    <p>A 40-year-old professional's resume and yours should not look the same — and that's fine. Their resume leads with a decade of job titles. Yours leads with what you can prove: school activities, sports, volunteering, and any paid or informal work you've done.</p>
+    <div class="card">
+      <div class="card-title font-heading">Section order for a first resume</div>
+      <ul class="bullets">
+        <li><strong style="color:rgba(255,255,255,.85)">Header</strong> — name, phone, professional email, city/state, LinkedIn URL. No home address, no photo.</li>
+        <li><strong style="color:rgba(255,255,255,.85)">Objective (optional, 1 line)</strong> — only include if it says something specific: "Seeking a Field Experience placement in Health Sciences to build hands-on patient care skills." Skip it if it's generic filler.</li>
+        <li><strong style="color:rgba(255,255,255,.85)">Education</strong> — Batavia High School, expected graduation year, GPA if it's a strength, relevant coursework if directly useful to the placement.</li>
+        <li><strong style="color:rgba(255,255,255,.85)">Experience / Activities</strong> — this is the section that carries your resume. Include any paid jobs, but also sports (team leadership, commitment), clubs (roles held, projects run), volunteer work, and babysitting/lawn care/family business work if it's real and ongoing.</li>
+        <li><strong style="color:rgba(255,255,255,.85)">Skills</strong> — a short list, specific not vague: "Proficient in Google Workspace and Canva," not "hard worker."</li>
+        <li><strong style="color:rgba(255,255,255,.85)">References</strong> — "Available upon request," with the actual list kept on a separate sheet (see the References section below).</li>
+      </ul>
+    </div>
+    <p>Different placements call for different emphasis. A student applying to a manufacturing placement should foreground safety-mindedness and reliability; a student applying to a creative placement should foreground a portfolio or specific projects. Same structure, different weight.</p>
+  </div>
+
+  <div class="section" id="translate">
+    <div class="section-eyebrow font-heading">Translation</div>
+    <div class="section-title font-heading">School Experience → Workforce Language</div>
+    <p>Employers don't read "I was on the team" and picture what you actually did. Ownership language does the work a job title can't.</p>
+    <div class="card" style="padding:0;overflow-x:auto">
+      <table class="translate-table">
+        <tr><th>You'd say</th><th></th><th>Put on your resume</th></tr>
+        <tr><td class="weak-phrase">I was on the basketball team</td><td class="arrow-cell">→</td><td class="strong-phrase">Committed 15+ hours weekly to team practice and conditioning while maintaining a 3.4 GPA</td></tr>
+        <tr><td class="weak-phrase">I babysat my cousins</td><td class="arrow-cell">→</td><td class="strong-phrase">Managed childcare responsibilities for two children, including meal prep and homework supervision</td></tr>
+        <tr><td class="weak-phrase">I helped out at the school store</td><td class="arrow-cell">→</td><td class="strong-phrase">Handled point-of-sale transactions and inventory tracking for the student-run school store</td></tr>
+        <tr><td class="weak-phrase">I was in student council</td><td class="arrow-cell">→</td><td class="strong-phrase">Organized and led two school-wide fundraising events as a Student Council representative</td></tr>
+        <tr><td class="weak-phrase">I mow lawns for people</td><td class="arrow-cell">→</td><td class="strong-phrase">Operate a self-run lawn care service for 8 recurring residential clients, handling scheduling and payment</td></tr>
+        <tr><td class="weak-phrase">I did a group project</td><td class="arrow-cell">→</td><td class="strong-phrase">Coordinated a 4-person team to deliver a research project under a fixed deadline</td></tr>
+        <tr><td class="weak-phrase">I volunteer sometimes</td><td class="arrow-cell">→</td><td class="strong-phrase">Volunteer monthly at the Batavia Public Library, assisting with children's reading programs</td></tr>
+        <tr><td class="weak-phrase">I'm the youth group leader's helper</td><td class="arrow-cell">→</td><td class="strong-phrase">Assist in planning and leading weekly activities for a youth group of 20+ participants</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" id="verbs">
+    <div class="section-eyebrow font-heading">Action Verbs</div>
+    <div class="section-title font-heading">The Difference Between Listing a Job and Owning It</div>
+    <p>Every bullet point should start with an action verb — not "responsible for," not "in charge of." Pick the verb that actually matches what you did.</p>
+    <div class="verb-grid">
+      <div class="verb-cat">
+        <div class="verb-cat-title font-heading">Leadership</div>
+        <div class="verb-list"><span class="verb-pill">Led</span><span class="verb-pill">Organized</span><span class="verb-pill">Coordinated</span><span class="verb-pill">Directed</span><span class="verb-pill">Mentored</span><span class="verb-pill">Delegated</span></div>
+      </div>
+      <div class="verb-cat">
+        <div class="verb-cat-title font-heading">Communication</div>
+        <div class="verb-list"><span class="verb-pill">Presented</span><span class="verb-pill">Facilitated</span><span class="verb-pill">Drafted</span><span class="verb-pill">Advised</span><span class="verb-pill">Translated</span><span class="verb-pill">Documented</span></div>
+      </div>
+      <div class="verb-cat">
+        <div class="verb-cat-title font-heading">Organization</div>
+        <div class="verb-list"><span class="verb-pill">Scheduled</span><span class="verb-pill">Tracked</span><span class="verb-pill">Managed</span><span class="verb-pill">Maintained</span><span class="verb-pill">Streamlined</span><span class="verb-pill">Prioritized</span></div>
+      </div>
+      <div class="verb-cat">
+        <div class="verb-cat-title font-heading">Problem-Solving</div>
+        <div class="verb-list"><span class="verb-pill">Resolved</span><span class="verb-pill">Diagnosed</span><span class="verb-pill">Improved</span><span class="verb-pill">Adapted</span><span class="verb-pill">Redesigned</span><span class="verb-pill">Troubleshot</span></div>
+      </div>
+      <div class="verb-cat">
+        <div class="verb-cat-title font-heading">Technical / Hands-On</div>
+        <div class="verb-list"><span class="verb-pill">Operated</span><span class="verb-pill">Assembled</span><span class="verb-pill">Built</span><span class="verb-pill">Repaired</span><span class="verb-pill">Measured</span><span class="verb-pill">Inspected</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="references">
+    <div class="section-eyebrow font-heading">References</div>
+    <div class="section-title font-heading">How to Ask, Who to Ask, What They Need</div>
+    <div class="card">
+      <div class="card-title font-heading">Who counts as a good reference</div>
+      <ul class="bullets">
+        <li>A teacher, coach, or club advisor who's supervised you directly — not just given you a grade</li>
+        <li>A previous employer or volunteer coordinator</li>
+        <li>Never a parent, sibling, or family friend with no professional relationship to you</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title font-heading">How to actually ask (a script)</div>
+      <p style="font-style:italic;margin-bottom:0">"Hi Mr./Ms. [Name] — I'm applying for a Field Experience placement in [cluster], and I wanted to ask if you'd be comfortable being a reference for me. If so, would it help if I sent you a quick summary of what I'm applying for and what I'd love for you to speak to?"</p>
+    </div>
+    <div class="card">
+      <div class="card-title font-heading">What to give them once they say yes</div>
+      <ul class="bullets">
+        <li>What you're applying for and why</li>
+        <li>1-2 specific things you'd love for them to mention, if true (reliability, a project, growth you showed)</li>
+        <li>A heads-up on timing — don't ask the day before it's due</li>
+        <li>A thank-you afterward, regardless of outcome</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" id="ai-review">
+    <div class="section-eyebrow font-heading">AI Review</div>
+    <div class="section-title font-heading">Get a First-Round Review Before Your Peer</div>
+    <p>Before you swap with a partner, get a free first pass from an AI tool. It won't replace human feedback, but it catches weak phrasing fast so your peer review time goes further.</p>
+    <div class="prompt-box">
+      <div class="prompt-box-label font-heading">Paste your resume into Claude or ChatGPT, then ask:</div>
+      <div class="prompt-text">What's weak on this resume and what would make it stronger?</div>
+    </div>
+    <p style="margin-top:1rem">Fix what it flags first. Then swap with a partner — a real person will catch things AI won't, like whether it actually sounds like you.</p>
+  </div>
+
+  <div class="section" id="peer-review">
+    <div class="section-eyebrow font-heading">Peer &amp; Teacher Review</div>
+    <div class="section-title font-heading">Before It's Final</div>
+    <div class="step-row"><span class="step-num font-heading">1</span><div class="step-text"><strong>AI review</strong> — fix the obvious weak spots first (see above)</div></div>
+    <div class="step-row"><span class="step-num font-heading">2</span><div class="step-text"><strong>Peer review</strong> — swap with a partner in class. Read it out loud to each other — awkward phrasing is obvious the moment you hear it</div></div>
+    <div class="step-row"><span class="step-num font-heading">3</span><div class="step-text"><strong>Teacher or partner conference</strong> — bring your draft, be ready to explain choices, not just accept edits blindly</div></div>
+    <div class="step-row" style="margin-bottom:0"><span class="step-num font-heading">4</span><div class="step-text"><strong>Upload to LinkedIn</strong> — once it's final, add it to your LinkedIn profile. It becomes a portfolio artifact employers can see before they even open an application.</div></div>
+  </div>
+
+  <div class="section" id="template" style="margin-bottom:0">
+    <div class="section-eyebrow font-heading">Starter Template</div>
+    <div class="section-title font-heading">Copy This Into a Google Doc</div>
+    <p>Don't stare at a blank page. Copy this skeleton, then replace every bracket with your real information.</p>
+    <div class="template-box">[YOUR FULL NAME]
+[Phone] · [Professional Email] · [Batavia, IL] · [linkedin.com/in/yourname]
+
+<b>EDUCATION</b>
+Batavia High School — Batavia, IL
+Expected Graduation: [Month Year]
+GPA: [X.X] (optional — include if it's a strength)
+
+<b>EXPERIENCE &amp; ACTIVITIES</b>
+[Role/Activity Name] — [Organization] | [Month Year] – [Month Year / Present]
+• [Action verb] + what you did + the result, if you can measure it
+• [Action verb] + what you did + the result, if you can measure it
+
+[Role/Activity Name] — [Organization] | [Month Year] – [Month Year / Present]
+• [Action verb] + what you did + the result, if you can measure it
+• [Action verb] + what you did + the result, if you can measure it
+
+<b>SKILLS</b>
+[Specific skill], [Specific skill], [Specific skill], [Specific skill]
+
+<b>REFERENCES</b>
+Available upon request</div>
+  </div>
+
+  <div class="back-to-bootcamp">
+    <a href="bootcamp.html" class="font-heading">← Back to Bootcamp</a>
+  </div>
+</main>
+</body>
+</html>

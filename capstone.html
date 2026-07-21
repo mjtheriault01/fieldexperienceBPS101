@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Capstone — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#fff}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+
+    main{max-width:820px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+    .hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.5vw,2.75rem);letter-spacing:-.02em;margin-bottom:.75rem}
+    .page-sub{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.7;max-width:640px;margin-bottom:2.5rem}
+
+    .section{margin-bottom:2.75rem}
+    .section-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FBCD07;margin-bottom:.5rem}
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:1rem;letter-spacing:-.01em}
+    .section p{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:.875rem}
+
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.5rem 1.625rem;margin-bottom:1rem}
+    .card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:#fff;margin-bottom:.625rem}
+    .bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .bullets li{display:flex;align-items:flex-start;gap:.625rem;font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .bullets li::before{content:'→';color:#AC161D;font-size:.75rem;margin-top:.15rem;flex-shrink:0}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:600px){.grid-2{grid-template-columns:1fr}}
+
+    .talk-structure{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem}
+    .talk-step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start}
+    .talk-step-time{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.85rem;color:#FBCD07;flex-shrink:0;min-width:3.5rem}
+    .talk-step-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:#fff;margin-bottom:.25rem}
+    .talk-step-desc{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5}
+
+    .example-script{background:rgba(251,205,7,.06);border:1px solid rgba(251,205,7,.25);border-radius:14px;padding:1.5rem 1.625rem;margin-top:1.25rem}
+    .example-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
+    .example-script p{font-size:.88rem;color:rgba(255,255,255,.8);line-height:1.75;font-style:italic}
+
+    .checklist{display:flex;flex-direction:column;gap:.5rem}
+    .check-item{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.75rem 1rem}
+    .check-box{width:1.1rem;height:1.1rem;border-radius:4px;border:1.5px solid rgba(255,255,255,.25);flex-shrink:0;margin-top:.1rem}
+    .check-text{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.5}
+    .check-text strong{color:#fff}
+
+    .logistics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:600px){.logistics-grid{grid-template-columns:1fr}}
+    .logistics-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1.125rem 1.25rem}
+    .logistics-label{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.5rem}
+    .logistics-text{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.55}
+
+    .back-to-bootcamp{display:flex;justify-content:center;margin-top:2.5rem}
+    .back-to-bootcamp a{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.5rem;transition:all .15s}
+    .back-to-bootcamp a:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="bootcamp.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
+    </a>
+    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span class="nav-title font-heading">The Capstone</span>
+  </div>
+</nav>
+
+<main>
+  <p class="hero-eyebrow font-heading">Begin With the End in Mind</p>
+  <h1 class="font-heading">The Capstone, In Detail</h1>
+  <p class="page-sub">Everything you do in bootcamp and during your placement builds toward one afternoon at the end of the semester. Here's exactly what that looks like, so nothing about it is a surprise.</p>
+
+  <div class="section">
+    <div class="section-eyebrow font-heading">Part 1</div>
+    <div class="section-title font-heading">Your Booth</div>
+    <p>You'll have a table or display space to show what you actually did during your Field Experience — not a summary of the course, but evidence of your specific placement. What's on it depends heavily on what kind of work you did.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title font-heading">Every booth needs</div>
+        <ul class="bullets">
+          <li>A name placard with your name, placement, and career cluster</li>
+          <li>A printed or digital copy of your resume</li>
+          <li>Photos from your placement (with permission — ask your supervisor early)</li>
+          <li>A one-page summary of what you did, in your own words</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title font-heading">Depending on your placement</div>
+        <ul class="bullets">
+          <li><strong style="color:rgba(255,255,255,.8)">Hands-on/creative work</strong> (arts, manufacturing, agriculture): bring physical samples or a portfolio of what you made or built</li>
+          <li><strong style="color:rgba(255,255,255,.8)">Office/service work</strong> (business, health, human services): bring a project you contributed to, a process you documented, or data/outcomes you can speak to</li>
+          <li><strong style="color:rgba(255,255,255,.8)">Digital work</strong> (IT, communications): bring a laptop or tablet set up to show your work directly</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title font-heading">Setup expectations</div>
+      <ul class="bullets">
+        <li>Arrive at the time your teacher sets — booths need to be fully set up before doors open, not while guests are walking in</li>
+        <li>Professional appearance — same standard as your mock interview, not just "nice for school"</li>
+        <li>You're staffing the booth the entire time. This isn't a poster you walk away from — you're talking to every person who stops</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow font-heading">Part 2</div>
+    <div class="section-title font-heading">Your 90-Second Stage Talk</div>
+    <p>At some point during the event, you'll be called to the stage or front of the room for a timed talk — 90 seconds, prompted questions, no notes on a phone. This is your final elevator pitch: practiced, earned, and specific to what you actually did.</p>
+
+    <div class="talk-structure">
+      <div class="talk-step">
+        <div class="talk-step-time font-heading">~15 sec</div>
+        <div>
+          <div class="talk-step-name font-heading">Who and where</div>
+          <div class="talk-step-desc">Your name, your placement, your career cluster — fast, no wind-up.</div>
+        </div>
+      </div>
+      <div class="talk-step">
+        <div class="talk-step-time font-heading">~30 sec</div>
+        <div>
+          <div class="talk-step-name font-heading">What you actually did</div>
+          <div class="talk-step-desc">Not your job title — a specific project, task, or responsibility you owned. Specific beats impressive.</div>
+        </div>
+      </div>
+      <div class="talk-step">
+        <div class="talk-step-time font-heading">~30 sec</div>
+        <div>
+          <div class="talk-step-name font-heading">What you learned or how you grew</div>
+          <div class="talk-step-desc">Reference something real — a mistake, a skill that clicked, something your pre/post self-assessment shows. This is the part people remember.</div>
+        </div>
+      </div>
+      <div class="talk-step">
+        <div class="talk-step-time font-heading">~15 sec</div>
+        <div>
+          <div class="talk-step-name font-heading">What's next</div>
+          <div class="talk-step-desc">Where this points you — a career interest confirmed, changed, or opened up. Close with confidence, not "yeah that's it."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-script">
+      <div class="example-label font-heading">Example — Health Sciences placement</div>
+      <p>"Hi, I'm Jordan, and I spent my semester at Batavia Animal Hospital in the Health Sciences cluster. Most days I was restraining animals for exams, cleaning and prepping treatment rooms, and by the end I was trusted to walk new clients through post-surgery care instructions on my own. The moment that stuck with me was the first time a vet asked my opinion on a case — not because I knew the answer, but because I'd shown up enough that she trusted me to think it through with her. Going in, I thought I wanted human medicine. Now I'm looking hard at veterinary school instead."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow font-heading">Part 3</div>
+    <div class="section-title font-heading">Your Portfolio</div>
+    <p>Everything you build across bootcamp and your placement gets pulled together here — this is what's available at your booth and what backs up your stage talk.</p>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Resume</strong> — your final version from Phase 1, uploaded to LinkedIn</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Elevator pitch video</strong> — from Phase 2</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Employability skills growth</strong> — your pre- and post-assessment results side by side</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Weekly reflection highlights</strong> — pick 2-3 that show real growth, not just logistics</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Photos from your placement</strong> — with supervisor permission</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Follow-up and thank-you emails</strong> — evidence of professional communication</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>A work sample or project</strong> — whatever's appropriate to your placement type</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Your Launch Card</strong> — the goal you committed to on Day 1 of your placement</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow font-heading">Logistics</div>
+    <div class="section-title font-heading">The Audience &amp; the Room</div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <div class="logistics-label font-heading">Who's there</div>
+        <div class="logistics-text">Community members, business partners and employers (including your own supervisor, if they can make it), administrators, teachers, and other students' families. This is a real audience, not a classroom.</div>
+      </div>
+      <div class="logistics-card">
+        <div class="logistics-label font-heading">Format</div>
+        <div class="logistics-text">Open booth walkthrough where guests circulate and talk with you directly, plus a scheduled block of stage talks. Your teacher will share the exact schedule closer to the date.</div>
+      </div>
+      <div class="logistics-card">
+        <div class="logistics-label font-heading">Dress code</div>
+        <div class="logistics-text">Professional — the same bar as your mock interview. If you're unsure, ask your teacher or check with your placement supervisor what's appropriate for your industry.</div>
+      </div>
+      <div class="logistics-card">
+        <div class="logistics-label font-heading">Why it matters</div>
+        <div class="logistics-text">This is the moment your semester becomes visible to the people who might hire, recommend, or mentor you next. Treat it that way from Day 1 — everything in bootcamp is building toward this afternoon.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-to-bootcamp">
+    <a href="bootcamp.html" class="font-heading">← Back to Bootcamp</a>
+  </div>
+</main>
+</body>
+</html>

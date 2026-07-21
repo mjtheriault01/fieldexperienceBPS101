@@ -176,6 +176,19 @@
     .skill-tags-label{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);white-space:nowrap}
     .skill-tag{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px;background:rgba(251,205,7,.08);border:1px solid rgba(251,205,7,.18);color:rgba(251,205,7,.65)}
 
+    .field-label-sm{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.375rem}
+
+    /* Checklist items */
+    .check-item{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;margin-bottom:.5rem;cursor:pointer;transition:all .15s}
+    .check-item:hover{border-color:rgba(255,255,255,.18)}
+    .check-item input[type=checkbox]{width:1.1rem;height:1.1rem;margin-top:.15rem;accent-color:#AC161D;cursor:pointer;flex-shrink:0}
+    .check-item span{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.5}
+    .check-item:has(input:checked){border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04)}
+
+    /* Guide link */
+    .guide-link{display:inline-flex;align-items:center;gap:.5rem;color:#FBCD07;text-decoration:none;font-weight:800;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;margin:.5rem 0 1rem}
+    .guide-link:hover{color:#fff}
+
     /* Training agreement alert */
     .training-alert{background:rgba(239,68,68,.07);border:1.5px solid rgba(239,68,68,.35);border-radius:10px;padding:1rem 1.25rem;margin:.875rem 0 0}
     .training-alert-title{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f87171;margin-bottom:.5rem}
@@ -249,7 +262,7 @@
 <!-- Nav -->
 <nav>
   <a href="dashboard.html" class="nav-logo">
-    <img src="https://res.cloudinary.com/dikkdclum/image/upload/v1778676762/field-experience/logos/bps101.png" alt="BPS101">
+    <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="BPS101">
     <span class="nav-logo-text font-heading">Field Experience</span>
   </a>
   <div class="nav-right">
@@ -301,6 +314,7 @@
         <div class="capstone-item-text">Community members, employers, teachers, and peers. This is a real audience for a real presentation. Bootcamp gets you ready for this moment.</div>
       </div>
     </div>
+    <a href="capstone.html" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;color:#FBCD07;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;margin-top:1.25rem">See the full capstone breakdown →</a>
   </div>
 </div>
 
@@ -378,9 +392,9 @@
         <span class="skill-tag font-heading">Initiative</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Your teacher will confirm this with the class. Mark complete once you've completed the course overview day.</p>
-        <button class="complete-btn font-heading" id="btn-p1_course_overview" onclick="markComplete('p1_course_overview', 1)">Mark Complete</button>
+        <div class="completion-zone-label font-heading">Course Launch Guide</div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Walk through the capstone, syllabus, training agreement, a full site tour, the class discussion, and the 7 career clusters — mark complete from inside the guide.</p>
+        <a href="course-launch.html" class="complete-btn font-heading" id="btn-p1_course_overview" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Start the Course Launch Guide →</a>
         <div class="status-msg" id="msg-p1_course_overview"></div>
       </div>
     </div>
@@ -425,9 +439,9 @@
         <span class="skill-tag font-heading">Communication</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Submit Your Reflection</div>
-        <textarea class="completion-textarea" id="input-p1_career_reflection" placeholder="Describe your career interests, what you want to get out of this placement, and one professional goal for the semester…" rows="4"></textarea>
-        <button class="complete-btn font-heading" id="btn-p1_career_reflection" onclick="submitWithNotes('p1_career_reflection', 1)">Submit Reflection</button>
+        <div class="completion-zone-label font-heading">Self-Assessment</div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Rate all 10 employability skills, reflect on your career interests, and write your semester goal — then see your results immediately.</p>
+        <a href="self-assessment.html?type=pre" class="complete-btn font-heading" id="btn-p1_career_reflection" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Take the Self-Assessment →</a>
         <div class="status-msg" id="msg-p1_career_reflection"></div>
       </div>
     </div>
@@ -455,18 +469,14 @@
         <li>Phone communication roleplay: cold-calling a potential employer</li>
       </ul>
       <div class="activity-section-label font-heading">Social media audit checklist</div>
-      <ul class="activity-bullets">
-        <li>What's your profile photo — would an employer think it's professional?</li>
-        <li>What's your most recent public post — would you want your placement supervisor to see it?</li>
-        <li>Is anything tagged, shared, or public that needs to be removed or made private before interviews?</li>
-        <li>Does your bio describe you the way you want to be described professionally?</li>
-      </ul>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>My profile photo is something an employer would think is professional</span></label>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>I checked my most recent public posts — nothing I wouldn't want my placement supervisor to see</span></label>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>I removed or made private anything tagged, shared, or public that needed it</span></label>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>My bio describes me the way I want to be described professionally</span></label>
       <div class="activity-section-label font-heading">LinkedIn setup</div>
-      <ul class="activity-bullets">
-        <li>Create your LinkedIn profile (or clean up an existing one) — professional photo, current city, high school listed</li>
-        <li>Write a headline that says more than your school: "Field Experience Student | Interested in Healthcare + Business" is more useful than just "Student at BHS"</li>
-        <li>We'll link your resume to this profile in Activity 4 — leave space for it</li>
-      </ul>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>I created or cleaned up my LinkedIn profile — professional photo, current city, high school listed</span></label>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>I wrote a headline that says more than my school (e.g., "Field Experience Student | Interested in Healthcare + Business")</span></label>
+      <label class="check-item"><input type="checkbox" class="chk-p1_digital_footprint" onchange="updateChecklistGate('p1_digital_footprint',7)"><span>I left space on my profile to add my resume in Activity 4</span></label>
       <div class="skill-tags">
         <span class="skill-tags-label font-heading">Skills practiced:</span>
         <span class="skill-tag font-heading">Communication</span>
@@ -474,8 +484,9 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Your Email Signature</div>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:.5rem" id="gate-msg-p1_digital_footprint">Complete all 7 checklist items above to unlock submission (0/7).</p>
         <textarea class="completion-textarea" id="input-p1_digital_footprint" placeholder="Paste your professional email signature here as written (name, title, school, contact)…" rows="3"></textarea>
-        <button class="complete-btn font-heading" id="btn-p1_digital_footprint" onclick="submitWithNotes('p1_digital_footprint', 1)">Submit Signature</button>
+        <button class="complete-btn font-heading" id="btn-p1_digital_footprint" onclick="submitWithNotes('p1_digital_footprint', 1)" disabled>Submit Signature</button>
         <div class="status-msg" id="msg-p1_digital_footprint"></div>
       </div>
     </div>
@@ -505,6 +516,7 @@
         <li>Teacher or partner conference on your draft before final</li>
         <li>Once your resume is final, upload it to your LinkedIn profile — it becomes a portfolio artifact employers can see before they even open an application</li>
       </ul>
+      <a href="resume-guide.html" target="_blank" class="guide-link font-heading">📄 Open the Resume Guide →</a>
       <div class="skill-tags">
         <span class="skill-tags-label font-heading">Skills practiced:</span>
         <span class="skill-tag font-heading">Communication</span>
@@ -558,9 +570,20 @@
         <span class="skill-tag font-heading">Communication</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Confirm Your Application</div>
+        <div class="completion-zone-label font-heading">Your Top Placements</div>
+        <input type="text" class="completion-input" id="input-p1_application_submitted-p1" placeholder="Top choice placement…">
+        <input type="text" class="completion-input" id="input-p1_application_submitted-p2" placeholder="2nd choice placement…">
+        <input type="text" class="completion-input" id="input-p1_application_submitted-p3" placeholder="3rd choice placement…">
+        <div class="activity-section-label font-heading" style="margin-top:.75rem">Checklist</div>
+        <label class="check-item"><input type="checkbox" class="chk-p1_application_submitted" onchange="updateChecklistGate('p1_application_submitted',5)"><span>I browsed the placement list across all 7 career clusters</span></label>
+        <label class="check-item"><input type="checkbox" class="chk-p1_application_submitted" onchange="updateChecklistGate('p1_application_submitted',5)"><span>I researched my top 2-3 choices (what they do, who works there, what they value)</span></label>
+        <label class="check-item"><input type="checkbox" class="chk-p1_application_submitted" onchange="updateChecklistGate('p1_application_submitted',5)"><span>I matched my resume skills to the placements I'm interested in</span></label>
+        <label class="check-item"><input type="checkbox" class="chk-p1_application_submitted" onchange="updateChecklistGate('p1_application_submitted',5)"><span>I met with my teacher to talk through my choices and confirm my application plan</span></label>
+        <label class="check-item"><input type="checkbox" class="chk-p1_application_submitted" onchange="updateChecklistGate('p1_application_submitted',5)"><span>I submitted my application(s)</span></label>
+        <div class="completion-zone-label font-heading" style="margin-top:1.25rem">Confirm Your Application</div>
         <textarea class="completion-textarea" id="input-p1_application_submitted" placeholder="Which placement(s) did you apply to, and how did you submit? (e.g., 'Applied to Penrose Brewing and Batavia Public Library through the site on 8/28')" rows="2"></textarea>
-        <button class="complete-btn font-heading" id="btn-p1_application_submitted" onclick="submitWithNotes('p1_application_submitted', 1)">Confirm Application</button>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin:.5rem 0" id="gate-msg-p1_application_submitted">Complete all 5 checklist items above to unlock submission (0/5).</p>
+        <button class="complete-btn font-heading" id="btn-p1_application_submitted" onclick="submitApplication()" disabled>Confirm Application</button>
         <div class="status-msg" id="msg-p1_application_submitted"></div>
       </div>
     </div>
@@ -663,9 +686,12 @@
         <span class="skill-tag font-heading">Cultural Competency</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after your interview skills session.</p>
-        <button class="complete-btn font-heading" id="btn-p2_star_practice" onclick="markComplete('p2_star_practice', 2)">Mark Complete</button>
+        <div class="completion-zone-label font-heading">Two Quick Scenarios</div>
+        <label class="field-label-sm font-heading">If an interviewer asks you something you don't know the answer to, what do you actually say?</label>
+        <textarea class="completion-textarea" id="input-p2_star_practice-unknown" placeholder="Write out your real response — not 'I'd figure it out,' the actual words you'd say…" rows="2"></textarea>
+        <label class="field-label-sm font-heading" style="margin-top:.75rem;display:block">What will you wear to your interview, based on your specific placement type?</label>
+        <textarea class="completion-textarea" id="input-p2_star_practice-attire" placeholder="Be specific to your placement — a hospital, a job site, and an office all call for something different…" rows="2"></textarea>
+        <button class="complete-btn font-heading" id="btn-p2_star_practice" onclick="submitInterviewSkills()">Submit</button>
         <div class="status-msg" id="msg-p2_star_practice"></div>
       </div>
     </div>
@@ -686,14 +712,14 @@
     <div class="activity-body" id="body-p2_mock_interview">
       <div class="activity-section-label font-heading">Step 1 — Peer speed interviews (whole class)</div>
       <ul class="activity-bullets">
-        <li>Class splits in half: one side interviews, the other answers. Each pair gets 2–3 questions from a question bank, then rotate down the line.</li>
+        <li>Class splits in half: one side interviews, the other answers. Each pair gets 2–3 questions from the <a href="interview-question-bank.html" target="_blank" style="color:#FBCD07;font-weight:600">interview question bank</a>, then rotate down the line.</li>
         <li>After 30 minutes, switch sides — the interviewers become interviewees. Everyone practices both roles.</li>
         <li>Interviewees don't know which questions are coming. That's the point — you get comfortable answering live, unrehearsed, for a rotating set of people.</li>
       </ul>
       <div class="activity-section-label font-heading">Step 2 — Formal mock interview (community partner)</div>
       <ul class="activity-bullets">
         <li>1-on-1 with a business partner, chamber member, or administrator — ideally someone you don't know well</li>
-        <li>Your interviewer uses a structured feedback form. You receive written feedback immediately after — specific, honest, actionable.</li>
+        <li>Your interviewer uses a <a href="mock-interview-feedback.html" target="_blank" style="color:#FBCD07;font-weight:600">structured feedback form</a>. You receive written feedback immediately after — specific, honest, actionable.</li>
         <li>Goal is two interviews each during this block. When you're not in the chair, review the feedback from your last one.</li>
         <li>No one gets a perfect mock interview. That's the point. You find out what to fix before the real one.</li>
       </ul>
@@ -705,8 +731,12 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Mock Interview Completed</div>
-        <textarea class="completion-textarea" id="input-p2_mock_interview" placeholder="Who interviewed you and what was one piece of feedback you received?" rows="2"></textarea>
-        <button class="complete-btn font-heading" id="btn-p2_mock_interview" onclick="submitWithNotes('p2_mock_interview', 2)">Confirm Completed</button>
+        <label class="check-item"><input type="checkbox" class="chk-p2_mock_interview" onchange="updateChecklistGate('p2_mock_interview',2)"><span>I completed Step 1 — the peer speed interview carousel</span></label>
+        <label class="check-item"><input type="checkbox" class="chk-p2_mock_interview" onchange="updateChecklistGate('p2_mock_interview',2)"><span>I completed Step 2 — the formal mock interview with a community partner</span></label>
+        <input type="text" class="completion-input" id="input-p2_mock_interview-who" placeholder="Who interviewed you? (name and organization)" style="margin-top:.75rem">
+        <textarea class="completion-textarea" id="input-p2_mock_interview" placeholder="What was one piece of feedback you received?" rows="2"></textarea>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin:.5rem 0" id="gate-msg-p2_mock_interview">Complete both checklist items above to unlock submission (0/2).</p>
+        <button class="complete-btn font-heading" id="btn-p2_mock_interview" onclick="submitMockInterview()" disabled>Confirm Completed</button>
         <div class="status-msg" id="msg-p2_mock_interview"></div>
       </div>
     </div>
@@ -739,8 +769,16 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Improvement Plan</div>
-        <textarea class="completion-textarea" id="input-p2_interview_plan" placeholder="List 2–3 specific things you're working on before your real interview and your action steps for each…" rows="4"></textarea>
-        <button class="complete-btn font-heading" id="btn-p2_interview_plan" onclick="submitWithNotes('p2_interview_plan', 2)">Submit Plan</button>
+        <label class="field-label-sm font-heading">Area 1</label>
+        <input type="text" class="completion-input" id="input-p2_interview_plan-area1" placeholder="What's the first thing you're working on?">
+        <input type="text" class="completion-input" id="input-p2_interview_plan-action1" placeholder="Your concrete action step for it…">
+        <label class="field-label-sm font-heading">Area 2</label>
+        <input type="text" class="completion-input" id="input-p2_interview_plan-area2" placeholder="What's the second thing you're working on?">
+        <input type="text" class="completion-input" id="input-p2_interview_plan-action2" placeholder="Your concrete action step for it…">
+        <label class="field-label-sm font-heading">Area 3 (optional)</label>
+        <input type="text" class="completion-input" id="input-p2_interview_plan-area3" placeholder="A third area, if you have one…">
+        <input type="text" class="completion-input" id="input-p2_interview_plan-action3" placeholder="Your concrete action step for it…">
+        <button class="complete-btn font-heading" id="btn-p2_interview_plan" onclick="submitInterviewPlan()">Submit Plan</button>
         <div class="status-msg" id="msg-p2_interview_plan"></div>
       </div>
     </div>
@@ -789,7 +827,7 @@
         <li>Scenarios span all 7 career clusters — a healthcare confidentiality situation, a manufacturing safety shortcut, a supervisor asking something that feels wrong in an education setting, a customer conflict in retail, and more</li>
         <li>After rotating, the class picks 2–3 scenarios to debrief together — groups share what they decided and why</li>
         <li>You'll disagree with each other. That's the activity. There's often no single right answer — what matters is how you think it through.</li>
-        <li>If you were absent: all 15 dilemma scenarios are linked here so you can review them and mark complete</li>
+        <li>If you were absent: <a href="dilemma-scenarios.html" target="_blank" style="color:#FBCD07;font-weight:600">all 15 dilemma scenarios are linked here</a> so you can review them and mark complete</li>
       </ul>
       <div class="skill-tags">
         <span class="skill-tags-label font-heading">Skills practiced:</span>
@@ -799,9 +837,9 @@
         <span class="skill-tag font-heading">Critical Thinking</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after participating in the dilemma stations activity.</p>
-        <button class="complete-btn font-heading" id="btn-p3_ethics_scenarios" onclick="markComplete('p3_ethics_scenarios', 3)">Mark Complete</button>
+        <div class="completion-zone-label font-heading">Which Dilemma Stuck With You?</div>
+        <textarea class="completion-textarea" id="input-p3_ethics_scenarios" placeholder="Which of the 15 dilemmas stuck with you, and what would you actually do in that situation?" rows="3"></textarea>
+        <button class="complete-btn font-heading" id="btn-p3_ethics_scenarios" onclick="submitWithNotes('p3_ethics_scenarios', 3)">Submit</button>
         <div class="status-msg" id="msg-p3_ethics_scenarios"></div>
       </div>
     </div>
@@ -832,9 +870,10 @@
         <span class="skill-tag font-heading">All 10 Employability Skills</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after the employability skills overview.</p>
-        <button class="complete-btn font-heading" id="btn-p3_skills_simulation" onclick="markComplete('p3_skills_simulation', 3)">Mark Complete</button>
+        <div class="completion-zone-label font-heading">One Sentence, Each Skill</div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">In your own words: what does it mean, and where did you see it show up in Phase 1 or 2?</p>
+        <div id="skills-sentence-container"></div>
+        <button class="complete-btn font-heading" id="btn-p3_skills_simulation" onclick="submitSkillsSimulation()" style="margin-top:.75rem">Submit</button>
         <div class="status-msg" id="msg-p3_skills_simulation"></div>
       </div>
     </div>
@@ -867,9 +906,9 @@
         <span class="skill-tag font-heading">Reliability</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Submit Your Post-Assessment Reflection</div>
-        <textarea class="completion-textarea" id="input-p3_self_assessment" placeholder="Where did you grow since Phase 1? What skill do you most want to develop during your placement?" rows="3"></textarea>
-        <button class="complete-btn font-heading" id="btn-p3_self_assessment" onclick="submitWithNotes('p3_self_assessment', 3)">Submit Assessment</button>
+        <div class="completion-zone-label font-heading">Post-Assessment</div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Re-rate all 10 skills and see your growth compared to your Phase 1 baseline, side by side.</p>
+        <a href="self-assessment.html?type=post" class="complete-btn font-heading" id="btn-p3_self_assessment" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Take the Post-Assessment →</a>
         <div class="status-msg" id="msg-p3_self_assessment"></div>
       </div>
     </div>
@@ -974,9 +1013,10 @@
         <span class="skill-tag font-heading">Communication</span>
       </div>
       <div class="completion-zone">
-        <div class="completion-zone-label font-heading">Mark Complete</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Mark complete after your one-on-one goal conference with your teacher.</p>
-        <button class="complete-btn font-heading" id="btn-p4_goal_conference" onclick="markComplete('p4_goal_conference', 4)">Mark Complete</button>
+        <div class="completion-zone-label font-heading">Come Prepared — Draft Your Goals</div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Fill this in before your conference so your teacher can see it going in. Mark complete after you've actually met.</p>
+        <textarea class="completion-textarea" id="input-p4_goal_conference" placeholder="Draft your 2-3 goals for the semester, plus any questions or concerns you want to raise…" rows="3"></textarea>
+        <button class="complete-btn font-heading" id="btn-p4_goal_conference" onclick="submitWithNotes('p4_goal_conference', 4)">Submit</button>
         <div class="status-msg" id="msg-p4_goal_conference"></div>
       </div>
     </div>
@@ -1008,8 +1048,15 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Submit Your Internship Plan</div>
-        <textarea class="completion-textarea" id="input-p4_internship_plan" placeholder="Your placement, your schedule, your 2–3 goals for the semester, and how you plan to hit 60 hours…" rows="5"></textarea>
-        <button class="complete-btn font-heading" id="btn-p4_internship_plan" onclick="submitWithNotes('p4_internship_plan', 4)">Submit Plan</button>
+        <label class="field-label-sm font-heading">Your weekly schedule</label>
+        <textarea class="completion-textarea" id="input-p4_internship_plan-schedule" placeholder="What days/times will you typically be at your placement?" rows="2"></textarea>
+        <label class="field-label-sm font-heading" style="margin-top:.75rem;display:block">Your 2-3 goals for the semester</label>
+        <textarea class="completion-textarea" id="input-p4_internship_plan-goals" placeholder="What do you want to walk away with?" rows="2"></textarea>
+        <label class="field-label-sm font-heading" style="margin-top:.75rem;display:block">How you'll handle challenges</label>
+        <textarea class="completion-textarea" id="input-p4_internship_plan-challenges" placeholder="If something goes wrong — a scheduling conflict, a tough day — what's your plan?" rows="2"></textarea>
+        <label class="field-label-sm font-heading" style="margin-top:.75rem;display:block">Your plan for hitting 60 hours</label>
+        <textarea class="completion-textarea" id="input-p4_internship_plan-hours" placeholder="Roughly how many hours a week, and by when do you expect to hit 60?" rows="2"></textarea>
+        <button class="complete-btn font-heading" id="btn-p4_internship_plan" onclick="submitInternshipPlan()">Submit Plan</button>
         <div class="status-msg" id="msg-p4_internship_plan"></div>
       </div>
     </div>
@@ -1117,7 +1164,7 @@ function updatePhaseUI() {
     if (badge) { badge.textContent = isDone ? '✓ Done' : 'To Do'; badge.className = 'activity-badge font-heading '+(isDone?'badge-done':'badge-todo'); }
     if (btn && isDone) { btn.textContent = '✓ Completed'; btn.className = 'complete-btn done font-heading'; btn.disabled = true; }
     // Disable inputs on done tasks
-    const inputs = document.querySelectorAll('#body-'+taskId+' .completion-textarea, #body-'+taskId+' .completion-input');
+    const inputs = document.querySelectorAll('#body-'+taskId+' .completion-textarea, #body-'+taskId+' .completion-input, #body-'+taskId+' input[type=checkbox]');
     inputs.forEach(el => { if (isDone) el.disabled = true; });
   });
 }
@@ -1157,6 +1204,132 @@ async function submitWithNotes(taskId, phase) {
   }
 }
 
+function updateChecklistGate(taskId, total) {
+  const checked = document.querySelectorAll('.chk-'+taskId+':checked').length;
+  const btn = document.getElementById('btn-'+taskId);
+  const gateMsg = document.getElementById('gate-msg-'+taskId);
+  if (btn && !doneTasks.has(taskId)) btn.disabled = checked < total;
+  if (gateMsg) gateMsg.textContent = checked < total
+    ? `Complete all ${total} checklist items above to unlock submission (${checked}/${total}).`
+    : 'All set — submit below.';
+}
+
+async function submitApplication() {
+  const p1 = document.getElementById('input-p1_application_submitted-p1')?.value?.trim();
+  const p2 = document.getElementById('input-p1_application_submitted-p2')?.value?.trim();
+  const p3 = document.getElementById('input-p1_application_submitted-p3')?.value?.trim();
+  const details = document.getElementById('input-p1_application_submitted')?.value?.trim();
+  if (!p1) { showMsg('p1_application_submitted', 'Please enter at least your top choice placement.', 'error'); return; }
+  if (!details) { showMsg('p1_application_submitted', 'Please describe which placement(s) you applied to.', 'error'); return; }
+  const notes = `Top placements: ${[p1,p2,p3].filter(Boolean).join(', ')}\nApplication details: ${details}`;
+  const btn = document.getElementById('btn-p1_application_submitted');
+  btn.disabled = true; btn.textContent = 'Confirming…';
+  const { error } = await db.from('bootcamp_progress').upsert({
+    student_id: currentUser.id, task_id: 'p1_application_submitted', phase: 1, notes
+  }, { onConflict: 'student_id,task_id' });
+  if (error) { showMsg('p1_application_submitted', 'Error: '+error.message, 'error'); btn.disabled = false; btn.textContent = 'Confirm Application'; return; }
+  doneTasks.add('p1_application_submitted');
+  updatePhaseUI();
+  showMsg('p1_application_submitted', 'Application confirmed!', 'success');
+}
+
+const SKILL_LIST = [
+  {id:'communication',name:'Communication'},
+  {id:'criticalthinking',name:'Critical Thinking'},
+  {id:'teamwork',name:'Teamwork'},
+  {id:'problemsolving',name:'Problem Solving'},
+  {id:'adaptability',name:'Adaptability'},
+  {id:'initiative',name:'Initiative'},
+  {id:'decisionmaking',name:'Decision Making'},
+  {id:'cultural',name:'Cultural Awareness'},
+  {id:'reliability',name:'Reliability'},
+  {id:'planning',name:'Planning & Organizing'},
+];
+
+function buildSkillsSentenceContainer() {
+  const el = document.getElementById('skills-sentence-container');
+  if (!el) return;
+  el.innerHTML = SKILL_LIST.map(s => `
+    <div style="margin-bottom:.625rem">
+      <label class="field-label-sm font-heading" style="display:block">${s.name}</label>
+      <input type="text" class="completion-input" id="input-p3_skills_simulation-${s.id}" placeholder="One sentence, in your own words…" style="margin-bottom:0">
+    </div>
+  `).join('');
+}
+
+async function submitSkillsSimulation() {
+  const lines = [];
+  for (const s of SKILL_LIST) {
+    const val = document.getElementById('input-p3_skills_simulation-'+s.id)?.value?.trim();
+    if (!val) { showMsg('p3_skills_simulation', `Please fill in a sentence for ${s.name}.`, 'error'); return; }
+    lines.push(`${s.name}: ${val}`);
+  }
+  const notes = lines.join('\n');
+  const btn = document.getElementById('btn-p3_skills_simulation');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  const { error } = await db.from('bootcamp_progress').upsert({
+    student_id: currentUser.id, task_id: 'p3_skills_simulation', phase: 3, notes
+  }, { onConflict: 'student_id,task_id' });
+  if (error) { showMsg('p3_skills_simulation', 'Error: '+error.message, 'error'); btn.disabled = false; btn.textContent = 'Submit'; return; }
+  doneTasks.add('p3_skills_simulation');
+  updatePhaseUI();
+  showMsg('p3_skills_simulation', 'Submitted!', 'success');
+}
+
+async function submitInterviewSkills() {
+  const unknown = document.getElementById('input-p2_star_practice-unknown')?.value?.trim();
+  const attire = document.getElementById('input-p2_star_practice-attire')?.value?.trim();
+  if (!unknown || !attire) { showMsg('p2_star_practice', 'Please answer both prompts before submitting.', 'error'); return; }
+  const notes = `Unknown question response: ${unknown}\nAttire plan: ${attire}`;
+  const btn = document.getElementById('btn-p2_star_practice');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  const { error } = await db.from('bootcamp_progress').upsert({
+    student_id: currentUser.id, task_id: 'p2_star_practice', phase: 2, notes
+  }, { onConflict: 'student_id,task_id' });
+  if (error) { showMsg('p2_star_practice', 'Error: '+error.message, 'error'); btn.disabled = false; btn.textContent = 'Submit'; return; }
+  doneTasks.add('p2_star_practice');
+  updatePhaseUI();
+  showMsg('p2_star_practice', 'Submitted!', 'success');
+}
+
+async function submitMockInterview() {
+  const who = document.getElementById('input-p2_mock_interview-who')?.value?.trim();
+  const feedback = document.getElementById('input-p2_mock_interview')?.value?.trim();
+  if (!who) { showMsg('p2_mock_interview', 'Please enter who interviewed you.', 'error'); return; }
+  if (!feedback) { showMsg('p2_mock_interview', 'Please share one piece of feedback you received.', 'error'); return; }
+  const notes = `Interviewer: ${who}\nFeedback: ${feedback}`;
+  const btn = document.getElementById('btn-p2_mock_interview');
+  btn.disabled = true; btn.textContent = 'Confirming…';
+  const { error } = await db.from('bootcamp_progress').upsert({
+    student_id: currentUser.id, task_id: 'p2_mock_interview', phase: 2, notes
+  }, { onConflict: 'student_id,task_id' });
+  if (error) { showMsg('p2_mock_interview', 'Error: '+error.message, 'error'); btn.disabled = false; btn.textContent = 'Confirm Completed'; return; }
+  doneTasks.add('p2_mock_interview');
+  updatePhaseUI();
+  showMsg('p2_mock_interview', 'Confirmed!', 'success');
+}
+
+async function submitInterviewPlan() {
+  const area1 = document.getElementById('input-p2_interview_plan-area1')?.value?.trim();
+  const action1 = document.getElementById('input-p2_interview_plan-action1')?.value?.trim();
+  const area2 = document.getElementById('input-p2_interview_plan-area2')?.value?.trim();
+  const action2 = document.getElementById('input-p2_interview_plan-action2')?.value?.trim();
+  const area3 = document.getElementById('input-p2_interview_plan-area3')?.value?.trim();
+  const action3 = document.getElementById('input-p2_interview_plan-action3')?.value?.trim();
+  if (!area1 || !action1 || !area2 || !action2) { showMsg('p2_interview_plan', 'Please fill in at least two areas with action steps.', 'error'); return; }
+  let notes = `Area 1: ${area1}\nAction: ${action1}\n\nArea 2: ${area2}\nAction: ${action2}`;
+  if (area3 && action3) notes += `\n\nArea 3: ${area3}\nAction: ${action3}`;
+  const btn = document.getElementById('btn-p2_interview_plan');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  const { error } = await db.from('bootcamp_progress').upsert({
+    student_id: currentUser.id, task_id: 'p2_interview_plan', phase: 2, notes
+  }, { onConflict: 'student_id,task_id' });
+  if (error) { showMsg('p2_interview_plan', 'Error: '+error.message, 'error'); btn.disabled = false; btn.textContent = 'Submit Plan'; return; }
+  doneTasks.add('p2_interview_plan');
+  updatePhaseUI();
+  showMsg('p2_interview_plan', 'Submitted!', 'success');
+}
+
 async function submitPlacement() {
   const input = document.getElementById('input-p3_placement_confirmed');
   const val = input?.value?.trim();
@@ -1171,6 +1344,24 @@ async function submitPlacement() {
   doneTasks.add('p3_placement_confirmed');
   updatePhaseUI();
   showMsg('p3_placement_confirmed', 'Placement confirmed! Move to Phase 4 when ready.', 'success');
+}
+
+async function submitInternshipPlan() {
+  const schedule = document.getElementById('input-p4_internship_plan-schedule')?.value?.trim();
+  const goals = document.getElementById('input-p4_internship_plan-goals')?.value?.trim();
+  const challenges = document.getElementById('input-p4_internship_plan-challenges')?.value?.trim();
+  const hours = document.getElementById('input-p4_internship_plan-hours')?.value?.trim();
+  if (!schedule || !goals || !hours) { showMsg('p4_internship_plan', 'Please fill in at least your schedule, goals, and hours plan.', 'error'); return; }
+  const notes = `Schedule: ${schedule}\nGoals: ${goals}\nHandling challenges: ${challenges || '—'}\nHours plan: ${hours}`;
+  const btn = document.getElementById('btn-p4_internship_plan');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  const { error } = await db.from('bootcamp_progress').upsert({
+    student_id: currentUser.id, task_id: 'p4_internship_plan', phase: 4, notes
+  }, { onConflict: 'student_id,task_id' });
+  if (error) { showMsg('p4_internship_plan', 'Error: '+error.message, 'error'); btn.disabled = false; btn.textContent = 'Submit Plan'; return; }
+  doneTasks.add('p4_internship_plan');
+  updatePhaseUI();
+  showMsg('p4_internship_plan', 'Submitted!', 'success');
 }
 
 async function submitLaunch() {
@@ -1241,6 +1432,7 @@ function checkForLaunchCard() {
   ]);
 
   userStudent = student;
+  buildSkillsSentenceContainer();
   (progress || []).forEach(r => doneTasks.add(r.task_id));
   updatePhaseUI();
 

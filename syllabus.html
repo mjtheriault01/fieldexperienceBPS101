@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Syllabus — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#fff}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+    .print-btn{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border:none;border-radius:6px;padding:.5rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.4rem}
+    .print-btn:hover{background:#e0b706}
+
+    main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+    .doc-header{display:flex;align-items:center;gap:1.25rem;margin-bottom:2rem}
+    .doc-header img{height:3.5rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.1rem);letter-spacing:-.02em}
+    .doc-sub{font-size:.85rem;color:rgba(255,255,255,.45);margin-top:.25rem}
+
+    .tbd-banner{background:rgba(251,191,36,.08);border:1.5px solid rgba(251,191,36,.35);border-radius:12px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.6}
+    .tbd-banner strong{color:#fbbf24}
+
+    .syl-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden}
+    .syl-row{display:grid;grid-template-columns:1fr 1fr}
+    @media(max-width:640px){.syl-row{grid-template-columns:1fr}}
+    .syl-cell{padding:1.125rem 1.375rem;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08)}
+    .syl-cell:last-child{border-right:none}
+    .syl-cell.full{grid-column:1/-1;border-right:none}
+    .syl-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#FBCD07;margin-bottom:.5rem;letter-spacing:.01em}
+    .syl-text{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.7}
+    .syl-text a{color:#60a5fa}
+    .syl-text ul{margin-left:1.1rem;margin-top:.375rem}
+    .syl-text li{margin-bottom:.25rem}
+
+    .placeholder-pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fbbf24;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:999px;padding:.2rem .6rem;margin-bottom:.5rem}
+
+    .grade-bar{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem}
+    .grade-row{display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.6);background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.15);border-radius:6px;padding:.5rem .75rem}
+    .grade-pct{font-family:'Montserrat',sans-serif;font-weight:800;color:rgba(255,255,255,.4)}
+
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;margin:2rem 0 .875rem;letter-spacing:-.01em}
+
+    .link-card{display:flex;align-items:center;gap:.75rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:.875rem 1.125rem;margin-top:.5rem;text-decoration:none;color:#dbeafe;font-size:.85rem;transition:background .15s}
+    .link-card:hover{background:rgba(59,130,246,.14)}
+
+    @media print{
+      nav, .print-btn{display:none}
+      body{background:#fff;color:#000}
+      main{max-width:100%;padding:1rem}
+      h1,.section-title,.syl-label{color:#000}
+      .doc-sub{color:#555}
+      .syl-table{border-color:#999}
+      .syl-cell{border-color:#ccc;background:#fff}
+      .syl-text{color:#000}
+      .syl-text a{color:#000;text-decoration:underline}
+      .tbd-banner{border-color:#000;background:#fff}
+      .grade-row{border-color:#999;color:#000}
+      .link-card{border:1px solid #999;background:#fff;color:#000}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="bootcamp.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
+    </a>
+    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span class="nav-title font-heading">Course Syllabus</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m10-10V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7m10 0v6H7v-6m10 4h.01M7 17h10v4H7v-4z"/></svg>
+    Print / Save PDF
+  </button>
+</nav>
+
+<main>
+  <div class="doc-header">
+    <img src="https://res.cloudinary.com/dikkdclum/image/upload/v1778676762/field-experience/logos/bps101.png" alt="BPS101">
+    <div>
+      <h1 class="font-heading">Batavia High School Course Syllabus</h1>
+      <div class="doc-sub">Field Experience — Work-Based Learning</div>
+    </div>
+  </div>
+
+  <div class="tbd-banner font-heading">
+    <strong>Note:</strong> The Grading/Assessments section below uses placeholder categories and percentages. These have not been finalized — update them once the grading breakdown is decided, before sharing this syllabus with students.
+  </div>
+
+  <div class="syl-table">
+    <div class="syl-cell full"><div class="syl-label font-heading">Course Name</div><div class="syl-text">Field Experience (Work-Based Learning)</div></div>
+    <div class="syl-row">
+      <div class="syl-cell"><div class="syl-label font-heading">Teacher</div><div class="syl-text">Michael Theriault<br><a href="mailto:michael.theriault@bps101.net">michael.theriault@bps101.net</a></div></div>
+      <div class="syl-cell"><div class="syl-label font-heading">Course Description</div><div class="syl-text">A work-based learning course where students complete a supervised 60-hour placement with a local business or organization aligned to one of seven career clusters. Before placement, students complete a hands-on bootcamp covering professional identity, interview preparation, and workplace readiness. The course emphasizes the Illinois Essential Employability Skills, real-world application of classroom learning, and career exploration through direct workplace experience.</div></div>
+    </div>
+    <div class="syl-row">
+      <div class="syl-cell"><div class="syl-label font-heading">Required Materials</div><div class="syl-text">Reliable transportation to/from your placement site, laptop/Chromebook access for weekly logs &amp; reflections, professional attire appropriate to your placement (varies by site), and a fully signed Training Agreement on file before Day 1.</div></div>
+      <div class="syl-cell"><div class="syl-label font-heading">Prerequisite</div><div class="syl-text">Junior or Senior standing, teacher/counselor approval, and a completed application and interview process.</div></div>
+    </div>
+    <div class="syl-row">
+      <div class="syl-cell"><div class="syl-label font-heading">Website Information</div><div class="syl-text"><a href="index.html">fieldexperiencebps101.net</a> — student portal for bootcamp, weekly hours log, weekly reflection, and dashboard.</div></div>
+      <div class="syl-cell"><div class="syl-label font-heading">Course Fee</div><div class="syl-text">None</div></div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="placeholder-pill font-heading">Placeholder — Update Before Sharing</div>
+      <div class="syl-label font-heading">Grading / Assessments</div>
+      <div class="syl-text">
+        <strong style="color:rgba(255,255,255,.85)">Types of assessments:</strong> Bootcamp deliverables (resume, self-assessments, mock interview, checklists), weekly hours logs, weekly reflections, employer observation/evaluation, capstone presentation.
+        <div class="grade-bar">
+          <div class="grade-row font-heading"><span>Weekly Hours Log &amp; Attendance</span><span class="grade-pct">XX%</span></div>
+          <div class="grade-row font-heading"><span>Weekly Reflections</span><span class="grade-pct">XX%</span></div>
+          <div class="grade-row font-heading"><span>Bootcamp Deliverables (Phases 1-4)</span><span class="grade-pct">XX%</span></div>
+          <div class="grade-row font-heading"><span>Employer Observation / Evaluation</span><span class="grade-pct">XX%</span></div>
+          <div class="grade-row font-heading"><span>Capstone Presentation</span><span class="grade-pct">XX%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Special Course Policies</div>
+      <div class="syl-text">A fully signed Training Agreement (student, parent/guardian, employer, and school coordinator) must be on file before a student's first day at their placement — no exceptions. Placement performance or conduct violations are addressed per the Training Agreement and may result in removal from the program.
+        <a href="https://docs.google.com/document/d/1gj2rydlR0JWdTtJuBWm7TmV_g2y7SSqKPQ-Oj17bvjw/edit?usp=sharing" target="_blank" class="link-card font-heading">📄 View the Training Agreement (Google Doc)</a>
+      </div>
+    </div>
+
+    <div class="syl-row">
+      <div class="syl-cell"><div class="syl-label font-heading">BPS Homework Policy</div><div class="syl-text">6:290 — policy.bps101.net</div></div>
+      <div class="syl-cell"><div class="syl-label font-heading">BPS Grading Policy</div><div class="syl-text">6:280 — policy.bps101.net</div></div>
+    </div>
+    <div class="syl-cell full"><div class="syl-label font-heading">BHS Academic Dishonesty Policy</div><div class="syl-text">Standard BHS Academic Dishonesty Policy applies to all bootcamp deliverables and reflections.</div></div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Essential Learnings / Units</div>
+      <div class="syl-text">
+        <ul>
+          <li>Phase 1 — Professional Identity &amp; Course Launch</li>
+          <li>Phase 2 — Interview Prep</li>
+          <li>Phase 3 — Workplace Readiness</li>
+          <li>Phase 4 — Launch</li>
+          <li>The Placement — 60 Hours in the Field</li>
+          <li>The Capstone — Booth Presentation &amp; Stage Talk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Learner Profile / BARK Chart</div>
+      <div class="syl-text">While students are graded on their academic achievement, students and parents also receive feedback on classroom and workplace behaviors and responsibility. While these behaviors are not directly graded, we believe constructive feedback should be given — both in the classroom and from your placement supervisor.</div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Extra Learning &amp; Help Opportunities</div>
+      <div class="syl-text">Students can always come in before or after school for extra help with bootcamp deliverables, resume feedback, or interview practice. Communicate with your teacher to find a time that works for both of you.</div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Student Expectations for This Course</div>
+      <div class="syl-text">Treat your placement like a real job from Day 1 — punctuality, professional conduct, and follow-through matter as much there as any grade does here. Complete your weekly hours log and reflection on time every week. Communicate proactively with your teacher about scheduling conflicts, concerns, or issues at your placement — don't wait until it's a problem.</div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Characteristics of Successful Students in This Course</div>
+      <div class="syl-text">Reliable — shows up on time, every time. Communicates proactively rather than waiting to be asked. Takes initiative at their placement instead of waiting for direction. Treats feedback as a growth tool, not criticism. Takes ownership of their own professional appearance and conduct.</div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Teacher Expectations for This Course</div>
+      <div class="syl-text">I will help you find and succeed in a placement that fits your interests, and prepare you to walk in on Day 1 ready to perform like an employee, not just a visitor. I'll challenge you to take this seriously — because employers, your placement supervisor, and your future self will.</div>
+    </div>
+
+    <div class="syl-cell full">
+      <div class="syl-label font-heading">Remediation Statement</div>
+      <div class="syl-text">A missed weekly hours log or reflection can be made up before the next submission window opens — talk to your teacher as soon as you realize you've missed one. Incomplete bootcamp deliverables can be resubmitted for credit. Placement performance concerns are addressed through direct communication with the employer and an improvement plan, per the Training Agreement — not through grade remediation alone.</div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
