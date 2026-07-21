@@ -85,6 +85,7 @@ create table if not exists bootcamp_progress (
   student_id   uuid references auth.users(id) on delete cascade not null,
   task_id      text not null,
   phase        int  not null,
+  notes        text,
   completed_at timestamptz default now(),
   unique(student_id, task_id)
 );
