@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
     .font-heading{font-family:'Montserrat',system-ui,sans-serif}
     html{scroll-behavior:smooth}
 
@@ -29,14 +29,14 @@
     .btn-ghost:hover{border-color:#AC161D;color:#AC161D}
 
     /* Phase tabs */
-    .phase-nav{background:#0e1520;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:58px;z-index:40;padding:.875rem 1.5rem}
+    .phase-nav{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:58px;z-index:40;padding:.875rem 1.5rem}
     .phase-tabs{display:flex;gap:.5rem;max-width:860px;margin:0 auto;overflow-x:auto;padding-bottom:2px}
     .phase-tab{flex-shrink:0;display:flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;border-radius:999px;
                font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;
-               border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);background:transparent;transition:all .2s}
-    .phase-tab:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8)}
+               border:1.5px solid #e5e7eb;color:#6b7280;background:#fff;transition:all .2s}
+    .phase-tab:hover{border-color:#d1d5db;color:#1c1f2e}
     .phase-tab.active{background:#AC161D;border-color:#AC161D;color:#fff}
-    .phase-tab.done{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.35);color:#4ade80}
+    .phase-tab.done{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.35);color:#15803d}
     .phase-tab .pct{font-size:.65rem;opacity:.7}
 
     /* Hero */
@@ -62,70 +62,70 @@
 
     /* Phase header */
     .phase-header{margin-bottom:2rem}
-    .phase-num{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#FBCD07;margin-bottom:.5rem}
-    .phase-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;color:#fff;letter-spacing:-.02em;margin-bottom:.75rem}
-    .phase-desc{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.7;max-width:640px}
+    .phase-num{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#AC161D;margin-bottom:.5rem}
+    .phase-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;color:#1c1f2e;letter-spacing:-.02em;margin-bottom:.75rem}
+    .phase-desc{font-size:.95rem;color:#6b7280;line-height:1.7;max-width:640px}
     .phase-progress{margin-top:1.25rem;display:flex;align-items:center;gap:.875rem}
-    .progress-bar-track{flex:1;height:6px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden}
+    .progress-bar-track{flex:1;height:6px;background:#e5e7eb;border-radius:999px;overflow:hidden}
     .progress-bar-fill{height:100%;background:#AC161D;border-radius:999px;transition:width .5s ease}
-    .progress-label{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.4);white-space:nowrap}
+    .progress-label{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:#6b7280;white-space:nowrap}
 
     /* Deliverables callout */
-    .deliverables-box{background:rgba(251,205,7,.07);border:1px solid rgba(251,205,7,.25);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
-    .deliverables-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
+    .deliverables-box{background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+    .deliverables-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#92400e;margin-bottom:.75rem}
     .deliverables-list{display:flex;flex-wrap:wrap;gap:.5rem}
-    .deliverable-pill{display:flex;align-items:center;gap:.375rem;padding:.35rem .75rem;background:rgba(251,205,7,.12);border:1px solid rgba(251,205,7,.2);border-radius:999px;font-size:.78rem;color:rgba(255,255,255,.8)}
-    .deliverable-pill svg{width:12px;height:12px;color:#FBCD07;flex-shrink:0}
+    .deliverable-pill{display:flex;align-items:center;gap:.375rem;padding:.35rem .75rem;background:#fff;border:1px solid rgba(251,205,7,.35);border-radius:999px;font-size:.78rem;color:#1c1f2e}
+    .deliverable-pill svg{width:12px;height:12px;color:#92400e;flex-shrink:0}
 
     /* Activity cards */
-    .activity-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;margin-bottom:.875rem;overflow:hidden;transition:border-color .2s}
-    .activity-card.complete{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04)}
-    .activity-card:hover{border-color:rgba(255,255,255,.18)}
-    .activity-card.complete:hover{border-color:rgba(34,197,94,.45)}
+    .activity-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;margin-bottom:.875rem;overflow:hidden;transition:all .2s;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .activity-card.complete{border-color:rgba(34,197,94,.35);background:#f8fdf9}
+    .activity-card:hover{border-color:#d1d5db;box-shadow:0 2px 8px rgba(16,24,40,.06)}
+    .activity-card.complete:hover{border-color:rgba(34,197,94,.5)}
 
     .activity-header{display:flex;align-items:center;gap:1rem;padding:1.125rem 1.25rem;cursor:pointer}
     .activity-num{width:2rem;height:2rem;border-radius:50%;background:#AC161D;color:#fff;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .activity-card.complete .activity-num{background:rgba(34,197,94,.2);color:#4ade80}
+    .activity-card.complete .activity-num{background:rgba(34,197,94,.18);color:#15803d}
     .activity-info{flex:1}
-    .activity-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:#fff}
-    .activity-subtitle{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.15rem}
+    .activity-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:#1c1f2e}
+    .activity-subtitle{font-size:.75rem;color:#6b7280;margin-top:.15rem}
     .activity-badge{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;flex-shrink:0}
-    .badge-done{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
-    .badge-todo{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
-    .activity-toggle{font-size:1rem;color:rgba(255,255,255,.3);flex-shrink:0;transition:transform .2s;font-weight:300}
+    .badge-done{background:rgba(34,197,94,.15);color:#15803d;border:1px solid rgba(34,197,94,.3)}
+    .badge-todo{background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb}
+    .activity-toggle{font-size:1rem;color:#9ca3af;flex-shrink:0;transition:transform .2s;font-weight:300}
     .activity-toggle.open{transform:rotate(180deg)}
 
-    .activity-body{padding:0 1.25rem 1.25rem;border-top:1px solid rgba(255,255,255,.06);display:none}
+    .activity-body{padding:0 1.25rem 1.25rem;border-top:1px solid #eef0f2;display:none}
     .activity-body.open{display:block}
 
-    .activity-section-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:1rem;margin-bottom:.5rem}
+    .activity-section-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;margin-top:1rem;margin-bottom:.5rem}
     .activity-bullets{list-style:none;display:flex;flex-direction:column;gap:.375rem}
-    .activity-bullets li{display:flex;align-items:flex-start;gap:.625rem;font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.5}
+    .activity-bullets li{display:flex;align-items:flex-start;gap:.625rem;font-size:.85rem;color:#374151;line-height:1.5}
     .activity-bullets li::before{content:'→';color:#AC161D;font-size:.75rem;margin-top:.1rem;flex-shrink:0}
 
     /* Completion zone */
-    .completion-zone{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1.25rem;margin-top:1.25rem}
-    .completion-zone-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.875rem}
-    .completion-textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.75rem 1rem;color:#fff;font-family:'Open Sans',sans-serif;font-size:.85rem;resize:vertical;min-height:80px;outline:none;transition:border-color .15s}
-    .completion-textarea:focus{border-color:#FBCD07}
-    .completion-textarea::placeholder{color:rgba(255,255,255,.25)}
-    .completion-textarea:disabled{opacity:.5;cursor:default}
-    .completion-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.65rem 1rem;color:#fff;font-family:'Open Sans',sans-serif;font-size:.85rem;outline:none;transition:border-color .15s;margin-bottom:.75rem}
-    .completion-input:focus{border-color:#FBCD07}
-    .completion-input::placeholder{color:rgba(255,255,255,.25)}
-    .completion-input:disabled{opacity:.5;cursor:default}
+    .completion-zone{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:1.25rem;margin-top:1.25rem}
+    .completion-zone-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;margin-bottom:.875rem}
+    .completion-textarea{width:100%;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:.75rem 1rem;color:#1c1f2e;font-family:'Open Sans',sans-serif;font-size:.85rem;resize:vertical;min-height:80px;outline:none;transition:border-color .15s}
+    .completion-textarea:focus{border-color:#AC161D}
+    .completion-textarea::placeholder{color:#9ca3af}
+    .completion-textarea:disabled{opacity:.6;cursor:default;background:#f3f4f6}
+    .completion-input{width:100%;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:.65rem 1rem;color:#1c1f2e;font-family:'Open Sans',sans-serif;font-size:.85rem;outline:none;transition:border-color .15s;margin-bottom:.75rem}
+    .completion-input:focus{border-color:#AC161D}
+    .completion-input::placeholder{color:#9ca3af}
+    .completion-input:disabled{opacity:.6;cursor:default;background:#f3f4f6}
 
     .complete-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:.875rem;padding:.7rem 1.5rem;background:#AC161D;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-    .complete-btn:hover{background:#b91c22;transform:translateY(-1px)}
-    .complete-btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.4);cursor:not-allowed;transform:none}
-    .complete-btn.done{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
+    .complete-btn:hover{background:#8f1218;transform:translateY(-1px)}
+    .complete-btn:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;transform:none}
+    .complete-btn.done{background:rgba(34,197,94,.15);color:#15803d;border:1px solid rgba(34,197,94,.3)}
     .complete-btn.done:hover{transform:none;background:rgba(34,197,94,.15)}
 
     /* Interview window banner */
-    .interview-banner{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(99,102,241,.1));border:1px solid rgba(59,130,246,.3);border-radius:14px;padding:1.5rem;margin:2rem 0;display:flex;gap:1rem;align-items:flex-start}
-    .interview-banner-icon{width:2.5rem;height:2.5rem;border-radius:10px;background:rgba(59,130,246,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .interview-banner-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;color:#fff;margin-bottom:.375rem}
-    .interview-banner-text{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6}
+    .interview-banner{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(99,102,241,.06));border:1px solid rgba(59,130,246,.3);border-radius:14px;padding:1.5rem;margin:2rem 0;display:flex;gap:1rem;align-items:flex-start}
+    .interview-banner-icon{width:2.5rem;height:2.5rem;border-radius:10px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .interview-banner-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;color:#1e3a8a;margin-bottom:.375rem}
+    .interview-banner-text{font-size:.82rem;color:#374151;line-height:1.6}
 
     /* Launch Card Modal */
     #launch-modal{position:fixed;inset:0;z-index:200;background:rgba(8,14,26,.96);display:none;align-items:center;justify-content:center;padding:1.5rem}
@@ -151,14 +151,14 @@
     .launch-dismiss:hover{color:rgba(255,255,255,.6)}
 
     /* Loading */
-    #loading-overlay{position:fixed;inset:0;background:#0b1120;z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
-    .spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:#AC161D;border-radius:50%;animation:spin .8s linear infinite}
+    #loading-overlay{position:fixed;inset:0;background:#f7f7f9;z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+    .spinner{width:36px;height:36px;border:3px solid #e5e7eb;border-top-color:#AC161D;border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .loading-text{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase}
+    .loading-text{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:600;color:#9ca3af;letter-spacing:.1em;text-transform:uppercase}
 
     .status-msg{padding:.75rem 1rem;border-radius:8px;font-size:.8rem;font-weight:600;margin-top:.75rem;display:none}
-    .status-msg.error{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.25);display:block}
-    .status-msg.success{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.25);display:block}
+    .status-msg.error{background:rgba(239,68,68,.08);color:#dc2626;border:1px solid rgba(239,68,68,.3);display:block}
+    .status-msg.success{background:rgba(34,197,94,.08);color:#15803d;border:1px solid rgba(34,197,94,.3);display:block}
 
     @media(max-width:600px){
       .capstone-grid{grid-template-columns:1fr}
@@ -166,33 +166,33 @@
     }
 
     /* Time estimates */
-    .time-est{display:inline-flex;align-items:center;gap:.35rem;font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:600;color:rgba(255,255,255,.28);margin-top:.25rem;letter-spacing:.02em}
+    .time-est{display:inline-flex;align-items:center;gap:.35rem;font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:600;color:#9ca3af;margin-top:.25rem;letter-spacing:.02em}
 
     /* Phase pacing note */
-    .phase-period{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.28);letter-spacing:.04em;margin-top:.625rem;border-top:1px solid rgba(255,255,255,.07);padding-top:.625rem}
+    .phase-period{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:#9ca3af;letter-spacing:.04em;margin-top:.625rem;border-top:1px solid #eef0f2;padding-top:.625rem}
 
     /* Employability skill tags */
-    .skill-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;margin-top:1rem;padding-top:.875rem;border-top:1px solid rgba(255,255,255,.06)}
-    .skill-tags-label{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);white-space:nowrap}
-    .skill-tag{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px;background:rgba(251,205,7,.08);border:1px solid rgba(251,205,7,.18);color:rgba(251,205,7,.65)}
+    .skill-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;margin-top:1rem;padding-top:.875rem;border-top:1px solid #eef0f2}
+    .skill-tags-label{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;white-space:nowrap}
+    .skill-tag{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px;background:rgba(251,205,7,.12);border:1px solid rgba(251,205,7,.3);color:#92400e}
 
-    .field-label-sm{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.375rem}
+    .field-label-sm{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;margin-bottom:.375rem}
 
     /* Checklist items */
-    .check-item{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;margin-bottom:.5rem;cursor:pointer;transition:all .15s}
-    .check-item:hover{border-color:rgba(255,255,255,.18)}
+    .check-item{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 1rem;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:.5rem;cursor:pointer;transition:all .15s}
+    .check-item:hover{border-color:#d1d5db}
     .check-item input[type=checkbox]{width:1.1rem;height:1.1rem;margin-top:.15rem;accent-color:#AC161D;cursor:pointer;flex-shrink:0}
-    .check-item span{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.5}
-    .check-item:has(input:checked){border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.04)}
+    .check-item span{font-size:.85rem;color:#374151;line-height:1.5}
+    .check-item:has(input:checked){border-color:rgba(34,197,94,.35);background:#f0fdf4}
 
     /* Guide link */
-    .guide-link{display:inline-flex;align-items:center;gap:.5rem;color:#FBCD07;text-decoration:none;font-weight:800;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;margin:.5rem 0 1rem}
-    .guide-link:hover{color:#fff}
+    .guide-link{display:inline-flex;align-items:center;gap:.5rem;color:#AC161D;text-decoration:none;font-weight:800;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;margin:.5rem 0 1rem}
+    .guide-link:hover{color:#7c1216}
 
     /* Training agreement alert */
-    .training-alert{background:rgba(239,68,68,.07);border:1.5px solid rgba(239,68,68,.35);border-radius:10px;padding:1rem 1.25rem;margin:.875rem 0 0}
-    .training-alert-title{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f87171;margin-bottom:.5rem}
-    .training-alert-text{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6}
+    .training-alert{background:rgba(239,68,68,.06);border:1.5px solid rgba(239,68,68,.35);border-radius:10px;padding:1rem 1.25rem;margin:.875rem 0 0}
+    .training-alert-title{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#dc2626;margin-bottom:.5rem}
+    .training-alert-text{font-size:.82rem;color:#374151;line-height:1.6}
 
     /* Bootcamp completion screen */
     #completion-screen{position:fixed;inset:0;z-index:250;background:#0b1120;display:none;align-items:center;justify-content:center;padding:2rem;flex-direction:column;text-align:center}
@@ -393,7 +393,7 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Course Launch Guide</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Walk through the capstone, syllabus, training agreement, a full site tour, the class discussion, and the 7 career clusters — mark complete from inside the guide.</p>
+        <p style="font-size:.82rem;color:#6b7280;margin-bottom:.75rem">Walk through the capstone, syllabus, training agreement, a full site tour, the class discussion, and the 7 career clusters — mark complete from inside the guide.</p>
         <a href="course-launch.html" class="complete-btn font-heading" id="btn-p1_course_overview" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Start the Course Launch Guide →</a>
         <div class="status-msg" id="msg-p1_course_overview"></div>
       </div>
@@ -422,9 +422,9 @@
       </ul>
       <div class="activity-section-label font-heading">Goal-writing scaffold</div>
       <ul class="activity-bullets">
-        <li><strong style="color:rgba(255,255,255,.8)">What I want to do:</strong> A specific outcome — not "get better at communication" but "learn how to run a client meeting from start to finish"</li>
-        <li><strong style="color:rgba(255,255,255,.8)">Why it matters to me:</strong> Your honest reason, not what sounds good</li>
-        <li><strong style="color:rgba(255,255,255,.8)">How I'll know I got there:</strong> One thing you'll be able to show or do by the end of the semester</li>
+        <li><strong style="color:#1c1f2e">What I want to do:</strong> A specific outcome — not "get better at communication" but "learn how to run a client meeting from start to finish"</li>
+        <li><strong style="color:#1c1f2e">Why it matters to me:</strong> Your honest reason, not what sounds good</li>
+        <li><strong style="color:#1c1f2e">How I'll know I got there:</strong> One thing you'll be able to show or do by the end of the semester</li>
       </ul>
       <div class="activity-section-label font-heading">Discussion prompts</div>
       <ul class="activity-bullets">
@@ -440,7 +440,7 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Self-Assessment</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Rate all 10 employability skills, reflect on your career interests, and write your semester goal — then see your results immediately.</p>
+        <p style="font-size:.82rem;color:#6b7280;margin-bottom:.75rem">Rate all 10 employability skills, reflect on your career interests, and write your semester goal — then see your results immediately.</p>
         <a href="self-assessment.html?type=pre" class="complete-btn font-heading" id="btn-p1_career_reflection" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Take the Self-Assessment →</a>
         <div class="status-msg" id="msg-p1_career_reflection"></div>
       </div>
@@ -484,7 +484,7 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Confirm Your Email Signature</div>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:.5rem" id="gate-msg-p1_digital_footprint">Complete all 7 checklist items above to unlock submission (0/7).</p>
+        <p style="font-size:.78rem;color:#6b7280;margin-bottom:.5rem" id="gate-msg-p1_digital_footprint">Complete all 7 checklist items above to unlock submission (0/7).</p>
         <textarea class="completion-textarea" id="input-p1_digital_footprint" placeholder="Paste your professional email signature here as written (name, title, school, contact)…" rows="3"></textarea>
         <button class="complete-btn font-heading" id="btn-p1_digital_footprint" onclick="submitWithNotes('p1_digital_footprint', 1)" disabled>Submit Signature</button>
         <div class="status-msg" id="msg-p1_digital_footprint"></div>
@@ -559,8 +559,8 @@
       </ul>
       <div class="activity-section-label font-heading">After you apply</div>
       <ul class="activity-bullets">
-        <li>Send a <strong style="color:rgba(255,255,255,.8)">follow-up email</strong> 5–7 business days after applying if you haven't heard back — brief, professional, confirms your interest</li>
-        <li>Send a <strong style="color:rgba(255,255,255,.8)">thank-you email</strong> within 24 hours of any interview — one paragraph, reference something specific from the conversation, confirm you want the role</li>
+        <li>Send a <strong style="color:#1c1f2e">follow-up email</strong> 5–7 business days after applying if you haven't heard back — brief, professional, confirms your interest</li>
+        <li>Send a <strong style="color:#1c1f2e">thank-you email</strong> within 24 hours of any interview — one paragraph, reference something specific from the conversation, confirm you want the role</li>
         <li>Both emails go in your portfolio — they're evidence of professional communication, not just formalities</li>
       </ul>
       <div class="skill-tags">
@@ -582,7 +582,7 @@
         <label class="check-item"><input type="checkbox" class="chk-p1_application_submitted" onchange="updateChecklistGate('p1_application_submitted',5)"><span>I submitted my application(s)</span></label>
         <div class="completion-zone-label font-heading" style="margin-top:1.25rem">Confirm Your Application</div>
         <textarea class="completion-textarea" id="input-p1_application_submitted" placeholder="Which placement(s) did you apply to, and how did you submit? (e.g., 'Applied to Penrose Brewing and Batavia Public Library through the site on 8/28')" rows="2"></textarea>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin:.5rem 0" id="gate-msg-p1_application_submitted">Complete all 5 checklist items above to unlock submission (0/5).</p>
+        <p style="font-size:.78rem;color:#6b7280;margin:.5rem 0" id="gate-msg-p1_application_submitted">Complete all 5 checklist items above to unlock submission (0/5).</p>
         <button class="complete-btn font-heading" id="btn-p1_application_submitted" onclick="submitApplication()" disabled>Confirm Application</button>
         <div class="status-msg" id="msg-p1_application_submitted"></div>
       </div>
@@ -607,7 +607,7 @@
 
   <div class="interview-banner">
     <div class="interview-banner-icon">
-      <svg width="20" height="20" fill="none" stroke="#60a5fa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      <svg width="20" height="20" fill="none" stroke="#1d4ed8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
     </div>
     <div>
       <div class="interview-banner-title font-heading">Interviews can happen at any time</div>
@@ -735,7 +735,7 @@
         <label class="check-item"><input type="checkbox" class="chk-p2_mock_interview" onchange="updateChecklistGate('p2_mock_interview',2)"><span>I completed Step 2 — the formal mock interview with a community partner</span></label>
         <input type="text" class="completion-input" id="input-p2_mock_interview-who" placeholder="Who interviewed you? (name and organization)" style="margin-top:.75rem">
         <textarea class="completion-textarea" id="input-p2_mock_interview" placeholder="What was one piece of feedback you received?" rows="2"></textarea>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin:.5rem 0" id="gate-msg-p2_mock_interview">Complete both checklist items above to unlock submission (0/2).</p>
+        <p style="font-size:.78rem;color:#6b7280;margin:.5rem 0" id="gate-msg-p2_mock_interview">Complete both checklist items above to unlock submission (0/2).</p>
         <button class="complete-btn font-heading" id="btn-p2_mock_interview" onclick="submitMockInterview()" disabled>Confirm Completed</button>
         <div class="status-msg" id="msg-p2_mock_interview"></div>
       </div>
@@ -871,7 +871,7 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">One Sentence, Each Skill</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">In your own words: what does it mean, and where did you see it show up in Phase 1 or 2?</p>
+        <p style="font-size:.82rem;color:#6b7280;margin-bottom:.75rem">In your own words: what does it mean, and where did you see it show up in Phase 1 or 2?</p>
         <div id="skills-sentence-container"></div>
         <button class="complete-btn font-heading" id="btn-p3_skills_simulation" onclick="submitSkillsSimulation()" style="margin-top:.75rem">Submit</button>
         <div class="status-msg" id="msg-p3_skills_simulation"></div>
@@ -907,7 +907,7 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Post-Assessment</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Re-rate all 10 skills and see your growth compared to your Phase 1 baseline, side by side.</p>
+        <p style="font-size:.82rem;color:#6b7280;margin-bottom:.75rem">Re-rate all 10 skills and see your growth compared to your Phase 1 baseline, side by side.</p>
         <a href="self-assessment.html?type=post" class="complete-btn font-heading" id="btn-p3_self_assessment" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Take the Post-Assessment →</a>
         <div class="status-msg" id="msg-p3_self_assessment"></div>
       </div>
@@ -1014,7 +1014,7 @@
       </div>
       <div class="completion-zone">
         <div class="completion-zone-label font-heading">Come Prepared — Draft Your Goals</div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.75rem">Fill this in before your conference so your teacher can see it going in. Mark complete after you've actually met.</p>
+        <p style="font-size:.82rem;color:#6b7280;margin-bottom:.75rem">Fill this in before your conference so your teacher can see it going in. Mark complete after you've actually met.</p>
         <textarea class="completion-textarea" id="input-p4_goal_conference" placeholder="Draft your 2-3 goals for the semester, plus any questions or concerns you want to raise…" rows="3"></textarea>
         <button class="complete-btn font-heading" id="btn-p4_goal_conference" onclick="submitWithNotes('p4_goal_conference', 4)">Submit</button>
         <div class="status-msg" id="msg-p4_goal_conference"></div>
