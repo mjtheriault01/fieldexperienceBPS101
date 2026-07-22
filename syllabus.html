@@ -8,14 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
     .font-heading{font-family:'Montserrat',system-ui,sans-serif}
 
-    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
         position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
-    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
-    .back-btn:hover{color:#fff}
-    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
     .print-btn{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border:none;border-radius:6px;padding:.5rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.4rem}
     .print-btn:hover{background:#e0b706}
 
@@ -24,32 +24,32 @@
     .doc-header{display:flex;align-items:center;gap:1.25rem;margin-bottom:2rem}
     .doc-header img{height:3.5rem}
     h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.1rem);letter-spacing:-.02em}
-    .doc-sub{font-size:.85rem;color:rgba(255,255,255,.45);margin-top:.25rem}
+    .doc-sub{font-size:.85rem;color:#6b7280;margin-top:.25rem}
 
-    .tbd-banner{background:rgba(251,191,36,.08);border:1.5px solid rgba(251,191,36,.35);border-radius:12px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.6}
-    .tbd-banner strong{color:#fbbf24}
+    .tbd-banner{background:rgba(251,191,36,.1);border:1.5px solid rgba(251,191,36,.4);border-radius:12px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.85rem;color:#374151;line-height:1.6}
+    .tbd-banner strong{color:#92400e}
 
-    .syl-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden}
+    .syl-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(16,24,40,.04)}
     .syl-row{display:grid;grid-template-columns:1fr 1fr}
     @media(max-width:640px){.syl-row{grid-template-columns:1fr}}
-    .syl-cell{padding:1.125rem 1.375rem;border-bottom:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08)}
+    .syl-cell{padding:1.125rem 1.375rem;border-bottom:1px solid #e5e7eb;border-right:1px solid #e5e7eb}
     .syl-cell:last-child{border-right:none}
     .syl-cell.full{grid-column:1/-1;border-right:none}
-    .syl-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#FBCD07;margin-bottom:.5rem;letter-spacing:.01em}
-    .syl-text{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.7}
-    .syl-text a{color:#60a5fa}
+    .syl-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#92400e;margin-bottom:.5rem;letter-spacing:.01em}
+    .syl-text{font-size:.85rem;color:#374151;line-height:1.7}
+    .syl-text a{color:#1d4ed8}
     .syl-text ul{margin-left:1.1rem;margin-top:.375rem}
     .syl-text li{margin-bottom:.25rem}
 
-    .placeholder-pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fbbf24;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:999px;padding:.2rem .6rem;margin-bottom:.5rem}
+    .placeholder-pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#92400e;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);border-radius:999px;padding:.2rem .6rem;margin-bottom:.5rem}
 
     .grade-bar{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem}
-    .grade-row{display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.6);background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.15);border-radius:6px;padding:.5rem .75rem}
-    .grade-pct{font-family:'Montserrat',sans-serif;font-weight:800;color:rgba(255,255,255,.4)}
+    .grade-row{display:flex;justify-content:space-between;font-size:.82rem;color:#374151;background:#f9fafb;border:1px dashed #d1d5db;border-radius:6px;padding:.5rem .75rem}
+    .grade-pct{font-family:'Montserrat',sans-serif;font-weight:800;color:#6b7280}
 
-    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;margin:2rem 0 .875rem;letter-spacing:-.01em}
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:#1c1f2e;margin:2rem 0 .875rem;letter-spacing:-.01em}
 
-    .link-card{display:flex;align-items:center;gap:.75rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:.875rem 1.125rem;margin-top:.5rem;text-decoration:none;color:#dbeafe;font-size:.85rem;transition:background .15s}
+    .link-card{display:flex;align-items:center;gap:.75rem;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:.875rem 1.125rem;margin-top:.5rem;text-decoration:none;color:#1d4ed8;font-size:.85rem;transition:background .15s}
     .link-card:hover{background:rgba(59,130,246,.14)}
 
     @media print{
@@ -74,7 +74,7 @@
     <a href="bootcamp.html" class="back-btn font-heading">
       <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
     </a>
-    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading">Course Syllabus</span>
   </div>
   <button class="print-btn font-heading" onclick="window.print()">
@@ -85,7 +85,7 @@
 
 <main>
   <div class="doc-header">
-    <img src="https://res.cloudinary.com/dikkdclum/image/upload/v1778676762/field-experience/logos/bps101.png" alt="BPS101">
+    <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="BPS101">
     <div>
       <h1 class="font-heading">Batavia High School Course Syllabus</h1>
       <div class="doc-sub">Field Experience — Work-Based Learning</div>
@@ -115,7 +115,7 @@
       <div class="placeholder-pill font-heading">Placeholder — Update Before Sharing</div>
       <div class="syl-label font-heading">Grading / Assessments</div>
       <div class="syl-text">
-        <strong style="color:rgba(255,255,255,.85)">Types of assessments:</strong> Bootcamp deliverables (resume, self-assessments, mock interview, checklists), weekly hours logs, weekly reflections, employer observation/evaluation, capstone presentation.
+        <strong style="color:#1c1f2e">Types of assessments:</strong> Bootcamp deliverables (resume, self-assessments, mock interview, checklists), weekly hours logs, weekly reflections, employer observation/evaluation, capstone presentation.
         <div class="grade-bar">
           <div class="grade-row font-heading"><span>Weekly Hours Log &amp; Attendance</span><span class="grade-pct">XX%</span></div>
           <div class="grade-row font-heading"><span>Weekly Reflections</span><span class="grade-pct">XX%</span></div>

@@ -8,60 +8,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Open Sans',system-ui,sans-serif;background:#0b1120;color:#fff;min-height:100vh}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
     .font-heading{font-family:'Montserrat',system-ui,sans-serif}
 
-    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
         position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
-    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
-    .back-btn:hover{color:#fff}
-    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
 
     main{max-width:820px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
 
-    .hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
+    .hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#AC161D;margin-bottom:.75rem}
     h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.5vw,2.75rem);letter-spacing:-.02em;margin-bottom:.75rem}
-    .page-sub{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.7;max-width:640px;margin-bottom:2.5rem}
+    .page-sub{font-size:.95rem;color:#6b7280;line-height:1.7;max-width:640px;margin-bottom:2.5rem}
 
     .section{margin-bottom:2.75rem}
-    .section-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FBCD07;margin-bottom:.5rem}
-    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:1rem;letter-spacing:-.01em}
-    .section p{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:.875rem}
+    .section-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#AC161D;margin-bottom:.5rem}
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:#1c1f2e;margin-bottom:1rem;letter-spacing:-.01em}
+    .section p{font-size:.9rem;color:#374151;line-height:1.75;margin-bottom:.875rem}
 
-    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.5rem 1.625rem;margin-bottom:1rem}
-    .card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:#fff;margin-bottom:.625rem}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem 1.625rem;margin-bottom:1rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:#1c1f2e;margin-bottom:.625rem}
     .bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-    .bullets li{display:flex;align-items:flex-start;gap:.625rem;font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.55}
+    .bullets li{display:flex;align-items:flex-start;gap:.625rem;font-size:.85rem;color:#374151;line-height:1.55}
     .bullets li::before{content:'→';color:#AC161D;font-size:.75rem;margin-top:.15rem;flex-shrink:0}
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:600px){.grid-2{grid-template-columns:1fr}}
 
     .talk-structure{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem}
-    .talk-step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start}
-    .talk-step-time{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.85rem;color:#FBCD07;flex-shrink:0;min-width:3.5rem}
-    .talk-step-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:#fff;margin-bottom:.25rem}
-    .talk-step-desc{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5}
+    .talk-step{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .talk-step-time{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.85rem;color:#92400e;flex-shrink:0;min-width:3.5rem}
+    .talk-step-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:#1c1f2e;margin-bottom:.25rem}
+    .talk-step-desc{font-size:.82rem;color:#6b7280;line-height:1.5}
 
-    .example-script{background:rgba(251,205,7,.06);border:1px solid rgba(251,205,7,.25);border-radius:14px;padding:1.5rem 1.625rem;margin-top:1.25rem}
-    .example-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FBCD07;margin-bottom:.75rem}
-    .example-script p{font-size:.88rem;color:rgba(255,255,255,.8);line-height:1.75;font-style:italic}
+    .example-script{background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3);border-radius:14px;padding:1.5rem 1.625rem;margin-top:1.25rem}
+    .example-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#92400e;margin-bottom:.75rem}
+    .example-script p{font-size:.88rem;color:#1c1f2e;line-height:1.75;font-style:italic}
 
     .checklist{display:flex;flex-direction:column;gap:.5rem}
-    .check-item{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.75rem 1rem}
-    .check-box{width:1.1rem;height:1.1rem;border-radius:4px;border:1.5px solid rgba(255,255,255,.25);flex-shrink:0;margin-top:.1rem}
-    .check-text{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.5}
-    .check-text strong{color:#fff}
+    .check-item{display:flex;align-items:flex-start;gap:.75rem;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.75rem 1rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .check-box{width:1.1rem;height:1.1rem;border-radius:4px;border:1.5px solid #d1d5db;flex-shrink:0;margin-top:.1rem}
+    .check-text{font-size:.85rem;color:#374151;line-height:1.5}
+    .check-text strong{color:#1c1f2e}
 
     .logistics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:600px){.logistics-grid{grid-template-columns:1fr}}
-    .logistics-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:1.125rem 1.25rem}
-    .logistics-label{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.5rem}
-    .logistics-text{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.55}
+    .logistics-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.125rem 1.25rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .logistics-label{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;margin-bottom:.5rem}
+    .logistics-text{font-size:.85rem;color:#374151;line-height:1.55}
 
     .back-to-bootcamp{display:flex;justify-content:center;margin-top:2.5rem}
-    .back-to-bootcamp a{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.5rem;transition:all .15s}
-    .back-to-bootcamp a:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+    .back-to-bootcamp a{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;text-decoration:none;border:1px solid #e5e7eb;border-radius:8px;padding:.75rem 1.5rem;transition:all .15s}
+    .back-to-bootcamp a:hover{color:#1c1f2e;border-color:#d1d5db}
   </style>
 </head>
 <body>
@@ -70,7 +70,7 @@
     <a href="bootcamp.html" class="back-btn font-heading">
       <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
     </a>
-    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading">The Capstone</span>
   </div>
 </nav>
@@ -98,9 +98,9 @@
       <div class="card">
         <div class="card-title font-heading">Depending on your placement</div>
         <ul class="bullets">
-          <li><strong style="color:rgba(255,255,255,.8)">Hands-on/creative work</strong> (arts, manufacturing, agriculture): bring physical samples or a portfolio of what you made or built</li>
-          <li><strong style="color:rgba(255,255,255,.8)">Office/service work</strong> (business, health, human services): bring a project you contributed to, a process you documented, or data/outcomes you can speak to</li>
-          <li><strong style="color:rgba(255,255,255,.8)">Digital work</strong> (IT, communications): bring a laptop or tablet set up to show your work directly</li>
+          <li><strong style="color:#1c1f2e">Hands-on/creative work</strong> (arts, manufacturing, agriculture): bring physical samples or a portfolio of what you made or built</li>
+          <li><strong style="color:#1c1f2e">Office/service work</strong> (business, health, human services): bring a project you contributed to, a process you documented, or data/outcomes you can speak to</li>
+          <li><strong style="color:#1c1f2e">Digital work</strong> (IT, communications): bring a laptop or tablet set up to show your work directly</li>
         </ul>
       </div>
     </div>
