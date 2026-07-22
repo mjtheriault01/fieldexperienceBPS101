@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio — Field Experience</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dikkdclum/image/upload/v1778676762/field-experience/logos/bps101.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f5f6fa;color:#1c1f2e;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:60px}
+    .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+    .nav-logo img{height:2rem;width:auto}
+    .nav-logo-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;
+                   letter-spacing:.04em;text-transform:uppercase;color:#0e1520}
+    .nav-right{display:flex;align-items:center;gap:1rem}
+    .nav-greeting{font-size:.82rem;color:#6b7280}
+    .nav-greeting strong{color:#1c1f2e}
+    .sign-out-btn{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;
+                  letter-spacing:.08em;text-transform:uppercase;color:#6b7280;background:none;
+                  border:1px solid #e5e7eb;border-radius:6px;padding:.4rem .875rem;cursor:pointer;
+                  transition:all .15s}
+    .sign-out-btn:hover{border-color:#AC161D;color:#AC161D}
+
+    main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+
+    .page-header{margin-bottom:2rem}
+    .back-link{display:inline-flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;
+               font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+               color:#6b7280;text-decoration:none;margin-bottom:1.25rem;transition:color .15s}
+    .back-link:hover{color:#AC161D}
+    .page-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;
+                color:#0e1520;letter-spacing:-.02em;margin-bottom:.375rem}
+    .page-sub{font-size:.875rem;color:#6b7280}
+
+    .card{background:#fff;border-radius:14px;border:1px solid #e5e7eb;overflow:hidden}
+
+    /* Add item form */
+    .add-card{padding:1.75rem;margin-bottom:2rem}
+    .add-card-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#1c1f2e;margin-bottom:1.25rem}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+    .field-label{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;
+                 text-transform:uppercase;color:#6b7280;margin-bottom:.4rem;display:block}
+    .field-input,.field-select,.field-textarea{width:100%;padding:.65rem .875rem;border:1px solid #d1d5db;
+        border-radius:8px;font-size:.85rem;color:#1c1f2e;background:#fff;font-family:'Open Sans',sans-serif;
+        outline:none;transition:border-color .15s}
+    .field-input:focus,.field-select:focus,.field-textarea:focus{border-color:#AC161D}
+    .field-input::placeholder,.field-textarea::placeholder{color:#9ca3af}
+    .field-textarea{resize:vertical;min-height:70px}
+    .field-hint{font-size:.72rem;color:#9ca3af;margin-top:.35rem}
+
+    .add-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:#AC161D;
+             color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.78rem;
+             font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+    .add-btn:hover{background:#8f1218}
+    .add-btn:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed}
+
+    .status-msg{padding:.75rem 1rem;border-radius:8px;font-size:.82rem;font-weight:600;margin-top:1rem;display:none}
+    .status-msg.error{background:#fef2f2;color:#991b1b;border:1px solid #fecaca;display:block}
+    .status-msg.success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0;display:block}
+
+    /* Section header */
+    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;
+                   letter-spacing:.12em;text-transform:uppercase;color:#6b7280}
+    .item-count{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;color:#9ca3af}
+
+    /* Items grid */
+    .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+    .item-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;transition:all .2s;position:relative}
+    .item-card:hover{border-color:#d1d5db;box-shadow:0 4px 14px rgba(16,24,40,.06)}
+    .item-thumb{aspect-ratio:16/10;background:#f3f4f6;display:flex;align-items:center;justify-content:center;
+                font-size:2.25rem;overflow:hidden;text-decoration:none}
+    .item-thumb img{width:100%;height:100%;object-fit:cover}
+    .item-body{padding:1rem 1.125rem 1.125rem}
+    .item-type-badge{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;
+                     letter-spacing:.06em;text-transform:uppercase;padding:.2rem .55rem;border-radius:999px;margin-bottom:.5rem}
+    .type-photo{background:rgba(59,130,246,.12);color:#1d4ed8}
+    .type-document{background:rgba(251,205,7,.15);color:#92400e}
+    .type-link{background:rgba(168,85,247,.12);color:#7e22ce}
+    .type-video{background:rgba(172,22,29,.1);color:#AC161D}
+    .type-reflection{background:rgba(34,197,94,.12);color:#15803d}
+    .type-other{background:#f3f4f6;color:#6b7280}
+    .item-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#1c1f2e;margin-bottom:.3rem}
+    .item-desc{font-size:.78rem;color:#6b7280;line-height:1.5;margin-bottom:.5rem;
+               display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .item-date{font-size:.68rem;color:#9ca3af}
+    .item-actions{display:flex;justify-content:space-between;align-items:center;margin-top:.75rem}
+    .item-link{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.04em;
+               text-transform:uppercase;color:#AC161D;text-decoration:none}
+    .item-link:hover{color:#8f1218}
+    .item-delete{background:none;border:none;color:#d1d5db;cursor:pointer;font-size:.85rem;padding:.2rem;
+                 line-height:1;transition:color .15s}
+    .item-delete:hover{color:#dc2626}
+
+    .empty-state{text-align:center;padding:3.5rem 2rem;color:#9ca3af}
+    .empty-icon{font-size:2.5rem;margin-bottom:.75rem}
+    .empty-text{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;margin-bottom:.25rem;color:#6b7280}
+    .empty-sub{font-size:.8rem}
+
+    #loading-overlay{position:fixed;inset:0;background:#f5f6fa;z-index:999;
+                     display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+    .spinner{width:40px;height:40px;border:3px solid #e5e7eb;border-top-color:#AC161D;
+             border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-text{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;
+                  color:#9ca3af;letter-spacing:.06em;text-transform:uppercase}
+  </style>
+</head>
+<body>
+
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <p class="loading-text">Loading your portfolio…</p>
+</div>
+
+<nav>
+  <a href="dashboard.html" class="nav-logo">
+    <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="BPS101">
+    <span class="nav-logo-text font-heading">Field Experience</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-greeting">Welcome, <strong id="nav-name">—</strong></span>
+    <button class="sign-out-btn font-heading" onclick="signOut()">Sign out</button>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <a href="dashboard.html" class="back-link font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      Back to Dashboard
+    </a>
+    <div class="page-title font-heading">My Portfolio</div>
+    <div class="page-sub">Everything you build during your placement — resume, photos, reflections, work samples. This is what backs up your capstone.</div>
+  </div>
+
+  <div class="card add-card">
+    <div class="add-card-title font-heading">Add an Item</div>
+    <div class="form-grid">
+      <div>
+        <label class="field-label font-heading">Title</label>
+        <input type="text" class="field-input" id="f-title" placeholder="e.g., Final Resume, Week 4 Photos, Thank-You Email">
+      </div>
+      <div>
+        <label class="field-label font-heading">Type</label>
+        <select class="field-select" id="f-type">
+          <option value="document">Document</option>
+          <option value="photo">Photo</option>
+          <option value="link">Link</option>
+          <option value="video">Video</option>
+          <option value="reflection">Reflection</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-bottom:1rem">
+      <label class="field-label font-heading">Link / URL</label>
+      <input type="url" class="field-input" id="f-url" placeholder="Google Drive link, photo URL, video link, etc.">
+      <div class="field-hint">For photos, paste a direct image link or a shared Google Photos/Drive link. For everything else, any shareable link works.</div>
+    </div>
+    <div style="margin-bottom:1.25rem">
+      <label class="field-label font-heading">Description (optional)</label>
+      <textarea class="field-textarea" id="f-desc" placeholder="A sentence or two about what this is and why it's in your portfolio…"></textarea>
+    </div>
+    <button class="add-btn font-heading" id="add-btn" onclick="addItem()">+ Add to Portfolio</button>
+    <div class="status-msg" id="status-msg"></div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-title font-heading">Your Items</span>
+    <span class="item-count font-heading" id="item-count"></span>
+  </div>
+  <div class="items-grid" id="items-grid"></div>
+  <div class="empty-state" id="empty-state" style="display:none">
+    <div class="empty-icon">📁</div>
+    <div class="empty-text font-heading">No items yet</div>
+    <div class="empty-sub">Add your first item above — photos, your resume, a thank-you email, anything that shows what you did.</div>
+  </div>
+</main>
+
+<script>
+const SUPABASE_URL = 'https://bsgrkpykysvqcdqikcym.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJzZ3JrcHlreXN2cWNkcWlrY3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1MTE5NzUsImV4cCI6MjA5NTA4Nzk3NX0.brdA4f7v0GC89fRXPTVPZV11KIdZxXyCkLTWWsoe0o0';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const TYPE_ICONS = { document:'📄', link:'🔗', video:'🎬', reflection:'💭', other:'📎' };
+let currentUser = null;
+let allItems = [];
+
+async function signOut() {
+  await db.auth.signOut();
+  window.location.href = 'login.html';
+}
+
+function showMsg(msg, type) {
+  const el = document.getElementById('status-msg');
+  el.textContent = msg;
+  el.className = 'status-msg ' + type;
+}
+
+function fmtDate(ts) {
+  return new Date(ts).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+
+function renderItems() {
+  const grid = document.getElementById('items-grid');
+  document.getElementById('item-count').textContent = allItems.length ? `${allItems.length} item${allItems.length!==1?'s':''}` : '';
+
+  if (!allItems.length) {
+    document.getElementById('empty-state').style.display = 'block';
+    grid.style.display = 'none';
+    return;
+  }
+  document.getElementById('empty-state').style.display = 'none';
+  grid.style.display = 'grid';
+
+  grid.innerHTML = allItems.map(item => {
+    const thumb = (item.type === 'photo' && item.file_url)
+      ? `<div class="item-thumb"><img src="${item.file_url}" alt="${item.title}"></div>`
+      : `<div class="item-thumb">${TYPE_ICONS[item.type] || '📎'}</div>`;
+    return `
+      <div class="item-card">
+        ${thumb}
+        <div class="item-body">
+          <span class="item-type-badge type-${item.type} font-heading">${item.type}</span>
+          <div class="item-title">${item.title}</div>
+          ${item.description ? `<div class="item-desc">${item.description}</div>` : ''}
+          <div class="item-date font-heading">${fmtDate(item.created_at)}</div>
+          <div class="item-actions">
+            ${item.file_url ? `<a href="${item.file_url}" target="_blank" class="item-link font-heading">Open →</a>` : '<span></span>'}
+            <button class="item-delete" onclick="deleteItem('${item.id}')" title="Delete">✕</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+async function addItem() {
+  const title = document.getElementById('f-title').value.trim();
+  const type = document.getElementById('f-type').value;
+  const url = document.getElementById('f-url').value.trim();
+  const description = document.getElementById('f-desc').value.trim();
+
+  if (!title) { showMsg('Please give this item a title.', 'error'); return; }
+
+  const btn = document.getElementById('add-btn');
+  btn.disabled = true; btn.textContent = 'Adding…';
+
+  const { data, error } = await db.from('portfolio_items').insert({
+    student_id: currentUser.id, title, type, file_url: url || null, description: description || null
+  }).select().maybeSingle();
+
+  btn.disabled = false; btn.textContent = '+ Add to Portfolio';
+
+  if (error) { showMsg('Error: ' + error.message, 'error'); return; }
+
+  allItems.unshift(data);
+  renderItems();
+  showMsg('Added to your portfolio!', 'success');
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-url').value = '';
+  document.getElementById('f-desc').value = '';
+}
+
+async function deleteItem(id) {
+  if (!confirm('Remove this item from your portfolio?')) return;
+  const { error } = await db.from('portfolio_items').delete().eq('id', id).eq('student_id', currentUser.id);
+  if (error) { alert('Error: ' + error.message); return; }
+  allItems = allItems.filter(i => i.id !== id);
+  renderItems();
+}
+
+(async () => {
+  const { data: { session } } = await db.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+  currentUser = session.user;
+
+  const { data: student } = await db.from('students').select('first_name').eq('id', currentUser.id).maybeSingle();
+  const firstName = student?.first_name || session.user.user_metadata?.given_name || session.user.email.split('@')[0];
+  document.getElementById('nav-name').textContent = firstName;
+
+  const { data: items } = await db.from('portfolio_items').select('*').eq('student_id', currentUser.id).order('created_at', { ascending: false });
+  allItems = items || [];
+  renderItems();
+
+  document.getElementById('loading-overlay').style.display = 'none';
+})();
+</script>
+</body>
+</html>
