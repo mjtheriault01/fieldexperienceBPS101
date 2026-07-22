@@ -8,56 +8,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Open Sans',system-ui,sans-serif;background:#080e1a;color:#fff;min-height:100vh}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
     .font-heading{font-family:'Montserrat',system-ui,sans-serif}
-    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
         position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
-    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
-    .back-btn:hover{color:#fff}
-    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
-    .teacher-badge{background:rgba(251,205,7,.15);color:#FBCD07;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.3)}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
 
     main{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem}
     h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;letter-spacing:-.02em;margin-bottom:.375rem}
-    .page-sub{font-size:.875rem;color:rgba(255,255,255,.4);margin-bottom:2.5rem}
+    .page-sub{font-size:.875rem;color:#6b7280;margin-bottom:2.5rem}
 
     /* Status summary cards */
     .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2.5rem}
-    .summary-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem}
+    .summary-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
     .summary-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;line-height:1}
-    .summary-label{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.375rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+    .summary-label{font-size:.72rem;color:#6b7280;margin-top:.375rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 
     /* Section */
     .section{margin-bottom:2.5rem}
-    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#FBCD07;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-    .section-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+    .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#AC161D;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+    .section-title::after{content:'';flex:1;height:1px;background:#e5e7eb}
 
     /* Feature rows */
-    .feature-row{display:flex;align-items:flex-start;gap:1rem;padding:.875rem 1rem;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);margin-bottom:.5rem}
+    .feature-row{display:flex;align-items:flex-start;gap:1rem;padding:.875rem 1rem;border-radius:10px;background:#fff;border:1px solid #e5e7eb;margin-bottom:.5rem}
     .feature-status{width:1.5rem;height:1.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;margin-top:.1rem}
-    .status-live{background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
-    .status-pending{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
-    .status-planned{background:rgba(255,255,255,.06);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1)}
+    .status-live{background:rgba(34,197,94,.15);color:#15803d;border:1px solid rgba(34,197,94,.3)}
+    .status-pending{background:rgba(251,191,36,.12);color:#a16207;border:1px solid rgba(251,191,36,.3)}
+    .status-planned{background:#f3f4f6;color:#9ca3af;border:1px solid #e5e7eb}
     .feature-info{flex:1}
-    .feature-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:#fff;margin-bottom:.2rem}
-    .feature-detail{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.5}
-    .feature-date{font-size:.7rem;color:rgba(255,255,255,.25);font-family:'Montserrat',sans-serif;white-space:nowrap;margin-top:.1rem}
+    .feature-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:#1c1f2e;margin-bottom:.2rem}
+    .feature-detail{font-size:.78rem;color:#6b7280;line-height:1.5}
+    .feature-date{font-size:.7rem;color:#9ca3af;font-family:'Montserrat',sans-serif;white-space:nowrap;margin-top:.1rem}
 
     /* SQL table */
-    .sql-block{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1rem 1.25rem;font-family:'JetBrains Mono','Courier New',monospace;font-size:.78rem;color:#a5f3fc;line-height:1.7;overflow-x:auto;margin-top:.5rem}
+    .sql-block{background:#1c2536;border:1px solid #2d3748;border-radius:10px;padding:1rem 1.25rem;font-family:'JetBrains Mono','Courier New',monospace;font-size:.78rem;color:#a5f3fc;line-height:1.7;overflow-x:auto;margin-top:.5rem}
     .sql-comment{color:rgba(255,255,255,.3)}
 
     /* Pending items */
-    .pending-item{display:flex;align-items:flex-start;gap:.75rem;padding:.875rem 1rem;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:10px;margin-bottom:.5rem}
-    .pending-dot{width:.5rem;height:.5rem;border-radius:50%;background:#fbbf24;flex-shrink:0;margin-top:.35rem}
-    .pending-text{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.5}
-    .pending-note{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem}
+    .pending-item{display:flex;align-items:flex-start;gap:.75rem;padding:.875rem 1rem;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.3);border-radius:10px;margin-bottom:.5rem}
+    .pending-dot{width:.5rem;height:.5rem;border-radius:50%;background:#d97706;flex-shrink:0;margin-top:.35rem}
+    .pending-text{font-size:.85rem;color:#1c1f2e;line-height:1.5}
+    .pending-note{font-size:.75rem;color:#6b7280;margin-top:.2rem}
 
     /* Known issues */
-    .issue-item{display:flex;align-items:flex-start;gap:.75rem;padding:.875rem 1rem;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:10px;margin-bottom:.5rem}
-    .issue-dot{width:.5rem;height:.5rem;border-radius:50%;background:#f87171;flex-shrink:0;margin-top:.35rem}
+    .issue-item{display:flex;align-items:flex-start;gap:.75rem;padding:.875rem 1rem;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.25);border-radius:10px;margin-bottom:.5rem}
+    .issue-dot{width:.5rem;height:.5rem;border-radius:50%;background:#dc2626;flex-shrink:0;margin-top:.35rem}
 
-    .last-updated{font-size:.72rem;color:rgba(255,255,255,.2);text-align:right;margin-top:2rem;font-family:'Montserrat',sans-serif}
+    .last-updated{font-size:.72rem;color:#9ca3af;text-align:right;margin-top:2rem;font-family:'Montserrat',sans-serif}
   </style>
 </head>
 <body>
@@ -66,7 +66,7 @@
     <a href="teacher-hub.html" class="back-btn font-heading">
       <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
     </a>
-    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading">Site Status</span>
     <span class="teacher-badge font-heading">Teacher</span>
   </div>
@@ -77,10 +77,10 @@
   <p class="page-sub">A full record of what's been built, what's pending, and what SQL needs to be run in Supabase.</p>
 
   <div class="summary-grid">
-    <div class="summary-card"><div class="summary-num font-heading" style="color:#4ade80">28</div><div class="summary-label font-heading">Pages Built</div></div>
-    <div class="summary-card"><div class="summary-num font-heading" style="color:#4ade80">6</div><div class="summary-label font-heading">Supabase Tables</div></div>
-    <div class="summary-card"><div class="summary-num font-heading" style="color:#fbbf24">3</div><div class="summary-label font-heading">Pending SQL Steps</div></div>
-    <div class="summary-card"><div class="summary-num font-heading" style="color:#60a5fa">2</div><div class="summary-label font-heading">Sites (FE + WBL)</div></div>
+    <div class="summary-card"><div class="summary-num font-heading" style="color:#15803d">28</div><div class="summary-label font-heading">Pages Built</div></div>
+    <div class="summary-card"><div class="summary-num font-heading" style="color:#15803d">6</div><div class="summary-label font-heading">Supabase Tables</div></div>
+    <div class="summary-card"><div class="summary-num font-heading" style="color:#a16207">3</div><div class="summary-label font-heading">Pending SQL Steps</div></div>
+    <div class="summary-card"><div class="summary-num font-heading" style="color:#1d4ed8">2</div><div class="summary-label font-heading">Sites (FE + WBL)</div></div>
   </div>
 
   <!-- STUDENT PORTAL -->
@@ -292,24 +292,24 @@ alter table weekly_reflections add column if not exists student_name text;</div>
     <div class="issue-item">
       <div class="issue-dot"></div>
       <div>
-        <div class="pending-text font-heading" style="font-weight:700;color:#f87171">Google Apps Script must be redeployed after changes</div>
-        <div class="pending-note" style="color:rgba(255,255,255,.4)">The Apps Script web app that serves job listing data as JSON (for cluster pages fallback) must be redeployed as a new version any time the script is changed. Go to Apps Script → Deploy → Manage deployments → New version.</div>
+        <div class="pending-text font-heading" style="font-weight:700;color:#dc2626">Google Apps Script must be redeployed after changes</div>
+        <div class="pending-note" style="color:#6b7280">The Apps Script web app that serves job listing data as JSON (for cluster pages fallback) must be redeployed as a new version any time the script is changed. Go to Apps Script → Deploy → Manage deployments → New version.</div>
       </div>
     </div>
 
     <div class="issue-item">
       <div class="issue-dot"></div>
       <div>
-        <div class="pending-text font-heading" style="font-weight:700;color:#f87171">portfolio_items table not yet used</div>
-        <div class="pending-note" style="color:rgba(255,255,255,.4)">The portfolio section on the student dashboard shows a placeholder. portfolio.html has not been built yet. The table exists and is ready.</div>
+        <div class="pending-text font-heading" style="font-weight:700;color:#dc2626">portfolio_items table not yet used</div>
+        <div class="pending-note" style="color:#6b7280">The portfolio section on the student dashboard shows a placeholder. portfolio.html has not been built yet. The table exists and is ready.</div>
       </div>
     </div>
 
     <div class="issue-item">
       <div class="issue-dot"></div>
       <div>
-        <div class="pending-text font-heading" style="font-weight:700;color:#f87171">WBL site: middle video was broken (now fixed)</div>
-        <div class="pending-note" style="color:rgba(255,255,255,.4)">Incubator video was missing from Cloudinary. Uploaded June 3 (70MB → 18MB H.264 optimized). URL updated in index.html. Third video card (Parents) was removed — no video exists for it.</div>
+        <div class="pending-text font-heading" style="font-weight:700;color:#dc2626">WBL site: middle video was broken (now fixed)</div>
+        <div class="pending-note" style="color:#6b7280">Incubator video was missing from Cloudinary. Uploaded June 3 (70MB → 18MB H.264 optimized). URL updated in index.html. Third video card (Parents) was removed — no video exists for it.</div>
       </div>
     </div>
   </div>

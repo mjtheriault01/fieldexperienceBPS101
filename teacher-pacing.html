@@ -8,73 +8,73 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Open Sans',system-ui,sans-serif;background:#080e1a;color:#fff;min-height:100vh}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
     .font-heading{font-family:'Montserrat',system-ui,sans-serif}
-    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
         position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
-    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
-    .back-btn:hover{color:#fff}
-    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
-    .teacher-badge{background:rgba(251,205,7,.15);color:#FBCD07;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.3)}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
 
     main{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem}
     h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;letter-spacing:-.02em;margin-bottom:.375rem}
-    .page-sub{font-size:.875rem;color:rgba(255,255,255,.4);margin-bottom:.75rem}
+    .page-sub{font-size:.875rem;color:#6b7280;margin-bottom:.75rem}
 
     /* Section toggle buttons */
     .section-toggle{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
-    .toggle-btn{padding:.5rem 1.25rem;border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);background:transparent;transition:all .2s}
+    .toggle-btn{padding:.5rem 1.25rem;border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;border:1.5px solid #e5e7eb;color:#6b7280;background:#fff;transition:all .2s}
     .toggle-btn.active{background:#FBCD07;border-color:#FBCD07;color:#000}
-    .toggle-btn:hover:not(.active){border-color:rgba(255,255,255,.35);color:#fff}
+    .toggle-btn:hover:not(.active){border-color:#d1d5db;color:#1c1f2e}
 
     /* Key principle box */
-    .principle-box{background:rgba(251,205,7,.07);border:1px solid rgba(251,205,7,.25);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
-    .principle-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#FBCD07;margin-bottom:.625rem}
-    .principle-text{font-size:.875rem;color:rgba(255,255,255,.65);line-height:1.7}
+    .principle-box{background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+    .principle-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#92400e;margin-bottom:.625rem}
+    .principle-text{font-size:.875rem;color:#374151;line-height:1.7}
 
     /* Phase card */
-    .phase-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;margin-bottom:1.25rem;overflow:hidden}
-    .phase-card-header{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+    .phase-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;margin-bottom:1.25rem;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .phase-card-header{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border-bottom:1px solid #f3f4f6}
     .phase-dot{width:2.5rem;height:2.5rem;border-radius:50%;background:#AC161D;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:900;color:#fff;flex-shrink:0}
-    .phase-card-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#fff;flex:1}
+    .phase-card-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#1c1f2e;flex:1}
     .phase-time-badges{display:flex;gap:.5rem;flex-wrap:wrap}
     .time-badge{display:flex;align-items:center;gap:.375rem;padding:.3rem .75rem;border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-    .badge-daily{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
-    .badge-alt{background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.2)}
+    .badge-daily{background:rgba(99,102,241,.12);color:#4338ca;border:1px solid rgba(99,102,241,.3)}
+    .badge-alt{background:rgba(16,185,129,.1);color:#047857;border:1px solid rgba(16,185,129,.3)}
 
     .phase-card-body{padding:1.25rem 1.5rem}
     .activities-list{display:flex;flex-direction:column;gap:.625rem;margin-bottom:1.25rem}
     .activity-row{display:flex;align-items:flex-start;gap:.875rem}
-    .activity-num-sm{width:1.5rem;height:1.5rem;border-radius:50%;background:rgba(172,22,29,.25);border:1px solid rgba(172,22,29,.4);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;color:#f87171;flex-shrink:0;margin-top:.1rem}
+    .activity-num-sm{width:1.5rem;height:1.5rem;border-radius:50%;background:rgba(172,22,29,.1);border:1px solid rgba(172,22,29,.3);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;color:#AC161D;flex-shrink:0;margin-top:.1rem}
     .activity-detail{flex:1}
-    .activity-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;color:rgba(255,255,255,.85)}
-    .activity-notes{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.15rem;line-height:1.5}
-    .deliverable-tag{display:inline-block;background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.2);border-radius:4px;font-size:.65rem;font-family:'Montserrat',sans-serif;font-weight:700;color:#FBCD07;padding:.1rem .45rem;margin-left:.4rem;vertical-align:middle}
+    .activity-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;color:#1c1f2e}
+    .activity-notes{font-size:.75rem;color:#6b7280;margin-top:.15rem;line-height:1.5}
+    .deliverable-tag{display:inline-block;background:rgba(251,205,7,.15);border:1px solid rgba(251,205,7,.3);border-radius:4px;font-size:.65rem;font-family:'Montserrat',sans-serif;font-weight:700;color:#92400e;padding:.1rem .45rem;margin-left:.4rem;vertical-align:middle}
 
     /* Timing grid */
-    .timing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:rgba(0,0,0,.2);border-radius:10px;padding:1rem;margin-top:.25rem}
+    .timing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#f9fafb;border:1px solid #f3f4f6;border-radius:10px;padding:1rem;margin-top:.25rem}
     .timing-col-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
-    .timing-daily{color:#a5b4fc}
-    .timing-alt{color:#6ee7b7}
-    .timing-val{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.25rem;color:#fff;line-height:1}
-    .timing-sub{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem}
+    .timing-daily{color:#4338ca}
+    .timing-alt{color:#047857}
+    .timing-val{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.25rem;color:#1c1f2e;line-height:1}
+    .timing-sub{font-size:.75rem;color:#9ca3af;margin-top:.2rem}
 
     /* Interview window */
-    .interview-window{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);border-radius:14px;padding:1.5rem;margin:1.5rem 0}
-    .interview-window-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#93c5fd;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-    .interview-window-text{font-size:.875rem;color:rgba(255,255,255,.55);line-height:1.7}
+    .interview-window{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.3);border-radius:14px;padding:1.5rem;margin:1.5rem 0}
+    .interview-window-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#1d4ed8;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+    .interview-window-text{font-size:.875rem;color:#374151;line-height:1.7}
 
     /* Tips */
     .tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2rem}
-    .tip-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.25rem}
-    .tip-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:#fff;margin-bottom:.5rem}
-    .tip-text{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.6}
+    .tip-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .tip-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:#1c1f2e;margin-bottom:.5rem}
+    .tip-text{font-size:.8rem;color:#6b7280;line-height:1.6}
 
     /* Total summary */
-    .total-bar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem 1.5rem;margin-top:2rem;display:flex;gap:2rem;flex-wrap:wrap}
+    .total-bar{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem 1.5rem;margin-top:2rem;display:flex;gap:2rem;flex-wrap:wrap;box-shadow:0 1px 3px rgba(16,24,40,.04)}
     .total-item{text-align:center}
     .total-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;line-height:1}
-    .total-label{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:.25rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+    .total-label{font-size:.7rem;color:#9ca3af;margin-top:.25rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 
     @media(max-width:600px){.timing-grid{grid-template-columns:1fr}.total-bar{gap:1rem}}
   </style>
@@ -85,7 +85,7 @@
     <a href="teacher-hub.html" class="back-btn font-heading">
       <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
     </a>
-    <span style="color:rgba(255,255,255,.15)">|</span>
+    <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading">Pacing Guide</span>
     <span class="teacher-badge font-heading">Teacher</span>
   </div>
@@ -94,11 +94,11 @@
 <main>
   <h1 class="font-heading">Bootcamp Pacing Guide</h1>
   <p class="page-sub">Field Experience — Fall 2026</p>
-  <p style="font-size:.875rem;color:rgba(255,255,255,.5);margin-bottom:2rem;line-height:1.7">This guide covers both the <strong style="color:#a5b4fc">daily section</strong> and the <strong style="color:#6ee7b7">every-other-day section</strong>. Phases are defined by activities and deliverables completed, not by calendar days — so both sections move through the same content at their own pace.</p>
+  <p style="font-size:.875rem;color:#6b7280;margin-bottom:2rem;line-height:1.7">This guide covers both the <strong style="color:#4338ca">daily section</strong> and the <strong style="color:#047857">every-other-day section</strong>. Phases are defined by activities and deliverables completed, not by calendar days — so both sections move through the same content at their own pace.</p>
 
   <div class="principle-box">
     <div class="principle-title font-heading">Core Pacing Principle</div>
-    <div class="principle-text">Phases unlock in sequence based on completion, not the calendar. A student is done with Phase 1 when they've completed all 5 Phase 1 activities — not after X days. This means the daily section will outpace the EOD section, and that's fine. Both sections reach the same milestones; they just get there at different speeds. <strong style="color:rgba(255,255,255,.8)">Never hold the daily section back to keep pace with the EOD section.</strong></div>
+    <div class="principle-text">Phases unlock in sequence based on completion, not the calendar. A student is done with Phase 1 when they've completed all 5 Phase 1 activities — not after X days. This means the daily section will outpace the EOD section, and that's fine. Both sections reach the same milestones; they just get there at different speeds. <strong style="color:#1c1f2e">Never hold the daily section back to keep pace with the EOD section.</strong></div>
   </div>
 
   <!-- PHASE 1 -->
@@ -163,7 +163,7 @@
       Interview &amp; Placement Window (Ongoing — Starts During Phase 1)
     </div>
     <div class="interview-window-text">
-      Interviews can happen at any point, including during Phase 1 if an employer reaches out immediately. <strong style="color:rgba(255,255,255,.75)">Do not hold students back from interviewing because they haven't completed Phase 2.</strong> The mock interview in Phase 2 prepares them — but real interviews don't wait.<br><br>
+      Interviews can happen at any point, including during Phase 1 if an employer reaches out immediately. <strong style="color:#1c1f2e">Do not hold students back from interviewing because they haven't completed Phase 2.</strong> The mock interview in Phase 2 prepares them — but real interviews don't wait.<br><br>
       Use flexible class time between Phase 2 and Phase 3 to accommodate interviews that are actively being scheduled. Some students may finish all bootcamp phases before having a confirmed placement; others may have their placement confirmed mid-Phase 2. Both are fine. Phase 4 requires placement confirmation before Launch.
     </div>
   </div>
@@ -198,7 +198,7 @@
           <div class="activity-num-sm font-heading">3</div>
           <div class="activity-detail">
             <div class="activity-name font-heading">Mock Interview <span class="deliverable-tag font-heading">Submit</span></div>
-            <div class="activity-notes">1 period. Step 1: whole-class peer speed interviews — draw questions from the <a href="interview-question-bank.html" target="_blank" style="color:#FBCD07">interview question bank</a>. Step 2: formal 1-on-1 mock interview with a peer, community partner, administrator, or HR professional, scored on the <a href="mock-interview-feedback.html" target="_blank" style="color:#FBCD07">mock interview feedback form</a> (print copies beforehand). Students confirm completion on site with a note about their feedback. Note: scheduling community partners takes advance planning — contact 2+ weeks before this phase.</div>
+            <div class="activity-notes">1 period. Step 1: whole-class peer speed interviews — draw questions from the <a href="interview-question-bank.html" target="_blank" style="color:#AC161D;font-weight:600">interview question bank</a>. Step 2: formal 1-on-1 mock interview with a peer, community partner, administrator, or HR professional, scored on the <a href="mock-interview-feedback.html" target="_blank" style="color:#AC161D;font-weight:600">mock interview feedback form</a> (print copies beforehand). Students confirm completion on site with a note about their feedback. Note: scheduling community partners takes advance planning — contact 2+ weeks before this phase.</div>
           </div>
         </div>
         <div class="activity-row">
@@ -232,7 +232,7 @@
           <div class="activity-num-sm font-heading">1</div>
           <div class="activity-detail">
             <div class="activity-name font-heading">Workplace Dilemma Stations</div>
-            <div class="activity-notes">1 period (~90 min). Small groups rotate through 15 stations spanning all 7 clusters, each with a realistic scenario. Debrief 2–3 as a class. Special emphasis on confidentiality. Students mark complete on site. Print physical station cards from <a href="dilemma-scenarios.html" target="_blank" style="color:#FBCD07">dilemma-scenarios.html</a> before class (Print Stations button).</div>
+            <div class="activity-notes">1 period (~90 min). Small groups rotate through 15 stations spanning all 7 clusters, each with a realistic scenario. Debrief 2–3 as a class. Special emphasis on confidentiality. Students mark complete on site. Print physical station cards from <a href="dilemma-scenarios.html" target="_blank" style="color:#AC161D;font-weight:600">dilemma-scenarios.html</a> before class (Print Stations button).</div>
           </div>
         </div>
         <div class="activity-row">
@@ -308,19 +308,19 @@
   <!-- TOTAL SUMMARY -->
   <div class="total-bar">
     <div class="total-item">
-      <div class="total-num font-heading" style="color:#a5b4fc">13–14</div>
+      <div class="total-num font-heading" style="color:#4338ca">13–14</div>
       <div class="total-label font-heading">Daily section periods</div>
     </div>
     <div class="total-item">
-      <div class="total-num font-heading" style="color:#6ee7b7">19–22</div>
+      <div class="total-num font-heading" style="color:#047857">19–22</div>
       <div class="total-label font-heading">EOD section periods</div>
     </div>
     <div class="total-item">
-      <div class="total-num font-heading" style="color:#f87171">~3.5 wks</div>
+      <div class="total-num font-heading" style="color:#dc2626">~3.5 wks</div>
       <div class="total-label font-heading">Daily bootcamp length</div>
     </div>
     <div class="total-item">
-      <div class="total-num font-heading" style="color:#f87171">~7 wks</div>
+      <div class="total-num font-heading" style="color:#dc2626">~7 wks</div>
       <div class="total-label font-heading">EOD bootcamp length</div>
     </div>
   </div>

@@ -11,122 +11,122 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Open Sans',system-ui,sans-serif;background:#080e1a;color:#fff;min-height:100vh}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
     .font-heading{font-family:'Montserrat',system-ui,sans-serif}
 
-    nav{background:rgba(8,14,26,.97);backdrop-filter:blur(12px);border-bottom:2px solid rgba(251,205,7,.2);
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
         position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
         padding:0 1.5rem;height:56px}
     .nav-left{display:flex;align-items:center;gap:1rem}
     .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;
-              font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);
+              font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;
               text-decoration:none;transition:color .15s}
-    .back-btn:hover{color:#fff}
+    .back-btn:hover{color:#1c1f2e}
     .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;
-               letter-spacing:.04em;text-transform:uppercase;color:#fff}
-    .teacher-badge{background:rgba(251,205,7,.15);color:#FBCD07;font-family:'Montserrat',sans-serif;
+               letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;
                    font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-                   padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.3)}
+                   padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
     .logout-btn{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;
-                text-transform:uppercase;color:rgba(255,255,255,.35);background:none;border:none;
+                text-transform:uppercase;color:#6b7280;background:none;border:none;
                 cursor:pointer;transition:color .15s}
-    .logout-btn:hover{color:#fff}
+    .logout-btn:hover{color:#1c1f2e}
 
     main{max-width:1150px;margin:0 auto;padding:2rem 1.5rem}
 
     .page-header{margin-bottom:2rem}
     .page-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;
-                color:#fff;letter-spacing:-.02em;margin-bottom:.375rem}
-    .page-sub{font-size:.875rem;color:rgba(255,255,255,.4)}
+                color:#1c1f2e;letter-spacing:-.02em;margin-bottom:.375rem}
+    .page-sub{font-size:.875rem;color:#6b7280}
 
     .stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2rem}
-    .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem}
-    .stat-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;color:#fff;line-height:1}
-    .stat-label{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.375rem;letter-spacing:.04em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600}
+    .stat-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .stat-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;color:#1c1f2e;line-height:1}
+    .stat-label{font-size:.72rem;color:#6b7280;margin-top:.375rem;letter-spacing:.04em;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600}
 
     .filter-bar{display:flex;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap}
-    .filter-input{padding:.6rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-                  border-radius:8px;color:#fff;font-size:.82rem;font-family:'Open Sans',sans-serif;
+    .filter-input{padding:.6rem 1rem;background:#fff;border:1px solid #d1d5db;
+                  border-radius:8px;color:#1c1f2e;font-size:.82rem;font-family:'Open Sans',sans-serif;
                   min-width:220px;transition:border-color .15s}
-    .filter-input::placeholder{color:rgba(255,255,255,.25)}
-    .filter-input:focus{outline:none;border-color:rgba(251,205,7,.5)}
-    .filter-select{padding:.6rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-                   border-radius:8px;color:#fff;font-size:.82rem;font-family:'Open Sans',sans-serif;cursor:pointer}
-    .filter-select option{background:#1a2540;color:#fff}
+    .filter-input::placeholder{color:#9ca3af}
+    .filter-input:focus{outline:none;border-color:#AC161D}
+    .filter-select{padding:.6rem 1rem;background:#fff;border:1px solid #d1d5db;
+                   border-radius:8px;color:#1c1f2e;font-size:.82rem;font-family:'Open Sans',sans-serif;cursor:pointer}
+    .filter-select option{background:#fff;color:#1c1f2e}
     .filter-count{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;
-                  color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase;
+                  color:#9ca3af;letter-spacing:.06em;text-transform:uppercase;
                   display:flex;align-items:center;margin-left:auto}
 
     .submissions-table{width:100%;border-collapse:collapse}
     .submissions-table th{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;
-                          letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);
-                          padding:.75rem 1rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
-    .submissions-table td{padding:.875rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);
+                          letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;
+                          padding:.75rem 1rem;text-align:left;border-bottom:1px solid #e5e7eb}
+    .submissions-table td{padding:.875rem 1rem;border-bottom:1px solid #f3f4f6;
                           font-size:.82rem;vertical-align:middle}
-    .submissions-table tr:hover td{background:rgba(255,255,255,.03)}
-    .submissions-table tr.expanded td{background:rgba(251,205,7,.04)}
+    .submissions-table tr:hover td{background:#f9fafb}
+    .submissions-table tr.expanded td{background:rgba(251,205,7,.06)}
 
-    .student-name{font-weight:600;color:#fff;font-size:.85rem}
-    .student-email{font-size:.72rem;color:rgba(255,255,255,.35);margin-top:.1rem}
+    .student-name{font-weight:600;color:#1c1f2e;font-size:.85rem}
+    .student-email{font-size:.72rem;color:#9ca3af;margin-top:.1rem}
 
     .phase-bars{display:flex;gap:.5rem}
     .phase-mini{display:flex;flex-direction:column;gap:.25rem;align-items:center}
-    .phase-mini-track{width:2.25rem;height:5px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden}
+    .phase-mini-track{width:2.25rem;height:5px;background:#e5e7eb;border-radius:999px;overflow:hidden}
     .phase-mini-fill{height:100%;background:#AC161D;border-radius:999px}
-    .phase-mini-fill.full{background:#4ade80}
-    .phase-mini-label{font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:700;color:rgba(255,255,255,.3)}
+    .phase-mini-fill.full{background:#15803d}
+    .phase-mini-label{font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:700;color:#9ca3af}
 
-    .overall-pct{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#fff}
+    .overall-pct{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#1c1f2e}
 
     .badge{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;
            text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
-    .badge-launched{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.25)}
-    .badge-placed{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25)}
-    .badge-progress{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+    .badge-launched{background:rgba(34,197,94,.15);color:#15803d;border:1px solid rgba(34,197,94,.3)}
+    .badge-placed{background:rgba(59,130,246,.12);color:#1d4ed8;border:1px solid rgba(59,130,246,.3)}
+    .badge-progress{background:#f3f4f6;color:#9ca3af;border:1px solid #e5e7eb}
 
-    .expand-btn{background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;
+    .expand-btn{background:none;border:none;color:#9ca3af;cursor:pointer;
                 font-size:.75rem;padding:.25rem .5rem;border-radius:5px;transition:all .15s;
                 font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.04em}
-    .expand-btn:hover{color:#FBCD07;background:rgba(251,205,7,.08)}
+    .expand-btn:hover{color:#92400e;background:rgba(251,205,7,.1)}
 
     .detail-row{display:none}
     .detail-row.open{display:table-row}
-    .detail-panel{background:rgba(255,255,255,.03);border-radius:10px;padding:1.25rem;margin:.25rem 0 .75rem}
+    .detail-panel{background:#f9fafb;border:1px solid #f3f4f6;border-radius:10px;padding:1.25rem;margin:.25rem 0 .75rem}
 
     .phase-group{margin-bottom:1.25rem}
     .phase-group:last-child{margin-bottom:0}
     .phase-group-title{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.1em;
-                       text-transform:uppercase;color:#FBCD07;margin-bottom:.625rem}
-    .task-row{display:flex;gap:.75rem;align-items:flex-start;padding:.625rem 0;border-top:1px solid rgba(255,255,255,.05)}
+                       text-transform:uppercase;color:#AC161D;margin-bottom:.625rem}
+    .task-row{display:flex;gap:.75rem;align-items:flex-start;padding:.625rem 0;border-top:1px solid #f3f4f6}
     .task-row:first-child{border-top:none}
-    .task-dot{width:.6rem;height:.6rem;border-radius:50%;margin-top:.3rem;flex-shrink:0;background:rgba(255,255,255,.15)}
-    .task-dot.done{background:#4ade80}
+    .task-dot{width:.6rem;height:.6rem;border-radius:50%;margin-top:.3rem;flex-shrink:0;background:#d1d5db}
+    .task-dot.done{background:#15803d}
     .task-body{flex:1}
-    .task-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:#fff}
-    .task-notes{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.55;white-space:pre-wrap;margin-top:.25rem;
-                background:rgba(255,255,255,.03);border-radius:6px;padding:.5rem .75rem}
-    .task-empty{font-size:.75rem;color:rgba(255,255,255,.2);margin-top:.15rem}
+    .task-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:#1c1f2e}
+    .task-notes{font-size:.78rem;color:#374151;line-height:1.55;white-space:pre-wrap;margin-top:.25rem;
+                background:#fff;border:1px solid #f3f4f6;border-radius:6px;padding:.5rem .75rem}
+    .task-empty{font-size:.75rem;color:#9ca3af;margin-top:.15rem}
 
-    .skills-section{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.08)}
+    .skills-section{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid #e5e7eb}
     .skills-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:.5rem}
     .skills-table th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;
-                     text-transform:uppercase;color:rgba(255,255,255,.35);text-align:left;padding:.4rem .625rem}
-    .skills-table td{padding:.4rem .625rem;border-top:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.7)}
-    .delta-up{color:#4ade80;font-weight:700}
-    .delta-down{color:#f87171;font-weight:700}
-    .delta-flat{color:rgba(255,255,255,.35)}
+                     text-transform:uppercase;color:#9ca3af;text-align:left;padding:.4rem .625rem}
+    .skills-table td{padding:.4rem .625rem;border-top:1px solid #f3f4f6;color:#374151}
+    .delta-up{color:#15803d;font-weight:700}
+    .delta-down{color:#dc2626;font-weight:700}
+    .delta-flat{color:#9ca3af}
 
-    .empty-state{text-align:center;padding:4rem 2rem;color:rgba(255,255,255,.25)}
+    .empty-state{text-align:center;padding:4rem 2rem;color:#9ca3af}
     .empty-icon{font-size:2.5rem;margin-bottom:1rem}
     .empty-text{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.875rem;letter-spacing:.04em}
 
-    #loading-overlay{position:fixed;inset:0;background:#080e1a;z-index:999;
+    #loading-overlay{position:fixed;inset:0;background:#f7f7f9;z-index:999;
                      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
-    .spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:#FBCD07;
+    .spinner{width:36px;height:36px;border:3px solid #e5e7eb;border-top-color:#AC161D;
              border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
     .loading-text{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:600;
-                  color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase}
+                  color:#9ca3af;letter-spacing:.1em;text-transform:uppercase}
 
     @media(max-width:700px){
       .hide-sm{display:none}
@@ -147,7 +147,7 @@
       <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
       Teacher Hub
     </a>
-    <span style="color:rgba(255,255,255,.15);font-size:.8rem">|</span>
+    <span style="color:#e5e7eb;font-size:.8rem">|</span>
     <span class="nav-title font-heading">Bootcamp Progress</span>
     <span class="teacher-badge font-heading">Teacher</span>
   </div>
