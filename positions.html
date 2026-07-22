@@ -81,7 +81,8 @@
 
     @media print {
       @page { margin: 0.35in; size: letter portrait; }
-      body { background:#fff !important; }
+      body { background:#fff !important; min-height:0 !important; }
+      html { height:auto !important; }
       header, footer, .no-print { display:none !important; }
       main { padding:0 !important; max-width:100% !important; }
 
