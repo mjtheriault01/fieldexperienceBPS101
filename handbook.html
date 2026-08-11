@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Experience Handbook — BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:800px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+    /* ===== page model: each .page is one printed sheet ===== */
+    .page{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:2.25rem 2.5rem;margin-bottom:1.25rem}
+    .page-num{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c4c8ce;text-align:right;margin-top:1.5rem;padding-top:.6rem;border-top:1px solid #f1f2f4}
+
+    /* cover */
+    .cover{background:#0e1520;border-color:#0e1520;color:#fff;text-align:center;padding:3.5rem 2.5rem}
+    .cover img{height:4.5rem;margin-bottom:1.75rem}
+    .cover-eyebrow{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#FBCD07;margin-bottom:1rem}
+    .cover h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.6rem;line-height:1.05;letter-spacing:-.03em;margin-bottom:.6rem}
+    .cover-sub{font-size:.95rem;color:#9ca3af;margin-bottom:2.25rem}
+    .cover-rule{height:3px;width:4rem;background:#FBCD07;margin:0 auto 2.25rem}
+    .cover-quote{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.05rem;color:#e5e7eb;line-height:1.6;max-width:26rem;margin:0 auto 2.25rem}
+    .cover-meta{font-size:.8rem;color:#6b7280;line-height:1.9}
+    .cover-meta strong{color:#e5e7eb}
+    .name-plate{border:1.5px solid rgba(255,255,255,.25);border-radius:10px;padding:1.1rem 1.35rem;margin:0 auto 2rem;max-width:22rem;text-align:left}
+    .np-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.85rem}
+    .np-row:last-child{margin-bottom:0}
+    .np-l{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#FBCD07;white-space:nowrap}
+    .np-line{flex:1;border-bottom:1px solid rgba(255,255,255,.3);height:1rem}
+
+    /* contents */
+    .toc-row{display:flex;align-items:baseline;gap:.6rem;padding:.6rem 0;border-bottom:1px solid #f1f2f4;font-size:.88rem}
+    .toc-row:last-child{border-bottom:none}
+    .toc-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.75rem;color:#AC161D;width:1.4rem;flex-shrink:0}
+    .toc-t{font-family:'Montserrat',sans-serif;font-weight:700;color:#1c1f2e}
+    .toc-d{color:#6b7280;font-size:.8rem}
+    .toc-dots{flex:1;border-bottom:1px dotted #d1d5db;margin:0 .3rem;min-width:1rem}
+    .toc-p{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#6b7280}
+
+    /* section headers */
+    .sec-head{margin-bottom:1.5rem}
+    .sec-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#AC161D;margin-bottom:.35rem}
+    .sec-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;letter-spacing:-.02em;line-height:1.15;margin-bottom:.5rem}
+    .sec-lede{font-size:.88rem;color:#4b5563;line-height:1.75}
+
+    h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:#1c1f2e;margin:1.6rem 0 .55rem}
+    h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#1c1f2e;margin:1.1rem 0 .4rem}
+    p{font-size:.86rem;color:#374151;line-height:1.75}
+    p+p{margin-top:.7rem}
+    ul,ol{margin:.5rem 0 0 1.25rem}
+    li{font-size:.86rem;color:#374151;line-height:1.7;margin-bottom:.3rem}
+    strong{color:#1c1f2e}
+
+    /* tables */
+    table{width:100%;border-collapse:collapse;margin:.85rem 0;font-size:.82rem}
+    th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.5rem .6rem;background:#f8f9fa;border-bottom:1px solid #e5e7eb}
+    td{padding:.5rem .6rem;color:#374151;border-bottom:1px solid #f1f2f4;vertical-align:top;line-height:1.55}
+    tr:last-child td{border-bottom:none}
+    td.k{font-family:'Montserrat',sans-serif;font-weight:700;color:#1c1f2e;white-space:nowrap}
+    td.w{font-family:'Montserrat',sans-serif;font-weight:900;color:#AC161D;text-align:center;white-space:nowrap}
+
+    /* callouts */
+    .box{border-radius:10px;padding:.95rem 1.15rem;margin:1.05rem 0;font-size:.84rem;line-height:1.72;color:#374151}
+    .box-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;margin-bottom:.35rem}
+    .b-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .b-gold .box-t{color:#92400e}
+    .b-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .b-red .box-t{color:#AC161D}
+    .b-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .b-blue .box-t{color:#1d4ed8}
+    .b-green{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.3)}
+    .b-green .box-t{color:#047857}
+    .box ul{margin:.4rem 0 0 1.15rem}
+    .box li{font-size:.83rem;margin-bottom:.25rem}
+
+    /* four-category strip */
+    .cat4{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1.1rem 0}
+    .c4{border:1.5px solid #e5e7eb;border-radius:10px;padding:.8rem .5rem;text-align:center}
+    .c4-w{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;line-height:1}
+    .c4-n{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;color:#1c1f2e;margin-top:.3rem;line-height:1.25}
+
+    /* scale rows */
+    .scale-row{display:grid;grid-template-columns:2.4rem 1fr 3.2rem;gap:.7rem;align-items:baseline;padding:.5rem .7rem;border:1px solid #e5e7eb;border-radius:7px;margin-bottom:.35rem;font-size:.82rem;color:#374151}
+    .sr-n{font-family:'Montserrat',sans-serif;font-weight:900;text-align:center;font-size:.9rem}
+    .sr-p{font-family:'Montserrat',sans-serif;font-weight:800;text-align:right;color:#1c1f2e;font-size:.8rem}
+    .r4{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.3)}.r4 .sr-n{color:#047857}
+    .r35{background:rgba(20,184,166,.06);border-color:rgba(20,184,166,.28)}.r35 .sr-n{color:#0f766e}
+    .r3{background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.28)}.r3 .sr-n{color:#1d4ed8}
+    .r2{background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.4)}.r2 .sr-n{color:#b45309}
+    .r1{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.3)}.r1 .sr-n{color:#b91c1c}
+
+    /* phase list */
+    .phase{border-left:3px solid #AC161D;padding:.15rem 0 .15rem .9rem;margin-bottom:1rem}
+    .phase-n{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#AC161D}
+    .phase-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size.9rem;font-size:.9rem;color:#1c1f2e;margin:.1rem 0 .3rem}
+    .phase-a{font-size:.8rem;color:#4b5563;line-height:1.7}
+
+    /* signature block */
+    .sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;margin-top:1.5rem}
+    .sig{grid-column:span 1}
+    .sig-line{border-bottom:1.5px solid #1c1f2e;height:2.1rem}
+    .sig-l{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;margin-top:.3rem}
+    .rule{border-bottom:1px solid #d8dbe0;height:1.35rem}
+
+    .insert{border:2px dashed #AC161D;border-radius:10px;padding:1.5rem;text-align:center;background:rgba(172,22,29,.03);margin:1.25rem 0}
+    .insert-t{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;color:#AC161D;margin-bottom:.5rem}
+    .insert p{font-size:.83rem;color:#4b5563}
+
+    @media(max-width:640px){
+      .page{padding:1.5rem 1.25rem}
+      .cat4{grid-template-columns:repeat(2,1fr)}
+      .sig-grid{grid-template-columns:1fr}
+      .cover h1{font-size:1.9rem}
+    }
+
+    @media print{
+      nav,.print-btn,.screen-only{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .page{border:none;border-radius:0;padding:0;margin:0;page-break-after:always;break-after:page}
+      .page:last-child{page-break-after:auto;break-after:auto}
+      .cover{padding:1.5in .75in 1in}
+      .cover img{height:3.4rem;margin-bottom:1.1rem}
+      .cover h1{font-size:2.1rem}
+      .cover-quote{font-size:.95rem;margin-bottom:1.6rem}
+      .cover-rule{margin-bottom:1.6rem}
+      .cover-sub{margin-bottom:1.6rem}
+      .name-plate{margin-bottom:1.5rem}
+
+      /* Tighten typography so each section fits fewer sheets without cramping */
+      p,li{font-size:.8rem;line-height:1.62}
+      p+p{margin-top:.55rem}
+      table{font-size:.76rem;margin:.65rem 0}
+      td{padding:.38rem .5rem;line-height:1.45}
+      th{padding:.38rem .5rem}
+      h3{font-size:.94rem;margin:1.1rem 0 .4rem}
+      h4{font-size:.79rem;margin:.8rem 0 .3rem}
+      .sec-title{font-size:1.5rem}
+      .sec-lede{font-size:.82rem;line-height:1.62}
+      .sec-head{margin-bottom:1.1rem}
+      .box{padding:.75rem .95rem;margin:.8rem 0;font-size:.79rem;line-height:1.6}
+      .box li{font-size:.78rem;margin-bottom:.18rem}
+      .scale-row{padding:.38rem .6rem;font-size:.78rem;margin-bottom:.28rem}
+      .phase{margin-bottom:.75rem}
+      .phase-a{font-size:.76rem;line-height:1.6}
+      .toc-row{padding:.45rem 0;font-size:.83rem}
+      ul,ol{margin:.4rem 0 0 1.15rem}
+
+      h3,h4,.sec-head{page-break-after:avoid;break-after:avoid}
+      table,.box,.scale-row,.phase,.sig-grid,.insert,.cat4{page-break-inside:avoid;break-inside:avoid}
+      tr{break-inside:avoid;page-break-inside:avoid}
+      .page-num{position:relative}
+    }
+    @page{margin:.55in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Field Experience Handbook</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print Booklet</button>
+</nav>
+
+<main>
+
+  <!-- ══════════════ COVER ══════════════ -->
+  <div class="page cover">
+    <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="Field Experience">
+    <div class="cover-eyebrow font-heading">Batavia High School</div>
+    <h1 class="font-heading">Field Experience<br>Handbook</h1>
+    <div class="cover-sub">Work-Based Learning &middot; 2026&ndash;27</div>
+    <div class="cover-rule"></div>
+
+    <div class="cover-quote font-heading">&ldquo;Treat your placement like a real job from day one &mdash; because it is one.&rdquo;</div>
+
+    <div class="name-plate">
+      <div class="np-row"><span class="np-l font-heading">Name</span><span class="np-line"></span></div>
+      <div class="np-row"><span class="np-l font-heading">Placement</span><span class="np-line"></span></div>
+      <div class="np-row"><span class="np-l font-heading">Supervisor</span><span class="np-line"></span></div>
+      <div class="np-row"><span class="np-l font-heading">Cluster</span><span class="np-line"></span></div>
+    </div>
+
+    <div class="cover-meta">
+      <strong>Michael Theriault</strong><br>
+      michael.theriault@bps101.net<br>
+      fieldexperiencebps101.net
+    </div>
+  </div>
+
+  <!-- ══════════════ CONTENTS ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Start here</div>
+      <div class="sec-title font-heading">What's In This Handbook</div>
+      <p class="sec-lede">Keep this. Everything you need to know about how this course works is in here, and almost every question you'll have this semester is answered on one of these pages.</p>
+    </div>
+
+    <div class="toc-row"><span class="toc-n font-heading">1</span><span class="toc-t font-heading">Bootcamp</span><span class="toc-dots"></span><span class="toc-d">The first three weeks</span></div>
+    <div class="toc-row"><span class="toc-n font-heading">2</span><span class="toc-t font-heading">Course Syllabus</span><span class="toc-dots"></span><span class="toc-d">The official version</span></div>
+    <div class="toc-row"><span class="toc-n font-heading">3</span><span class="toc-t font-heading">Grading Policy</span><span class="toc-dots"></span><span class="toc-d">How your grade actually works</span></div>
+    <div class="toc-row"><span class="toc-n font-heading">4</span><span class="toc-t font-heading">The Capstone</span><span class="toc-dots"></span><span class="toc-d">Pitch, trade show, portfolio</span></div>
+    <div class="toc-row"><span class="toc-n font-heading">5</span><span class="toc-t font-heading">Training Agreement</span><span class="toc-dots"></span><span class="toc-d">Signatures required before you start</span></div>
+
+    <div class="box b-red">
+      <div class="box-t font-heading">The three things that matter most</div>
+      <ol style="margin-top:.4rem">
+        <li><strong>Your timesheet and reflection are due every Sunday by 11:59 PM.</strong> If they aren't in, you don't go to work that week until they are. This is the one rule with no exceptions.</li>
+        <li><strong>60 hours minimum.</strong> Track them as you go, not from memory at the end of the month.</li>
+        <li><strong>Start collecting portfolio artifacts in week one.</strong> The photo you didn't take in September is gone in December.</li>
+      </ol>
+    </div>
+
+    <div class="box b-blue">
+      <div class="box-t font-heading">Two tracks, one course</div>
+      <p>Some of you meet <strong>every day for one semester</strong> and work at an outside business or organization. Others meet <strong>on A days for the full year</strong> and run your own business or work for a school enterprise like Bulldog Media. You have the same requirements, the same grading categories, and the same weights &mdash; the only difference is where the work happens and who evaluates it. Where this handbook says something applies to only one track, it says so.</p>
+    </div>
+
+    <div class="page-num font-heading">Field Experience Handbook</div>
+  </div>
+
+  <!-- ══════════════ 1. BOOTCAMP ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Section 1</div>
+      <div class="sec-title font-heading">Bootcamp</div>
+      <p class="sec-lede">Before you go anywhere, you get ready. Bootcamp is 16 activities across four phases, and it is <strong>25% of your course grade</strong> &mdash; each activity is scored on its own. You will have a real grade in this class before you ever set foot at a placement.</p>
+    </div>
+
+    <div class="box b-gold">
+      <div class="box-t font-heading">Why this exists</div>
+      <p>Every one of these activities produces something you will actually use: a resume you'll apply with, a pitch you'll deliver at the capstone, an interview you'll survive, a plan you'll be held to. Nothing in bootcamp is busywork designed to fill three weeks. If you can't see how an activity connects to the job, ask &mdash; there's an answer.</p>
+    </div>
+
+    <div class="phase">
+      <div class="phase-n font-heading">Phase 1</div>
+      <div class="phase-t font-heading">Professional Identity &amp; Course Launch</div>
+      <div class="phase-a">
+        <strong>1.</strong> Begin With the End in Mind &mdash; see the capstone, the syllabus, and this website<br>
+        <strong>2.</strong> Career &amp; Self-Assessment &mdash; rate yourself on the 10 employability skills; this is your baseline<br>
+        <strong>3.</strong> Your Professional Brand &mdash; google yourself, clean it up, build LinkedIn and an email signature<br>
+        <strong>4.</strong> Resume Workshop &mdash; build it, get feedback, revise it, submit it<br>
+        <strong>5.</strong> Explore &amp; Apply &mdash; research placements and submit a real application
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-n font-heading">Phase 2</div>
+      <div class="phase-t font-heading">Interview Prep</div>
+      <div class="phase-a">
+        <strong>6.</strong> Elevator Pitch &mdash; write it, workshop it, record it<br>
+        <strong>7.</strong> Interview Skills &mdash; STAR answers, what to wear, body language<br>
+        <strong>8.</strong> Mock Interview &mdash; peer speed interviews, then a real interview with a community partner<br>
+        <strong>9.</strong> Interview Improvement Plan &mdash; take the feedback and do something with it
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-n font-heading">Phase 3</div>
+      <div class="phase-t font-heading">Workplace Readiness</div>
+      <div class="phase-a">
+        <strong>10.</strong> Workplace Dilemma Stations &mdash; 15 real situations, no clean answers<br>
+        <strong>11.</strong> Meet Your 10 Employability Skills &mdash; what you're actually assessed on all semester<br>
+        <strong>12.</strong> Post-Assessment &mdash; re-rate the 10 skills and see your growth<br>
+        <strong>13.</strong> Placement Confirmed &mdash; your site, your supervisor, your paperwork
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-n font-heading">Phase 4</div>
+      <div class="phase-t font-heading">Launch</div>
+      <div class="phase-a">
+        <strong>14.</strong> Goal Conference &mdash; one-on-one with your teacher<br>
+        <strong>15.</strong> Internship Plan of Success &mdash; your roadmap for the semester<br>
+        <strong>16.</strong> Launch Day &mdash; set your #1 goal and go
+      </div>
+    </div>
+
+    <h3 class="font-heading">How a bootcamp activity is scored</h3>
+    <table>
+      <tr><th style="width:3rem">Score</th><th>What it looks like</th></tr>
+      <tr><td class="w">4</td><td>Submitted on time and genuinely strong &mdash; you went past the prompt and made it your own.</td></tr>
+      <tr><td class="w">3</td><td>Submitted on time and complete. You did what was asked, properly. <strong>This is the target.</strong></td></tr>
+      <tr><td class="w">2</td><td>Late, or incomplete &mdash; missing sections, one-line answers, checklist items unchecked.</td></tr>
+      <tr><td class="w">1</td><td>Barely attempted. Something arrived, but it doesn't show you engaged with the activity.</td></tr>
+      <tr><td class="w">INC</td><td>Nothing submitted. Recoverable until the quarter closes.</td></tr>
+    </table>
+
+    <div class="box b-green">
+      <div class="box-t font-heading">Everything is on the website</div>
+      <p>Every activity, every deliverable, and every tool lives at <strong>fieldexperiencebps101.net</strong>. You submit there, you track your progress there, and your teacher sees it there. If you're ever unsure whether something got submitted, log in and look &mdash; don't guess.</p>
+    </div>
+
+    <div class="page-num font-heading">Section 1 &middot; Bootcamp</div>
+  </div>
+
+  <!-- ══════════════ 2. SYLLABUS ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Section 2</div>
+      <div class="sec-title font-heading">Course Syllabus</div>
+      <p class="sec-lede">Batavia High School &middot; Field Experience (Work-Based Learning) &middot; Michael Theriault &middot; michael.theriault@bps101.net</p>
+    </div>
+
+    <table>
+      <tr><td class="k">Course Name</td><td>Field Experience (Work-Based Learning)</td></tr>
+      <tr><td class="k">Teacher</td><td>Michael Theriault &mdash; michael.theriault@bps101.net</td></tr>
+      <tr><td class="k">Course Description</td><td>A work-based learning course where students complete a minimum of 60 supervised hours of real professional work. Placement-track students earn those hours at a local business or organization aligned to one of seven career clusters. Enterprise-track students earn them operating their own business or working for a school enterprise. All students first complete a hands-on bootcamp covering professional identity, interview preparation, and workplace readiness. The course emphasizes the Illinois Essential Employability Skills, real-world application of classroom learning, and career exploration through direct workplace experience.</td></tr>
+      <tr><td class="k">Required Materials</td><td>Laptop/Chromebook access for weekly logs and reflections; professional attire appropriate to your work; a fully signed Training Agreement on file before day one. <strong>Placement track:</strong> reliable transportation to and from your site. <strong>Enterprise track:</strong> a signed remote work agreement and a named client or advisor.</td></tr>
+      <tr><td class="k">Prerequisite</td><td>Junior or Senior standing, teacher/counselor approval, and a completed application and interview process.</td></tr>
+      <tr><td class="k">Website</td><td>fieldexperiencebps101.net &mdash; bootcamp, weekly timesheet, weekly reflection, and your dashboard</td></tr>
+      <tr><td class="k">Course Fee</td><td>None</td></tr>
+    </table>
+
+    <h3 class="font-heading">Essential Learnings / Units</h3>
+    <ul>
+      <li>Phase 1 &mdash; Professional Identity &amp; Course Launch</li>
+      <li>Phase 2 &mdash; Interview Prep</li>
+      <li>Phase 3 &mdash; Workplace Readiness</li>
+      <li>Phase 4 &mdash; Launch</li>
+      <li>The Work &mdash; a minimum of 60 supervised hours</li>
+      <li>The Capstone &mdash; Elevator Pitch, Trade Show &amp; Portfolio</li>
+    </ul>
+
+    <h3 class="font-heading">Special Course Policies</h3>
+    <p>A fully signed Training Agreement (student, parent/guardian, employer, and school coordinator) must be on file before your first day of work &mdash; no exceptions. Performance or conduct violations are addressed per the Training Agreement and may result in removal from the program.</p>
+
+    <div class="box b-red">
+      <div class="box-t font-heading">Documentation Gate &mdash; you must be current to work</div>
+      <p>Your weekly timesheet and reflection are due <strong>Sunday at 11:59 PM</strong>. If they are not submitted, you do not go to work that week until they are complete.</p>
+      <p><strong>Placement track: not current, not on the schedule.</strong> You report to class and finish your timesheet and reflection instead of going to your site.</p>
+      <p><strong>Enterprise track: not current, not remote.</strong> Working off campus is a privilege earned by being current. If you're behind, you report to class on your A day until you're caught up. Bulldog Media students also lose equipment and studio access until current.</p>
+      <p>This is not a rule invented for school. Every contractor, freelancer, and hourly employee gets paid by submitting their documentation on time.</p>
+    </div>
+
+    <p style="font-size:.82rem;color:#6b7280">If a transportation barrier or an IEP/504 accommodation affects your ability to submit, talk to your teacher. Those are handled as accommodations before the gate is ever applied &mdash; a ride that falls through is an attendance problem to solve, not a rule violation.</p>
+
+    <div class="page-num font-heading">Section 2 &middot; Syllabus</div>
+  </div>
+
+  <div class="page">
+    <h3 class="font-heading" style="margin-top:0">District &amp; School Policies</h3>
+    <table>
+      <tr><td class="k">BPS Homework Policy</td><td>6:290 &mdash; policy.bps101.net</td></tr>
+      <tr><td class="k">BPS Grading Policy</td><td>6:280 &mdash; policy.bps101.net</td></tr>
+      <tr><td class="k">Academic Dishonesty</td><td>The standard BHS Academic Dishonesty Policy applies to all bootcamp deliverables, reflections, and capstone work.</td></tr>
+    </table>
+
+    <h3 class="font-heading">Learner Profile / BARK Chart</h3>
+    <p>While you are graded on academic achievement, you and your family also receive feedback on classroom and workplace behaviors and responsibility. These behaviors are not directly graded, but constructive feedback should be given &mdash; both in the classroom and from your placement supervisor.</p>
+
+    <h3 class="font-heading">Extra Learning &amp; Help Opportunities</h3>
+    <p>Come in before or after school any time for help with bootcamp deliverables, resume feedback, interview practice, or capstone prep. Message your teacher to find a time that works for both of you.</p>
+
+    <h3 class="font-heading">Student Expectations for This Course</h3>
+    <p>Treat your placement like a real job from day one &mdash; punctuality, professional conduct, and follow-through matter as much there as any grade does here. Complete your weekly timesheet and reflection on time every week. Communicate proactively with your teacher about scheduling conflicts, concerns, or problems at your placement. Don't wait until it's a crisis.</p>
+
+    <h3 class="font-heading">Characteristics of Successful Students in This Course</h3>
+    <p>Reliable &mdash; shows up on time, every time. Communicates before being asked. Takes initiative instead of waiting for direction. Treats feedback as a tool, not criticism. Takes ownership of their own appearance and conduct.</p>
+
+    <h3 class="font-heading">Teacher Expectations for This Course</h3>
+    <p>I will help you find and succeed in a placement that fits your interests, and prepare you to walk in on day one ready to perform like an employee, not a visitor. I'll challenge you to take this seriously &mdash; because employers, your supervisor, and your future self will.</p>
+
+    <h3 class="font-heading">Remediation Statement</h3>
+    <p>A missed timesheet or reflection is entered as <strong>Incomplete</strong> and can be submitted late for partial credit any time before the quarter closes. An Incomplete still missing at quarter close becomes a zero &mdash; so nothing is unrecoverable until the term ends. Incomplete bootcamp deliverables can be resubmitted for credit. Workplace performance concerns are addressed through direct communication with your employer or advisor and a written improvement plan, per the Training Agreement &mdash; not through grade remediation alone.</p>
+
+    <div class="page-num font-heading">Section 2 &middot; Syllabus</div>
+  </div>
+
+  <!-- ══════════════ 3. GRADING ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Section 3</div>
+      <div class="sec-title font-heading">Grading Policy</div>
+      <p class="sec-lede">Four categories, each worth 25%. One scale for everything. You should be able to explain your own grade in fifteen seconds &mdash; if you can't, ask.</p>
+    </div>
+
+    <div class="cat4">
+      <div class="c4" style="border-color:rgba(99,102,241,.4)"><div class="c4-w font-heading" style="color:#4338ca">25%</div><div class="c4-n font-heading">Bootcamp</div></div>
+      <div class="c4" style="border-color:rgba(20,184,166,.4)"><div class="c4-w font-heading" style="color:#0f766e">25%</div><div class="c4-n font-heading">Weekly Tasks</div></div>
+      <div class="c4" style="border-color:rgba(251,205,7,.55)"><div class="c4-w font-heading" style="color:#b45309">25%</div><div class="c4-n font-heading">Capstone</div></div>
+      <div class="c4" style="border-color:rgba(172,22,29,.4)"><div class="c4-w font-heading" style="color:#AC161D">25%</div><div class="c4-n font-heading">Employer Feedback</div></div>
+    </div>
+
+    <h3 class="font-heading">The scale &mdash; used for every single graded item</h3>
+    <div class="scale-row r4"><span class="sr-n font-heading">4</span><span><strong>Excellent</strong> &mdash; exceeded the standard; took initiative beyond what was asked</span><span class="sr-p font-heading">100%</span></div>
+    <div class="scale-row r35"><span class="sr-n font-heading">3.5</span><span><strong>Approaching Excellent</strong> &mdash; clearly past "meets," not consistently excellent yet</span><span class="sr-p font-heading">96%</span></div>
+    <div class="scale-row r3"><span class="sr-n font-heading">3</span><span><strong>Meets</strong> &mdash; performed to the standard a paying employer expects. <strong>This is the target.</strong></span><span class="sr-p font-heading">92%</span></div>
+    <div class="scale-row r2"><span class="sr-n font-heading">2</span><span><strong>Does Not Meet</strong> &mdash; inconsistent; a supervisor would have to correct you</span><span class="sr-p font-heading">75%</span></div>
+    <div class="scale-row r1"><span class="sr-n font-heading">1</span><span><strong>Well Below Standard</strong> &mdash; would jeopardize continued employment</span><span class="sr-p font-heading">60%</span></div>
+
+    <div class="box b-blue">
+      <div class="box-t font-heading">A 3 is a good grade here</div>
+      <p>"Meets" doesn't mean average and it doesn't mean "fine for a high schooler." It means <em>you performed to the standard a paying employer expects</em> &mdash; which is a high bar, and clearing it every week is an achievement. A 4 is for going beyond what was asked, not for doing what was asked well.</p>
+      <p><strong>"No Evidence" is not a 1.</strong> If nothing was submitted, it's entered as <strong>Incomplete</strong> &mdash; a 1 means the work was seen and fell well short, while Incomplete means nothing arrived yet. Incompletes can be turned in late for partial credit and only become zeros at the end of the quarter.</p>
+    </div>
+
+    <h3 class="font-heading">1. Bootcamp &mdash; 25%</h3>
+    <p>Each of the 16 bootcamp activities is scored separately. Finished in the first few weeks of the course.</p>
+
+    <h3 class="font-heading">2. Weekly Tasks &mdash; 25%</h3>
+    <p>Every week you submit a timesheet and a reflection, and <strong>each one gets its own score</strong>. "Week 1 Timesheet" and "Week 1 Reflection" are two different grades. Over a semester this is where most of your grades come from &mdash; which means consistency matters more than any single item.</p>
+    <table>
+      <tr><th style="width:8rem">Item</th><th>What earns a 3, and what earns a 4</th></tr>
+      <tr><td class="k">Timesheet</td><td><strong>3</strong> &mdash; on time and complete. <strong>4</strong> &mdash; on time, complete, verified by your supervisor, and the task notes actually describe what you did. <strong>2</strong> &mdash; late, or hours logged with no detail.</td></tr>
+      <tr><td class="k">Reflection</td><td><strong>3</strong> &mdash; answers every prompt with real content about your actual week. <strong>4</strong> &mdash; names something specific that happened <em>and</em> what you did about it. <strong>2</strong> &mdash; generic; could have been written about any week anywhere.</td></tr>
+    </table>
+    <div class="box b-gold">
+      <div class="box-t font-heading">The test your reflection has to pass</div>
+      <p>Read it back and ask: <em>could this have been written by someone who never went to my placement?</em> If yes, it's a 2. Your reflections are also the raw material for your capstone pitch and your black box answer &mdash; the students who write real ones in September have something to say in December.</p>
+    </div>
+
+    <div class="page-num font-heading">Section 3 &middot; Grading</div>
+  </div>
+
+  <div class="page">
+    <h3 class="font-heading" style="margin-top:0">3. Capstone &mdash; 25%</h3>
+    <p>Three separate scores, weighted equally &mdash; each worth about 8% of your final grade. Full details in Section 4.</p>
+    <table>
+      <tr><td class="k">Elevator Pitch</td><td>1:30 pitch on yourself and your experience, plus your answer to an unseen black box prompt</td></tr>
+      <tr><td class="k">Trade Show</td><td>Pop-up presentations at your station in the BFAC Lobby, plus how you handle follow-up questions</td></tr>
+      <tr><td class="k">Portfolio</td><td>The artifacts you bring and how well you can account for them</td></tr>
+    </table>
+
+    <h3 class="font-heading">4. Employer Feedback &mdash; 25%</h3>
+    <p>At minimum a <strong>midterm</strong> and a <strong>final</strong> evaluation from your supervisor, each scoring you on the 10 Illinois Essential Employability Skills.</p>
+    <div class="box b-red">
+      <div class="box-t font-heading">These are the highest-stakes items in the course</div>
+      <p>With only two evaluations, <strong>each one is worth about 12% of your final grade</strong> &mdash; roughly the same as fifteen weekly reflections combined. The person filling it out sees you a few hours a week, and what they see is entirely up to you. Everything about how you show up &mdash; on time, phone away, asking for more work &mdash; ends up on that form.</p>
+      <p><strong>Enterprise track:</strong> your evaluation comes from the <strong>Quarterly Review Board</strong>, where you present your work to a panel of adults, plus at least one client or advisor feedback form. Board dates: <strong>Oct 15 &middot; Dec 16 &middot; Mar 11</strong>, with the fourth folded into the May capstone.</p>
+    </div>
+
+    <h3 class="font-heading">If you fall behind &mdash; the escalation ladder</h3>
+    <p>Applied the same way to everyone. The count resets each quarter.</p>
+    <table>
+      <tr><th style="width:3.5rem">Miss</th><th>What happens</th></tr>
+      <tr><td class="w">1st</td><td>You complete the missing work during that day's block. No call home. Everyone has one bad week.</td></tr>
+      <tr><td class="w">2nd</td><td>The gate is enforced &mdash; no placement or no remote work that day &mdash; and an email goes home the same day.</td></tr>
+      <tr><td class="w">3rd</td><td>Phone call home, a written improvement plan signed by you and your guardian, and a two-week check-in. Your supervisor is informed, because at a real job this is where a manager would know.</td></tr>
+      <tr><td class="w">4th</td><td>A formal review meeting with you, your guardian, and your employer against the Training Agreement. Possible removal from the program.</td></tr>
+    </table>
+
+    <div class="box b-green">
+      <div class="box-t font-heading">The honest summary</div>
+      <p>Half of this grade &mdash; Bootcamp and Weekly Tasks &mdash; is almost entirely within your control and comes down to doing the work on time. The other half depends on how you actually perform in front of adults who don't have to be impressed by you. Students who fail this course rarely fail because the work was too hard. They fail because they stopped submitting.</p>
+    </div>
+
+    <div class="page-num font-heading">Section 3 &middot; Grading</div>
+  </div>
+
+  <!-- ══════════════ 4. CAPSTONE ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Section 4</div>
+      <div class="sec-title font-heading">The Capstone</div>
+      <p class="sec-lede">One afternoon at the end of the semester where your work becomes visible to the people who might hire, recommend, or mentor you next. <strong>25% of your grade</strong>, in three parts. Everything in bootcamp builds toward this.</p>
+    </div>
+
+    <h3 class="font-heading">Part 1 &mdash; Elevator Pitch (1:30)</h3>
+    <p>A <strong>one minute thirty second</strong> pitch on yourself and your Field Experience. Live, timed, no notes on a phone. Then you draw a <strong>black box prompt</strong> &mdash; an unseen question, pulled at random in front of everyone &mdash; and answer it on the spot. You get 10&ndash;15 seconds to think, and that silence is allowed. Take it.</p>
+
+    <h4 class="font-heading">A structure that works for the prepared 1:30</h4>
+    <table>
+      <tr><td class="k">~15 sec</td><td><strong>Who and where</strong> &mdash; your name, placement, and cluster. Fast, no wind-up.</td></tr>
+      <tr><td class="k">~30 sec</td><td><strong>What you actually did</strong> &mdash; not your title. A specific project or responsibility you owned. Specific beats impressive.</td></tr>
+      <tr><td class="k">~30 sec</td><td><strong>What you learned or how you grew</strong> &mdash; reference something real: a mistake, a skill that clicked, a moment you were wrong. This is the part people remember.</td></tr>
+      <tr><td class="k">~15 sec</td><td><strong>What's next</strong> &mdash; where this points you. Close with confidence, not "yeah, that's it."</td></tr>
+    </table>
+
+    <div class="box b-gold">
+      <div class="box-t font-heading">The black box &mdash; how to prepare for a question you won't see</div>
+      <p>You'll never see the prompts. You <em>will</em> know the categories, so you can prepare your thinking without memorizing an answer:</p>
+      <ul>
+        <li>A challenge or setback you faced &mdash; and what you did about it</li>
+        <li>A person at your placement who taught you something</li>
+        <li>A time you were wrong, corrected, or surprised</li>
+        <li>Advice for next year's student going into your placement</li>
+        <li>How this changed your plans &mdash; or confirmed them</li>
+        <li>A skill you didn't expect to need</li>
+      </ul>
+      <p><strong>Have stories, not scripts.</strong> If you can name three specific things that happened to you this semester &mdash; a hard day, a moment something clicked, a mistake you fixed &mdash; you can answer anything in that box. Students who memorize one perfect answer are the ones who get caught, because an honest answer to the real question always beats a rehearsed answer to a different one. Your weekly reflections are the raw material. That's what they've been for all along.</p>
+    </div>
+
+    <h3 class="font-heading">Part 2 &mdash; Trade Show (BFAC Lobby)</h3>
+    <p>You staff a station in the BFAC Lobby. Guests circulate, and when someone stops you give them a <strong>60&ndash;90 second walkthrough</strong> of your work, then take their follow-up questions. You'll do it over and over, for people who know nothing about your placement.</p>
+    <p>The skill being tested isn't public speaking &mdash; it's doing it well the tenth time, to someone who just walked up. What's scored: your pop-up presentation, how you handle questions, your station setup (<strong>scored before doors open</strong>), your professionalism, and whether you can adjust how you talk to a supervisor versus a sophomore versus an administrator.</p>
+    <ul>
+      <li>Every station needs a <strong>name placard</strong> (name, placement, cluster) readable from a few feet away, a <strong>resume</strong>, and your <strong>portfolio artifacts, labeled</strong></li>
+      <li>Set up completely before doors open, not while guests are walking in</li>
+      <li>Professional dress &mdash; the same bar as your mock interview</li>
+      <li>Staff your station the whole event. Phone away. Stand up when someone approaches</li>
+    </ul>
+
+    <div class="page-num font-heading">Section 4 &middot; Capstone</div>
+  </div>
+
+  <div class="page">
+    <h3 class="font-heading" style="margin-top:0">Part 3 &mdash; Portfolio</h3>
+    <p>Your portfolio is what's on your station and what backs up your pitch. <strong>There is no required list of contents</strong> &mdash; and that's deliberate. A welding student and an accounting student shouldn't be handing in the same portfolio.</p>
+    <p>Instead of a checklist you get a standard: bring evidence of what you actually did, enough to show range, organized so a stranger understands it, and be able to explain every piece. How you meet that standard is your call.</p>
+
+    <h4 class="font-heading">The five questions your portfolio has to answer</h4>
+    <ol>
+      <li><strong>What did you actually do here?</strong> Not what the company does &mdash; what you made, fixed, wrote, built, or contributed to. The most common failure is a beautiful display about the organization with no evidence of you in it.</li>
+      <li><strong>Can you show more than one kind of thing?</strong> One artifact repeated four times isn't range.</li>
+      <li><strong>Can you prove you grew?</strong> A before-and-after is the most convincing artifact in any portfolio. Your first attempt next to your tenth.</li>
+      <li><strong>Would a stranger understand it without you?</strong> Label everything &mdash; one line each. While you talk to one guest, two more are reading your table.</li>
+      <li><strong>Are you allowed to show it?</strong> Ask your supervisor early, not the week of.</li>
+    </ol>
+
+    <div class="box b-red">
+      <div class="box-t font-heading">Start collecting in week one, not week fourteen</div>
+      <p>This is the most important sentence in this section. <strong>You cannot build this at the end.</strong> The photo you didn't take, the draft you didn't save, the project thrown out in October &mdash; those are gone. Spend five minutes every Friday saving something from that week, even if you're not sure you'll use it. Students who do this have too much to choose from. Students who don't spend the last week apologizing for an empty table.</p>
+    </div>
+
+    <div class="box b-red">
+      <div class="box-t font-heading">Confidentiality &mdash; the one rule with no flexibility</div>
+      <p>Patient names or health information. Client financials. Student records. Anything under a non-disclosure agreement. Anyone's personal information visible in the background of a photo. <strong>None of it goes in your portfolio</strong> &mdash; not blurred, not "just one page," not "nobody will recognize them." Including it is an automatic <strong>1</strong> on professionalism and the item is removed.</p>
+      <p>When unsure, the answer is always the same: <strong>ask your supervisor first.</strong> Nobody has ever gotten in trouble for asking. And you can almost always document the <em>work</em> without the <em>data</em> &mdash; a blank version of the form, a screenshot with fields emptied, a photo of your hands and the equipment instead of the screen.</p>
+    </div>
+
+    <h4 class="font-heading">What doesn't count</h4>
+    <p>The syllabus, your timesheet, blank course handouts, a photo of the company sign, the company's own brochures, or a generic "what I learned" paragraph with no artifact attached. Your resume, pitch video, and skills assessment <em>do</em> belong at your station &mdash; just don't let them <em>be</em> the portfolio.</p>
+
+    <div class="box b-blue">
+      <div class="box-t font-heading">Not sure what counts for your placement?</div>
+      <p>The <strong>Portfolio Guide</strong> at fieldexperiencebps101.net has concrete artifact ideas for all seven career clusters &mdash; what works in health sciences versus IT versus the trades &mdash; plus the full scoring rubric. Read it in your first two weeks at your placement.</p>
+      <p><strong>If your placement makes documentation genuinely hard</strong> &mdash; some workplaces say no to photos, copies, and taking anything home &mdash; that's a real situation and it's solvable, but only if you raise it in October instead of December.</p>
+    </div>
+
+    <div class="page-num font-heading">Section 4 &middot; Capstone</div>
+  </div>
+
+  <!-- ══════════════ 5. TRAINING AGREEMENT ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Section 5</div>
+      <div class="sec-title font-heading">Training Agreement</div>
+      <p class="sec-lede">The agreement between you, your family, your employer, and the school. <strong>It must be signed by everyone and on file before your first day of work.</strong> No exceptions &mdash; this is what makes your placement official and insured.</p>
+    </div>
+
+    <div class="insert">
+      <div class="insert-t font-heading">Training Agreement inserts here</div>
+      <p>The current Training Agreement lives as a Google Doc and is signed on paper. Print it separately and insert it at this page, or replace this page with its text before printing the booklet.</p>
+      <p style="margin-top:.6rem;font-size:.78rem;color:#6b7280">docs.google.com/document/d/1gj2rydlR0JWdTtJuBWm7TmV_g2y7SSqKPQ-Oj17bvjw</p>
+    </div>
+
+    <h3 class="font-heading">What the Training Agreement covers</h3>
+    <p>Read it before you sign it &mdash; all four signatures are agreeing to specific, real obligations:</p>
+    <table>
+      <tr><td class="k">You</td><td>Attendance and punctuality at your site, professional conduct, following all site safety rules and policies, confidentiality, completing your weekly timesheet and reflection, and notifying both your supervisor and your teacher of any absence <em>in advance</em>.</td></tr>
+      <tr><td class="k">Parent / Guardian</td><td>Consent to the placement, acknowledgment of the transportation arrangement, and emergency contact information.</td></tr>
+      <tr><td class="k">Employer / Supervisor</td><td>Providing supervised, meaningful work; maintaining a safe and lawful work environment; verifying your hours; and completing the midterm and final employability skills evaluations.</td></tr>
+      <tr><td class="k">School Coordinator</td><td>Placement oversight, site visits, being the point of contact for any concern, and coordinating between you, your family, and your employer.</td></tr>
+    </table>
+
+    <div class="box b-gold">
+      <div class="box-t font-heading">Before you sign, know these three things</div>
+      <ul>
+        <li><strong>Your hours must be real and verifiable.</strong> Falsifying a timesheet is not a grading issue &mdash; it's the fastest way out of the program.</li>
+        <li><strong>Confidentiality follows you home.</strong> What you see at your site stays there. That includes social media, group chats, and telling friends a funny story with a name attached.</li>
+        <li><strong>Safety concerns go to your teacher immediately</strong> &mdash; not next week, not at your next check-in. If you're asked to do something that feels unsafe or wrong, you may stop and call. You will never be penalized for that call.</li>
+      </ul>
+    </div>
+
+    <h3 class="font-heading">Acknowledgment</h3>
+    <p style="font-size:.84rem">By signing below, we confirm that we have read and understood this handbook &mdash; the syllabus, the grading policy including the documentation gate and escalation ladder, and the capstone requirements.</p>
+
+    <div class="sig-grid">
+      <div class="sig"><div class="sig-line"></div><div class="sig-l font-heading">Student signature</div></div>
+      <div class="sig"><div class="sig-line"></div><div class="sig-l font-heading">Date</div></div>
+      <div class="sig"><div class="sig-line"></div><div class="sig-l font-heading">Parent / Guardian signature</div></div>
+      <div class="sig"><div class="sig-line"></div><div class="sig-l font-heading">Date</div></div>
+      <div class="sig"><div class="sig-line"></div><div class="sig-l font-heading">Parent / Guardian email</div></div>
+      <div class="sig"><div class="sig-line"></div><div class="sig-l font-heading">Best phone number</div></div>
+    </div>
+
+    <h4 class="font-heading" style="margin-top:1.5rem">Questions or concerns you want to raise now</h4>
+    <div class="rule"></div><div class="rule"></div><div class="rule"></div>
+
+    <div class="page-num font-heading">Section 5 &middot; Training Agreement</div>
+  </div>
+
+  <!-- ══════════════ BACK ══════════════ -->
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow font-heading">Keep this page handy</div>
+      <div class="sec-title font-heading">The Whole Course, One Page</div>
+    </div>
+
+    <h3 class="font-heading" style="margin-top:0">Your grade</h3>
+    <table>
+      <tr><th>Category</th><th style="width:4rem;text-align:center">Weight</th><th>What's in it</th></tr>
+      <tr><td class="k">Bootcamp</td><td class="w">25%</td><td>16 activity scores, front of the course</td></tr>
+      <tr><td class="k">Weekly Tasks</td><td class="w">25%</td><td>Timesheet + reflection, each scored, every week</td></tr>
+      <tr><td class="k">Capstone</td><td class="w">25%</td><td>Elevator pitch &middot; trade show &middot; portfolio</td></tr>
+      <tr><td class="k">Employer Feedback</td><td class="w">25%</td><td>Midterm + final, 10 employability skills each</td></tr>
+    </table>
+
+    <h3 class="font-heading">The scale</h3>
+    <p style="font-size:.85rem"><strong>4</strong> Excellent = 100% &nbsp;&middot;&nbsp; <strong>3.5</strong> Approaching Excellent = 96% &nbsp;&middot;&nbsp; <strong>3</strong> Meets = 92% &nbsp;&middot;&nbsp; <strong>2</strong> Does Not Meet = 75% &nbsp;&middot;&nbsp; <strong>1</strong> Well Below Standard = 60% &nbsp;&middot;&nbsp; <strong>INC</strong> nothing submitted, recoverable until the quarter closes</p>
+
+    <h3 class="font-heading">Every week, without being reminded</h3>
+    <ul>
+      <li><strong>Log your hours as you go</strong> &mdash; not from memory on Sunday night</li>
+      <li><strong>Submit your timesheet and reflection by Sunday 11:59 PM</strong></li>
+      <li><strong>Save one artifact</strong> from the week for your portfolio, even if you're unsure about it</li>
+      <li><strong>Tell your teacher early</strong> about any conflict, concern, or problem at your site</li>
+    </ul>
+
+    <div class="box b-red">
+      <div class="box-t font-heading">The gate, one more time</div>
+      <p><strong>Not current, not on the schedule</strong> (Placement) &nbsp;&middot;&nbsp; <strong>Not current, not remote</strong> (Enterprise)</p>
+      <p>Timesheet and reflection in by Sunday 11:59 PM, or you don't go to work that week until they're done.</p>
+    </div>
+
+    <h3 class="font-heading">Dates to put in your phone right now</h3>
+    <table>
+      <tr><td class="k">Thu Aug 13</td><td>First day &mdash; bootcamp begins</td></tr>
+      <tr><td class="k">Mon Aug 31</td><td>First day at placement <em>(Placement track)</em></td></tr>
+      <tr><td class="k">Week of Oct 12</td><td>Midterm employer evaluation</td></tr>
+      <tr><td class="k">Fri Oct 16</td><td>Term 1 ends &mdash; Incompletes become zeros</td></tr>
+      <tr><td class="k">Dec 17&ndash;18</td><td><strong>Capstone</strong> &mdash; BFAC Lobby <em>(Placement track)</em></td></tr>
+      <tr><td class="k">Oct 15 &middot; Dec 16 &middot; Mar 11</td><td>Quarterly Review Boards <em>(Enterprise track)</em></td></tr>
+      <tr><td class="k">Week of May 10</td><td><strong>Capstone</strong> <em>(Enterprise track)</em></td></tr>
+    </table>
+
+    <div class="box b-green">
+      <div class="box-t font-heading">Where everything lives</div>
+      <p><strong>fieldexperiencebps101.net</strong> &mdash; bootcamp activities, weekly timesheet, weekly reflection, your 10 employability skills, the capstone details, the portfolio guide, and your progress dashboard.</p>
+      <p><strong>Michael Theriault</strong> &mdash; michael.theriault@bps101.net. Come find me before or after school any time. The students who ask questions early are the ones this goes well for.</p>
+    </div>
+
+    <div class="page-num font-heading">Field Experience Handbook</div>
+  </div>
+
+</main>
+</body>
+</html>

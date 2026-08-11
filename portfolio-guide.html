@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Guide — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:940px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1.1rem}
+    .lede{font-size:.88rem;color:#4b5563;line-height:1.8;margin-bottom:1.5rem}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.2rem;margin:2.5rem 0 .35rem}
+    .h2-sub{font-size:.82rem;color:#6b7280;margin-bottom:1.1rem;line-height:1.65}
+
+    .big-idea{background:#0e1520;color:#fff;border-radius:16px;padding:1.6rem 1.75rem;margin-bottom:1.75rem}
+    .big-idea-t{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:#FBCD07;margin-bottom:.6rem}
+    .big-idea p{font-size:.87rem;line-height:1.8;color:#d1d5db}
+    .big-idea p+p{margin-top:.8rem}
+    .big-idea strong{color:#fff}
+
+    .co{border-radius:11px;padding:1.05rem 1.25rem;margin:1.15rem 0;font-size:.83rem;line-height:1.7;color:#374151}
+    .co strong{color:#1c1f2e}
+    .co-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;margin-bottom:.4rem}
+    .co-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .co-gold .co-t{color:#92400e}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .co-red .co-t{color:#AC161D}
+    .co-green{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.3)}
+    .co-green .co-t{color:#047857}
+    .co-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .co-blue .co-t{color:#1d4ed8}
+    .co ul{margin:.45rem 0 0 1.15rem}
+    .co li{margin-bottom:.3rem}
+
+    /* five questions */
+    .q-grid{display:grid;gap:.7rem;margin-bottom:1.25rem}
+    .q{background:#fff;border:1px solid #d8dbe0;border-left:4px solid #AC161D;border-radius:0 11px 11px 0;padding:.95rem 1.2rem;break-inside:avoid}
+    .q-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#AC161D;margin-bottom:.2rem}
+    .q-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size.92rem;font-size:.92rem;color:#1c1f2e;margin-bottom:.3rem}
+    .q-d{font-size:.81rem;color:#4b5563;line-height:1.65}
+
+    /* rubric table */
+    .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid #d8dbe0;border-radius:12px;margin-bottom:1.15rem;break-inside:avoid}
+    table{width:100%;border-collapse:collapse;min-width:720px}
+    th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.6rem .7rem;background:#f8f9fa;border-bottom:1px solid #e5e7eb;vertical-align:bottom}
+    td{padding:.6rem .7rem;font-size:.76rem;color:#374151;border-bottom:1px solid #f1f2f4;border-right:1px solid #f1f2f4;vertical-align:top;line-height:1.5}
+    td:last-child,th:last-child{border-right:none}
+    tr:last-child td{border-bottom:none}
+    .crit{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#1c1f2e;width:9rem}
+    .crit span{display:block;font-weight:400;font-size:.68rem;color:#6b7280;margin-top:.15rem;line-height:1.4}
+    th.l4{background:rgba(16,185,129,.1);color:#047857}
+    th.l3{background:rgba(59,130,246,.09);color:#1d4ed8}
+    th.l2{background:rgba(251,191,36,.12);color:#b45309}
+    th.l1{background:rgba(239,68,68,.08);color:#b91c1c}
+    .lvl-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;display:block}
+
+    /* cluster cards */
+    .cluster{background:#fff;border:1px solid #d8dbe0;border-radius:13px;margin-bottom:.9rem;overflow:hidden;break-inside:avoid}
+    .cl-head{display:flex;align-items:center;gap:.8rem;padding:.85rem 1.2rem;border-bottom:1px solid #f1f2f4}
+    .cl-dot{width:2.2rem;height:2.2rem;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cl-dot svg{width:1.15rem;height:1.15rem}
+    .cl-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#1c1f2e;line-height:1.25}
+    .cl-body{padding:.95rem 1.2rem 1.1rem}
+    .cl-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:.4rem}
+    ul.arts{list-style:none;margin:0}
+    ul.arts li{position:relative;padding-left:1.15rem;font-size:.81rem;color:#374151;line-height:1.6;margin-bottom:.3rem}
+    ul.arts li:before{content:'';position:absolute;left:.28rem;top:.55rem;width:.3rem;height:.3rem;border-radius:50%;background:#AC161D}
+    ul.arts li strong{color:#1c1f2e}
+    .cl-star{margin-top:.75rem;background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3);border-radius:8px;padding:.6rem .8rem;font-size:.78rem;color:#374151;line-height:1.6}
+    .cl-star b{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:#92400e;display:block;margin-bottom:.15rem}
+
+    .pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.2rem .6rem;vertical-align:middle}
+    .pill-ent{background:rgba(16,185,129,.12);color:#047857;border:1px solid rgba(16,185,129,.3)}
+
+    .foot{font-size:.72rem;color:#9ca3af;margin-top:2rem;line-height:1.7}
+
+    @media print{
+      nav,.print-btn{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h2{page-break-after:avoid}
+      table{min-width:0}
+      td{font-size:.68rem;padding:.45rem .5rem}
+      .crit{width:7.5rem;font-size:.7rem}
+      .cluster,.tbl-wrap,.co,.q,.big-idea{box-shadow:none;break-inside:avoid}
+    }
+    @page{margin:.45in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="capstone.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Capstone
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Portfolio Guide</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+
+<main>
+  <h1 class="font-heading">Your Portfolio</h1>
+  <p class="page-sub">Field Experience &middot; what to collect, and how it's scored</p>
+  <p class="lede">
+    Your portfolio is one third of your capstone grade. It is the physical, visible proof of what you actually did this semester &mdash; the thing a guest can pick up, look at, and ask you about.
+  </p>
+
+  <div class="big-idea">
+    <div class="big-idea-t font-heading">There is no required list. That's on purpose.</div>
+    <p>A welding student and an accounting student should not be handing in the same portfolio. If we gave you a checklist of eight items, you would go find eight items &mdash; and the portfolio would be about the checklist instead of about your work.</p>
+    <p>So instead of a list, you get a <strong>standard</strong>: bring evidence of what you actually did, enough of it to show range, organized well enough that a stranger understands it, and be able to explain every piece. <strong>How you meet that standard is your call.</strong></p>
+    <p>That freedom is also the hard part. "Collect anything" is harder than "collect these eight things," so the rest of this page exists to make it concrete &mdash; the five questions your portfolio has to answer, the rubric we score it against, and real examples from every career cluster to get you thinking.</p>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">Start collecting in week one, not week fourteen</div>
+    This is the single most important sentence on this page. <strong>You cannot build this portfolio at the end.</strong> The photo you didn't take, the draft you didn't save, the project that got thrown out in October &mdash; those are gone. Take five minutes every Friday to save something from that week, even if you're not sure you'll use it. Students who do this have too much to choose from. Students who don't spend the last week apologizing for an empty table.
+  </div>
+
+  <h2 class="font-heading">The Five Questions Your Portfolio Has to Answer</h2>
+  <p class="h2-sub">If a guest at your station could get answers to these five things just by looking, your portfolio is doing its job.</p>
+
+  <div class="q-grid">
+    <div class="q">
+      <div class="q-n font-heading">Question 1</div>
+      <div class="q-t font-heading">What did you actually do here?</div>
+      <div class="q-d">Not what the company does &mdash; what <em>you</em> did. Something you made, fixed, wrote, built, organized, or contributed to. The single most common portfolio failure is a beautiful display about the organization with no evidence of the student in it.</div>
+    </div>
+    <div class="q">
+      <div class="q-n font-heading">Question 2</div>
+      <div class="q-t font-heading">Can you show more than one kind of thing?</div>
+      <div class="q-d">One artifact repeated four times isn't range. Aim to show at least two or three different <em>types</em> of contribution &mdash; technical work and communication, or a routine task and a one-off project, or something from your first weeks alongside something from your last.</div>
+    </div>
+    <div class="q">
+      <div class="q-n font-heading">Question 3</div>
+      <div class="q-t font-heading">Can you prove you grew?</div>
+      <div class="q-d">The most convincing artifact in any portfolio is a <strong>before and after.</strong> Your first attempt at something next to your tenth. Your pre-assessment next to your post-assessment. A draft with your supervisor's corrections next to the final version. Growth you can point at beats growth you claim.</div>
+    </div>
+    <div class="q">
+      <div class="q-n font-heading">Question 4</div>
+      <div class="q-t font-heading">Would a stranger understand it without you?</div>
+      <div class="q-d">Label everything. What it is, when you did it, what your role was &mdash; one line each. At the trade show you will be talking to one guest while two more look at your table; the labels are what work for you while your mouth is busy.</div>
+    </div>
+    <div class="q">
+      <div class="q-n font-heading">Question 5</div>
+      <div class="q-t font-heading">Are you allowed to show it?</div>
+      <div class="q-d">Ask your supervisor before you photograph, copy, or display anything. Ask early, not the week of. Some workplaces will say no to almost everything &mdash; if that's yours, tell your teacher <em>in October</em> so we can find another way to document your work.</div>
+    </div>
+  </div>
+
+  <h2 class="font-heading">How It's Scored</h2>
+  <p class="h2-sub">Five criteria, each on the course scale: <strong>4 Excellent &middot; 3.5 Approaching Excellent &middot; 3 Meets &middot; 2 Does Not Meet &middot; 1 Well Below Standard.</strong> Your portfolio score is the average, rounded to the nearest half-step.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:9rem">Criterion</th>
+          <th class="l4"><span class="lvl-n">4</span>Excellent</th>
+          <th class="l3"><span class="lvl-n">3</span>Meets</th>
+          <th class="l2"><span class="lvl-n">2</span>Does Not Meet</th>
+          <th class="l1"><span class="lvl-n">1</span>Well Below</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="crit">Evidence of Real Work<span>Artifacts from the job</span></td>
+          <td>Every artifact is something you made, did, or contributed to. A stranger sees the work itself, not a description of it.</td>
+          <td>Most artifacts come from actual placement work rather than course assignments.</td>
+          <td>Mostly course deliverables &mdash; resume, reflections, assignments &mdash; with little from the job.</td>
+          <td>No evidence of placement work at all.</td>
+        </tr>
+        <tr>
+          <td class="crit">Range<span>More than one kind of thing</span></td>
+          <td>Several distinct kinds of contribution, including something that shows change over time.</td>
+          <td>More than one type of contribution shown.</td>
+          <td>One kind of artifact repeated, or one project standing in for the whole semester.</td>
+          <td>A single item.</td>
+        </tr>
+        <tr>
+          <td class="crit">Curation<span>Organized &amp; labeled</span></td>
+          <td>Deliberately sequenced and labeled so it reads on its own. Clear why each piece earned its place.</td>
+          <td>Organized and labeled well enough to follow with light explanation.</td>
+          <td>Unlabeled or unordered &mdash; a pile of artifacts rather than a portfolio.</td>
+          <td>No organization; you can't find things when asked.</td>
+        </tr>
+        <tr>
+          <td class="crit">Ownership<span>Can you account for it</span></td>
+          <td>Explain any piece unprompted &mdash; what it is, your exact role, what you'd do differently. Distinguish your contribution from the team's without overclaiming.</td>
+          <td>Explain what each artifact is and what you did on it.</td>
+          <td>Struggle to explain items, or overstate your role.</td>
+          <td>Can't explain the contents.</td>
+        </tr>
+        <tr>
+          <td class="crit">Professionalism<span>Permission &amp; discretion</span></td>
+          <td>Permission clearly obtained, confidential material properly handled or excluded, clean enough to hand an employer as-is.</td>
+          <td>Nothing confidential; permission obtained for photos; neat presentation.</td>
+          <td>Sloppy presentation, or unclear whether permission was obtained.</td>
+          <td>Includes confidential or identifying information that shouldn't be there.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co co-green">
+    <div class="co-t font-heading">What a 3 actually looks like &mdash; because "meets" is the target</div>
+    Four or five artifacts that genuinely came from your placement, showing at least two kinds of work, each labeled with a line explaining what it is, arranged in an order that makes sense, and you can talk about all of them. <strong>That is a 3, and a 3 is a good grade in this course.</strong> The 4s go to students who show growth over time and curate deliberately &mdash; not to students who simply brought more stuff.
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">The one rule with no flexibility: confidentiality</div>
+    Patient names or health information. Client financials. Student records. Anything covered by a non-disclosure agreement or a privacy law. Anything with someone else's personal information visible in the background of a photo.
+    <ul>
+      <li><strong>None of it goes in your portfolio.</strong> Not blurred, not "just the one page," not "nobody will recognize them."</li>
+      <li>Including confidential material is an automatic <strong>1 on Professionalism</strong>, and the artifact is removed before the event.</li>
+      <li>When you're unsure, the answer is always the same: <strong>ask your supervisor first.</strong> Nobody has ever gotten in trouble for asking.</li>
+      <li>You can almost always document the <em>work</em> without the <em>data</em> &mdash; a blank version of the form, a screenshot with fields emptied, a photo of your hands and the equipment instead of the screen.</li>
+    </ul>
+  </div>
+
+  <h2 class="font-heading">Artifact Ideas by Career Cluster</h2>
+  <p class="h2-sub">
+    These are ideas, not requirements &mdash; nothing on this page is a checklist. Find your cluster, read the list, and let it prompt you toward what <em>your</em> specific placement produces. If something great isn't listed here, bring it. And read a cluster or two that isn't yours; some of the best ideas transfer.
+  </p>
+
+  <!-- AG -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3)">
+        <svg fill="none" stroke="#047857" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4a4 4 0 014-4h1m8 8v-6m0 0a5 5 0 015-5h1m-6 5a5 5 0 00-5-5H8m9-4a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <div class="cl-name font-heading">Agriculture, Food &amp; Natural Resources</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>A photo series of a routine you owned</strong> &mdash; feeding, planting, animal care, equipment checks &mdash; shot the same way over several weeks so the progression is visible</li>
+        <li><strong>Logs and records you actually kept</strong> &mdash; growth records, feed schedules, temperature or moisture logs, maintenance sheets</li>
+        <li><strong>Calculations you produced</strong> &mdash; feed rations, fertilizer or seed rates, yield estimates, cost per unit</li>
+        <li><strong>Before and after of a physical project</strong> &mdash; a repaired fence, a cleaned enclosure, a planted bed, a rebuilt piece of equipment</li>
+        <li><strong>A short video of you performing a technical task</strong> &mdash; often more convincing than any photo</li>
+        <li><strong>Certifications or safety training</strong> completed on site</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>The same shot on week 2 and week 14. Physical, outdoor work changes visibly over a semester, and almost nobody thinks to document it early.</div>
+    </div>
+  </div>
+
+  <!-- ARTS -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.3)">
+        <svg fill="none" stroke="#7e22ce" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+      </div>
+      <div class="cl-name font-heading">Arts &amp; Communication</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>Published work</strong> &mdash; an article, social post, poster, program, flyer, or broadcast segment that actually went out, with the date it ran</li>
+        <li><strong>The brief and your response to it</strong> &mdash; what the client or supervisor asked for next to what you delivered. This shows you can work to a spec, which is most of the job</li>
+        <li><strong>Revision history</strong> &mdash; version 1, the feedback, and the final. The strongest artifact in this cluster is almost always your worst draft next to your best</li>
+        <li><strong>Audio or video you shot, edited, or produced</strong> &mdash; with your role stated clearly, since most media work is collaborative</li>
+        <li><strong>Design files or printed proofs</strong> with your markup visible</li>
+        <li><strong>Analytics or reach numbers</strong> if your work was published somewhere measurable</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>Be precise about your role. "I edited this 4-minute segment; the shooting was our videographer's" reads as more professional than implying you did everything, and adults notice.</div>
+    </div>
+  </div>
+
+  <!-- FINANCE -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)">
+        <svg fill="none" stroke="#1d4ed8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2h-2m-6 0v3m6-3v3M9 11h6"/></svg>
+      </div>
+      <div class="cl-name font-heading">Finance &amp; Business Services</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>A spreadsheet or tracker you built</strong> &mdash; with real numbers replaced by sample data. The structure is what you're showing, not the figures</li>
+        <li><strong>A process you documented</strong> so someone else could do it &mdash; a written procedure, a checklist, a training sheet. This is genuinely valuable work and students undervalue it</li>
+        <li><strong>Customer-facing material you wrote</strong> &mdash; an email template, a scripted phone response, a FAQ, signage</li>
+        <li><strong>A workflow you improved</strong> &mdash; the old way, the new way, and why. Even a small one</li>
+        <li><strong>A summary or report you produced</strong> for someone who had to make a decision from it</li>
+        <li><strong>Photos of you doing the actual job</strong> &mdash; at the counter, in a meeting, at the register. Office work photographs poorly, which is exactly why it stands out when you bother</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>Anonymize and bring the real thing anyway. A blank version of the form you filled out 200 times tells the story better than describing it.</div>
+    </div>
+  </div>
+
+  <!-- HEALTH -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.3)">
+        <svg fill="none" stroke="#0f766e" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      </div>
+      <div class="cl-name font-heading">Health Sciences &amp; Technology</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>Room, tray, or lab setup you performed</strong> &mdash; photograph the prepared space, never a patient or a chart</li>
+        <li><strong>A checklist or protocol you followed daily</strong>, ideally with the refinements you made to it</li>
+        <li><strong>Patient- or client-education material</strong> you helped prepare &mdash; blank handouts, aftercare instructions, signage</li>
+        <li><strong>A written account of a procedure you observed</strong> &mdash; what happened, what surprised you, what you'd need to learn to do it. This is the honest portfolio answer for placements where you legitimately cannot document anything</li>
+        <li><strong>Certifications, trainings, or clearances</strong> earned on site &mdash; CPR, HIPAA training, equipment sign-offs</li>
+        <li><strong>Supply, inventory, or sterilization logs</strong> you maintained</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>Your constraint is real: privacy law will block most of what you'd want to show. Lead with what you <em>can</em> document &mdash; setup, protocols, your own written observations &mdash; and say plainly at your station why there are no patient-facing artifacts. Handling that limit professionally is itself evidence of health-care judgment.</div>
+    </div>
+  </div>
+
+  <!-- HUMAN -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(251,146,60,.14);border:1px solid rgba(251,146,60,.35)">
+        <svg fill="none" stroke="#c2410c" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      </div>
+      <div class="cl-name font-heading">Human &amp; Public Services</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>A lesson, activity, or session you planned and ran</strong> &mdash; the plan itself, plus what you'd change</li>
+        <li><strong>Materials you made for the people you served</strong> &mdash; worksheets, visual aids, flyers, signage, schedules</li>
+        <li><strong>Event or program documentation</strong> &mdash; photos of a program you supported, with permission and no identifiable minors</li>
+        <li><strong>A written observation of a hard moment</strong> and how the adults around you handled it. In this cluster, judgment is the skill, and this is how you show it</li>
+        <li><strong>Feedback from someone you worked with</strong> &mdash; a supervising teacher, a coach, a coordinator &mdash; in writing</li>
+        <li><strong>Blank versions of intake, attendance, or tracking forms</strong> you used</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>Photograph the room, the materials, and the setup &mdash; not the people. Permission for images of children or clients is usually a firm no, and the work is still very visible without them.</div>
+    </div>
+  </div>
+
+  <!-- IT -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3)">
+        <svg fill="none" stroke="#4338ca" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+      </div>
+      <div class="cl-name font-heading">Information Technology</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>Code, scripts, or automations you wrote</strong> &mdash; printed with comments, or on a laptop you can scroll through at your station</li>
+        <li><strong>A ticket log</strong> &mdash; problems that came in, what you diagnosed, what fixed it. This is the clearest possible evidence of independent problem-solving</li>
+        <li><strong>Before and after screenshots</strong> of something you configured, cleaned up, or repaired</li>
+        <li><strong>A network, system, or wiring diagram</strong> you drew or updated</li>
+        <li><strong>A build or imaging process you documented</strong> step by step</li>
+        <li><strong>Hardware you assembled or repaired</strong> &mdash; bring it if you can, photograph it if you can't</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>Bring a device and show the work live &mdash; but also print two or three pages. Wi-Fi in a lobby fails, batteries die, and a portfolio that only exists on a screen can vanish ten minutes before doors open.</div>
+    </div>
+  </div>
+
+  <!-- MFG -->
+  <div class="cluster">
+    <div class="cl-head">
+      <div class="cl-dot" style="background:rgba(100,116,139,.14);border:1px solid rgba(100,116,139,.35)">
+        <svg fill="none" stroke="#334155" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <div class="cl-name font-heading">Manufacturing, Engineering &amp; Trades</div>
+    </div>
+    <div class="cl-body">
+      <div class="cl-label font-heading">Artifacts that work well</div>
+      <ul class="arts">
+        <li><strong>A part you made.</strong> Bring the actual object if you're allowed &mdash; nothing on any table beats a physical thing you produced</li>
+        <li><strong>Prints or CAD drawings</strong> you worked from or created, with your revisions marked</li>
+        <li><strong>Quality measurements you recorded</strong> &mdash; tolerance checks, inspection sheets, test results</li>
+        <li><strong>A build documented in three stages</strong> &mdash; start, middle, finished. Trades work photographs better than almost anything else in this program; use that</li>
+        <li><strong>Your first attempt next to your best attempt</strong> at the same operation. This is the single most persuasive artifact in this cluster</li>
+        <li><strong>Machines or tools you were cleared to operate</strong>, and any safety certification earned</li>
+      </ul>
+      <div class="cl-star"><b>Strongest move for this cluster</b>The first weld next to the twentieth weld. Nobody who sees that needs you to explain what you learned.</div>
+    </div>
+  </div>
+
+  <div class="co co-blue">
+    <div class="co-t font-heading"><span class="pill pill-ent font-heading">Enterprise</span> If you run your own business or work for Bulldog Media</div>
+    Everything above applies, with one addition: <strong>bring evidence that someone outside of school valued your work.</strong> A paid invoice, a client message approving a deliverable, a signed agreement, sales or engagement numbers, a repeat customer. For Bulldog Media, the finished broadcast or graphic plus the production timeline you worked to. Your portfolio has an advantage over the placement students' &mdash; you have outcomes, not just tasks &mdash; so lead with those.
+  </div>
+
+  <h2 class="font-heading">What Doesn't Count</h2>
+  <p class="h2-sub">These show up every year. None of them are evidence of your work, and a portfolio built mostly out of them scores a 2.</p>
+
+  <div class="co co-gold">
+    <ul>
+      <li><strong>The syllabus, your timesheet, or blank course handouts.</strong> These prove you were enrolled, not that you worked.</li>
+      <li><strong>A photo of the building or the company sign.</strong> That's evidence the business exists.</li>
+      <li><strong>The company's own brochures or marketing.</strong> Someone else made those.</li>
+      <li><strong>A generic "what I learned" paragraph</strong> with no artifact attached to it.</li>
+      <li><strong>Anything you can't explain.</strong> If you can't say what it is and what you did on it, leave it home &mdash; a guest will ask, and it will cost you on Ownership.</li>
+      <li><strong>Anything confidential.</strong> See above. This is the one that has consequences beyond your grade.</li>
+    </ul>
+    <p style="margin-top:.6rem"><strong>Your resume, elevator pitch video, and pre/post skills assessment are the exception</strong> &mdash; those are course products, but they belong at your station because guests genuinely want them. Just don't let them <em>be</em> the portfolio.</p>
+  </div>
+
+  <div class="co co-green">
+    <div class="co-t font-heading">If your placement makes documentation genuinely hard</div>
+    Some of you will land somewhere that says no to photos, no to copies, no to bringing anything home. That is a real situation, not an excuse, and it is <strong>solvable if you raise it in October instead of December.</strong> Tell your teacher early and we'll build an alternative &mdash; usually your own written documentation of processes and observations, a supervisor-verified description of your responsibilities, and artifacts you recreate yourself from scratch. What we cannot fix is finding out about it the week of the capstone.
+  </div>
+
+  <p class="foot">
+    Related: <a href="capstone.html">Capstone Details</a> &middot;
+    <a href="capstone-rubric.html">Full Capstone Rubric</a> &middot;
+    <a href="bootcamp.html">Bootcamp</a> &middot;
+    <a href="weekly-reflection.html">Weekly Reflection</a>
+  </p>
+</main>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capstone Rubric — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:980px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.7rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1.1rem}
+    .lede{font-size:.85rem;color:#4b5563;line-height:1.75;margin-bottom:1.5rem}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;margin:2.25rem 0 .35rem}
+    .h2-sub{font-size:.8rem;color:#6b7280;margin-bottom:1.1rem;line-height:1.6}
+
+    .part-band{display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;border-radius:12px;padding:1rem 1.25rem;margin:2.25rem 0 1rem;color:#fff}
+    .pb-pitch{background:linear-gradient(135deg,#AC161D,#7f1015)}
+    .pb-show{background:linear-gradient(135deg,#1d4ed8,#1e3a8a)}
+    .pb-port{background:linear-gradient(135deg,#0f766e,#134e4a)}
+    .pb-eyebrow{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+    .pb-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem}
+    .pb-meta{margin-left:auto;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;background:rgba(255,255,255,.16);border-radius:999px;padding:.3rem .75rem;white-space:nowrap}
+
+    .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid #d8dbe0;border-radius:12px;margin-bottom:1.1rem;break-inside:avoid}
+    table{width:100%;border-collapse:collapse;min-width:760px}
+    th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.6rem .7rem;background:#f8f9fa;border-bottom:1px solid #e5e7eb;vertical-align:bottom}
+    td{padding:.6rem .7rem;font-size:.76rem;color:#374151;border-bottom:1px solid #f1f2f4;border-right:1px solid #f1f2f4;vertical-align:top;line-height:1.5}
+    td:last-child,th:last-child{border-right:none}
+    tr:last-child td{border-bottom:none}
+    .crit{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#1c1f2e;width:9.5rem}
+    .crit span{display:block;font-weight:400;font-size:.68rem;color:#6b7280;margin-top:.15rem;line-height:1.4}
+    th.l4{background:rgba(16,185,129,.1);color:#047857}
+    th.l3{background:rgba(59,130,246,.09);color:#1d4ed8}
+    th.l2{background:rgba(251,191,36,.12);color:#b45309}
+    th.l1{background:rgba(239,68,68,.08);color:#b91c1c}
+    .lvl-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;display:block}
+
+    .co{border-radius:10px;padding:1rem 1.2rem;margin:1.1rem 0;font-size:.82rem;line-height:1.7;color:#374151}
+    .co strong{color:#1c1f2e}
+    .co-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.83rem;margin-bottom:.4rem}
+    .co-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .co-gold .co-t{color:#92400e}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .co-red .co-t{color:#AC161D}
+    .co-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .co-blue .co-t{color:#1d4ed8}
+    .co ul{margin:.4rem 0 0 1.15rem}
+    .co li{margin-bottom:.28rem}
+
+    .card{background:#fff;border:1px solid #d8dbe0;border-radius:12px;padding:1.15rem 1.35rem;margin-bottom:1.1rem;break-inside:avoid}
+    .card-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;color:#1c1f2e;margin-bottom:.5rem}
+    .card p{font-size:.81rem;color:#4b5563;line-height:1.7}
+
+    /* score sheet */
+    .sheet{background:#fff;border:1.5px solid #1c1f2e;border-radius:12px;overflow:hidden;margin-bottom:1.25rem;break-inside:avoid}
+    .sheet-head{background:#0e1520;color:#fff;padding:.85rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .sheet-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem}
+    .sheet-name{margin-left:auto;font-size:.72rem;color:#9ca3af}
+    .sheet-body{padding:1rem 1.2rem}
+    .srow{display:grid;grid-template-columns:1fr 8.5rem;gap:1rem;align-items:center;padding:.55rem 0;border-bottom:1px solid #f1f2f4}
+    .srow:last-of-type{border-bottom:none}
+    .srow-l{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:#1c1f2e}
+    .srow-l span{display:block;font-weight:400;font-size:.7rem;color:#6b7280;margin-top:.1rem}
+    .bubbles{display:flex;gap:.3rem;justify-content:flex-end}
+    .bub{width:1.6rem;height:1.6rem;border:1.5px solid #b0b4ba;border-radius:50%;display:flex;align-items:center;justify-content:center;
+         font-family:'Montserrat',sans-serif;font-weight:800;font-size:.62rem;color:#6b7280}
+    .total-row{display:grid;grid-template-columns:1fr 8.5rem;gap:1rem;align-items:center;margin-top:.85rem;padding-top:.85rem;border-top:2px solid #1c1f2e}
+    .total-l{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.85rem;color:#1c1f2e}
+    .total-box{border:1.5px solid #1c1f2e;border-radius:6px;height:2rem}
+    .rule{border-bottom:1px solid #dcdfe3;height:1.15rem}
+    .notes-l{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#b0b4ba;margin:.75rem 0 .3rem}
+
+    .pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.2rem .6rem;vertical-align:middle}
+    .pill-place{background:rgba(99,102,241,.13);color:#4338ca;border:1px solid rgba(99,102,241,.3)}
+    .pill-ent{background:rgba(16,185,129,.12);color:#047857;border:1px solid rgba(16,185,129,.3)}
+
+    .foot{font-size:.72rem;color:#9ca3af;margin-top:2rem;line-height:1.7}
+
+    @media print{
+      nav,.print-btn{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h2,.part-band{page-break-after:avoid}
+      table{min-width:0;font-size:.7rem}
+      td{font-size:.68rem;padding:.45rem .5rem}
+      .crit{width:7.5rem;font-size:.7rem}
+      .tbl-wrap,.card,.co,.sheet{box-shadow:none;break-inside:avoid}
+    }
+    @page{margin:.45in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Capstone Rubric</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+
+<main>
+  <h1 class="font-heading">Capstone Rubric</h1>
+  <p class="page-sub">Field Experience &middot; Elevator Pitch &middot; Trade Show &middot; Portfolio</p>
+  <p class="lede">
+    The Capstone is <strong>25% of the course grade</strong>, split into three separately scored parts &mdash; the Elevator Pitch, the Trade Show presentation, and the Portfolio. Each is scored on the course's standard scale: <strong>4 Excellent &middot; 3.5 Approaching Excellent &middot; 3 Meets &middot; 2 Does Not Meet &middot; 1 Well Below Standard.</strong> Each part is worth roughly 8.3% of the final grade.
+  </p>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">How to score these without agonizing</div>
+    Within each part, score every criterion, then take the <strong>average and round to the nearest half-step</strong> &mdash; that is what 3.5 is for. Do not compute weighted sub-scores; the criteria are equally important on purpose. A student who is a 3 on everything gets a 3, which is exactly right: they met the standard a real audience expects.
+  </div>
+
+  <!-- ============== PART 1: ELEVATOR PITCH ============== -->
+  <div class="part-band pb-pitch">
+    <div>
+      <div class="pb-eyebrow font-heading">Part 1</div>
+      <div class="pb-title font-heading">Elevator Pitch</div>
+    </div>
+    <div class="pb-meta font-heading">1:30 + black box prompt</div>
+  </div>
+
+  <p class="h2-sub">A 1:30 pitch on themselves and their Field Experience, delivered live &mdash; then they draw an unseen <strong>black box prompt</strong> and answer it on the spot. The prepared half tests preparation; the black box tests whether they can actually think about their own experience.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:9.5rem">Criterion</th>
+          <th class="l4"><span class="lvl-n">4</span>Excellent</th>
+          <th class="l3"><span class="lvl-n">3</span>Meets</th>
+          <th class="l2"><span class="lvl-n">2</span>Does Not Meet</th>
+          <th class="l1"><span class="lvl-n">1</span>Well Below</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="crit">Content &amp; Specificity<span>What they actually did</span></td>
+          <td>Names specific work they owned, with detail only someone who was there could give. A moment, a number, a named task.</td>
+          <td>Clearly describes their placement and real responsibilities. Concrete, not generic.</td>
+          <td>Describes the organization more than their own work. Could be a brochure for the site.</td>
+          <td>Vague throughout. Cannot tell what the student actually did.</td>
+        </tr>
+        <tr>
+          <td class="crit">Growth &amp; Insight<span>What it did to them</span></td>
+          <td>Names a real change in themselves and what caused it &mdash; including a mistake, a correction, or a surprise. Honest, not polished.</td>
+          <td>Identifies something they learned or improved, tied to a specific experience.</td>
+          <td>Generic growth language &mdash; "I learned a lot," "it was a great experience" &mdash; with nothing behind it.</td>
+          <td>No reflection offered, or contradicts what the rest of the pitch says.</td>
+        </tr>
+        <tr>
+          <td class="crit">Delivery<span>Voice, eye contact, presence</span></td>
+          <td>Composed and genuinely engaging. Eye contact across the room, natural pace, no notes needed. Would hold a hiring manager's attention.</td>
+          <td>Clear, audible, mostly eye contact, minimal filler. Professional.</td>
+          <td>Reads from notes or a phone, rushes, hard to hear, or heavy filler ("um, like, basically").</td>
+          <td>Inaudible, or reads the whole thing verbatim, or does not finish.</td>
+        </tr>
+        <tr>
+          <td class="crit">Timing<span>1:30 target</span></td>
+          <td>Lands within 1:20&ndash;1:40 and uses the whole time well. Nothing feels padded or cut.</td>
+          <td>Within 1:15&ndash;1:45.</td>
+          <td>Noticeably short (under 1:00) or runs long enough to need cutting off.</td>
+          <td>Under 30 seconds, or so far over that it disrupts the schedule.</td>
+        </tr>
+        <tr style="background:rgba(172,22,29,.03)">
+          <td class="crit" style="color:#AC161D">Black Box Response<span>The unseen prompt</span></td>
+          <td>Answers directly and draws on real experience to do it. Thinks visibly and comfortably in the moment.</td>
+          <td>Answers the question asked, with a relevant example from the placement.</td>
+          <td>Redirects to rehearsed material instead of answering, or answers with a generality.</td>
+          <td>Cannot produce an answer, or answers a different question entirely.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">Running the black box fairly</div>
+    <ul>
+      <li><strong>Students know the prompt bank exists and never see the prompts.</strong> Publish the <em>categories</em> in advance &mdash; a challenge you faced, a person who taught you something, a moment you were wrong, advice to next year's student, how this changed your plans &mdash; so they can prepare thinking without rehearsing an answer.</li>
+      <li><strong>Draw it in front of the audience.</strong> Physical box, folded slips, drawn after the prepared pitch ends. The visible randomness is what makes it credible.</li>
+      <li><strong>Give 10&ndash;15 seconds of think time and say so out loud.</strong> A silence that everyone knows is allowed is not the same as a student freezing.</li>
+      <li><strong>One prompt per student, no swaps.</strong> If a student draws a prompt that genuinely does not apply to their placement, that is the one case to allow a re-draw &mdash; decide it on the spot and move on.</li>
+    </ul>
+  </div>
+
+  <!-- ============== PART 2: TRADE SHOW ============== -->
+  <div class="part-band pb-show">
+    <div>
+      <div class="pb-eyebrow font-heading">Part 2</div>
+      <div class="pb-title font-heading">Trade Show Presentation</div>
+    </div>
+    <div class="pb-meta font-heading">BFAC Lobby &middot; pop-up presentations</div>
+  </div>
+
+  <p class="h2-sub">Students staff a station in the BFAC Lobby. Guests circulate, and students deliver short pop-up presentations on demand and then take follow-up questions. The skill being tested is different from the pitch: it is <strong>repeatability under interruption</strong>, and answering people who have no context at all.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:9.5rem">Criterion</th>
+          <th class="l4"><span class="lvl-n">4</span>Excellent</th>
+          <th class="l3"><span class="lvl-n">3</span>Meets</th>
+          <th class="l2"><span class="lvl-n">2</span>Does Not Meet</th>
+          <th class="l1"><span class="lvl-n">1</span>Well Below</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="crit">Pop-Up Presentation<span>The 60&ndash;90 sec walkthrough</span></td>
+          <td>Tailors it to who is standing there &mdash; shorter for a passing guest, deeper for someone genuinely interested. Delivers it well the tenth time.</td>
+          <td>Gives a clear, consistent walkthrough of their work every time they are asked.</td>
+          <td>Waits to be asked specific questions instead of presenting, or the walkthrough degrades over the event.</td>
+          <td>Does not present. Guests have to interview the student to learn anything.</td>
+        </tr>
+        <tr>
+          <td class="crit">Handling Questions<span>From people with no context</span></td>
+          <td>Answers confidently, admits the limits of what they know without apologizing, and turns questions into conversation.</td>
+          <td>Answers accurately and in plain language. Asks for clarification when needed.</td>
+          <td>One-word answers, or answers with jargon a guest would not follow, or defers everything to the teacher.</td>
+          <td>Cannot answer basic questions about their own placement.</td>
+        </tr>
+        <tr>
+          <td class="crit">Station Setup<span>What's on the table</span></td>
+          <td>Deliberately designed. Artifacts arranged to be picked up and discussed, labeled so a guest understands without asking, name and cluster visible from a distance.</td>
+          <td>Organized and complete: name placard, resume, portfolio artifacts, clearly presented.</td>
+          <td>Sparse or disorganized. Missing a placard or resume, or artifacts with no explanation.</td>
+          <td>Essentially bare, or set up after guests arrived.</td>
+        </tr>
+        <tr>
+          <td class="crit">Professionalism<span>Dress, presence, stamina</span></td>
+          <td>Industry-appropriate dress and genuine presence. Engages guests first rather than waiting. Present and attentive the whole event.</td>
+          <td>Professionally dressed, staffs the station throughout, courteous and attentive.</td>
+          <td>Dress below the stated standard, on their phone, sitting when guests approach, or leaves the station unattended.</td>
+          <td>Substantially out of dress code, or largely absent from their station.</td>
+        </tr>
+        <tr>
+          <td class="crit">Audience Awareness<span>Reading the room</span></td>
+          <td>Adjusts register naturally for a supervisor, a parent, a sophomore, and an administrator without being told to.</td>
+          <td>Speaks appropriately to adults and peers alike; adapts when asked to.</td>
+          <td>One script regardless of audience, or noticeably informal with adult guests.</td>
+          <td>Disengaged from guests, or inappropriate in tone or content.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co co-blue">
+    <div class="co-t font-heading">Scoring a moving event without a clipboard problem</div>
+    You cannot watch 14 students continuously. Three things make this workable: <strong>(1)</strong> circulate with a printed score sheet and mark each student twice at different points in the event &mdash; early and late &mdash; because stamina is part of what you are measuring. <strong>(2)</strong> Score Station Setup before doors open, when it is a five-minute walk-around. <strong>(3)</strong> Recruit two or three of your community partners or the pitch panelists as extra scorers; hand them the same sheet. Their read on "would I hire this person" is more valuable than yours here, and it is the same ask you already make of them at the mock interviews.
+  </div>
+
+  <!-- ============== PART 3: PORTFOLIO ============== -->
+  <div class="part-band pb-port">
+    <div>
+      <div class="pb-eyebrow font-heading">Part 3</div>
+      <div class="pb-title font-heading">Portfolio</div>
+    </div>
+    <div class="pb-meta font-heading">Full rubric on the Portfolio Guide</div>
+  </div>
+
+  <p class="h2-sub">The Portfolio is scored on <strong>evidence, range, curation, ownership, and professionalism</strong> &mdash; deliberately not against a fixed checklist, because a welding student and an accounting student should not be bringing the same things. The full rubric and cluster-by-cluster artifact examples live on the <a href="portfolio-guide.html">Portfolio Guide</a>; the summary is here so all three capstone scores sit on one page.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:9.5rem">Criterion</th>
+          <th class="l4"><span class="lvl-n">4</span>Excellent</th>
+          <th class="l3"><span class="lvl-n">3</span>Meets</th>
+          <th class="l2"><span class="lvl-n">2</span>Does Not Meet</th>
+          <th class="l1"><span class="lvl-n">1</span>Well Below</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="crit">Evidence of Real Work<span>Artifacts from the job</span></td>
+          <td>Every artifact is something they made, did, or contributed to at the placement. A stranger could see the work itself, not a description of it.</td>
+          <td>Most artifacts come from actual placement work rather than course assignments.</td>
+          <td>Mostly course deliverables &mdash; resume, reflections, assignments &mdash; with little from the job.</td>
+          <td>No evidence of placement work at all.</td>
+        </tr>
+        <tr>
+          <td class="crit">Range<span>More than one kind of thing</span></td>
+          <td>Shows several distinct kinds of contribution across the placement &mdash; technical work, communication, problem-solving, growth over time.</td>
+          <td>Shows more than one type of contribution.</td>
+          <td>One kind of artifact repeated, or a single project standing in for the whole semester.</td>
+          <td>A single item.</td>
+        </tr>
+        <tr>
+          <td class="crit">Curation<span>Organized &amp; labeled</span></td>
+          <td>Deliberately sequenced and labeled so it reads on its own. Clear why each piece earned its place.</td>
+          <td>Organized and labeled well enough that a guest can follow it with light explanation.</td>
+          <td>Unlabeled or unordered &mdash; a pile of artifacts rather than a portfolio.</td>
+          <td>No organization; the student cannot find things when asked.</td>
+        </tr>
+        <tr>
+          <td class="crit">Ownership<span>Can they account for it</span></td>
+          <td>Explains any piece unprompted &mdash; what it is, their exact role, what they would do differently. Distinguishes their contribution from the team's without overclaiming.</td>
+          <td>Can explain what each artifact is and what they did on it.</td>
+          <td>Struggles to explain items, or overstates their role.</td>
+          <td>Cannot explain the contents.</td>
+        </tr>
+        <tr>
+          <td class="crit">Professionalism<span>Permission &amp; discretion</span></td>
+          <td>Permission clearly obtained, confidential material properly handled or excluded, presentation clean enough to hand to an employer as-is.</td>
+          <td>Nothing confidential included; permission obtained for photos; presentation neat.</td>
+          <td>Sloppy presentation, or unclear whether permission was obtained.</td>
+          <td>Includes confidential or identifying information that should not be there.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">The one thing that turns this into an automatic conversation</div>
+    Confidentiality is not a scoring nuance &mdash; it is the one place a portfolio can cause real harm. Patient information, client financials, student records, anything under an NDA: <strong>if it appears in a portfolio, the score is a 1 on Professionalism and the artifact comes out before the event, not after.</strong> Say this explicitly during bootcamp, and again two weeks before the capstone, so no student learns it at their station.
+  </div>
+
+  <!-- ============== SCORE SHEET ============== -->
+  <h2 class="font-heading">Printable Score Sheet</h2>
+  <p class="h2-sub">One per student. Circle a score per criterion, average each part, round to the nearest half-step. The three part scores are the three gradebook entries.</p>
+
+  <div class="sheet">
+    <div class="sheet-head">
+      <div class="sheet-title font-heading">Capstone Score Sheet</div>
+      <div class="sheet-name">Student ______________________  Placement ______________________  Scorer ____________</div>
+    </div>
+    <div class="sheet-body">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:#AC161D;margin-bottom:.4rem">Part 1 &mdash; Elevator Pitch</div>
+      <div class="srow"><div class="srow-l font-heading">Content &amp; Specificity<span>What they actually did</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Growth &amp; Insight<span>What it did to them</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Delivery<span>Voice, eye contact, presence</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Timing<span>1:30 target</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Black Box Response<span>Prompt drawn: ____________________</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="total-row"><div class="total-l font-heading">Elevator Pitch score &nbsp;<span style="font-weight:400;font-size:.72rem;color:#6b7280">(average, round to nearest half)</span></div><div class="total-box"></div></div>
+
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:#1d4ed8;margin:1.5rem 0 .4rem">Part 2 &mdash; Trade Show Presentation</div>
+      <div class="srow"><div class="srow-l font-heading">Pop-Up Presentation</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Handling Questions</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Station Setup<span>Score before doors open</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Professionalism</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Audience Awareness</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="total-row"><div class="total-l font-heading">Trade Show score</div><div class="total-box"></div></div>
+
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:#0f766e;margin:1.5rem 0 .4rem">Part 3 &mdash; Portfolio</div>
+      <div class="srow"><div class="srow-l font-heading">Evidence of Real Work</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Range</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Curation</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Ownership</div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="srow"><div class="srow-l font-heading">Professionalism<span>Confidentiality breach = automatic 1</span></div><div class="bubbles"><div class="bub font-heading">4</div><div class="bub font-heading">3.5</div><div class="bub font-heading">3</div><div class="bub font-heading">2</div><div class="bub font-heading">1</div></div></div>
+      <div class="total-row"><div class="total-l font-heading">Portfolio score</div><div class="total-box"></div></div>
+
+      <div class="notes-l font-heading">Comments for the student</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">Enterprise cohort</div>
+    <span class="pill pill-ent font-heading">Enterprise</span> Same three parts, same rubric, in <strong>May (week of May 10)</strong> instead of December. Two adjustments: the elevator pitch is about the business they built rather than a placement they attended, and the trade show station shows client work and outcomes. The Q4 Review Board folds into the capstone rather than running as a separate session, so the board members present are also your extra scorers.
+  </div>
+
+  <p class="foot">
+    Related: <a href="portfolio-guide.html">Portfolio Guide &amp; Artifact Examples</a> &middot;
+    <a href="capstone.html">Capstone Details</a> &middot;
+    <a href="teacher-grading.html">Grading Policy</a> &middot;
+    <a href="teacher-rubric.html">Site Observation Rubric</a>
+  </p>
+</main>
+</body>
+</html>

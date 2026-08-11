@@ -40,6 +40,25 @@
     .track-head{padding:1.125rem 1.5rem;display:flex;align-items:center;gap:.875rem;flex-wrap:wrap}
     .track-obl{background:rgba(99,102,241,.09);border-bottom:1px solid rgba(99,102,241,.22)}
     .track-grw{background:rgba(16,185,129,.08);border-bottom:1px solid rgba(16,185,129,.22)}
+    /* four equal course categories */
+    .track-boot{background:rgba(99,102,241,.09);border-bottom:1px solid rgba(99,102,241,.22)}
+    .track-boot .track-name{color:#3730a3}.track-boot .track-weight{color:#4338ca}
+    .track-boot .track-scale{background:rgba(99,102,241,.16);color:#3730a3}
+    .track-wk{background:rgba(20,184,166,.09);border-bottom:1px solid rgba(20,184,166,.22)}
+    .track-wk .track-name{color:#115e59}.track-wk .track-weight{color:#0f766e}
+    .track-wk .track-scale{background:rgba(20,184,166,.16);color:#115e59}
+    .track-cap{background:rgba(251,205,7,.14);border-bottom:1px solid rgba(251,205,7,.35)}
+    .track-cap .track-name{color:#92400e}.track-cap .track-weight{color:#b45309}
+    .track-cap .track-scale{background:rgba(251,205,7,.25);color:#92400e}
+    .track-emp{background:rgba(172,22,29,.07);border-bottom:1px solid rgba(172,22,29,.2)}
+    .track-emp .track-name{color:#991b1b}.track-emp .track-weight{color:#AC161D}
+    .track-emp .track-scale{background:rgba(172,22,29,.13);color:#991b1b}
+    /* four-up category summary */
+    .cat4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin:1rem 0}
+    .cat4-card{border:1.5px solid #e5e7eb;border-radius:12px;padding:.9rem 1rem;background:#fff;text-align:center}
+    .cat4-w{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;line-height:1}
+    .cat4-n{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;color:#1c1f2e;margin-top:.35rem}
+    .cat4-d{font-size:.7rem;color:#6b7280;margin-top:.25rem;line-height:1.4}
     .track-name{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;flex:1}
     .track-obl .track-name{color:#3730a3}
     .track-grw .track-name{color:#065f46}
@@ -62,11 +81,12 @@
     .scale-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.75rem;margin:1rem 0}
     .scale-card{border-radius:12px;padding:1rem 1.125rem;border:1.5px solid}
     .s4{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.35)}
+    .s35{background:rgba(20,184,166,.07);border-color:rgba(20,184,166,.32)}
     .s3{background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.3)}
     .s2{background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.4)}
     .s1{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.3)}
     .scale-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;line-height:1;margin-bottom:.3rem}
-    .s4 .scale-num{color:#047857}.s3 .scale-num{color:#1d4ed8}.s2 .scale-num{color:#b45309}.s1 .scale-num{color:#b91c1c}
+    .s4 .scale-num{color:#047857}.s35 .scale-num{color:#0f766e}.s3 .scale-num{color:#1d4ed8}.s2 .scale-num{color:#b45309}.s1 .scale-num{color:#b91c1c}
     .scale-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#1c1f2e;margin-bottom:.35rem}
     .scale-desc{font-size:.74rem;color:#4b5563;line-height:1.55}
     .scale-pct{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.68rem;margin-top:.5rem;padding-top:.5rem;border-top:1px dashed rgba(0,0,0,.12);color:#6b7280}
@@ -156,104 +176,195 @@
   <div class="principle-box">
     <div class="principle-title font-heading">The Core Principle</div>
     <div class="principle-text">
-      In work-based learning, <strong>reliability is the competency.</strong> An employer does not care whether a timesheet was beautiful — they care whether it was there. So the obligations half of this grade is deliberately binary: you did it or you didn't.<br><br>
-      But showing up is the floor, not the ceiling. The growth half of the grade uses a 4-point scale, because the difference between a student who does the minimum and a student who becomes genuinely valuable to their site is the whole point of the course — and that difference has to be visible somewhere.<br><br>
-      <strong>Most importantly: the grade is not the primary accountability mechanism. The gate is.</strong> Students who fall behind on hours and reflections don't lose points — they lose access to the thing they want. See Section 5.
+      Everything in this course is scored on <strong>one scale</strong>, in <strong>four equal categories</strong>. A student, a parent, or a supervisor can understand the whole grade in about fifteen seconds, which is the point &mdash; a grading system nobody can explain is a grading system nobody trusts.<br><br>
+      In work-based learning, <strong>reliability is the competency.</strong> That is why Weekly Tasks carries the same weight as the Capstone: a student who shows up every week with their timesheet and reflection has demonstrated the single most employable trait there is, and the grade should say so.<br><br>
+      <strong>Most importantly: the grade is not the primary accountability mechanism. The gate is.</strong> Students who fall behind on hours and reflections don't just lose points &mdash; they lose access to the thing they want. See Section 5.
     </div>
   </div>
 
-  <!-- ============ 1. THE TWO TRACKS ============ -->
-  <h2 class="font-heading"><span class="num font-heading">1</span>The Two Tracks</h2>
-  <p class="h2-sub">The five graded categories are not the same kind of thing, so they don't share a scale. Two are pure completion. Three are developmental.</p>
+  <!-- ============ 1. FOUR CATEGORIES ============ -->
+  <h2 class="font-heading"><span class="num font-heading">1</span>Four Categories, 25% Each</h2>
+  <p class="h2-sub">Every graded item in the course lives in exactly one of these four buckets, and every item is scored on the same 4-point scale.</p>
 
+  <div class="cat4">
+    <div class="cat4-card" style="border-color:rgba(99,102,241,.4)">
+      <div class="cat4-w font-heading" style="color:#4338ca">25%</div>
+      <div class="cat4-n font-heading">Bootcamp</div>
+      <div class="cat4-d">16 activities, front of course</div>
+    </div>
+    <div class="cat4-card" style="border-color:rgba(20,184,166,.4)">
+      <div class="cat4-w font-heading" style="color:#0f766e">25%</div>
+      <div class="cat4-n font-heading">Weekly Tasks</div>
+      <div class="cat4-d">Timesheet + reflection, every week</div>
+    </div>
+    <div class="cat4-card" style="border-color:rgba(251,205,7,.55)">
+      <div class="cat4-w font-heading" style="color:#b45309">25%</div>
+      <div class="cat4-n font-heading">Capstone</div>
+      <div class="cat4-d">Pitch, trade show, portfolio</div>
+    </div>
+    <div class="cat4-card" style="border-color:rgba(172,22,29,.4)">
+      <div class="cat4-w font-heading" style="color:#AC161D">25%</div>
+      <div class="cat4-n font-heading">Employer Feedback</div>
+      <div class="cat4-d">Midterm + final, minimum</div>
+    </div>
+  </div>
+
+  <!-- BOOTCAMP -->
   <div class="track">
-    <div class="track-head track-obl">
-      <div class="track-name font-heading">Professional Obligations</div>
-      <span class="track-scale font-heading">Meets / Not Yet</span>
-      <div class="track-weight font-heading">50%</div>
+    <div class="track-head track-boot">
+      <div class="track-name font-heading">Bootcamp</div>
+      <span class="track-scale font-heading">4 &bull; 3.5 &bull; 3 &bull; 2 &bull; 1</span>
+      <div class="track-weight font-heading">25%</div>
     </div>
     <div class="track-body">
-      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">Did the work arrive, on time, meeting the stated minimum? There is no artistry in a timesheet. These are scored yes/no and nothing else — which makes them fast for you and completely unambiguous for students.</p>
+      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">Each of the 16 bootcamp activities gets its own score. This category is fully earned in the first three weeks for the Placement cohort and the first five for Enterprise &mdash; which is deliberate. Students see a real grade before they ever set foot at a placement, and a slow start is recoverable while it still matters.</p>
       <table>
-        <tr><th>Category</th><th>Weight</th><th>What earns "Meets"</th></tr>
-        <tr>
-          <td class="nm">Weekly Hours Log</td><td class="wt">20%</td>
-          <td>Submitted by Sunday 11:59 PM for the prior week, hours accurate, supervisor-verifiable.</td>
-        </tr>
-        <tr>
-          <td class="nm">Weekly Reflection</td><td class="wt">15%</td>
-          <td>Submitted by Sunday 11:59 PM, answers every prompt, meets the stated length minimum. <strong>Not scored for quality</strong> — see Section 4 for what the content is actually used for.</td>
-        </tr>
-        <tr>
-          <td class="nm">Bootcamp Completion</td><td class="wt">15%</td>
-          <td>All 16 bootcamp activities marked complete with deliverables submitted to the site. One-time, front of course.</td>
-        </tr>
+        <tr><th>Score</th><th>What it looks like on a bootcamp activity</th></tr>
+        <tr><td class="nm">4</td><td>Deliverable submitted on time and genuinely strong &mdash; went past the prompt, took the feedback, made it their own.</td></tr>
+        <tr><td class="nm">3</td><td>Deliverable submitted on time and complete. Did what was asked, properly. <strong>This is the target.</strong></td></tr>
+        <tr><td class="nm">2</td><td>Submitted late, or submitted incomplete &mdash; missing sections, one-line answers, checklist gates unmet.</td></tr>
+        <tr><td class="nm">1</td><td>Barely attempted. Something arrived but it does not show engagement with the activity.</td></tr>
+        <tr><td class="nm">INC</td><td>Nothing submitted. Not a 1 &mdash; see Section 2.</td></tr>
       </table>
       <div class="callout">
-        <strong>Scoring:</strong> On time = <strong>100</strong>. Late but completed = <strong>85</strong>. Not submitted = <strong>Incomplete</strong>, converting to 0 only at quarter close if still missing. A missing submission is always recoverable until the quarter ends.
+        <strong>16 scores, and most of them will be 3s.</strong> That is correct and not a problem. A bootcamp activity is a floor-setting task, so meeting it is the expected outcome; the 4s should go to the handful of students who visibly did more than the prompt asked.
       </div>
     </div>
   </div>
 
+  <!-- WEEKLY TASKS -->
   <div class="track">
-    <div class="track-head track-grw">
-      <div class="track-name font-heading">Professional Growth</div>
-      <span class="track-scale font-heading">4 &bull; 3 &bull; 2 &bull; 1</span>
-      <div class="track-weight font-heading">50%</div>
+    <div class="track-head track-wk">
+      <div class="track-name font-heading">Weekly Tasks</div>
+      <span class="track-scale font-heading">4 &bull; 3.5 &bull; 3 &bull; 2 &bull; 1</span>
+      <div class="track-weight font-heading">25%</div>
     </div>
     <div class="track-body">
-      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">How well are they doing it? These are scored on the 4-point scale against the 10 Illinois Essential Employability Skills. Scored <strong>once per quarter</strong>, not weekly.</p>
+      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">
+        <strong>Two separate scores every week:</strong> the timesheet and the reflection each get their own entry &mdash; "Week 1 Timesheet" and "Week 1 Reflection" are two different gradebook items. This is where the volume of grades lives.
+      </p>
       <table>
-        <tr><th>Category</th><th>Weight</th><th>Who scores it</th></tr>
+        <tr><th>Item</th><th>Scoring</th></tr>
         <tr>
-          <td class="nm">Employer / Advisor Evaluation<br><span style="font-weight:400;font-size:.75rem;color:#6b7280">10 employability skills</span></td><td class="wt">20%</td>
-          <td><span class="pill pill-place font-heading">Placement</span> Site supervisor completes the 10-skill evaluation each quarter.<br><span class="pill pill-ent font-heading">Enterprise</span> Quarterly Review Board scores the same 10 skills (Section 6).</td>
+          <td class="nm">Weekly Timesheet<br><span style="font-weight:400;font-size:.74rem;color:#6b7280">One score per week</span></td>
+          <td><strong>4</strong> &mdash; On time, complete, hours verified by supervisor, task notes actually describe the work.<br>
+              <strong>3</strong> &mdash; On time and complete.<br>
+              <strong>2</strong> &mdash; Late, or hours logged without detail, or unverified.<br>
+              <strong>1</strong> &mdash; Submitted but unusable &mdash; blank task notes, obviously guessed hours.<br>
+              <strong>INC</strong> &mdash; Not submitted. Triggers the gate.</td>
         </tr>
         <tr>
-          <td class="nm">Self-Assessment<br><span style="font-weight:400;font-size:.75rem;color:#6b7280">with reflection evidence</span></td><td class="wt">15%</td>
-          <td>Student self-scores all 10 skills at quarter close, citing their own weekly reflections as evidence. You confirm or adjust — see Section 4.</td>
-        </tr>
-        <tr>
-          <td class="nm">Capstone</td><td class="wt">15%</td>
-          <td>Booth presentation + stage talk, scored by you on the 4-point scale.<br><span class="pill pill-place font-heading">Placement</span> December &nbsp; <span class="pill pill-ent font-heading">Enterprise</span> May</td>
+          <td class="nm">Weekly Reflection<br><span style="font-weight:400;font-size:.74rem;color:#6b7280">One score per week</span></td>
+          <td><strong>4</strong> &mdash; Specific, honest, names a real situation and what they did about it. Would read well to an employer.<br>
+              <strong>3</strong> &mdash; Answers every prompt with real content about the actual week.<br>
+              <strong>2</strong> &mdash; Generic. Could have been written about any week at any placement.<br>
+              <strong>1</strong> &mdash; One or two sentences, or answers a different question than the one asked.<br>
+              <strong>INC</strong> &mdash; Not submitted. Triggers the gate.</td>
         </tr>
       </table>
+      <div class="callout">
+        <strong>Scoring a reflection should take 30 seconds, not 5 minutes.</strong> Read it once and ask one question: <em>could this have been written by a student who never went to their placement?</em> If yes, it's a 2. If it names something specific that actually happened, it's a 3. If it names something specific <em>and</em> what they did about it, it's a 4. Do not line-edit, do not comment on grammar, do not write feedback &mdash; that is what conferences are for.
+      </div>
+      <div class="callout callout-red">
+        <strong>Worth knowing before you commit to this:</strong> scoring reflections for quality is more work than the completion-only approach, and at roughly 16 weeks that is <strong>32 scores per Placement student</strong> and up to <strong>72 per Enterprise student</strong> across the year. The 30-second rule above is what keeps it survivable. If it starts slipping by October, the fallback is to score reflections on completion only and let the 4s and 2s come from the timesheet &mdash; the category weight does not have to change.
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPSTONE -->
+  <div class="track">
+    <div class="track-head track-cap">
+      <div class="track-name font-heading">Capstone</div>
+      <span class="track-scale font-heading">4 &bull; 3.5 &bull; 3 &bull; 2 &bull; 1</span>
+      <div class="track-weight font-heading">25%</div>
+    </div>
+    <div class="track-body">
+      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">Three separate scores, weighted equally inside the category at roughly 8.3% of the course each. Full criteria are in the <a href="capstone-rubric.html" style="color:#AC161D;font-weight:600">Capstone Rubric</a> and <a href="portfolio-guide.html" style="color:#AC161D;font-weight:600">Portfolio Guide</a>.</p>
+      <table>
+        <tr><th>Item</th><th>What is scored</th></tr>
+        <tr><td class="nm">Elevator Pitch</td><td>1:30 pitch on themselves and their experience, plus their response to an unseen <strong>black box prompt</strong>. Scored on content, delivery, and the prompt response.</td></tr>
+        <tr><td class="nm">Trade Show Presentation</td><td>Pop-up presentations at their station in the BFAC Lobby, plus how they handle follow-up questions from guests who did not read anything in advance.</td></tr>
+        <tr><td class="nm">Portfolio</td><td>The artifacts they bring and how well they can account for them. Deliberately not a checklist &mdash; scored on evidence, range, curation, and ownership.</td></tr>
+      </table>
+      <div class="callout">
+        <span class="pill pill-place font-heading">Placement</span> Capstone at finals, Dec 17&ndash;18. &nbsp;&nbsp;<span class="pill pill-ent font-heading">Enterprise</span> Capstone in May, week of May 10 &mdash; with nine months of work behind it instead of four.
+      </div>
+    </div>
+  </div>
+
+  <!-- EMPLOYER FEEDBACK -->
+  <div class="track">
+    <div class="track-head track-emp">
+      <div class="track-name font-heading">Employer Feedback</div>
+      <span class="track-scale font-heading">4 &bull; 3.5 &bull; 3 &bull; 2 &bull; 1</span>
+      <div class="track-weight font-heading">25%</div>
+    </div>
+    <div class="track-body">
+      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">At minimum two data points &mdash; a <strong>midterm</strong> and a <strong>final</strong> &mdash; each scored on the same scale against the 10 Illinois Essential Employability Skills. The supervisor scores the skills; you convert their form into the category score.</p>
+      <table>
+        <tr><th>Cohort</th><th>Who provides it</th></tr>
+        <tr>
+          <td class="nm"><span class="pill pill-place font-heading">Placement</span></td>
+          <td>Site supervisor completes the 10-skill evaluation at midterm and at the end. You collect it &mdash; do not rely on the student to chase their own evaluation.</td>
+        </tr>
+        <tr>
+          <td class="nm"><span class="pill pill-ent font-heading">Enterprise</span></td>
+          <td><strong>Quarterly Review Board</strong> score (Section 7) plus at least one client or advisor feedback form per reporting period. Same 10 skills, same scale.</td>
+        </tr>
+      </table>
+      <div class="callout callout-red">
+        <strong>Two data points means each one is worth 12.5% of the course grade.</strong> That is a lot of weight on one form from one adult who may have seen the student a few hours a week &mdash; and it means a supervisor who never returns the form leaves an eighth of the grade empty. Two protections: <strong>(1)</strong> collect the midterm form yourself, in person or by phone if necessary, rather than emailing and hoping; <strong>(2)</strong> if a form genuinely cannot be obtained, the category is scored on the remaining data point rather than entering a zero. Consider adding a third low-stakes touchpoint mid-quarter so no single form carries this much weight.
+      </div>
     </div>
   </div>
 
   <!-- ============ 2. THE SCALE ============ -->
-  <h2 class="font-heading"><span class="num font-heading">2</span>The 4-Point Scale</h2>
-  <p class="h2-sub">Used for everything in the Professional Growth track. This is the same scale as the observation rubric already in the Teacher Hub, so a site visit and a quarterly evaluation speak the same language.</p>
+  <h2 class="font-heading"><span class="num font-heading">2</span>The Scale &mdash; 4, 3.5, 3, 2, 1</h2>
+  <p class="h2-sub">One scale for every graded item in all four categories. It is the same language as the observation rubric already in the Teacher Hub, so a site visit, a weekly reflection, and an employer evaluation all speak the same way.</p>
 
   <div class="scale-grid">
     <div class="scale-card s4">
       <div class="scale-num font-heading">4</div>
       <div class="scale-label font-heading">Excellent</div>
-      <div class="scale-desc">Performs above what the site expects of a student. Anticipates needs, takes initiative unprompted, is treated as a genuine contributor.</div>
+      <div class="scale-desc">Exceeds what the standard asks for. Anticipates, takes initiative unprompted, is treated as a genuine contributor rather than a student.</div>
       <div class="scale-pct font-heading">Gradebook: 100%</div>
+    </div>
+    <div class="scale-card s35">
+      <div class="scale-num font-heading">3.5</div>
+      <div class="scale-label font-heading">Approaching Excellent</div>
+      <div class="scale-desc">Clearly past "meets" and close to excellent, but not consistently there yet. Use it when a 3 undersells the student and a 4 oversells them.</div>
+      <div class="scale-pct font-heading">Gradebook: 96%</div>
     </div>
     <div class="scale-card s3">
       <div class="scale-num font-heading">3</div>
       <div class="scale-label font-heading">Meets</div>
-      <div class="scale-desc">Performs to the standard a real employer expects. Reliable, professional, does what is asked and does it well. <strong>This is the target.</strong></div>
+      <div class="scale-desc">Performs to the standard a paying employer expects. Reliable, professional, does what is asked and does it well. <strong>This is the target.</strong></div>
       <div class="scale-pct font-heading">Gradebook: 92%</div>
     </div>
     <div class="scale-card s2">
       <div class="scale-num font-heading">2</div>
       <div class="scale-label font-heading">Does Not Meet</div>
-      <div class="scale-desc">Inconsistent. Meets the standard some days and not others, or requires more prompting than a site should have to give.</div>
+      <div class="scale-desc">Inconsistent. Meets the standard some days and not others, or needs more prompting than a site should have to give.</div>
       <div class="scale-pct font-heading">Gradebook: 75%</div>
     </div>
     <div class="scale-card s1">
       <div class="scale-num font-heading">1</div>
-      <div class="scale-label font-heading">Needs Serious Improvement</div>
+      <div class="scale-label font-heading">Well Below Standard</div>
       <div class="scale-desc">Falls short in a way that would jeopardize real employment. Triggers an improvement plan and a supervisor conversation.</div>
       <div class="scale-pct font-heading">Gradebook: 60%</div>
     </div>
   </div>
 
   <div class="callout">
-    <strong>Why "Meets" is worth 92 and not 80.</strong> The bar for a 3 is not "did fine for a high schooler" — it is <em>performed to the standard a paying employer expects.</em> A student who genuinely hits that every quarter has earned an A&ndash;. Students who don't reach the bar are handled by the gate and the improvement ladder, not by grade deflation. If your administrator wants a different mapping, this single row is the only number that has to change.
+    <strong>On the name for 1.</strong> "Far from meeting" is accurate but reads like it was written about a test score. <strong>Well Below Standard</strong> is the recommendation here &mdash; it keeps the employment framing the rest of the course uses, and it is a phrase a supervisor would recognize. Two alternatives if you'd rather: <em>"Not Yet Demonstrating"</em> if you want the softer growth-oriented version for parent conversations, or <em>"Would Not Continue Employment"</em> if you want the bluntest possible honesty. Any of the three works; just pick one and use it everywhere.
+  </div>
+
+  <div class="callout">
+    <strong>On 3.5 &mdash; and whether you also want 2.5.</strong> 3.5 exists because the gap between "meets" and "excellent" is the widest one on the scale and students living in that gap deserve to see it. By the same logic <strong>2.5 = 83%</strong> is available if you want it for a student who is genuinely between "does not meet" and "meets." The recommendation is to start with 3.5 only: half-steps everywhere turn a 4-point scale into an 8-point one, and the whole advantage of this system is that a student can hold it in their head.
+  </div>
+
+  <div class="callout">
+    <strong>Why "Meets" is worth 92 and not 80.</strong> The bar for a 3 is not "did fine for a high schooler" &mdash; it is <em>performed to the standard a paying employer expects.</em> A student who genuinely hits that all semester has earned an A&ndash;. Students who don't reach the bar are handled by the gate and the improvement ladder, not by grade deflation. If your administrator wants a different mapping, this single row is the only number that has to change.
   </div>
 
   <div class="card">
@@ -270,72 +381,82 @@
   <div class="card">
     <table>
       <tr><th>Mark</th><th>Meaning</th><th>Gradebook %</th></tr>
-      <tr><td class="nm">4 — Excellent</td><td>Above site expectations</td><td class="wt" style="color:#047857">100</td></tr>
-      <tr><td class="nm">3 — Meets</td><td>Employer standard</td><td class="wt" style="color:#1d4ed8">92</td></tr>
+      <tr><td class="nm">4 — Excellent</td><td>Exceeds the standard</td><td class="wt" style="color:#047857">100</td></tr>
+      <tr><td class="nm">3.5 — Approaching Excellent</td><td>Past meets, not consistently excellent</td><td class="wt" style="color:#0f766e">96</td></tr>
+      <tr><td class="nm">3 — Meets</td><td>Employer standard. The target.</td><td class="wt" style="color:#1d4ed8">92</td></tr>
       <tr><td class="nm">2 — Does Not Meet</td><td>Inconsistent</td><td class="wt" style="color:#b45309">75</td></tr>
-      <tr><td class="nm">1 — Needs Serious Improvement</td><td>Would jeopardize employment</td><td class="wt" style="color:#b91c1c">60</td></tr>
-      <tr><td class="nm">Meets <span style="font-weight:400;color:#6b7280">(Obligations, on time)</span></td><td>Submitted by deadline</td><td class="wt" style="color:#047857">100</td></tr>
-      <tr><td class="nm">Late <span style="font-weight:400;color:#6b7280">(Obligations)</span></td><td>Submitted after deadline</td><td class="wt" style="color:#b45309">85</td></tr>
+      <tr><td class="nm">1 — Well Below Standard</td><td>Would jeopardize employment</td><td class="wt" style="color:#b91c1c">60</td></tr>
       <tr><td class="nm">INC — No Evidence</td><td>Nothing submitted; recoverable</td><td class="wt" style="color:#6b7280">INC &rarr; 0 at quarter close</td></tr>
+      <tr><td class="nm" style="color:#9ca3af">2.5 <span style="font-weight:400">(optional)</span></td><td style="color:#6b7280">Between does-not-meet and meets. Only if you decide to use it.</td><td class="wt" style="color:#9ca3af">83</td></tr>
     </table>
   </div>
 
   <div class="callout">
-    <strong>Category setup in the gradebook:</strong> create six weighted categories matching the two tables in Section 1 — Hours Log 20, Reflections 15, Bootcamp 15, Employer Evaluation 20, Self-Assessment 15, Capstone 15. Everything else is just entering 100 / 92 / 85 / 75 / 60 / INC.
+    <strong>Category setup in the gradebook:</strong> create <strong>four weighted categories at 25% each</strong> — Bootcamp, Weekly Tasks, Capstone, Employer Feedback. Everything after that is entering 100 / 96 / 92 / 75 / 60 / INC. Four categories and six possible values is the entire system.
   </div>
 
-  <!-- ============ 4. SKILLS WITHOUT THE WORK ============ -->
-  <h2 class="font-heading"><span class="num font-heading">4</span>Scoring Employability Skills Without Drowning In It</h2>
-  <p class="h2-sub">The design goal here is a system that produces defensible skill scores while asking you to make roughly two judgment calls per student per quarter — not twenty.</p>
+  <div class="card">
+    <div class="flow-title font-heading" style="font-size:.95rem;margin-bottom:.75rem">What the gradebook actually looks like by December</div>
+    <table>
+      <tr><th>Category</th><th>Weight</th><th>Roughly how many entries</th></tr>
+      <tr><td class="nm">Bootcamp</td><td class="wt">25%</td><td>16 — one per activity, all entered by early September</td></tr>
+      <tr><td class="nm">Weekly Tasks</td><td class="wt">25%</td><td><strong>~32</strong> — one timesheet + one reflection per week <span style="color:#6b7280">(Enterprise: up to ~72 across the year)</span></td></tr>
+      <tr><td class="nm">Capstone</td><td class="wt">25%</td><td>3 — pitch, trade show, portfolio</td></tr>
+      <tr><td class="nm">Employer Feedback</td><td class="wt">25%</td><td>2 — midterm and final</td></tr>
+    </table>
+    <div class="callout" style="margin-bottom:0">
+      <strong>The lopsidedness is the thing to watch.</strong> A single weekly reflection is worth about 0.8% of the course, while a single employer form is worth 12.5% — roughly sixteen times as much. That is a defensible design choice, but it means <strong>one missing employer evaluation does more damage than a month of missing reflections</strong>, and it is worth saying out loud to students so they know where the real leverage is.
+    </div>
+  </div>
+
+  <!-- ============ 4. THE 10 SKILLS ============ -->
+  <h2 class="font-heading"><span class="num font-heading">4</span>Where the 10 Employability Skills Live</h2>
+  <p class="h2-sub">The Illinois Essential Employability Skills are still what the course is about — they just aren't a separate grading category anymore. They are the criteria inside two of the four categories.</p>
 
   <div class="principle-box">
-    <div class="principle-title font-heading">The Key Move: Don't Grade the Reflections — Mine Them</div>
+    <div class="principle-title font-heading">Skills are the rubric, not a fifth bucket</div>
     <div class="principle-text">
-      Weekly reflections are scored <strong>Meets / Not Yet on submission only.</strong> You never read them for a grade. Instead, each week's reflection prompt is <strong>tagged to one of the 10 employability skills on a rotation.</strong> By quarter's end, every student has produced a written evidence file about themselves — one entry per skill, in their own words.<br><br>
-      At quarter close, the student uses that file to self-score all 10 skills. The employer independently scores the same 10. <strong>You only get involved where those two disagree.</strong>
+      The 10 skills are what the <strong>Employer Feedback</strong> form scores, and they are what the <strong>weekly reflection</strong> prompts rotate through. So a student's skill development shows up in the grade twice &mdash; once through an outside adult's eyes, once through their own documented evidence &mdash; without needing its own weighted category.<br><br>
+      This is a simplification from the earlier design, and a real one: you no longer owe a separate 10-skill self-assessment score every quarter.
     </div>
   </div>
 
   <div class="card">
-    <div class="flow-title font-heading" style="font-size:.95rem;margin-bottom:.75rem">The Quarter-Close Workflow</div>
+    <div class="flow-title font-heading" style="font-size:.95rem;margin-bottom:.75rem">How to keep this cheap</div>
     <div class="flow">
       <div class="flow-step">
         <div class="flow-num font-heading">1</div>
         <div class="flow-body">
-          <div class="flow-title font-heading">Weekly — reflections auto-collect the evidence</div>
-          <div class="flow-text">Each week's prompt targets one skill on rotation (Week 1 Reliability, Week 2 Communication, Week 3 Initiative, and so on through all 10). Students answer in STAR form: the situation, what they did, what happened. You score submission only. <strong>Your weekly time cost: zero reading.</strong></div>
+          <div class="flow-title font-heading">Tag each week's reflection prompt to one skill, on rotation</div>
+          <div class="flow-text">Week 1 Reliability, Week 2 Communication, Week 3 Initiative, and so on through all 10, then start again. Students answer in STAR form. By midterm every student has built a written evidence file about themselves, one entry per skill, without you assigning anything extra.</div>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num font-heading">2</div>
         <div class="flow-body">
-          <div class="flow-title font-heading">Quarter close — student self-scores with citations</div>
-          <div class="flow-text">Student rates all 10 skills 4&ndash;3&ndash;2&ndash;1 and must cite the reflection week that justifies each rating. A score with no cited evidence is not accepted — it goes back. This is the step that keeps it honest without costing you anything.</div>
+          <div class="flow-title font-heading">Score the reflection in 30 seconds using the rule in Section 1</div>
+          <div class="flow-text">Specific to the actual week = 3. Specific <em>and</em> names what they did about it = 4. Could have been written by someone who never showed up = 2. You are not assessing the skill here &mdash; you are assessing whether they engaged with the question.</div>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num font-heading">3</div>
         <div class="flow-body">
-          <div class="flow-title font-heading">Quarter close — employer or board scores the same 10</div>
-          <div class="flow-text"><span class="pill pill-place font-heading">Placement</span> Supervisor completes the same 10-skill form. Takes them about five minutes.<br><span class="pill pill-ent font-heading">Enterprise</span> The Quarterly Review Board scores it during the student's presentation (Section 6).</div>
+          <div class="flow-title font-heading">Let the supervisor score the skills at midterm and final</div>
+          <div class="flow-text"><span class="pill pill-place font-heading">Placement</span> Site supervisor rates the 10 skills on the same 4-point scale; that becomes the Employer Feedback score. Takes them about five minutes.<br><span class="pill pill-ent font-heading">Enterprise</span> The Quarterly Review Board scores the same 10 during the presentation (Section 7).</div>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num font-heading">4</div>
         <div class="flow-body">
-          <div class="flow-title font-heading">You adjudicate only the gaps — the whole time saver</div>
-          <div class="flow-text">
-            <strong>Agreement within 1 level &rarr; both scores stand as submitted. You do nothing.</strong> That will be the large majority of skills.<br>
-            <strong>Gap of 2 or more levels &rarr; you look.</strong> Read the cited reflection, weigh it against what you saw on your site visit, and set the self-assessment score. Note the reason in one sentence.<br><br>
-            In practice this is <strong>two or three skills per student per quarter</strong>, and the disagreements are exactly the conversations worth having anyway — a student rating themselves a 4 where the employer said 2 is the single most useful coaching moment in the course.
-          </div>
+          <div class="flow-title font-heading">Use the evidence file at conferences, not as a grading pass</div>
+          <div class="flow-text">When a supervisor's rating surprises a student, the cited reflections are what you put on the table. That is the highest-value coaching conversation in the course &mdash; and it costs you nothing extra, because the student assembled the evidence themselves.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="callout">
-    <strong>You are not the third scorer.</strong> Your site visit observations (Teacher Hub &rarr; Observation Rubric) are a tiebreaker you reach for during step 4 — not a separate pass you owe every student. Resist the urge to independently score all 10 skills for all 24 students; that is the version of this system that collapses by October.
+    <strong>Don't add yourself as a third scorer.</strong> Your site-visit observations (Teacher Hub &rarr; Observation Rubric) are there to inform a conversation or settle a dispute &mdash; not a pass you owe all 24 students every quarter. That is the version of this system that collapses by October.
   </div>
 
   <!-- ============ 5. THE GATE ============ -->
@@ -405,7 +526,7 @@
       <div class="rung-num r4 font-heading">4</div>
       <div class="rung-body">
         <div class="rung-title font-heading">Fourth miss — Agreement review</div>
-        <div class="rung-text">Formal review meeting with student, guardian, and employer or advisor, against the Training Agreement. Possible removal from the program with placement into an alternative course. The Professional Obligations portion of the grade reflects what was actually submitted — no retroactive rescue.</div>
+        <div class="rung-text">Formal review meeting with student, guardian, and employer or advisor, against the Training Agreement. Possible removal from the program with placement into an alternative course. The Weekly Tasks portion of the grade reflects what was actually submitted — no retroactive rescue.</div>
       </div>
     </div>
   </div>
@@ -443,19 +564,18 @@
   <div class="card">
     <table>
       <tr><th>When</th><th>What gets scored</th><th>Who</th></tr>
-      <tr><td class="nm">Weekly, Sundays</td><td>Hours log + reflection submitted — Meets / Late / INC</td><td>Site auto-flags; you confirm</td></tr>
-      <tr><td class="nm">Fri Aug 28</td><td>Bootcamp Completion <span class="pill pill-place font-heading">Placement</span></td><td>You</td></tr>
-      <tr><td class="nm">Tue Sep 15</td><td>Bootcamp Completion <span class="pill pill-ent font-heading">Enterprise</span></td><td>You</td></tr>
-      <tr><td class="nm">Week of Oct 12</td><td>Q1 — 10-skill self-assessment + employer evaluation</td><td>Student + employer</td></tr>
-      <tr><td class="nm">Thu Oct 15</td><td>Q1 Review Board <span class="pill pill-ent font-heading">Enterprise</span></td><td>Board</td></tr>
-      <tr><td class="nm">Fri Oct 16</td><td><strong>Term 1 ends</strong> — INC converts to 0; adjudicate skill gaps</td><td>You</td></tr>
-      <tr><td class="nm">Week of Dec 14</td><td>Q2 — 10-skill self-assessment + employer evaluation</td><td>Student + employer</td></tr>
+      <tr><td class="nm">Weekly, Sundays</td><td><strong>2 scores per student</strong> — timesheet and reflection, each 4/3.5/3/2/1 or INC</td><td>You (30 sec each)</td></tr>
+      <tr><td class="nm">Aug 13&ndash;28</td><td><strong>16 Bootcamp scores</strong> <span class="pill pill-place font-heading">Placement</span> — one per activity, as they're submitted</td><td>You</td></tr>
+      <tr><td class="nm">Aug 13&ndash;Sep 15</td><td><strong>16 Bootcamp scores</strong> <span class="pill pill-ent font-heading">Enterprise</span></td><td>You</td></tr>
+      <tr><td class="nm">Week of Oct 12</td><td><strong>Employer Feedback — midterm.</strong> Supervisor rates the 10 skills. <em>Collect it yourself.</em></td><td>Supervisor</td></tr>
+      <tr><td class="nm">Thu Oct 15</td><td>Q1 Review Board <span class="pill pill-ent font-heading">Enterprise</span> — becomes their midterm Employer Feedback score</td><td>Board</td></tr>
+      <tr><td class="nm">Fri Oct 16</td><td><strong>Term 1 ends</strong> — INC converts to 0</td><td>You</td></tr>
+      <tr><td class="nm">Week of Dec 14</td><td><strong>Employer Feedback — final</strong> <span class="pill pill-place font-heading">Placement</span></td><td>Supervisor</td></tr>
       <tr><td class="nm">Wed Dec 16</td><td>Q2 Review Board <span class="pill pill-ent font-heading">Enterprise</span></td><td>Board</td></tr>
-      <tr><td class="nm">Dec 17&ndash;18</td><td><strong>Capstone</strong> <span class="pill pill-place font-heading">Placement</span> — booth + stage talk</td><td>You</td></tr>
-      <tr><td class="nm">Week of Mar 8</td><td>Q3 — 10-skill self-assessment</td><td>Student</td></tr>
-      <tr><td class="nm">Thu Mar 11</td><td>Q3 Review Board <span class="pill pill-ent font-heading">Enterprise</span></td><td>Board</td></tr>
+      <tr><td class="nm">Dec 17&ndash;18</td><td><strong>Capstone — 3 scores</strong> <span class="pill pill-place font-heading">Placement</span>: elevator pitch, trade show, portfolio</td><td>You</td></tr>
+      <tr><td class="nm">Thu Mar 11</td><td>Q3 Review Board <span class="pill pill-ent font-heading">Enterprise</span> — midterm Employer Feedback for the spring</td><td>Board</td></tr>
       <tr><td class="nm">Fri Mar 12</td><td><strong>Term 3 ends</strong> — INC converts to 0</td><td>You</td></tr>
-      <tr><td class="nm">Week of May 10</td><td><strong>Capstone + Q4 Review Board</strong> <span class="pill pill-ent font-heading">Enterprise</span></td><td>You + board</td></tr>
+      <tr><td class="nm">Week of May 10</td><td><strong>Capstone — 3 scores + Q4 Review Board</strong> <span class="pill pill-ent font-heading">Enterprise</span></td><td>You + board</td></tr>
       <tr><td class="nm">Thu May 20</td><td>Last day — final grades</td><td>You</td></tr>
     </table>
   </div>
@@ -465,17 +585,14 @@
 
   <div class="card" style="background:#0e1520;border-color:#0e1520">
     <table style="color:#e5e7eb">
-      <tr><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15)">Professional Obligations — 50%</th><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15);text-align:right">Meets / Not Yet</th></tr>
-      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Weekly Hours Log</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">20%</td></tr>
-      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Weekly Reflection</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">15%</td></tr>
-      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Bootcamp Completion</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">15%</td></tr>
-      <tr><th style="color:#6ee7b7;border-bottom-color:rgba(255,255,255,.15);padding-top:1.25rem">Professional Growth — 50%</th><th style="color:#6ee7b7;border-bottom-color:rgba(255,255,255,.15);text-align:right;padding-top:1.25rem">4 &bull; 3 &bull; 2 &bull; 1</th></tr>
-      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Employer / Advisor Evaluation</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">20%</td></tr>
-      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Self-Assessment w/ Reflection Evidence</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">15%</td></tr>
-      <tr><td style="color:#e5e7eb">Capstone</td><td class="wt" style="color:#fff;text-align:right">15%</td></tr>
+      <tr><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15)">Category</th><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15);text-align:center">Weight</th><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15);text-align:right">What's in it</th></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Bootcamp</td><td class="wt" style="color:#fff;text-align:center;border-bottom-color:rgba(255,255,255,.08)">25%</td><td style="color:#9ca3af;text-align:right;border-bottom-color:rgba(255,255,255,.08)">16 activity scores</td></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Weekly Tasks</td><td class="wt" style="color:#fff;text-align:center;border-bottom-color:rgba(255,255,255,.08)">25%</td><td style="color:#9ca3af;text-align:right;border-bottom-color:rgba(255,255,255,.08)">Timesheet + reflection, each week, scored separately</td></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Capstone</td><td class="wt" style="color:#fff;text-align:center;border-bottom-color:rgba(255,255,255,.08)">25%</td><td style="color:#9ca3af;text-align:right;border-bottom-color:rgba(255,255,255,.08)">Elevator pitch &bull; trade show &bull; portfolio</td></tr>
+      <tr><td style="color:#e5e7eb">Employer Feedback</td><td class="wt" style="color:#fff;text-align:center">25%</td><td style="color:#9ca3af;text-align:right">Midterm + final, 10 skills each</td></tr>
     </table>
     <p style="font-size:.78rem;color:#9ca3af;line-height:1.7;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.12)">
-      <strong style="color:#FBCD07">4</strong> Excellent = 100 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">3</strong> Meets = 92 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">2</strong> Does Not Meet = 75 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">1</strong> Needs Serious Improvement = 60 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">INC</strong> No Evidence, recoverable until quarter close<br><br>
+      <strong style="color:#FBCD07">4</strong> Excellent = 100 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">3.5</strong> Approaching Excellent = 96 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">3</strong> Meets = 92 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">2</strong> Does Not Meet = 75 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">1</strong> Well Below Standard = 60 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">INC</strong> No Evidence, recoverable until quarter close<br><br>
       <strong style="color:#fff">The gate:</strong> hours and reflection not in by Sunday 11:59 PM &rarr; no placement that day <span style="color:#6b7280">(Placement)</span> / no remote work that week <span style="color:#6b7280">(Enterprise)</span>. Ladder: complete it &rarr; gate + email home &rarr; call home + improvement plan &rarr; Training Agreement review. Counter resets each quarter.
     </p>
   </div>
