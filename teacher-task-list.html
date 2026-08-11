@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootcamp Master Task List — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:920px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.7rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1rem}
+    .lede{font-size:.85rem;color:#4b5563;line-height:1.75;margin-bottom:1.5rem}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;margin:2.25rem 0 .4rem}
+    .sec-sub{font-size:.8rem;color:#6b7280;margin-bottom:1rem;line-height:1.6}
+
+    /* how-to-use banner */
+    .howto{background:rgba(251,205,7,.1);border:1.5px solid rgba(251,205,7,.4);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1.5rem}
+    .howto-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;color:#92400e;margin-bottom:.4rem}
+    .howto p{font-size:.82rem;color:#374151;line-height:1.7}
+
+    /* legend */
+    .legend{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.25rem}
+    .lg{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:#4b5563;border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:.4rem .65rem}
+    .chip{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .45rem;border-radius:4px;white-space:nowrap}
+    .ct-full{background:rgba(16,185,129,.14);color:#047857;border:1px solid rgba(16,185,129,.4)}
+    .ct-part{background:rgba(251,205,7,.2);color:#92400e;border:1px solid rgba(251,205,7,.5)}
+    .ct-sep{background:rgba(172,22,29,.1);color:#AC161D;border:1px solid rgba(172,22,29,.35)}
+    .em-same{background:rgba(107,114,128,.12);color:#4b5563;border:1px solid rgba(107,114,128,.3)}
+    .em-adapt{background:rgba(59,130,246,.12);color:#1d4ed8;border:1px solid rgba(59,130,246,.35)}
+    .em-repl{background:rgba(172,22,29,.1);color:#AC161D;border:1px solid rgba(172,22,29,.35)}
+
+    /* activity card */
+    /* Tall cards are allowed to split across pages — forcing break-inside:avoid on
+       every one of them pushed ~6 pages of whitespace into the PDF. Keep the header
+       glued to the start of its body instead. */
+    .act{background:#fff;border:1px solid #d8dbe0;border-radius:12px;margin-bottom:.85rem;overflow:hidden}
+    .act.sep-act{border-color:rgba(172,22,29,.4);border-width:1.5px}
+    .act-head{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 1.1rem;border-bottom:1px solid #eef0f2;background:#fcfcfd}
+    .act-num{width:1.9rem;height:1.9rem;border-radius:7px;background:#1c1f2e;color:#fff;display:flex;align-items:center;justify-content:center;
+             font-family:'Montserrat',sans-serif;font-weight:900;font-size:.78rem;flex-shrink:0}
+    .act-titles{flex:1;min-width:0}
+    .act-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.93rem;color:#1c1f2e;line-height:1.25}
+    .act-sub{font-size:.72rem;color:#6b7280;margin-top:.15rem;line-height:1.45}
+    .act-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.25rem;flex-shrink:0}
+    .act-time{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.63rem;color:#6b7280;white-space:nowrap}
+    .act-body{padding:.85rem 1.1rem 1rem}
+
+    .sec-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin:.7rem 0 .35rem}
+    .sec-label:first-child{margin-top:0}
+    ul.tasks{list-style:none;margin:0}
+    ul.tasks li{position:relative;padding-left:1.15rem;font-size:.79rem;color:#374151;line-height:1.6;margin-bottom:.28rem}
+    ul.tasks li:before{content:'';position:absolute;left:.3rem;top:.52rem;width:.28rem;height:.28rem;border-radius:50%;background:#AC161D}
+    ul.checks{list-style:none;margin:0}
+    ul.checks li{position:relative;padding-left:1.3rem;font-size:.77rem;color:#374151;line-height:1.55;margin-bottom:.3rem}
+    ul.checks li:before{content:'';position:absolute;left:0;top:.15rem;width:.8rem;height:.8rem;border:1.5px solid #9ca3af;border-radius:3px}
+
+    .deliv{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.35);border-radius:8px;padding:.6rem .8rem;margin-top:.75rem}
+    .deliv-l{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#92400e;margin-bottom:.2rem}
+    .deliv-t{font-size:.78rem;color:#374151;line-height:1.55}
+    .deliv-t strong{color:#1c1f2e}
+
+    .why{background:#f8f9fa;border-left:3px solid #d8dbe0;border-radius:0 6px 6px 0;padding:.55rem .8rem;margin-top:.7rem;font-size:.75rem;color:#4b5563;line-height:1.6}
+    .why b{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;display:block;margin-bottom:.15rem}
+    .why.ent{background:rgba(59,130,246,.05);border-left-color:#60a5fa}
+    .why.ent b{color:#1d4ed8}
+
+    /* write-in space */
+    .notes{margin-top:.75rem}
+    .notes-l{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#b0b4ba;margin-bottom:.3rem}
+    .rule{border-bottom:1px solid #dcdfe3;height:1.05rem}
+    .rule.short{width:60%}
+
+    /* tables */
+    .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid #d8dbe0;border-radius:10px;margin-bottom:1.25rem;break-inside:avoid}
+    table{width:100%;border-collapse:collapse;min-width:520px}
+    th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.6rem .75rem;background:#f8f9fa;border-bottom:1px solid #e5e7eb}
+    td{padding:.5rem .75rem;font-size:.78rem;color:#374151;border-bottom:1px solid #f1f2f4;vertical-align:top}
+    tr:last-child td{border-bottom:none}
+    td.n{font-family:'Montserrat',sans-serif;font-weight:900;color:#1c1f2e;width:2rem}
+    td.t{font-family:'Montserrat',sans-serif;font-weight:600}
+
+    /* callouts */
+    .co{border-radius:10px;padding:1rem 1.2rem;margin:1.1rem 0;font-size:.81rem;line-height:1.7;color:#374151}
+    .co strong{color:#1c1f2e}
+    .co-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;margin-bottom:.4rem}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .co-red .co-t{color:#AC161D}
+    .co-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .co-gold .co-t{color:#92400e}
+    .co-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .co-blue .co-t{color:#1d4ed8}
+    .co-green{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.3)}
+    .co-green .co-t{color:#047857}
+    .co ul{margin:.4rem 0 0 1.1rem}
+    .co li{margin-bottom:.25rem}
+
+    /* pacing worksheet */
+    .ws{background:#fff;border:1px solid #d8dbe0;border-radius:10px;overflow:hidden;margin-bottom:1.25rem;break-inside:avoid}
+    .ws-head{display:grid;grid-template-columns:3rem 6.5rem 1fr 1fr;gap:0;background:#f8f9fa;border-bottom:1px solid #e5e7eb}
+    .ws-head div{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;padding:.5rem .6rem;border-right:1px solid #e5e7eb}
+    .ws-head div:last-child{border-right:none}
+    .ws-row{display:grid;grid-template-columns:3rem 6.5rem 1fr 1fr;border-bottom:1px solid #eef0f2}
+    .ws-row:last-child{border-bottom:none}
+    .ws-row div{padding:.5rem .6rem;border-right:1px solid #eef0f2;min-height:1.9rem;font-size:.76rem;color:#374151}
+    .ws-row div:last-child{border-right:none}
+    .ws-row .wn{font-family:'Montserrat',sans-serif;font-weight:900;color:#9ca3af}
+
+    .foot{font-size:.72rem;color:#9ca3af;margin-top:2rem;line-height:1.7}
+
+    @media print{
+      nav,.print-btn,.screen-only{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h2{page-break-after:avoid}
+      .act,.tbl-wrap,.co,.ws,.howto{box-shadow:none}
+      .act{margin-bottom:.6rem}
+      /* Never orphan a card header, a section label, or a note prompt at a page foot */
+      .act-head{break-after:avoid;page-break-after:avoid}
+      .sec-label,.notes-l,.deliv-l,.co-t{break-after:avoid;page-break-after:avoid}
+      .deliv,.why,.notes,.co,.ws,.tbl-wrap,.howto{break-inside:avoid;page-break-inside:avoid}
+      ul.tasks li,ul.checks li{break-inside:avoid;page-break-inside:avoid}
+    }
+    @page{margin:.5in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Master Task List</span>
+    <span class="teacher-badge font-heading">Teacher</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+<main>
+  <h1 class="font-heading">Bootcamp Master Task List</h1>
+  <p class="page-sub">Field Experience · all 16 activities · built from bootcamp.html</p>
+  <p class="lede">Every task in the bootcamp, in order, exactly as students see it &mdash; with a co-teach code on each activity and blank space to write your own pacing. Nothing here is locked. The point of printing it is to argue with it.</p>
+
+  <div class="howto">
+    <div class="howto-t font-heading">How to use this</div>
+    <p>Read down the list and decide two things per activity: <strong>which day it lands on</strong> and <strong>whether you teach it together or apart</strong>. The co-teach codes are a recommendation based on how much of each activity is genuinely identical for both cohorts &mdash; not a constraint. Write your day assignments in the margin, then transfer them to the pacing worksheet at the back.</p>
+  </div>
+
+  <div class="legend">
+    <div class="lg"><span class="chip ct-full font-heading">Co-teach</span> One lesson, one room, both cohorts</div>
+    <div class="lg"><span class="chip ct-part font-heading">Split part</span> Co-teach most of it, split for the rest</div>
+    <div class="lg"><span class="chip ct-sep font-heading">Separate</span> Genuinely different lessons</div>
+  </div>
+
+  <div class="co co-green">
+    <div class="co-t font-heading">The short answer on co-teaching</div>
+    <strong>11 of the 16 activities are fully co-teachable, 3 need a partial split, and only 2 are genuinely separate lessons.</strong>
+    The two that cannot be shared are the two where the Placement cohort points at an outside employer and the Enterprise cohort has none: <strong>Activity 5 (Explore &amp; Apply)</strong> and <strong>Activity 13 (Placement Confirmed)</strong>. Everything else is either identical or the same lesson with different examples.
+    <ul>
+      <li><strong>Activity 10 (Dilemma Stations) and Activity 14 (Goal Conference) are better together, not just cheaper.</strong> 15 stations support more pairs than one cohort fills, and the debrief gets sharper when placement and enterprise students argue from different positions. The goal conferences are 1-on-1s &mdash; two teachers working in parallel cuts 168 minutes down to 84.</li>
+      <li><strong>Activity 8 (Mock Interview) is the one to plan carefully.</strong> Step 1, peer speed interviews, is better with 24 students. Step 2 needs outside adults, and combining cohorts means 24 students needing interviewers on the same day instead of 14.</li>
+    </ul>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">Read this before you assign days &mdash; the pacing decision only you can make</div>
+    Content alignment and <em>calendar</em> alignment are two different things. The Placement cohort meets every day and the Enterprise cohort meets A days only, so Placement covers roughly two activities for every one the Enterprise cohort covers. Under the dated calendar as it currently stands, <strong>only Day 1 (Thu Aug 13) has both cohorts doing the same activity.</strong> After that they drift apart immediately &mdash; by Aug 19 Placement is on Activity 5 while Enterprise is on Activity 3.
+    <ul>
+      <li><strong>To actually co-teach,</strong> the shared lessons have to be pinned to A days, and the Placement-only work has to fill the B days. That caps you at roughly six shared blocks in the Aug 13&ndash;28 window.</li>
+      <li><strong>The cost of doing that:</strong> Explore &amp; Apply gets pushed to a B day after the resume workshop, which moves applications from Aug 19 to Aug 24 or later. That is five fewer days on the employer paperwork clock before the Aug 31 start.</li>
+      <li><strong>The cost of not doing it:</strong> you teach all 12 blocks twice, and the second cohort's version is the one that gets thin when the week gets busy.</li>
+    </ul>
+    This is a real trade between co-teaching efficiency and placement lead time, and it depends on how fast your employers actually turn paperwork around. That is your call, not the document's &mdash; the worksheet at the back is there for whichever way you go.
+  </div>
+
+  <h2 class="font-heading">Summary &mdash; all 16 at a glance</h2>
+  <p class="sec-sub">The full detail follows. This table is for the wall.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:2rem">#</th><th>Activity</th><th style="width:7rem">Time</th><th style="width:5.5rem">Together?</th><th style="width:5.5rem">Enterprise</th></tr></thead>
+      <tbody><tr><td colspan="5" style="background:#f8f9fa;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280">Professional Identity & Course Launch</td></tr><tr><td class="n">1</td><td class="t">Begin With the End in Mind</td><td style="font-size:.72rem;color:#6b7280">~90 min · Day 1</td><td><span class="chip ct-part font-heading">Split part</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">2</td><td class="t">Career & Self-Assessment</td><td style="font-size:.72rem;color:#6b7280">~90 min · Day 2</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">3</td><td class="t">Your Professional Brand</td><td style="font-size:.72rem;color:#6b7280">~90 min · Day 2–3</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">4</td><td class="t">Resume Workshop</td><td style="font-size:.72rem;color:#6b7280">~90 min · Day 3–4</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-same font-heading">Same</span></td></tr><tr><td class="n">5</td><td class="t">Explore & Apply</td><td style="font-size:.72rem;color:#6b7280">~90 min · Day 4–5 (apply over weekend)</td><td><span class="chip ct-sep font-heading">Separate</span></td><td><span class="chip em-repl font-heading">Replaced</span></td></tr><tr><td colspan="5" style="background:#f8f9fa;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280">Interview Prep</td></tr><tr><td class="n">6</td><td class="t">Elevator Pitch</td><td style="font-size:.72rem;color:#6b7280">~90 min</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">7</td><td class="t">Interview Skills</td><td style="font-size:.72rem;color:#6b7280">~90 min</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">8</td><td class="t">Mock Interview</td><td style="font-size:.72rem;color:#6b7280">~90 min</td><td><span class="chip ct-part font-heading">Split part</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">9</td><td class="t">Interview Improvement Plan</td><td style="font-size:.72rem;color:#6b7280">~30–45 min</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-same font-heading">Same</span></td></tr><tr><td colspan="5" style="background:#f8f9fa;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280">Workplace Readiness</td></tr><tr><td class="n">10</td><td class="t">Workplace Dilemma Stations</td><td style="font-size:.72rem;color:#6b7280">~90 min</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">11</td><td class="t">Meet Your 10 Employability Skills</td><td style="font-size:.72rem;color:#6b7280">~45–60 min</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">12</td><td class="t">Post-Assessment</td><td style="font-size:.72rem;color:#6b7280">~30–45 min</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-same font-heading">Same</span></td></tr><tr><td class="n">13</td><td class="t">Placement Confirmed</td><td style="font-size:.72rem;color:#6b7280">Complete as soon as your offer is accepted</td><td><span class="chip ct-sep font-heading">Separate</span></td><td><span class="chip em-repl font-heading">Replaced</span></td></tr><tr><td colspan="5" style="background:#f8f9fa;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280">Launch</td></tr><tr><td class="n">14</td><td class="t">Goal Conference</td><td style="font-size:.72rem;color:#6b7280">5–10 min per student · Runs across 1–2 class days</td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-same font-heading">Same</span></td></tr><tr><td class="n">15</td><td class="t">Internship Plan of Success</td><td style="font-size:.72rem;color:#6b7280">~45–60 min</td><td><span class="chip ct-part font-heading">Split part</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr><tr><td class="n">16</td><td class="t">Launch Day</td><td style="font-size:.72rem;color:#6b7280"></td><td><span class="chip ct-full font-heading">Co-teach</span></td><td><span class="chip em-adapt font-heading">Adapted</span></td></tr></tbody></table></div>
+  <h2 class="font-heading">Professional Identity & Course Launch</h2>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">1</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Begin With the End in Mind</div>
+        <div class="act-sub">Course overview · Capstone preview · Syllabus · Website tour · Expectations</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-part font-heading">Split part</span>
+        <span class="act-time font-heading">~90 min · Day 1</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>See the capstone — your booth presentation and 90-second stage talk. This is where the semester ends. Today we reverse-engineer it.</li><li>Review the syllabus, course contract, and what 60 hours of field experience actually looks like</li><li>Walk through this website together: your dashboard, weekly log, reflection form, and bootcamp phases</li><li>Discussion: what's the difference between showing up as a student versus showing up as an employee?</li><li>Overview of the 7 career clusters and what placements are available</li><li>Preview the 10 Illinois Essential Employability Skills you'll be assessed on</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Course Launch Guide</strong> &mdash; via <em>course-launch.html</em></div></div>
+      <div class="why"><b>Together or apart</b>The launch, syllabus, site tour and expectations are identical. Split only for the last 15 minutes: the two cohorts have different capstone dates and a different gate.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Show the <strong>May</strong> capstone, not December. Gate is <strong>"not current, not remote"</strong> instead of "not on the schedule." Preview the Quarterly Review Board dates (Oct 15 · Dec 16 · Mar 11) so they know they present to adults who are not you.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">2</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Career & Self-Assessment</div>
+        <div class="act-sub">Career interest reflection · Employability skills pre-assessment · Professional goals</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~90 min · Day 2</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Rate yourself on all 10 employability skills (1–4 scale) — this is your baseline. You'll do it again at the end to see how you've grown.</li><li>Career interest reflection: what fields interest you, what do you want to explore, what are you good at?</li><li>Write your professional goal for the semester — what do you want to walk away with?</li><li>Class discussion: what do employers actually look for beyond skills?</li></ul><div class="sec-label font-heading">Goal-writing scaffold</div><ul class="tasks"><li>What I want to do: A specific outcome — not "get better at communication" but "learn how to run a client meeting from start to finish"</li><li>Why it matters to me: Your honest reason, not what sounds good</li><li>How I'll know I got there: One thing you'll be able to show or do by the end of the semester</li></ul><div class="sec-label font-heading">Discussion prompts</div><ul class="tasks"><li>What career cluster excites you most — and what surprised you about your own answer?</li><li>What's one skill you have that employers might not see on paper?</li><li>If your employer asked "what do you want to get out of this?" — what would you actually say?</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Self-Assessment</strong> &mdash; via <em>self-assessment.html?type=pre</em></div></div>
+      <div class="why"><b>Together or apart</b>Individual assessment plus whole-group discussion. More voices in the discussion is a gain, not a cost.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Same instrument and same goal-writing scaffold. Add market research alongside the career cluster work: who already does what you do, what do they charge, who buys it. Bulldog Media students research comparable school and small-market media operations.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">3</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Your Professional Brand</div>
+        <div class="act-sub">Digital footprint audit · LinkedIn setup · Professional email signature · Social media + first impressions</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~90 min · Day 2–3</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Google yourself — right now, in class. What comes up? What would an employer see?</li><li>Social media audit discussion: what's public, what's professional, what needs to change before you start interviewing</li><li>Build your professional email signature — your name, title (Field Experience Student), school, and contact info</li><li>Real examples: how a digital footprint has cost people jobs and opportunities</li><li>Phone communication roleplay: cold-calling a potential employer</li></ul><div class="sec-label font-heading">Social media audit checklist</div><ul class="checks"><li>My profile photo is something an employer would think is professional</li><li>I checked my most recent public posts — nothing I wouldn't want my placement supervisor to see</li><li>I removed or made private anything tagged, shared, or public that needed it</li><li>My bio describes me the way I want to be described professionally</li></ul><div class="sec-label font-heading">LinkedIn setup</div><ul class="checks"><li>I created or cleaned up my LinkedIn profile — professional photo, current city, high school listed</li><li>I wrote a headline that says more than my school (e.g., "Field Experience Student | Interested in Healthcare + Business")</li><li>I left space on my profile to add my resume in Activity 4</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Confirm Your Email Signature</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Google-yourself, the 7-item audit, LinkedIn setup, email signature and the cold-call roleplay are the same for everyone.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Add a second brand layer on top of the personal one: business name, logo, how a customer actually contacts you, where they would find you. For a self-employed student the personal brand <em>is</em> the company brand. Bulldog Media students audit against the school's existing brand standards rather than inventing their own.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">4</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Resume Workshop</div>
+        <div class="act-sub">Build · AI feedback · Peer review · Conference · Final draft</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~90 min · Day 3–4</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Resume structure walkthrough — what goes where and why different resumes look different for different people</li><li>Translating school experiences into workforce language: "I was on the team" → "Led a 12-person team through…"</li><li>Action verb practice — the difference between listing a job and owning one</li><li>References: how to ask professionally, who to ask, what they need to say</li><li>In-class build time + peer review with a partner</li><li>Use AI to get a first-round review before your peer: paste your resume into Claude or ChatGPT and ask "What's weak on this resume and what would make it stronger?" — fix those first, then swap with a partner</li><li>Teacher or partner conference on your draft before final</li><li>Once your resume is final, upload it to your LinkedIn profile — it becomes a portfolio artifact employers can see before they even open an application</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Submit Your Resume Link</strong> &mdash; in-page on bootcamp.html</div></div>
+      <div class="why"><b>Together or apart</b>Identical build, AI feedback, peer review and conference cycle.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; same</b>No change to the activity. Expect pushback — "I don't need a resume, I work for myself." The answer: college, scholarships, and the day the business ends. "Founded and ran a business in high school" is the strongest line most of them will have for years.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act sep-act">
+    <div class="act-head">
+      <div class="act-num font-heading">5</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Explore & Apply</div>
+        <div class="act-sub">Browse job menu · Research employers · Meet with teacher · Apply · Follow-up</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-sep font-heading">Separate</span>
+        <span class="act-time font-heading">~90 min · Day 4–5 (apply over weekend)</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Browse the placement list on this site — explore what's available across all 7 career clusters</li><li>Employer scavenger hunt: research your top 2–3 choices. Find out what they do, who works there, what they value</li><li>Match your skills from your resume to the placements you're interested in</li><li>Meet with your teacher to talk through your choices and confirm your application plan</li><li>Submit your application(s) — this starts the clock on employer paperwork, so the sooner the better</li></ul><div class="sec-label font-heading">Employer research — know before you go</div><ul class="tasks"><li>Before applying: look up their website, LinkedIn, and Google reviews. What do they do? Who works there? Did they recently expand or hire?</li><li>Goal: walk into your interview able to say "I noticed you just opened a second location" or "I saw your team focuses heavily on youth programs" — not "so what do you guys do again?"</li></ul><div class="sec-label font-heading">After you apply</div><ul class="tasks"><li>Send a follow-up email 5–7 business days after applying if you haven't heard back — brief, professional, confirms your interest</li><li>Send a thank-you email within 24 hours of any interview — one paragraph, reference something specific from the conversation, confirm you want the role</li><li>Both emails go in your portfolio — they're evidence of professional communication, not just formalities</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Your Top Placements</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>There is no job menu to browse and no employer to apply to. Nothing in this activity transfers.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; replaced</b>Replaced by <strong>Define Your Enterprise</strong> — see the detail page. This is the block that makes the Enterprise year gradeable, so it carries the same do-not-move weight that Explore &amp; Apply carries for the Placement cohort.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <h2 class="font-heading">Interview Prep</h2>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">6</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Elevator Pitch</div>
+        <div class="act-sub">Write it · Workshop it · Record it</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~90 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Structure: hook → background → value → ask. Thirty seconds to tell someone exactly why they should hire you</li><li>Write your pitch in class — first draft, no judgment</li><li>Deliver it to three different partners. Get real feedback: was it clear? Did you sound confident? Did it sound rehearsed?</li><li>Refine and record your final video pitch — this becomes a portfolio piece and your capstone warmup</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Submit Your Elevator Pitch</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Same lesson, same structure, same record-and-submit. Only the subject of the pitch differs, and that is a per-student difference anyway.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>The pitch is the business, not the job seeker: what I do &rarr; who it is for &rarr; what problem it solves &rarr; what I am asking for. Add one question to each rehearsal round: <em>would you actually buy this?</em></div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">7</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Interview Skills</div>
+        <div class="act-sub">Real situations · What to wear · Body language · Communication</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~90 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Situational practice: "Tell me about a time when…" — you'll work through real scenarios from actual workplaces. The goal is having your own stories ready, not memorizing scripts.</li><li>Common interview questions + how to prep honest answers without sounding rehearsed</li><li>What to wear: professional appearance varies by placement type — a hospital, a restaurant, and a law firm all look different</li><li>Body language: what nervous looks like from the outside and how to correct for it — eye contact, posture, what to do with your hands</li><li>Communication: how to handle a question you don't know, how to ask for clarification, what to do when the answer honestly is "I'm not sure yet"</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Two Quick Scenarios</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Dress, body language, communication and STAR are identical. Teach STAR hard here for both cohorts — it is also the weekly reflection format all year.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Same STAR teach, client-side questions: why hire you over someone with more experience, what happens if you miss my deadline, what do you charge and why. Most students have never said a price out loud and defended it.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">8</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Mock Interview</div>
+        <div class="act-sub">Peer speed interviews · Formal mock · Real feedback · Question bank</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-part font-heading">Split part</span>
+        <span class="act-time font-heading">~90 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">Step 1 — Peer speed interviews (whole class)</div><ul class="tasks"><li>Class splits in half: one side interviews, the other answers. Each pair gets 2–3 questions from the interview question bank, then rotate down the line.</li><li>After 30 minutes, switch sides — the interviewers become interviewees. Everyone practices both roles.</li><li>Interviewees don't know which questions are coming. That's the point — you get comfortable answering live, unrehearsed, for a rotating set of people.</li></ul><div class="sec-label font-heading">Step 2 — Formal mock interview (community partner)</div><ul class="tasks"><li>1-on-1 with a business partner, chamber member, or administrator — ideally someone you don't know well</li><li>Your interviewer uses a structured feedback form. You receive written feedback immediately after — specific, honest, actionable.</li><li>Goal is two interviews each during this block. When you're not in the chair, review the feedback from your last one.</li><li>No one gets a perfect mock interview. That's the point. You find out what to fix before the real one.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Confirm Mock Interview Completed</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Step 1 (peer speed interviews) is better with 24 students than 14 — more partners, more reps. Step 2 splits: one cohort needs interviewers, the other needs a pitch panel.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Step 1 runs together, unchanged. Step 2 becomes a <strong>Client Pitch Panel</strong>: 5-minute pitch plus 2 minutes of questions to 3&ndash;4 panelists. Recruit the panel from people you would also want on the Quarterly Review Boards — it doubles as an audition for both sides.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">9</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Interview Improvement Plan</div>
+        <div class="act-sub">Review feedback · Identify gaps · Write action steps · AI practice partner</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~30–45 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Review the feedback from your mock interview — what did you do well, what needs work?</li><li>Identify 2–3 specific areas to improve before your real interview</li><li>Write concrete action steps: not "be more confident" — "practice answering the 'tell me about yourself' question out loud three times before my interview"</li><li>Use AI as a practice partner between now and your real interview: open a chat and say "Act as the hiring manager at [company name]. Interview me for [role] and give me real questions. Rate my answers and tell me what to improve." — repeat until you feel ready.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Submit Your Improvement Plan</strong> &mdash; in-page on bootcamp.html</div></div>
+      <div class="why"><b>Together or apart</b>Each student works from their own feedback form. Identical process regardless of who gave the feedback.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; same</b>Same activity. One addition: where the pitch itself was the weak point, the improvement plan should revise the enterprise scope, not just the delivery.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <h2 class="font-heading">Workplace Readiness</h2>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">10</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Workplace Dilemma Stations</div>
+        <div class="act-sub">15 dilemmas · Carousel stations · Career clusters · Class debrief</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~90 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Carousel activity: 15 dilemma stations set up around the room. Small groups rotate every few minutes, read the scenario, and discuss what they'd do.</li><li>Scenarios span all 7 career clusters — a healthcare confidentiality situation, a manufacturing safety shortcut, a supervisor asking something that feels wrong in an education setting, a customer conflict in retail, and more</li><li>After rotating, the class picks 2–3 scenarios to debrief together — groups share what they decided and why</li><li>You'll disagree with each other. That's the activity. There's often no single right answer — what matters is how you think it through.</li><li>If you were absent: all 15 dilemma scenarios are linked here so you can review them and mark complete</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Which Dilemma Stuck With You?</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Actively better together. 15 stations support more pairs than one cohort fills, and the debrief is richer with placement and enterprise students arguing from different positions.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Add an enterprise framing card at each station: <em>you have no supervisor to escalate to — now what?</em> Close the debrief on the four they will actually face: a client who will not pay, a deadline you are going to miss, work you are not qualified for, and a customer who wants something unethical.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">11</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Meet Your 10 Employability Skills</div>
+        <div class="act-sub">Quick overview · What each one actually means · Why you'll see them all semester</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~45–60 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>This is your quick shot — a fast walkthrough of all 10 Illinois Essential Employability Skills before you rate yourself again in the post-assessment. We're going for breadth, not depth.</li><li>For each skill, you'll write one sentence in your own words: what does it actually mean, and where did you see it show up in Phase 1 or 2?</li><li>We'll clarify the ones that get confused with each other — critical thinking vs. problem-solving vs. decision-making are not the same thing, and the difference matters when you're in the field</li><li>By the end, you should be able to name all 10 and describe each one without looking at the list. You'll go deeper into each one throughout the semester — this is the foundation.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>One Sentence, Each Skill</strong> &mdash; in-page on bootcamp.html</div></div>
+      <div class="why"><b>Together or apart</b>Same 10 skills, same 4/3/2/1 scale, same standard: a 3 means you performed to the level a paying employer expects.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Add how scoring actually works for them: three voices, not two — their own self-assessment, their client or advisor feedback form, and the Quarterly Review Board. A 2-level gap triggers a conversation, not a quiet override.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">12</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Post-Assessment</div>
+        <div class="act-sub">Re-rate your 10 employability skills · See your growth since Phase 1</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">~30–45 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Re-rate yourself on all 10 Illinois Essential Employability Skills using the same 1–4 scale from Phase 1</li><li>Compare your scores: where did you grow? Where are you still working?</li><li>This isn't about being perfect — it's about being honest so your placement experience can be intentional</li><li>Write a short reflection: what surprised you about your growth? What do you want to focus on during your 60 hours?</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Post-Assessment</strong> &mdash; via <em>self-assessment.html?type=post</em></div></div>
+      <div class="why"><b>Together or apart</b>Individual work on the identical instrument, compared against each student's own Phase 1 baseline.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; same</b>No change.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act sep-act">
+    <div class="act-head">
+      <div class="act-num font-heading">13</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Placement Confirmed</div>
+        <div class="act-sub">Confirm your employer · Training agreement · Onboarding paperwork</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-sep font-heading">Separate</span>
+        <span class="act-time font-heading">Complete as soon as your offer is accepted</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What this means</div><ul class="tasks"><li>You've accepted an offer from a placement employer — congratulations</li><li>Confirm your employer here so your teacher can start the hiring paperwork process</li><li>The earlier this is confirmed, the more time your employer has to complete all required documents before your start date</li><li>Your employer may also have their own onboarding paperwork — especially if you're getting paid. This can include tax forms, direct deposit info, and ID verification. Sit down with a parent or guardian to complete these. Don't guess on legal documents.</li><li>Don't have a confirmed placement yet? Keep at it. Talk to your teacher about next steps.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Confirm Your Placement</strong> &mdash; in-page on bootcamp.html</div></div>
+      <div class="why"><b>Together or apart</b>No employer, no training agreement with an outside business, no onboarding paperwork.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; replaced</b>Replaced by <strong>Enterprise Confirmed</strong> — see the detail page. Sign off individually on final scope, named client or advisor, hours plan, where the work physically happens, and the remote work agreement. An unconfirmed enterprise does not get remote privileges; this is where the gate gets its teeth.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <h2 class="font-heading">Launch</h2>
+
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">14</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Goal Conference</div>
+        <div class="act-sub">Prep your goals · One-on-one with your teacher · Get expectations cleared</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading">5–10 min per student · Runs across 1–2 class days</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">Come prepared</div><ul class="tasks"><li>Before your conference, draft your 2–3 goals. Your teacher shouldn't be the one prompting you to come up with them — arrive with answers ready.</li><li>Think through: What do you want to get out of this placement? What skill do you most want to improve? What would make this semester feel worth it?</li><li>Come with any questions or concerns too. What are you nervous about? What's still unclear? This is the place to name it — not Day 1 at your placement.</li></ul><div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>5–10 minute one-on-one with your teacher — not a check-in, a real conversation about your placement and what you want from it</li><li>Set 2–3 goals for your semester: specific, achievable, and tied to what you actually care about</li><li>Review the time log and reflection process one more time — everyone does a test submission so there are no surprises</li></ul><div class="sec-label font-heading">While you wait for your conference</div><ul class="tasks"><li>Conferences run 1–2 full class days. When you're not in the chair, you'll get started on the first in-depth employability skill lesson or continue refining your elevator pitch for the capstone.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Come Prepared — Draft Your Goals</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>The single biggest co-teach win in the bootcamp. These are 1-on-1s: 24 students at 7 minutes is 168 minutes for one teacher, or 84 minutes each if you split the list. Same form, same questions, run in parallel.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; same</b>Same conference and same form. Add one question for this cohort: <em>what would make you quit on this by November?</em> Self-directed students fail from drift, not from lack of skill, and the answer tells you where to coach.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">15</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Internship Plan of Success</div>
+        <div class="act-sub">Your roadmap for the semester · Professional intro email</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-part font-heading">Split part</span>
+        <span class="act-time font-heading">~45–60 min</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What we do in class</div><ul class="tasks"><li>Write your internship plan of success — your schedule, your goals, how you'll handle challenges, and how you'll track your 60 hours</li><li>Draft a professional introduction or thank you email to your placement supervisor — your first real professional communication with them</li><li>Review: what does logging hours look like on the site? What does a good weekly reflection look like? We'll do a live test submission together so everyone knows the process before it counts.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Submit Your Internship Plan</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Same lesson and same work time; the template and the intro email target differ.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b><strong>Business Plan of Success</strong> instead: two focus skills, what exists by December, what exists by May, weekly hours target, how you will know it worked. The professional intro email goes to a client or advisor rather than a site supervisor.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">16</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">Launch Day</div>
+        <div class="act-sub">Set your #1 goal · Submit & Launch · Receive your Launch Card</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ct-full font-heading">Co-teach</span>
+        <span class="act-time font-heading"></span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="sec-label font-heading">What this moment is</div><ul class="tasks"><li>You've done the work. Resume built. Pitch practiced. Interview survived. Placement confirmed. Goals set.</li><li>Write your single most important goal for this semester — one sentence, honest and specific</li><li>Hit Submit & Launch. Your Launch Card generates and lives on your dashboard permanently</li><li>You are no longer a student preparing for a job. You're a student employee. Go make it count.</li></ul>
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>Your #1 Goal This Semester</strong> &mdash; in-page on bootcamp.html (typed response)</div></div>
+      <div class="why"><b>Together or apart</b>Same ritual, same Launch Card. Only worth co-teaching if you decide to align the two cohorts' final day — under the current calendar they are three weeks apart.</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; adapted</b>Same ritual on a different date. Post the Review Board dates one more time, and name the first remote A day out loud so the transition is not vague.</div>
+      <div class="notes"><div class="notes-l font-heading">Our day / our changes</div><div class="rule"></div><div class="rule"></div></div>
+    </div>
+  </div>
+  <h2 class="font-heading">Pacing Worksheet &mdash; Placement Cohort</h2>
+  <p class="sec-sub">14 students, every day. 12 blocks between Thu Aug 13 and Fri Aug 28, first day at placement Mon Aug 31. Dates are pre-filled from the school calendar; the activity column is yours.</p>
+  <div class="ws">
+    <div class="ws-head"><div>#</div><div>Date</div><div>Activity</div><div>Notes</div></div>
+    <div class="ws-row"><div class="wn font-heading">1</div><div style="font-size:.72rem;color:#6b7280">Thu Aug 13 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">2</div><div style="font-size:.72rem;color:#6b7280">Fri Aug 14 (B)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">3</div><div style="font-size:.72rem;color:#6b7280">Mon Aug 17 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">4</div><div style="font-size:.72rem;color:#6b7280">Tue Aug 18 (B)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">5</div><div style="font-size:.72rem;color:#6b7280">Wed Aug 19 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">6</div><div style="font-size:.72rem;color:#6b7280">Thu Aug 20 (B)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">7</div><div style="font-size:.72rem;color:#6b7280">Fri Aug 21 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">8</div><div style="font-size:.72rem;color:#6b7280">Mon Aug 24 (B)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">9</div><div style="font-size:.72rem;color:#6b7280">Tue Aug 25 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">10</div><div style="font-size:.72rem;color:#6b7280">Wed Aug 26 (B)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">11</div><div style="font-size:.72rem;color:#6b7280">Thu Aug 27 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">12</div><div style="font-size:.72rem;color:#6b7280">Fri Aug 28 (B)</div><div></div><div></div></div>
+  </div>
+
+  <h2 class="font-heading">Pacing Worksheet &mdash; Enterprise Cohort</h2>
+  <p class="sec-sub">10 students, A days only, full year. 12 A-day blocks between Thu Aug 13 and Tue Sep 15 (Labor Day Sep 7 falls out). Shaded dates are the six A days where <em>both</em> cohorts are in the building &mdash; those are your only co-teach windows.</p>
+  <div class="ws">
+    <div class="ws-head"><div>#</div><div>Date</div><div>Activity</div><div>Notes</div></div>
+    <div class="ws-row" style="background:rgba(16,185,129,.05)"><div class="wn font-heading">1</div><div style="font-size:.72rem;color:#047857">Thu Aug 13 (A) &nbsp;&#9679;</div><div></div><div></div></div><div class="ws-row" style="background:rgba(16,185,129,.05)"><div class="wn font-heading">2</div><div style="font-size:.72rem;color:#047857">Mon Aug 17 (A) &nbsp;&#9679;</div><div></div><div></div></div><div class="ws-row" style="background:rgba(16,185,129,.05)"><div class="wn font-heading">3</div><div style="font-size:.72rem;color:#047857">Wed Aug 19 (A) &nbsp;&#9679;</div><div></div><div></div></div><div class="ws-row" style="background:rgba(16,185,129,.05)"><div class="wn font-heading">4</div><div style="font-size:.72rem;color:#047857">Fri Aug 21 (A) &nbsp;&#9679;</div><div></div><div></div></div><div class="ws-row" style="background:rgba(16,185,129,.05)"><div class="wn font-heading">5</div><div style="font-size:.72rem;color:#047857">Tue Aug 25 (A) &nbsp;&#9679;</div><div></div><div></div></div><div class="ws-row" style="background:rgba(16,185,129,.05)"><div class="wn font-heading">6</div><div style="font-size:.72rem;color:#047857">Thu Aug 27 (A) &nbsp;&#9679;</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">7</div><div style="font-size:.72rem;color:#6b7280">Mon Aug 31 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">8</div><div style="font-size:.72rem;color:#6b7280">Wed Sep 2 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">9</div><div style="font-size:.72rem;color:#6b7280">Fri Sep 4 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">10</div><div style="font-size:.72rem;color:#6b7280">Wed Sep 9 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">11</div><div style="font-size:.72rem;color:#6b7280">Fri Sep 11 (A)</div><div></div><div></div></div><div class="ws-row"><div class="wn font-heading">12</div><div style="font-size:.72rem;color:#6b7280">Tue Sep 15 (A)</div><div></div><div></div></div>
+  </div>
+  <p class="sec-sub" style="margin-top:-.5rem">&#9679; = Placement cohort is also in class that day. After Aug 27 the Placement cohort is at their placement sites, so Enterprise blocks 7&ndash;12 are solo no matter what you decide.</p>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">Time check against your own estimates</div>
+    The activity times in bootcamp.html add up to roughly 11&ndash;13 ninety-minute blocks depending on how long the goal conferences run, which is what makes a 12-block bootcamp fit. The four short ones &mdash; Interview Improvement Plan, Meet Your 10 Skills, Post-Assessment, and Internship Plan of Success &mdash; are 30&ndash;60 minutes each, so they are your natural pairing candidates if you need to reclaim a day.
+  </div>
+
+  <p class="foot">Generated from <em>bootcamp.html</em> by <em>generate-bootcamp-task-lists.js</em> &mdash; rerun it after editing bootcamp activities and this list updates itself. Companion documents: <a href="teacher-enterprise-track.html">Enterprise Track &mdash; What's Different</a> &middot; <a href="teacher-calendar.html">Bootcamp Calendar</a> &middot; <a href="teacher-grading.html">Grading Policy</a>.</p></main>
+</body>
+</html>

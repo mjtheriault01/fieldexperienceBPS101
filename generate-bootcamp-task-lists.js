@@ -1,0 +1,839 @@
+// node generate-bootcamp-task-lists.js
+//
+// Builds two print-first teacher documents from bootcamp.html's real activity
+// content, then renders each to PDF with headless Chrome:
+//
+//   teacher-task-list.html        -> Bootcamp Master Task List (all 16 activities,
+//                                    with co-teach alignment codes + blank pacing space)
+//   teacher-enterprise-track.html -> What the A-day Enterprise cohort does differently
+//
+// The task bullets, checklists, deliverables and time estimates are read out of
+// bootcamp.html itself, so these documents can never silently drift from what the
+// students actually see. The editorial layer below (co-teach codes and Enterprise
+// variations) is the only hand-maintained part.
+//
+// Requires: puppeteer-core + local Chrome (same setup as generate-positions-pdf.js)
+
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const puppeteer = require('puppeteer-core');
+
+const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const REPO = __dirname;
+const OUT_PDF_DIR = path.join(os.homedir(), 'Downloads', 'Field Experience Bootcamp');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EDITORIAL LAYER — the only part maintained by hand.
+//   coteach: 'full'     both cohorts, one lesson, one room
+//            'partial'  co-teach part of it, split for the rest
+//            'separate' genuinely different lessons
+//   entMode: 'same' | 'adapted' | 'replaced'
+// ─────────────────────────────────────────────────────────────────────────────
+const EDIT = {
+  p1_course_overview: {
+    coteach: 'partial',
+    why: 'The launch, syllabus, site tour and expectations are identical. Split only for the last 15 minutes: the two cohorts have different capstone dates and a different gate.',
+    entMode: 'adapted',
+    entShort: 'May capstone instead of December; gate is &ldquo;not current, not remote&rdquo;',
+    entChange: 'Show the <strong>May</strong> capstone, not December. Gate is <strong>"not current, not remote"</strong> instead of "not on the schedule." Preview the Quarterly Review Board dates (Oct 15 · Dec 16 · Mar 11) so they know they present to adults who are not you.',
+  },
+  p1_career_reflection: {
+    coteach: 'full',
+    why: 'Individual assessment plus whole-group discussion. More voices in the discussion is a gain, not a cost.',
+    entMode: 'adapted',
+    entShort: 'Adds market research &mdash; who else does this, what do they charge',
+    entChange: 'Same instrument and same goal-writing scaffold. Add market research alongside the career cluster work: who already does what you do, what do they charge, who buys it. Bulldog Media students research comparable school and small-market media operations.',
+  },
+  p1_digital_footprint: {
+    coteach: 'full',
+    why: 'Google-yourself, the 7-item audit, LinkedIn setup, email signature and the cold-call roleplay are the same for everyone.',
+    entMode: 'adapted',
+    entShort: 'Adds a business brand layer on top of the personal one',
+    entChange: 'Add a second brand layer on top of the personal one: business name, logo, how a customer actually contacts you, where they would find you. For a self-employed student the personal brand <em>is</em> the company brand. Bulldog Media students audit against the school\'s existing brand standards rather than inventing their own.',
+  },
+  p1_resume_complete: {
+    coteach: 'full',
+    why: 'Identical build, AI feedback, peer review and conference cycle.',
+    entMode: 'same',
+    entShort: 'Nothing &mdash; teach it as written',
+    entChange: 'No change to the activity. Expect pushback — "I don\'t need a resume, I work for myself." The answer: college, scholarships, and the day the business ends. "Founded and ran a business in high school" is the strongest line most of them will have for years.',
+  },
+  p1_application_submitted: {
+    coteach: 'separate',
+    why: 'There is no job menu to browse and no employer to apply to. Nothing in this activity transfers.',
+    entMode: 'replaced',
+    entShort: 'Becomes <strong>Define Your Enterprise</strong>',
+    entChange: 'Replaced by <strong>Define Your Enterprise</strong> — see the detail page. This is the block that makes the Enterprise year gradeable, so it carries the same do-not-move weight that Explore &amp; Apply carries for the Placement cohort.',
+  },
+  p2_elevator_pitch: {
+    coteach: 'full',
+    why: 'Same lesson, same structure, same record-and-submit. Only the subject of the pitch differs, and that is a per-student difference anyway.',
+    entMode: 'adapted',
+    entShort: 'Pitch is the business, not the job seeker',
+    entChange: 'The pitch is the business, not the job seeker: what I do &rarr; who it is for &rarr; what problem it solves &rarr; what I am asking for. Add one question to each rehearsal round: <em>would you actually buy this?</em>',
+  },
+  p2_star_practice: {
+    coteach: 'full',
+    why: 'Dress, body language, communication and STAR are identical. Teach STAR hard here for both cohorts — it is also the weekly reflection format all year.',
+    entMode: 'adapted',
+    entShort: 'Same STAR teach, client-side questions including pricing',
+    entChange: 'Same STAR teach, client-side questions: why hire you over someone with more experience, what happens if you miss my deadline, what do you charge and why. Most students have never said a price out loud and defended it.',
+  },
+  p2_mock_interview: {
+    coteach: 'partial',
+    why: 'Step 1 (peer speed interviews) is better with 24 students than 14 — more partners, more reps. Step 2 splits: one cohort needs interviewers, the other needs a pitch panel.',
+    entMode: 'adapted',
+    entShort: 'Step 1 shared; Step 2 becomes a <strong>Client Pitch Panel</strong>',
+    entChange: 'Step 1 runs together, unchanged. Step 2 becomes a <strong>Client Pitch Panel</strong>: 5-minute pitch plus 2 minutes of questions to 3&ndash;4 panelists. Recruit the panel from people you would also want on the Quarterly Review Boards — it doubles as an audition for both sides.',
+  },
+  p2_interview_plan: {
+    coteach: 'full',
+    why: 'Each student works from their own feedback form. Identical process regardless of who gave the feedback.',
+    entMode: 'same',
+    entShort: 'Nothing &mdash; teach it as written',
+    entChange: 'Same activity. One addition: where the pitch itself was the weak point, the improvement plan should revise the enterprise scope, not just the delivery.',
+  },
+  p3_ethics_scenarios: {
+    coteach: 'full',
+    why: 'Actively better together. 15 stations support more pairs than one cohort fills, and the debrief is richer with placement and enterprise students arguing from different positions.',
+    entMode: 'adapted',
+    entShort: 'Adds &ldquo;no supervisor to escalate to&rdquo; framing at each station',
+    entChange: 'Add an enterprise framing card at each station: <em>you have no supervisor to escalate to — now what?</em> Close the debrief on the four they will actually face: a client who will not pay, a deadline you are going to miss, work you are not qualified for, and a customer who wants something unethical.',
+  },
+  p3_skills_simulation: {
+    coteach: 'full',
+    why: 'Same 10 skills, same 4/3/2/1 scale, same standard: a 3 means you performed to the level a paying employer expects.',
+    entMode: 'adapted',
+    entShort: 'Adds the three scoring voices: self, client, Review Board',
+    entChange: 'Add how scoring actually works for them: three voices, not two — their own self-assessment, their client or advisor feedback form, and the Quarterly Review Board. A 2-level gap triggers a conversation, not a quiet override.',
+  },
+  p3_self_assessment: {
+    coteach: 'full',
+    why: 'Individual work on the identical instrument, compared against each student\'s own Phase 1 baseline.',
+    entMode: 'same',
+    entShort: 'Nothing &mdash; teach it as written',
+    entChange: 'No change.',
+  },
+  p3_placement_confirmed: {
+    coteach: 'separate',
+    why: 'No employer, no training agreement with an outside business, no onboarding paperwork.',
+    entMode: 'replaced',
+    entShort: 'Becomes <strong>Enterprise Confirmed</strong>',
+    entChange: 'Replaced by <strong>Enterprise Confirmed</strong> — see the detail page. Sign off individually on final scope, named client or advisor, hours plan, where the work physically happens, and the remote work agreement. An unconfirmed enterprise does not get remote privileges; this is where the gate gets its teeth.',
+  },
+  p4_goal_conference: {
+    coteach: 'full',
+    why: 'The single biggest co-teach win in the bootcamp. These are 1-on-1s: 24 students at 7 minutes is 168 minutes for one teacher, or 84 minutes each if you split the list. Same form, same questions, run in parallel.',
+    entMode: 'same',
+    entShort: 'Adds one question: what would make you quit by November?',
+    entChange: 'Same conference and same form. Add one question for this cohort: <em>what would make you quit on this by November?</em> Self-directed students fail from drift, not from lack of skill, and the answer tells you where to coach.',
+  },
+  p4_internship_plan: {
+    coteach: 'partial',
+    why: 'Same lesson and same work time; the template and the intro email target differ.',
+    entMode: 'adapted',
+    entShort: 'Becomes <strong>Business Plan of Success</strong>; Dec + May scope',
+    entChange: '<strong>Business Plan of Success</strong> instead: two focus skills, what exists by December, what exists by May, weekly hours target, how you will know it worked. The professional intro email goes to a client or advisor rather than a site supervisor.',
+  },
+  p4_commitment: {
+    coteach: 'full',
+    why: 'Same ritual, same Launch Card. Only worth co-teaching if you decide to align the two cohorts\' final day — under the current calendar they are three weeks apart.',
+    entMode: 'adapted',
+    entShort: 'Same ritual, different date; post the Review Board dates',
+    entChange: 'Same ritual on a different date. Post the Review Board dates one more time, and name the first remote A day out loud so the transition is not vague.',
+  },
+};
+
+// Enterprise-only replacement activities, written out in full.
+const ENT_REPLACEMENTS = [
+  {
+    replaces: 'Activity 5 — Explore & Apply',
+    num: '5',
+    title: 'Define Your Enterprise',
+    time: '~90 min',
+    critical: 'The block that makes the whole year gradeable',
+    intro: 'Placement students get their scope handed to them by an employer. Enterprise students have to define their own. A student whose enterprise is still vague in November is a student you cannot grade, coach, or defend at a Review Board — so nobody leaves without a written scope.',
+    sections: [
+      {
+        label: 'What we do in class',
+        bullets: [
+          'Name the enterprise: what is the business, who is the customer, what do they pay for? One paragraph, no jargon.',
+          'If a student cannot say who pays, they do not have a business yet — they have an interest. Today\'s job is to narrow it until someone specific is paying for something specific.',
+          'Scope of work: what will exist by December that does not exist today? What exists by May? Concrete deliverables, not aspirations.',
+          'Bulldog Media students scope against the real production calendar — games, events, announcements — so their year has actual deadlines in it.',
+          'Hours plan: 60 hours is the floor and most of this cohort will pass it easily. The real work is deciding when, how long, and logged how. Self-directed students fail on logging, not on effort.',
+          'Name your client or advisor: at least one external person who will complete a feedback form. A paying client, a recurring customer, or the Bulldog Media advisor.',
+        ],
+      },
+      {
+        label: 'Why the client/advisor name is non-negotiable',
+        bullets: [
+          'The Employer/Advisor Evaluation is 20% of the grade and it needs a voice that is not yours and not the student\'s.',
+          'No name today means no external voice in their grade, and by October it is too late to invent one. Chase this item specifically.',
+        ],
+      },
+    ],
+    deliverable: 'Written enterprise scope (December and May deliverables) · hours plan · named client or advisor. Required before the Client Pitch Panel — a student with no scope has nothing to pitch.',
+  },
+  {
+    replaces: 'Activity 13 — Placement Confirmed',
+    num: '13',
+    title: 'Enterprise Confirmed',
+    time: '~90 min',
+    critical: 'Where the remote-work gate gets its teeth',
+    intro: 'The Placement cohort\'s equivalent is a signed training agreement with an outside business. This is the Enterprise version: the point where you personally sign off that this student has a real, scoped, gradeable enterprise and has earned the privilege of working off campus.',
+    sections: [
+      {
+        label: 'What we do in class',
+        bullets: [
+          'Sign off one at a time, individually — not as a whole-class announcement.',
+          'Confirm: final scope, named client or advisor, hours plan, and where the work physically happens.',
+          'Remote work agreement, written and signed: where you work, how you are reachable during your A-day block, what you submit weekly.',
+          'Bulldog Media students add the equipment and studio access agreement.',
+          'Client feedback form logistics: who sends it, when, and what happens if a client goes quiet. Give them the escalation path now — a missing form in October is a missing 20% of the grade.',
+        ],
+      },
+      {
+        label: 'The gate, stated plainly',
+        bullets: [
+          'An unconfirmed enterprise does not get remote privileges. Working off campus is earned by being current, and it can be taken back.',
+          'Say the whole thing out loud today: <strong>not current, not remote.</strong> If you are behind, you report to class on your A day until you are caught up.',
+        ],
+      },
+    ],
+    deliverable: 'Post-assessment submitted · enterprise confirmed and signed by you · remote work agreement on file · equipment agreement where applicable.',
+  },
+];
+
+// Things the Enterprise cohort carries all year that the Placement cohort does not.
+const ENT_YEARLONG = [
+  {
+    title: 'Quarterly Review Board',
+    when: 'Thu Oct 15 · Wed Dec 16 · Thu Mar 11 · Q4 merges into the May capstone',
+    detail: 'Replaces the site-supervisor evaluation. Board is you plus 2&ndash;3 rotating others — business teacher, Bulldog Media advisor, an administrator, a community business owner. Format: 8-minute presentation, 5 minutes of questions. Student brings hours log, deliverables or client work, at least one client feedback form, a completed 10-skill self-assessment, and next quarter\'s plan. The board scores all 10 skills; scores are averaged, and any 2-level disagreement gets discussed before it is recorded.',
+    note: 'Score the employability skills, not the revenue. A student who hustled hard into a bad market has demonstrated more than one who coasted on an easy one.',
+  },
+  {
+    title: 'Client / advisor feedback form',
+    when: 'At least one per quarter',
+    detail: 'The external voice in the Professional Growth half of the grade. Student is responsible for sending it and following up; you are responsible for having told them the escalation path before it becomes a problem.',
+    note: 'Build the follow-up into the weekly reflection prompt in the quarter\'s final two weeks so it does not land as a surprise.',
+  },
+  {
+    title: 'Remote work privilege',
+    when: 'Every A day after Enterprise Confirmed',
+    detail: 'They work from home, a job site, or the studio. The privilege is conditional on being current on the hours log and weekly reflection. Behind means they report to class on their A day.',
+    note: 'Check in with all 10 on the first remote A day even though they are off campus. If nobody hears from you that day, the hours logs get thin within a month.',
+  },
+  {
+    title: 'Capstone in May, not December',
+    when: 'Week of May 10',
+    detail: 'Same booth presentation and stage talk as the Placement cohort, nine months of work behind it instead of four. The Q4 Review Board folds into it rather than running separately.',
+    note: 'Hand back their Business Plan of Success and their day-one index card at the capstone. Nine months is long enough that they will have forgotten what they wrote.',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+const COTEACH_META = {
+  full:     { label: 'Co-teach',  cls: 'ct-full', blurb: 'One lesson, one room, both cohorts' },
+  partial:  { label: 'Split part', cls: 'ct-part', blurb: 'Co-teach most of it, split for the rest' },
+  separate: { label: 'Separate',  cls: 'ct-sep',  blurb: 'Genuinely different lessons' },
+};
+const ENT_META = {
+  same:     { label: 'Same',     cls: 'em-same' },
+  adapted:  { label: 'Adapted',  cls: 'em-adapt' },
+  replaced: { label: 'Replaced', cls: 'em-repl' },
+};
+
+function esc(s) {
+  return String(s == null ? '' : s);
+}
+
+// Shared <head> so both documents print identically.
+function head(title, subtitle) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${esc(title)} — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:920px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.7rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1rem}
+    .lede{font-size:.85rem;color:#4b5563;line-height:1.75;margin-bottom:1.5rem}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;margin:2.25rem 0 .4rem}
+    .sec-sub{font-size:.8rem;color:#6b7280;margin-bottom:1rem;line-height:1.6}
+
+    /* how-to-use banner */
+    .howto{background:rgba(251,205,7,.1);border:1.5px solid rgba(251,205,7,.4);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1.5rem}
+    .howto-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;color:#92400e;margin-bottom:.4rem}
+    .howto p{font-size:.82rem;color:#374151;line-height:1.7}
+
+    /* legend */
+    .legend{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.25rem}
+    .lg{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:#4b5563;border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:.4rem .65rem}
+    .chip{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .45rem;border-radius:4px;white-space:nowrap}
+    .ct-full{background:rgba(16,185,129,.14);color:#047857;border:1px solid rgba(16,185,129,.4)}
+    .ct-part{background:rgba(251,205,7,.2);color:#92400e;border:1px solid rgba(251,205,7,.5)}
+    .ct-sep{background:rgba(172,22,29,.1);color:#AC161D;border:1px solid rgba(172,22,29,.35)}
+    .em-same{background:rgba(107,114,128,.12);color:#4b5563;border:1px solid rgba(107,114,128,.3)}
+    .em-adapt{background:rgba(59,130,246,.12);color:#1d4ed8;border:1px solid rgba(59,130,246,.35)}
+    .em-repl{background:rgba(172,22,29,.1);color:#AC161D;border:1px solid rgba(172,22,29,.35)}
+
+    /* activity card */
+    /* Tall cards are allowed to split across pages — forcing break-inside:avoid on
+       every one of them pushed ~6 pages of whitespace into the PDF. Keep the header
+       glued to the start of its body instead. */
+    .act{background:#fff;border:1px solid #d8dbe0;border-radius:12px;margin-bottom:.85rem;overflow:hidden}
+    .act.sep-act{border-color:rgba(172,22,29,.4);border-width:1.5px}
+    .act-head{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 1.1rem;border-bottom:1px solid #eef0f2;background:#fcfcfd}
+    .act-num{width:1.9rem;height:1.9rem;border-radius:7px;background:#1c1f2e;color:#fff;display:flex;align-items:center;justify-content:center;
+             font-family:'Montserrat',sans-serif;font-weight:900;font-size:.78rem;flex-shrink:0}
+    .act-titles{flex:1;min-width:0}
+    .act-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.93rem;color:#1c1f2e;line-height:1.25}
+    .act-sub{font-size:.72rem;color:#6b7280;margin-top:.15rem;line-height:1.45}
+    .act-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.25rem;flex-shrink:0}
+    .act-time{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.63rem;color:#6b7280;white-space:nowrap}
+    .act-body{padding:.85rem 1.1rem 1rem}
+
+    .sec-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin:.7rem 0 .35rem}
+    .sec-label:first-child{margin-top:0}
+    ul.tasks{list-style:none;margin:0}
+    ul.tasks li{position:relative;padding-left:1.15rem;font-size:.79rem;color:#374151;line-height:1.6;margin-bottom:.28rem}
+    ul.tasks li:before{content:'';position:absolute;left:.3rem;top:.52rem;width:.28rem;height:.28rem;border-radius:50%;background:#AC161D}
+    ul.checks{list-style:none;margin:0}
+    ul.checks li{position:relative;padding-left:1.3rem;font-size:.77rem;color:#374151;line-height:1.55;margin-bottom:.3rem}
+    ul.checks li:before{content:'';position:absolute;left:0;top:.15rem;width:.8rem;height:.8rem;border:1.5px solid #9ca3af;border-radius:3px}
+
+    .deliv{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.35);border-radius:8px;padding:.6rem .8rem;margin-top:.75rem}
+    .deliv-l{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#92400e;margin-bottom:.2rem}
+    .deliv-t{font-size:.78rem;color:#374151;line-height:1.55}
+    .deliv-t strong{color:#1c1f2e}
+
+    .why{background:#f8f9fa;border-left:3px solid #d8dbe0;border-radius:0 6px 6px 0;padding:.55rem .8rem;margin-top:.7rem;font-size:.75rem;color:#4b5563;line-height:1.6}
+    .why b{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;display:block;margin-bottom:.15rem}
+    .why.ent{background:rgba(59,130,246,.05);border-left-color:#60a5fa}
+    .why.ent b{color:#1d4ed8}
+
+    /* write-in space */
+    .notes{margin-top:.75rem}
+    .notes-l{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#b0b4ba;margin-bottom:.3rem}
+    .rule{border-bottom:1px solid #dcdfe3;height:1.05rem}
+    .rule.short{width:60%}
+
+    /* tables */
+    .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid #d8dbe0;border-radius:10px;margin-bottom:1.25rem;break-inside:avoid}
+    table{width:100%;border-collapse:collapse;min-width:520px}
+    th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.6rem .75rem;background:#f8f9fa;border-bottom:1px solid #e5e7eb}
+    td{padding:.5rem .75rem;font-size:.78rem;color:#374151;border-bottom:1px solid #f1f2f4;vertical-align:top}
+    tr:last-child td{border-bottom:none}
+    td.n{font-family:'Montserrat',sans-serif;font-weight:900;color:#1c1f2e;width:2rem}
+    td.t{font-family:'Montserrat',sans-serif;font-weight:600}
+
+    /* callouts */
+    .co{border-radius:10px;padding:1rem 1.2rem;margin:1.1rem 0;font-size:.81rem;line-height:1.7;color:#374151}
+    .co strong{color:#1c1f2e}
+    .co-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;margin-bottom:.4rem}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .co-red .co-t{color:#AC161D}
+    .co-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .co-gold .co-t{color:#92400e}
+    .co-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .co-blue .co-t{color:#1d4ed8}
+    .co-green{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.3)}
+    .co-green .co-t{color:#047857}
+    .co ul{margin:.4rem 0 0 1.1rem}
+    .co li{margin-bottom:.25rem}
+
+    /* pacing worksheet */
+    .ws{background:#fff;border:1px solid #d8dbe0;border-radius:10px;overflow:hidden;margin-bottom:1.25rem;break-inside:avoid}
+    .ws-head{display:grid;grid-template-columns:3rem 6.5rem 1fr 1fr;gap:0;background:#f8f9fa;border-bottom:1px solid #e5e7eb}
+    .ws-head div{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;padding:.5rem .6rem;border-right:1px solid #e5e7eb}
+    .ws-head div:last-child{border-right:none}
+    .ws-row{display:grid;grid-template-columns:3rem 6.5rem 1fr 1fr;border-bottom:1px solid #eef0f2}
+    .ws-row:last-child{border-bottom:none}
+    .ws-row div{padding:.5rem .6rem;border-right:1px solid #eef0f2;min-height:1.9rem;font-size:.76rem;color:#374151}
+    .ws-row div:last-child{border-right:none}
+    .ws-row .wn{font-family:'Montserrat',sans-serif;font-weight:900;color:#9ca3af}
+
+    .foot{font-size:.72rem;color:#9ca3af;margin-top:2rem;line-height:1.7}
+
+    @media print{
+      nav,.print-btn,.screen-only{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h2{page-break-after:avoid}
+      .act,.tbl-wrap,.co,.ws,.howto{box-shadow:none}
+      .act{margin-bottom:.6rem}
+      /* Never orphan a card header, a section label, or a note prompt at a page foot */
+      .act-head{break-after:avoid;page-break-after:avoid}
+      .sec-label,.notes-l,.deliv-l,.co-t{break-after:avoid;page-break-after:avoid}
+      .deliv,.why,.notes,.co,.ws,.tbl-wrap,.howto{break-inside:avoid;page-break-inside:avoid}
+      ul.tasks li,ul.checks li{break-inside:avoid;page-break-inside:avoid}
+    }
+    @page{margin:.5in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">${esc(subtitle)}</span>
+    <span class="teacher-badge font-heading">Teacher</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+<main>`;
+}
+
+const FOOT = `</main>
+</body>
+</html>
+`;
+
+function renderSections(sections) {
+  return sections.map((s) => {
+    let html = `<div class="sec-label font-heading">${esc(s.label)}</div>`;
+    if (s.bullets && s.bullets.length) {
+      html += '<ul class="tasks">' + s.bullets.map((b) => `<li>${esc(b)}</li>`).join('') + '</ul>';
+    }
+    if (s.checks && s.checks.length) {
+      html += '<ul class="checks">' + s.checks.map((c) => `<li>${esc(c)}</li>`).join('') + '</ul>';
+    }
+    return html;
+  }).join('');
+}
+
+function noteBlock(label, rules = 2) {
+  let r = '';
+  for (let i = 0; i < rules; i++) r += '<div class="rule"></div>';
+  return `<div class="notes"><div class="notes-l font-heading">${esc(label)}</div>${r}</div>`;
+}
+
+// ───────────────────────────── DOC 1: MASTER TASK LIST ──────────────────────
+function buildTaskList(acts) {
+  const tally = { full: 0, partial: 0, separate: 0 };
+  acts.forEach((a) => { tally[EDIT[a.id].coteach]++; });
+
+  let h = head('Bootcamp Master Task List', 'Master Task List');
+
+  h += `
+  <h1 class="font-heading">Bootcamp Master Task List</h1>
+  <p class="page-sub">Field Experience · all 16 activities · built from bootcamp.html</p>
+  <p class="lede">Every task in the bootcamp, in order, exactly as students see it &mdash; with a co-teach code on each activity and blank space to write your own pacing. Nothing here is locked. The point of printing it is to argue with it.</p>
+
+  <div class="howto">
+    <div class="howto-t font-heading">How to use this</div>
+    <p>Read down the list and decide two things per activity: <strong>which day it lands on</strong> and <strong>whether you teach it together or apart</strong>. The co-teach codes are a recommendation based on how much of each activity is genuinely identical for both cohorts &mdash; not a constraint. Write your day assignments in the margin, then transfer them to the pacing worksheet at the back.</p>
+  </div>
+
+  <div class="legend">
+    <div class="lg"><span class="chip ct-full font-heading">Co-teach</span> One lesson, one room, both cohorts</div>
+    <div class="lg"><span class="chip ct-part font-heading">Split part</span> Co-teach most of it, split for the rest</div>
+    <div class="lg"><span class="chip ct-sep font-heading">Separate</span> Genuinely different lessons</div>
+  </div>
+
+  <div class="co co-green">
+    <div class="co-t font-heading">The short answer on co-teaching</div>
+    <strong>${tally.full} of the 16 activities are fully co-teachable, ${tally.partial} need a partial split, and only ${tally.separate} are genuinely separate lessons.</strong>
+    The two that cannot be shared are the two where the Placement cohort points at an outside employer and the Enterprise cohort has none: <strong>Activity 5 (Explore &amp; Apply)</strong> and <strong>Activity 13 (Placement Confirmed)</strong>. Everything else is either identical or the same lesson with different examples.
+    <ul>
+      <li><strong>Activity 10 (Dilemma Stations) and Activity 14 (Goal Conference) are better together, not just cheaper.</strong> 15 stations support more pairs than one cohort fills, and the debrief gets sharper when placement and enterprise students argue from different positions. The goal conferences are 1-on-1s &mdash; two teachers working in parallel cuts 168 minutes down to 84.</li>
+      <li><strong>Activity 8 (Mock Interview) is the one to plan carefully.</strong> Step 1, peer speed interviews, is better with 24 students. Step 2 needs outside adults, and combining cohorts means 24 students needing interviewers on the same day instead of 14.</li>
+    </ul>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">Read this before you assign days &mdash; the pacing decision only you can make</div>
+    Content alignment and <em>calendar</em> alignment are two different things. The Placement cohort meets every day and the Enterprise cohort meets A days only, so Placement covers roughly two activities for every one the Enterprise cohort covers. Under the dated calendar as it currently stands, <strong>only Day 1 (Thu Aug 13) has both cohorts doing the same activity.</strong> After that they drift apart immediately &mdash; by Aug 19 Placement is on Activity 5 while Enterprise is on Activity 3.
+    <ul>
+      <li><strong>To actually co-teach,</strong> the shared lessons have to be pinned to A days, and the Placement-only work has to fill the B days. That caps you at roughly six shared blocks in the Aug 13&ndash;28 window.</li>
+      <li><strong>The cost of doing that:</strong> Explore &amp; Apply gets pushed to a B day after the resume workshop, which moves applications from Aug 19 to Aug 24 or later. That is five fewer days on the employer paperwork clock before the Aug 31 start.</li>
+      <li><strong>The cost of not doing it:</strong> you teach all 12 blocks twice, and the second cohort's version is the one that gets thin when the week gets busy.</li>
+    </ul>
+    This is a real trade between co-teaching efficiency and placement lead time, and it depends on how fast your employers actually turn paperwork around. That is your call, not the document's &mdash; the worksheet at the back is there for whichever way you go.
+  </div>
+
+  <h2 class="font-heading">Summary &mdash; all 16 at a glance</h2>
+  <p class="sec-sub">The full detail follows. This table is for the wall.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:2rem">#</th><th>Activity</th><th style="width:7rem">Time</th><th style="width:5.5rem">Together?</th><th style="width:5.5rem">Enterprise</th></tr></thead>
+      <tbody>`;
+
+  let n = 0;
+  let lastPhase = null;
+  acts.forEach((a) => {
+    n++;
+    const e = EDIT[a.id];
+    const ct = COTEACH_META[e.coteach];
+    const em = ENT_META[e.entMode];
+    if (a.phase !== lastPhase) {
+      h += `<tr><td colspan="5" style="background:#f8f9fa;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;color:#6b7280">${esc(a.phase)}</td></tr>`;
+      lastPhase = a.phase;
+    }
+    h += `<tr><td class="n">${n}</td><td class="t">${esc(a.title)}</td><td style="font-size:.72rem;color:#6b7280">${esc((a.time || '').replace(/^~/, '~'))}</td>`
+       + `<td><span class="chip ${ct.cls} font-heading">${ct.label}</span></td>`
+       + `<td><span class="chip ${em.cls} font-heading">${em.label}</span></td></tr>`;
+  });
+
+  h += `</tbody></table></div>`;
+
+  // Full detail, grouped by phase
+  lastPhase = null;
+  n = 0;
+  acts.forEach((a) => {
+    n++;
+    const e = EDIT[a.id];
+    const ct = COTEACH_META[e.coteach];
+    const em = ENT_META[e.entMode];
+
+    if (a.phase !== lastPhase) {
+      h += `\n  <h2 class="font-heading">${esc(a.phase)}</h2>\n`;
+      lastPhase = a.phase;
+    }
+
+    h += `
+  <div class="act${e.coteach === 'separate' ? ' sep-act' : ''}">
+    <div class="act-head">
+      <div class="act-num font-heading">${n}</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">${esc(a.title)}</div>
+        <div class="act-sub">${esc(a.subtitle || '')}</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip ${ct.cls} font-heading">${ct.label}</span>
+        <span class="act-time font-heading">${esc(a.time || '')}</span>
+      </div>
+    </div>
+    <div class="act-body">
+      ${renderSections(a.sections)}
+      ${a.completion ? `<div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t"><strong>${esc(a.completion.label)}</strong>${a.completion.link ? ` &mdash; via <em>${esc(a.completion.link)}</em>` : ' &mdash; in-page on bootcamp.html'}${a.completion.submitKind === 'text entry' ? ' (typed response)' : ''}</div></div>` : ''}
+      <div class="why"><b>Together or apart</b>${esc(e.why)}</div>
+      <div class="why ent"><b>Enterprise cohort &mdash; ${em.label.toLowerCase()}</b>${e.entChange}</div>
+      ${noteBlock('Our day / our changes', 2)}
+    </div>
+  </div>`;
+  });
+
+  // Pacing worksheets
+  h += `
+  <h2 class="font-heading">Pacing Worksheet &mdash; Placement Cohort</h2>
+  <p class="sec-sub">14 students, every day. 12 blocks between Thu Aug 13 and Fri Aug 28, first day at placement Mon Aug 31. Dates are pre-filled from the school calendar; the activity column is yours.</p>
+  <div class="ws">
+    <div class="ws-head"><div>#</div><div>Date</div><div>Activity</div><div>Notes</div></div>
+    ${[['1','Thu Aug 13 (A)'],['2','Fri Aug 14 (B)'],['3','Mon Aug 17 (A)'],['4','Tue Aug 18 (B)'],['5','Wed Aug 19 (A)'],['6','Thu Aug 20 (B)'],['7','Fri Aug 21 (A)'],['8','Mon Aug 24 (B)'],['9','Tue Aug 25 (A)'],['10','Wed Aug 26 (B)'],['11','Thu Aug 27 (A)'],['12','Fri Aug 28 (B)']]
+      .map(([i, d]) => `<div class="ws-row"><div class="wn font-heading">${i}</div><div style="font-size:.72rem;color:#6b7280">${d}</div><div></div><div></div></div>`).join('')}
+  </div>
+
+  <h2 class="font-heading">Pacing Worksheet &mdash; Enterprise Cohort</h2>
+  <p class="sec-sub">10 students, A days only, full year. 12 A-day blocks between Thu Aug 13 and Tue Sep 15 (Labor Day Sep 7 falls out). Shaded dates are the six A days where <em>both</em> cohorts are in the building &mdash; those are your only co-teach windows.</p>
+  <div class="ws">
+    <div class="ws-head"><div>#</div><div>Date</div><div>Activity</div><div>Notes</div></div>
+    ${[['1','Thu Aug 13 (A)',true],['2','Mon Aug 17 (A)',true],['3','Wed Aug 19 (A)',true],['4','Fri Aug 21 (A)',true],['5','Tue Aug 25 (A)',true],['6','Thu Aug 27 (A)',true],['7','Mon Aug 31 (A)',false],['8','Wed Sep 2 (A)',false],['9','Fri Sep 4 (A)',false],['10','Wed Sep 9 (A)',false],['11','Fri Sep 11 (A)',false],['12','Tue Sep 15 (A)',false]]
+      .map(([i, d, shared]) => `<div class="ws-row"${shared ? ' style="background:rgba(16,185,129,.05)"' : ''}><div class="wn font-heading">${i}</div><div style="font-size:.72rem;color:${shared ? '#047857' : '#6b7280'}">${d}${shared ? ' &nbsp;&#9679;' : ''}</div><div></div><div></div></div>`).join('')}
+  </div>
+  <p class="sec-sub" style="margin-top:-.5rem">&#9679; = Placement cohort is also in class that day. After Aug 27 the Placement cohort is at their placement sites, so Enterprise blocks 7&ndash;12 are solo no matter what you decide.</p>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">Time check against your own estimates</div>
+    The activity times in bootcamp.html add up to roughly 11&ndash;13 ninety-minute blocks depending on how long the goal conferences run, which is what makes a 12-block bootcamp fit. The four short ones &mdash; Interview Improvement Plan, Meet Your 10 Skills, Post-Assessment, and Internship Plan of Success &mdash; are 30&ndash;60 minutes each, so they are your natural pairing candidates if you need to reclaim a day.
+  </div>
+
+  <p class="foot">Generated from <em>bootcamp.html</em> by <em>generate-bootcamp-task-lists.js</em> &mdash; rerun it after editing bootcamp activities and this list updates itself. Companion documents: <a href="teacher-enterprise-track.html">Enterprise Track &mdash; What's Different</a> &middot; <a href="teacher-calendar.html">Bootcamp Calendar</a> &middot; <a href="teacher-grading.html">Grading Policy</a>.</p>`;
+
+  return h + FOOT;
+}
+
+// ─────────────────────── DOC 2: ENTERPRISE TRACK ────────────────────────────
+function buildEnterprise(acts) {
+  const modes = { same: [], adapted: [], replaced: [] };
+  acts.forEach((a, i) => modes[EDIT[a.id].entMode].push({ n: i + 1, title: a.title }));
+
+  let h = head('Enterprise Track — What\'s Different', 'Enterprise Track');
+
+  h += `
+  <h1 class="font-heading">Enterprise Track &mdash; What's Different</h1>
+  <p class="page-sub">Field Experience · 10 A-day students · self-enterprise &amp; Bulldog Media</p>
+  <p class="lede">These 10 students meet on A days for the full year and run their own business or work for a school enterprise. They do not go to an outside placement, which means two activities have to be replaced outright and ten need reframing. This document is only the differences &mdash; everything not listed here is identical to the Placement cohort and can be taught in the same room.</p>
+
+  <div class="howto">
+    <div class="howto-t font-heading">The one-sentence version</div>
+    <p>Same course, same grading categories, same weights, same 12 blocks &mdash; but where the Placement cohort points at an employer, this cohort points at their own business, and where the Placement cohort has a site supervisor scoring them, this cohort has a <strong>Quarterly Review Board</strong> and a client feedback form.</p>
+  </div>
+
+  <div class="legend">
+    <div class="lg"><span class="chip em-same font-heading">Same</span> Teach it unchanged (${modes.same.length} activities)</div>
+    <div class="lg"><span class="chip em-adapt font-heading">Adapted</span> Same lesson, different examples (${modes.adapted.length})</div>
+    <div class="lg"><span class="chip em-repl font-heading">Replaced</span> Different activity entirely (${modes.replaced.length})</div>
+  </div>
+
+  <h2 class="font-heading">What changes, at a glance</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:2rem">#</th><th>Activity</th><th style="width:5.5rem">Enterprise</th><th>What's different</th></tr></thead>
+      <tbody>`;
+
+  acts.forEach((a, i) => {
+    const e = EDIT[a.id];
+    const em = ENT_META[e.entMode];
+    const short = e.entShort;
+    h += `<tr><td class="n">${i + 1}</td><td class="t">${esc(a.title)}</td>`
+       + `<td><span class="chip ${em.cls} font-heading">${em.label}</span></td>`
+       + `<td style="font-size:.75rem">${short}</td></tr>`;
+  });
+
+  h += `</tbody></table></div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">The two that cannot be shared</div>
+    Both are the same problem: the Placement cohort's activity depends on an outside employer, and this cohort does not have one.
+    <ul>
+      <li><strong>Activity 5, Explore &amp; Apply</strong> &rarr; there is no job menu to browse and no application to submit. Replaced by <strong>Define Your Enterprise</strong>.</li>
+      <li><strong>Activity 13, Placement Confirmed</strong> &rarr; there is no employer to confirm and no onboarding paperwork. Replaced by <strong>Enterprise Confirmed</strong>.</li>
+    </ul>
+    Both replacements are written out in full below. Treat them with the same do-not-move weight that their Placement counterparts carry.
+  </div>
+
+  <h2 class="font-heading">The two replacement activities, in full</h2>
+  <p class="sec-sub">These are proposals, not settled lessons &mdash; there is note space under each. They are built to sit in the same slot and take the same 90 minutes as the activity they replace.</p>`;
+
+  ENT_REPLACEMENTS.forEach((r) => {
+    h += `
+  <div class="act sep-act">
+    <div class="act-head">
+      <div class="act-num font-heading">${esc(r.num)}</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">${esc(r.title)}</div>
+        <div class="act-sub">Replaces ${esc(r.replaces)}</div>
+      </div>
+      <div class="act-meta">
+        <span class="chip em-repl font-heading">Replaced</span>
+        <span class="act-time font-heading">${esc(r.time)}</span>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="co co-gold" style="margin:0 0 .8rem"><div class="co-t font-heading">${esc(r.critical)}</div>${esc(r.intro)}</div>
+      ${renderSections(r.sections)}
+      <div class="deliv"><div class="deliv-l font-heading">Student submits</div><div class="deliv-t">${r.deliverable}</div></div>
+      ${noteBlock('Our changes', 3)}
+    </div>
+  </div>`;
+  });
+
+  h += `
+  <h2 class="font-heading">Activity-by-activity reframing</h2>
+  <p class="sec-sub">The ten adapted activities. Same lesson in the same room &mdash; these are the adjustments you make out loud while teaching, not a separate plan.</p>`;
+
+  acts.forEach((a, i) => {
+    const e = EDIT[a.id];
+    if (e.entMode !== 'adapted') return;
+    h += `
+  <div class="act">
+    <div class="act-head">
+      <div class="act-num font-heading">${i + 1}</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">${esc(a.title)}</div>
+        <div class="act-sub">${esc(a.subtitle || '')}</div>
+      </div>
+      <div class="act-meta"><span class="chip em-adapt font-heading">Adapted</span><span class="act-time font-heading">${esc(a.time || '')}</span></div>
+    </div>
+    <div class="act-body">
+      <div class="why ent" style="margin-top:0"><b>What changes for this cohort</b>${e.entChange}</div>
+      ${noteBlock('Our changes', 2)}
+    </div>
+  </div>`;
+  });
+
+  h += `
+  <h2 class="font-heading">Teach unchanged</h2>
+  <p class="sec-sub">Nothing to adapt. If you are co-teaching any block, start with these &mdash; they need no split at all.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:2rem">#</th><th>Activity</th><th>Note</th></tr></thead>
+      <tbody>
+        ${modes.same.map((m) => {
+          const a = acts.find((x) => x.title === m.title);
+          return `<tr><td class="n">${m.n}</td><td class="t">${esc(m.title)}</td><td style="font-size:.75rem;color:#6b7280">${EDIT[a.id].entChange}</td></tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="font-heading">What this cohort carries that the Placement cohort does not</h2>
+  <p class="sec-sub">The bootcamp is five weeks of a nine-month course. These four items are the year, and they are the reason the Enterprise track is a different program rather than a slower version of the same one.</p>`;
+
+  ENT_YEARLONG.forEach((y) => {
+    h += `
+  <div class="act">
+    <div class="act-head">
+      <div class="act-titles">
+        <div class="act-title font-heading">${esc(y.title)}</div>
+        <div class="act-sub">${esc(y.when)}</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <p style="font-size:.79rem;color:#374151;line-height:1.65">${esc(y.detail)}</p>
+      <div class="why"><b>Worth knowing</b>${esc(y.note)}</div>
+      ${noteBlock('Our notes', 2)}
+    </div>
+  </div>`;
+  });
+
+  h += `
+  <div class="co co-blue">
+    <div class="co-t font-heading">The scheduling reality worth planning around</div>
+    This cohort's twelve blocks are spread across five weeks with a no-class day between almost every one, and the Placement cohort is only in the building for the first six of them. Two consequences: <strong>assume this cohort loses the thread between blocks</strong> &mdash; open each one with two minutes of "here is where we were" &mdash; and <strong>accept that blocks 7 through 12 are solo</strong> no matter what you decide about co-teaching, because by Aug 31 the Placement students are at their sites.
+  </div>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">One thing to confirm before Thursday</div>
+    This whole plan assumes the Enterprise cohort's A-day block is <strong>your</strong> contact time. If the Bulldog Media students spend that block with the media advisor instead, the twelve-block window shrinks and the dates shift. Worth a five-minute conversation before Aug 13 rather than discovering it in week two.
+  </div>
+
+  <p class="foot">Generated from <em>bootcamp.html</em> by <em>generate-bootcamp-task-lists.js</em>. Companion documents: <a href="teacher-task-list.html">Master Task List</a> &middot; <a href="teacher-calendar.html">Bootcamp Calendar</a> &middot; <a href="teacher-grading.html">Grading Policy</a>.</p>`;
+
+  return h + FOOT;
+}
+
+// Reads every activity straight out of bootcamp.html. JavaScript is disabled on
+// purpose: bootcamp.html redirects to login.html without a Supabase session, and the
+// activity markup is static anyway.
+async function extractActivities(browser) {
+  const page = await browser.newPage();
+  await page.setJavaScriptEnabled(false);
+  await page.goto('file:///' + path.join(REPO, 'bootcamp.html').replace(/\\/g, '/'),
+    { waitUntil: 'domcontentloaded', timeout: 30000 });
+
+  const acts = await page.evaluate(() => {
+    const txt = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
+    const out = [];
+    let currentPhase = null;
+
+    document.querySelectorAll('.phase-title, .activity-card').forEach((node) => {
+      if (node.classList.contains('phase-title')) { currentPhase = txt(node); return; }
+
+      const sections = [];
+      const body = node.querySelector('.activity-body');
+      if (body) {
+        let cur = null;
+        Array.from(body.children).forEach((child) => {
+          if (child.classList.contains('activity-section-label')) {
+            cur = { label: txt(child), bullets: [], checks: [] };
+            sections.push(cur);
+            return;
+          }
+          if (!cur) return;
+          if (child.classList.contains('activity-bullets')) {
+            child.querySelectorAll('li').forEach((li) => cur.bullets.push(txt(li)));
+          }
+          if (child.classList.contains('check-item')) cur.checks.push(txt(child));
+        });
+      }
+
+      const cz = node.querySelector('.completion-zone');
+      out.push({
+        phase: currentPhase,
+        id: node.id.replace(/^card-/, ''),
+        title: txt(node.querySelector('.activity-title')),
+        subtitle: txt(node.querySelector('.activity-subtitle')),
+        time: txt(node.querySelector('.time-est')),
+        sections,
+        completion: cz ? {
+          label: txt(cz.querySelector('.completion-zone-label')),
+          link: cz.querySelector('a[href]') ? cz.querySelector('a[href]').getAttribute('href') : null,
+          submitKind: cz.querySelector('textarea') ? 'text entry'
+            : cz.querySelector('a[href]') ? 'separate tool page' : 'button',
+        } : null,
+      });
+    });
+    return out;
+  });
+
+  await page.close();
+  return acts;
+}
+
+// ───────────────────────────────── MAIN ─────────────────────────────────────
+async function main() {
+  if (!fs.existsSync(CHROME_PATH)) {
+    throw new Error('Chrome not found at ' + CHROME_PATH);
+  }
+  const browser = await puppeteer.launch({ executablePath: CHROME_PATH, headless: 'new' });
+
+  const acts = await extractActivities(browser);
+  if (!acts.length) {
+    await browser.close();
+    throw new Error('Extracted 0 activities from bootcamp.html — did the markup change?');
+  }
+  console.log(`Read ${acts.length} activities from bootcamp.html`);
+
+  const missing = acts.filter((a) => !EDIT[a.id]);
+  if (missing.length) {
+    await browser.close();
+    throw new Error('No editorial entry for: ' + missing.map((m) => m.id).join(', ')
+      + '\nAdd them to the EDIT map at the top of this script.');
+  }
+
+  const docs = [
+    { file: 'teacher-task-list.html',        pdf: 'Bootcamp Master Task List.pdf',            html: buildTaskList(acts) },
+    { file: 'teacher-enterprise-track.html', pdf: 'Enterprise Track - What Is Different.pdf', html: buildEnterprise(acts) },
+  ];
+
+  docs.forEach((d) => {
+    fs.writeFileSync(path.join(REPO, d.file), d.html);
+    console.log(`Wrote ${d.file}  (${(d.html.length / 1024).toFixed(1)} KB)`);
+  });
+
+  if (!fs.existsSync(OUT_PDF_DIR)) fs.mkdirSync(OUT_PDF_DIR, { recursive: true });
+
+  const page = await browser.newPage();
+  await page.setViewport({ width: 816, height: 500 });
+
+  for (const d of docs) {
+    await page.goto('file:///' + path.join(REPO, d.file).replace(/\\/g, '/'), {
+      waitUntil: 'networkidle0', timeout: 30000,
+    });
+    await page.emulateMediaType('print');
+    const outPath = path.join(OUT_PDF_DIR, d.pdf);
+    await page.pdf({
+      path: outPath,
+      printBackground: true,
+      format: 'Letter',
+      margin: { top: '0.5in', right: '0.5in', bottom: '0.5in', left: '0.5in' },
+      displayHeaderFooter: true,
+      headerTemplate: '<div></div>',
+      footerTemplate: `<div style="width:100%;font-family:Montserrat,Arial,sans-serif;font-size:7pt;color:#9ca3af;padding:0 .5in;display:flex;justify-content:space-between">
+        <span>Field Experience · ${d.pdf.replace(/\.pdf$/, '')}</span><span class="pageNumber"></span></div>`,
+    });
+    const kb = (fs.statSync(outPath).size / 1024).toFixed(0);
+    console.log(`Wrote ${outPath}  (${kb} KB)`);
+  }
+
+  await browser.close();
+  console.log(`\nDone. PDFs in: ${OUT_PDF_DIR}`);
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
