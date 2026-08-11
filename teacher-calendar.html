@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootcamp Calendar — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer;display:flex;align-items:center;gap:.4rem}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;letter-spacing:-.02em;margin-bottom:.375rem}
+    .page-sub{font-size:.875rem;color:#6b7280;margin-bottom:1.25rem}
+    .lede{font-size:.875rem;color:#4b5563;line-height:1.75;margin-bottom:2rem}
+
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;margin:2.75rem 0 .5rem;letter-spacing:-.01em}
+    .sec-num{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:8px;background:#AC161D;color:#fff;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:900;margin-right:.55rem;vertical-align:middle}
+    .sec-sub{font-size:.82rem;color:#6b7280;margin-bottom:1.25rem;line-height:1.6}
+
+    /* Cohort pills */
+    .pill{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .7rem;border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+    .pill-place{background:rgba(99,102,241,.12);color:#4338ca;border:1px solid rgba(99,102,241,.3)}
+    .pill-ent{background:rgba(16,185,129,.1);color:#047857;border:1px solid rgba(16,185,129,.3)}
+
+    /* Urgent prep */
+    .urgent{background:rgba(172,22,29,.05);border:1.5px solid rgba(172,22,29,.28);border-radius:14px;padding:1.5rem;margin-bottom:2rem}
+    .urgent-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;color:#AC161D;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+    .urgent-sub{font-size:.8rem;color:#6b7280;margin-bottom:1rem}
+    .check-row{display:flex;align-items:flex-start;gap:.7rem;padding:.6rem 0;border-top:1px solid rgba(172,22,29,.12)}
+    .check-row:first-of-type{border-top:none}
+    .check-box{width:1.05rem;height:1.05rem;border:1.5px solid #AC161D;border-radius:4px;flex-shrink:0;margin-top:.15rem}
+    .check-text{font-size:.83rem;color:#374151;line-height:1.6;flex:1}
+    .check-when{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#AC161D;display:block;margin-bottom:.1rem}
+
+    /* Overview table */
+    .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(16,24,40,.04);margin-bottom:1.5rem}
+    table{width:100%;border-collapse:collapse;min-width:600px}
+    th{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.75rem 1rem;background:#f9fafb;border-bottom:1px solid #e5e7eb}
+    td{padding:.7rem 1rem;font-size:.8rem;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:top}
+    tr:last-child td{border-bottom:none}
+    .td-blk{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.78rem;color:#AC161D;white-space:nowrap}
+    .td-date{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#1c1f2e;white-space:nowrap}
+    .td-act{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.79rem;color:#1c1f2e}
+    .ab{display:inline-block;width:1.05rem;height:1.05rem;line-height:1.05rem;text-align:center;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:900;margin-left:.35rem}
+    .ab-a{background:rgba(16,185,129,.15);color:#047857}
+    .ab-b{background:rgba(99,102,241,.13);color:#4338ca}
+
+    /* ===== Calendar grid ===== */
+    .cal-wrap{overflow-x:auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:.9rem;box-shadow:0 1px 3px rgba(16,24,40,.04);margin-bottom:1.25rem}
+    .cal{display:grid;grid-template-columns:4.2rem repeat(5,minmax(8.4rem,1fr));gap:.3rem;min-width:660px}
+    .cal-h{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;padding:.3rem .45rem .45rem;text-align:center}
+    .cal-wk{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#9ca3af;display:flex;align-items:center;justify-content:flex-end;padding-right:.5rem;text-align:right;line-height:1.3}
+    .cal-cell{border:1px solid #e5e7eb;border-radius:8px;padding:.45rem .5rem .5rem;min-height:5.3rem;display:flex;flex-direction:column;background:#fff}
+    .cal-top{display:flex;align-items:center;justify-content:space-between;gap:.3rem;margin-bottom:.3rem}
+    .cal-date{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.8rem;color:#1c1f2e;line-height:1}
+    .cal-ab{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.55rem;padding:.1rem .3rem;border-radius:3px;line-height:1.2}
+    .cal-blk{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.15rem}
+    .cal-act{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;line-height:1.3;color:#1c1f2e}
+    .cal-note{font-size:.62rem;color:#6b7280;line-height:1.35;margin-top:.2rem}
+    .cal-star{font-size:.62rem;font-weight:700;margin-top:auto;padding-top:.25rem;line-height:1.3}
+
+    /* cell states */
+    .c-place{background:rgba(99,102,241,.06);border-color:rgba(99,102,241,.35)}
+    .c-place .cal-blk{color:#4338ca}
+    .c-ent{background:rgba(16,185,129,.06);border-color:rgba(16,185,129,.35)}
+    .c-ent .cal-blk{color:#047857}
+    .c-crit{background:rgba(251,205,7,.13);border-color:rgba(251,205,7,.6)}
+    .c-crit .cal-blk{color:#92400e}
+    .c-crit .cal-star{color:#92400e}
+    .c-off{background:#fafafa;border-style:dashed;border-color:#e5e7eb}
+    .c-off .cal-date{color:#c4c8ce}
+    .c-off .cal-note{color:#b8bcc4}
+    .c-none{background:#f4f4f5;border-color:#e5e7eb}
+    .c-none .cal-date{color:#a1a5ad}
+    .c-none .cal-note{color:#9ca3af;font-weight:600}
+    .c-work{background:rgba(172,22,29,.05);border-color:rgba(172,22,29,.3)}
+    .c-work .cal-blk{color:#AC161D}
+
+    .cal-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:.7rem;color:#6b7280}
+    .lg-item{display:flex;align-items:center;gap:.35rem}
+    .lg-swatch{width:.85rem;height:.85rem;border-radius:3px;flex-shrink:0}
+
+    /* Day card */
+    .day-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;margin-bottom:1rem;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.04);page-break-inside:avoid}
+    .day-card.flag{border-color:rgba(251,205,7,.55);box-shadow:0 1px 3px rgba(251,205,7,.15)}
+    .day-head{display:flex;align-items:center;gap:.9rem;padding:.95rem 1.35rem;border-bottom:1px solid #f3f4f6;flex-wrap:wrap}
+    .day-num{width:2.1rem;height:2.1rem;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:900;color:#fff;flex-shrink:0}
+    .num-place{background:#4338ca}
+    .num-ent{background:#047857}
+    .day-date{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#6b7280;letter-spacing:.03em;text-transform:uppercase}
+    .day-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.97rem;color:#1c1f2e;line-height:1.3}
+    .day-flag{margin-left:auto;background:rgba(251,205,7,.18);border:1px solid rgba(251,205,7,.4);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:.24rem .6rem;border-radius:999px}
+    .day-body{padding:1.1rem 1.35rem 1.25rem}
+
+    .mins{display:flex;flex-direction:column;gap:0;margin-bottom:1rem}
+    .min-row{display:flex;gap:.9rem;align-items:flex-start;padding:.45rem 0;border-top:1px solid #f3f4f6}
+    .min-row:first-child{border-top:none;padding-top:0}
+    .min-time{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.68rem;color:#AC161D;width:3.6rem;flex-shrink:0;padding-top:.12rem;letter-spacing:.02em}
+    .min-what{font-size:.81rem;color:#374151;line-height:1.6;flex:1}
+    .min-what strong{color:#1c1f2e;font-weight:600}
+
+    .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:.25rem}
+    .meta-box{background:#f9fafb;border:1px solid #f3f4f6;border-radius:9px;padding:.75rem .9rem}
+    .meta-label{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;margin-bottom:.3rem}
+    .meta-text{font-size:.78rem;color:#4b5563;line-height:1.55}
+    .meta-box.deliv{background:rgba(251,205,7,.08);border-color:rgba(251,205,7,.28)}
+    .meta-box.deliv .meta-label{color:#92400e}
+    .meta-box.deliv .meta-text{color:#374151;font-weight:600}
+
+    /* Callouts */
+    .callout{border-radius:12px;padding:1.1rem 1.3rem;margin:1.25rem 0;font-size:.84rem;line-height:1.7;color:#374151}
+    .callout strong{color:#1c1f2e}
+    .co-gold{background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3)}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.25)}
+    .co-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.25)}
+    .co-green{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.25)}
+    .co-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;margin-bottom:.45rem}
+    .co-gold .co-title{color:#92400e}
+    .co-red .co-title{color:#AC161D}
+    .co-blue .co-title{color:#1d4ed8}
+    .co-green .co-title{color:#047857}
+
+    /* Track header banner */
+    .track-banner{border-radius:14px;padding:1.35rem 1.5rem;margin:2.5rem 0 1.5rem;color:#fff}
+    .tb-place{background:linear-gradient(135deg,#4338ca,#312e81)}
+    .tb-ent{background:linear-gradient(135deg,#047857,#064e3b)}
+    .tb-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.72;margin-bottom:.35rem}
+    .tb-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.2rem;margin-bottom:.4rem}
+    .tb-text{font-size:.82rem;line-height:1.65;opacity:.9}
+    .tb-stats{display:flex;gap:1.75rem;margin-top:1rem;flex-wrap:wrap}
+    .tb-stat-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.2rem;line-height:1}
+    .tb-stat-lbl{font-size:.65rem;opacity:.72;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem}
+
+    /* Summary dark card */
+    .summary{background:#0e1520;border-radius:16px;padding:1.75rem;color:#fff;margin-top:2.5rem}
+    .sum-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.05rem;margin-bottom:1.1rem}
+    .sum-row{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-top:1px solid rgba(255,255,255,.1);font-size:.82rem}
+    .sum-row:first-of-type{border-top:none}
+    .sum-k{color:rgba(255,255,255,.62)}
+    .sum-v{font-family:'Montserrat',sans-serif;font-weight:700;text-align:right}
+
+    ul.tight{margin:.4rem 0 0 1.1rem}
+    ul.tight li{font-size:.82rem;color:#374151;line-height:1.7;margin-bottom:.2rem}
+
+    @media(max-width:640px){
+      .meta-grid{grid-template-columns:1fr}
+      .min-time{width:3.2rem;font-size:.64rem}
+      main{padding:1.75rem 1rem 3rem}
+    }
+    @media print{
+      nav,.print-btn{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .day-card,.tbl-wrap,.urgent,.callout,.cal-wrap{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+      h2{page-break-after:avoid}
+      /* Calendars must fit the page instead of scrolling */
+      .cal-wrap{overflow:visible;padding:0;border:none}
+      .cal{min-width:0;grid-template-columns:2.6rem repeat(5,1fr);gap:.15rem}
+      .cal-cell{min-height:4.1rem;padding:.3rem .35rem;border-radius:5px}
+      .cal-date{font-size:.68rem}
+      .cal-act{font-size:.58rem;line-height:1.25}
+      .cal-note{font-size:.5rem;line-height:1.25}
+      .cal-blk{font-size:.48rem}
+      .cal-star{font-size:.5rem}
+      .cal-h{font-size:.5rem;padding:.15rem}
+      .cal-wk{font-size:.48rem;padding-right:.25rem}
+      .cal-ab{font-size:.46rem;padding:.05rem .2rem}
+      .cal-legend{font-size:.6rem;gap:.7rem}
+    }
+    @page{margin:.5in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Bootcamp Calendar</span>
+    <span class="teacher-badge font-heading">Teacher</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>Print
+  </button>
+</nav>
+
+<main>
+  <h1 class="font-heading">Bootcamp Calendar — Day by Day</h1>
+  <p class="page-sub">Field Experience · 2026&ndash;27 · 90-minute blocks</p>
+  <p class="lede">
+    Both cohorts run the <strong>same 12 blocks in the same sequence</strong> &mdash; they just land on different calendar days.
+    The <strong style="color:#4338ca">Placement cohort</strong> (14 students, every day) finishes bootcamp <strong>Fri Aug 28</strong> and starts at placement sites <strong>Mon Aug 31</strong>.
+    The <strong style="color:#047857">Enterprise cohort</strong> (10 students, A days only, full year) hits the same 12 blocks across A days and finishes <strong>Tue Sep 15</strong>.
+    Two cohorts, one structure &mdash; you are never planning two different lessons.
+  </p>
+
+  <div class="urgent">
+    <div class="urgent-title font-heading">
+      <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 9v2m0 4h.01M5.07 19h13.86a2 2 0 001.71-3L13.71 4a2 2 0 00-3.42 0L3.36 16a2 2 0 001.71 3z"/></svg>
+      Before Thursday Aug 13
+    </div>
+    <div class="urgent-sub">Everything here has to happen before students walk in. The first two items are time-critical.</div>
+
+    <div class="check-row">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <span class="check-when font-heading">Do this today &mdash; hard deadline</span>
+        <strong>Invite mock interview community partners.</strong> Mock Interview lands <strong>Mon Aug 24</strong> for the Placement cohort, and partners normally need <strong>2+ weeks lead time</strong> &mdash; which is already gone. Send invitations today and expect to lean on your warmest contacts. Target 5&ndash;7 partners so 14 students rotate in pairs; if you can only land 3&ndash;4, lengthen the rotation and cut the observation time rather than moving the date.
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <span class="check-when font-heading">This week</span>
+        <strong>Confirm the Enterprise cohort's A-day block is your contact time.</strong> If Bulldog Media students spend that block with the media advisor instead of you, the 12-block Enterprise window shrinks and this calendar needs to shift. Verify before Aug 13.
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <span class="check-when font-heading">Before Aug 13</span>
+        <strong>Print and stage materials.</strong> Syllabus (24 copies), Training Agreements, dilemma station cards (15 stations &mdash; print from <em>dilemma-scenarios.html</em>), interview question bank, mock interview feedback forms.
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <span class="check-when font-heading">Before Aug 13</span>
+        <strong>Verify site logins.</strong> Every student needs a working account before Block 1 &mdash; the whole course runs through the site. Test 2&ndash;3 accounts yourself.
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <span class="check-when font-heading">Before Aug 13</span>
+        <strong>Set up the gradebook.</strong> Six weighted categories: Hours Log 20 · Reflection 15 · Bootcamp 15 · Employer/Advisor Eval 20 · Self-Assessment 15 · Capstone 15. See the <a href="teacher-grading.html" style="color:#AC161D;font-weight:600">Grading Policy</a>.
+      </div>
+    </div>
+    <div class="check-row">
+      <div class="check-box"></div>
+      <div class="check-text">
+        <span class="check-when font-heading">Before Aug 19</span>
+        <strong>Have the placement list ready.</strong> Block 5 (Explore &amp; Apply) starts the employer paperwork clock. Students can't apply to positions that aren't posted yet.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CALENDAR VIEW ================= -->
+  <h2 class="font-heading"><span class="sec-num font-heading">1</span>Calendar View</h2>
+  <p class="sec-sub">One calendar per cohort, Monday through Friday. Put these side by side and the whole reason the two tracks finish three weeks apart is visible in one look.</p>
+
+  <div class="cal-legend">
+    <div class="lg-item"><span class="lg-swatch" style="background:rgba(99,102,241,.25);border:1px solid rgba(99,102,241,.5)"></span>Bootcamp block</div>
+    <div class="lg-item"><span class="lg-swatch" style="background:rgba(251,205,7,.35);border:1px solid rgba(251,205,7,.7)"></span>Critical &mdash; don't move it</div>
+    <div class="lg-item"><span class="lg-swatch" style="background:rgba(172,22,29,.12);border:1px solid rgba(172,22,29,.4)"></span>Working</div>
+    <div class="lg-item"><span class="lg-swatch" style="background:#fafafa;border:1px dashed #d1d5db"></span>No class this day</div>
+    <div class="lg-item"><span class="lg-swatch" style="background:#f4f4f5;border:1px solid #e5e7eb"></span>No school</div>
+  </div>
+
+  <!-- ===== PLACEMENT CALENDAR ===== -->
+  <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:1.5rem 0 .6rem">
+    <span class="pill pill-place font-heading">Placement &middot; Every Day</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;color:#1c1f2e">14 students &middot; 12 blocks in 12 school days</span>
+  </div>
+  <div class="cal-wrap">
+    <div class="cal">
+      <div></div>
+      <div class="cal-h font-heading">Monday</div>
+      <div class="cal-h font-heading">Tuesday</div>
+      <div class="cal-h font-heading">Wednesday</div>
+      <div class="cal-h font-heading">Thursday</div>
+      <div class="cal-h font-heading">Friday</div>
+
+      <!-- Aug 10-14 -->
+      <div class="cal-wk font-heading">Aug<br>10&ndash;14</div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">10</span></div><div class="cal-note">No students</div></div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">11</span></div><div class="cal-note">No students</div></div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">12</span></div><div class="cal-note">No students</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">13</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 1</div><div class="cal-act font-heading">Begin With the End in Mind</div><div class="cal-note">First day. Capstone preview, syllabus, the gate, logins.</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">14</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-blk font-heading">Block 2</div><div class="cal-act font-heading">Career &amp; Self-Assessment</div><div class="cal-note">Baseline 10-skill rating &mdash; save it.</div></div>
+
+      <!-- Aug 17-21 -->
+      <div class="cal-wk font-heading">Aug<br>17&ndash;21</div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">17</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 3</div><div class="cal-act font-heading">Your Professional Brand</div><div class="cal-note">Email sent to you, voicemail, brand statement.</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">18</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-blk font-heading">Block 4</div><div class="cal-act font-heading">Resume Workshop</div><div class="cal-note">Resume due today &mdash; gates tomorrow.</div></div>
+      <div class="cal-cell c-crit"><div class="cal-top"><span class="cal-date font-heading">19</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 5</div><div class="cal-act font-heading">Explore &amp; Apply</div><div class="cal-note">Applications submitted.</div><div class="cal-star font-heading">&#9733; Starts the employer paperwork clock</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">20</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-blk font-heading">Block 6</div><div class="cal-act font-heading">Elevator Pitch</div><div class="cal-note">30-second video recorded.</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">21</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 7</div><div class="cal-act font-heading">Interview Skills</div><div class="cal-note">STAR taught. Post Monday's rotation.</div></div>
+
+      <!-- Aug 24-28 -->
+      <div class="cal-wk font-heading">Aug<br>24&ndash;28</div>
+      <div class="cal-cell c-crit"><div class="cal-top"><span class="cal-date font-heading">24</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-blk font-heading">Block 8</div><div class="cal-act font-heading">Mock Interview</div><div class="cal-note">5&ndash;7 community partners on site.</div><div class="cal-star font-heading">&#9733; Invite partners 2+ weeks out</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">25</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 9</div><div class="cal-act font-heading">Improvement Plan + 10 Skills</div><div class="cal-note">4/3/2/1 scale explained.</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">26</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-blk font-heading">Block 10</div><div class="cal-act font-heading">Dilemma Stations</div><div class="cal-note">15 stations &mdash; print and place before class.</div></div>
+      <div class="cal-cell c-place"><div class="cal-top"><span class="cal-date font-heading">27</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 11</div><div class="cal-act font-heading">Post-Assessment + Placement Confirmed</div><div class="cal-note">Goal conferences begin. Transportation verified.</div></div>
+      <div class="cal-cell c-crit"><div class="cal-top"><span class="cal-date font-heading">28</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-blk font-heading">Block 12</div><div class="cal-act font-heading">Plan of Success + Launch</div><div class="cal-note">Bootcamp Completion scored (15%).</div><div class="cal-star font-heading">&#9733; Last day before work begins</div></div>
+
+      <!-- Aug 31-Sep 4 -->
+      <div class="cal-wk font-heading">Aug 31<br>Sep 4</div>
+      <div class="cal-cell c-work"><div class="cal-top"><span class="cal-date font-heading">31</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Day 1</div><div class="cal-act font-heading">First day at placement</div><div class="cal-note">Be reachable all day. Supervisor cells in your phone.</div></div>
+      <div class="cal-cell c-work"><div class="cal-top"><span class="cal-date font-heading">1</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-act font-heading">At placement</div></div>
+      <div class="cal-cell c-work"><div class="cal-top"><span class="cal-date font-heading">2</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-act font-heading">At placement</div></div>
+      <div class="cal-cell c-work"><div class="cal-top"><span class="cal-date font-heading">3</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-act font-heading">At placement</div></div>
+      <div class="cal-cell c-work"><div class="cal-top"><span class="cal-date font-heading">4</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-act font-heading">At placement</div><div class="cal-note">Hours log + reflection due Sun 11:59 PM &mdash; every week from here.</div></div>
+    </div>
+  </div>
+
+  <!-- ===== ENTERPRISE CALENDAR ===== -->
+  <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:2.25rem 0 .6rem">
+    <span class="pill pill-ent font-heading">Enterprise &middot; A Days</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;color:#1c1f2e">10 students &middot; the same 12 blocks, spread over 5 weeks</span>
+  </div>
+  <div class="cal-wrap">
+    <div class="cal">
+      <div></div>
+      <div class="cal-h font-heading">Monday</div>
+      <div class="cal-h font-heading">Tuesday</div>
+      <div class="cal-h font-heading">Wednesday</div>
+      <div class="cal-h font-heading">Thursday</div>
+      <div class="cal-h font-heading">Friday</div>
+
+      <!-- Aug 10-14 -->
+      <div class="cal-wk font-heading">Aug<br>10&ndash;14</div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">10</span></div><div class="cal-note">No students</div></div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">11</span></div><div class="cal-note">No students</div></div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">12</span></div><div class="cal-note">No students</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">13</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 1</div><div class="cal-act font-heading">Begin With the End in Mind</div><div class="cal-note">May capstone shown. Gate: not current, not remote.</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">14</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+
+      <!-- Aug 17-21 -->
+      <div class="cal-wk font-heading">Aug<br>17&ndash;21</div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">17</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 2</div><div class="cal-act font-heading">Career &amp; Self-Assessment</div><div class="cal-note">Market research. Baseline 10-skill rating.</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">18</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">19</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 3</div><div class="cal-act font-heading">Professional + Business Brand</div><div class="cal-note">Invite pitch panelists today for Sep 2.</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">20</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">21</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 4</div><div class="cal-act font-heading">Resume Workshop</div><div class="cal-note">Resume submitted.</div></div>
+
+      <!-- Aug 24-28 -->
+      <div class="cal-wk font-heading">Aug<br>24&ndash;28</div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">24</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-crit"><div class="cal-top"><span class="cal-date font-heading">25</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 5</div><div class="cal-act font-heading">Define Your Enterprise</div><div class="cal-note">Scope, hours plan, named client.</div><div class="cal-star font-heading">&#9733; Makes the whole year gradeable</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">26</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">27</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 6</div><div class="cal-act font-heading">Elevator Pitch = Business Pitch</div><div class="cal-note">30-second video recorded.</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">28</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+
+      <!-- Aug 31-Sep 4 -->
+      <div class="cal-wk font-heading">Aug 31<br>Sep 4</div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">31</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 7</div><div class="cal-act font-heading">Interview Skills as Client Talk</div><div class="cal-note">STAR. Pricing questions out loud.</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">1</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-crit"><div class="cal-top"><span class="cal-date font-heading">2</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 8</div><div class="cal-act font-heading">Client Pitch Panel</div><div class="cal-note">3&ndash;4 panelists on site.</div><div class="cal-star font-heading">&#9733; Also your Review Board recruiting</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">3</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">4</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 9</div><div class="cal-act font-heading">Improvement Plan + 10 Skills</div><div class="cal-note">How the three scoring voices work.</div></div>
+
+      <!-- Sep 7-11 -->
+      <div class="cal-wk font-heading">Sep<br>7&ndash;11</div>
+      <div class="cal-cell c-none"><div class="cal-top"><span class="cal-date font-heading">7</span></div><div class="cal-note">Labor Day &mdash; No school</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">8</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">9</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 10</div><div class="cal-act font-heading">Dilemma Stations &mdash; Enterprise</div><div class="cal-note">No supervisor to escalate to &mdash; now what?</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">10</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-ent"><div class="cal-top"><span class="cal-date font-heading">11</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 11</div><div class="cal-act font-heading">Post-Assessment + Enterprise Confirmed</div><div class="cal-note">Remote work agreement signed.</div></div>
+
+      <!-- Sep 14-18 -->
+      <div class="cal-wk font-heading">Sep<br>14&ndash;18</div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">14</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-crit"><div class="cal-top"><span class="cal-date font-heading">15</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Block 12</div><div class="cal-act font-heading">Business Plan + Goal Conference + Launch</div><div class="cal-note">Bootcamp Completion scored (15%).</div><div class="cal-star font-heading">&#9733; Bootcamp ends here</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">16</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+      <div class="cal-cell c-work"><div class="cal-top"><span class="cal-date font-heading">17</span><span class="cal-ab ab-a font-heading">A</span></div><div class="cal-blk font-heading">Day 1</div><div class="cal-act font-heading">First remote A day</div><div class="cal-note">Check in with all 10 even though they're off campus.</div></div>
+      <div class="cal-cell c-off"><div class="cal-top"><span class="cal-date font-heading">18</span><span class="cal-ab ab-b font-heading">B</span></div><div class="cal-note">No class</div></div>
+    </div>
+  </div>
+
+  <div class="callout co-blue">
+    <div class="co-title font-heading">What the two calendars show you at a glance</div>
+    The Placement cohort's twelve blocks sit in three unbroken weeks. The Enterprise cohort's twelve are scattered across five, with a no-class day between almost every one &mdash; which is the real teaching problem in this course. <strong>Assume the A-day cohort forgets the thread between blocks.</strong> Open every Enterprise block with two minutes of "here's where we were," and don't schedule anything for them that depends on momentum from the previous session.
+  </div>
+
+  <!-- ================= WEEK AT A GLANCE ================= -->
+  <h2 class="font-heading"><span class="sec-num font-heading">2</span>At a Glance</h2>
+  <p class="sec-sub">Same 12 blocks, both cohorts, side by side. Print this page and this table is your whole bootcamp on one sheet.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:3.5rem">Block</th>
+          <th>Activity</th>
+          <th style="width:9rem">Placement <span class="pill pill-place font-heading" style="font-size:.55rem;padding:.15rem .45rem">Daily</span></th>
+          <th style="width:9rem">Enterprise <span class="pill pill-ent font-heading" style="font-size:.55rem;padding:.15rem .45rem">A Day</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-blk">1</td><td class="td-act">Begin With the End in Mind</td><td class="td-date">Thu Aug 13<span class="ab ab-a">A</span></td><td class="td-date">Thu Aug 13<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">2</td><td class="td-act">Career &amp; Self-Assessment</td><td class="td-date">Fri Aug 14<span class="ab ab-b">B</span></td><td class="td-date">Mon Aug 17<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">3</td><td class="td-act">Your Professional Brand</td><td class="td-date">Mon Aug 17<span class="ab ab-a">A</span></td><td class="td-date">Wed Aug 19<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">4</td><td class="td-act">Resume Workshop</td><td class="td-date">Tue Aug 18<span class="ab ab-b">B</span></td><td class="td-date">Fri Aug 21<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">5</td><td class="td-act">Explore &amp; Apply <span style="color:#AC161D">&#9733;</span><br><span style="font-size:.72rem;color:#047857;font-weight:400">Enterprise: Define Your Enterprise</span></td><td class="td-date">Wed Aug 19<span class="ab ab-a">A</span></td><td class="td-date">Tue Aug 25<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">6</td><td class="td-act">Elevator Pitch</td><td class="td-date">Thu Aug 20<span class="ab ab-b">B</span></td><td class="td-date">Thu Aug 27<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">7</td><td class="td-act">Interview Skills</td><td class="td-date">Fri Aug 21<span class="ab ab-a">A</span></td><td class="td-date">Mon Aug 31<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">8</td><td class="td-act">Mock Interview <span style="color:#AC161D">&#9733;</span><br><span style="font-size:.72rem;color:#047857;font-weight:400">Enterprise: Client Pitch Panel</span></td><td class="td-date">Mon Aug 24<span class="ab ab-b">B</span></td><td class="td-date">Wed Sep 2<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">9</td><td class="td-act">Improvement Plan + Meet Your 10 Skills</td><td class="td-date">Tue Aug 25<span class="ab ab-a">A</span></td><td class="td-date">Fri Sep 4<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">10</td><td class="td-act">Workplace Dilemma Stations</td><td class="td-date">Wed Aug 26<span class="ab ab-b">B</span></td><td class="td-date">Wed Sep 9<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">11</td><td class="td-act">Post-Assessment + Placement Confirmed<br><span style="font-size:.72rem;color:#047857;font-weight:400">Enterprise: Enterprise Confirmed</span></td><td class="td-date">Thu Aug 27<span class="ab ab-a">A</span></td><td class="td-date">Fri Sep 11<span class="ab ab-a">A</span></td></tr>
+        <tr><td class="td-blk">12</td><td class="td-act">Plan of Success + Launch Day</td><td class="td-date">Fri Aug 28<span class="ab ab-b">B</span></td><td class="td-date">Tue Sep 15<span class="ab ab-a">A</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout co-gold">
+    <div class="co-title font-heading">Why both cohorts get exactly 12 blocks</div>
+    The Placement cohort has 12 school days between Aug 13 and Aug 28. Counting A days from Aug 13, the Enterprise cohort's 12th A-day block is Tue Sep 15 &mdash; 8/13, 8/17, 8/19, 8/21, 8/25, 8/27, 8/31, 9/2, 9/4, 9/9, 9/11, 9/15 (Labor Day Sep 7 falls out). <strong>Same block count, same sequence.</strong> You teach one lesson plan twice, not two curricula.
+  </div>
+
+  <div class="callout co-red">
+    <div class="co-title font-heading">Where the two cohorts genuinely diverge</div>
+    Only <strong>three</strong> of the 12 blocks change content, and all three are the same swap: the Enterprise cohort has no outside employer, so anywhere the Placement cohort points at a business, Enterprise points at their own venture or Bulldog Media.
+    <ul class="tight">
+      <li><strong>Block 5</strong> &mdash; Explore &amp; Apply becomes <strong>Define Your Enterprise</strong></li>
+      <li><strong>Block 8</strong> &mdash; Mock Interview becomes <strong>Client Pitch Panel</strong></li>
+      <li><strong>Block 11</strong> &mdash; Placement Confirmed becomes <strong>Enterprise Confirmed</strong></li>
+    </ul>
+  </div>
+
+  <!-- ================= PLACEMENT COHORT ================= -->
+  <div class="track-banner tb-place">
+    <div class="tb-eyebrow font-heading">Cohort A</div>
+    <div class="tb-title font-heading">Placement &mdash; Every Day</div>
+    <div class="tb-text">14 students, one semester, outside business placements. Bootcamp Aug 13 &ndash; Aug 28. First day at placement: <strong>Mon Aug 31</strong>. Capstone at Final Exams, Dec 17&ndash;18.</div>
+    <div class="tb-stats">
+      <div><div class="tb-stat-num font-heading">14</div><div class="tb-stat-lbl font-heading">Students</div></div>
+      <div><div class="tb-stat-num font-heading">12</div><div class="tb-stat-lbl font-heading">Blocks</div></div>
+      <div><div class="tb-stat-num font-heading">18 hrs</div><div class="tb-stat-lbl font-heading">Bootcamp Time</div></div>
+      <div><div class="tb-stat-num font-heading">60 hrs</div><div class="tb-stat-lbl font-heading">Placement Min.</div></div>
+    </div>
+  </div>
+
+  <h2 class="font-heading"><span class="sec-num font-heading">3</span>Placement Cohort &mdash; Block by Block</h2>
+  <p class="sec-sub">Each block is one 90-minute period. Minute breakdowns are a plan, not a script &mdash; but the deliverable is not optional, because it's what the gradebook reads.</p>
+
+  <!-- P1 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">1</div>
+      <div>
+        <div class="day-date font-heading">Thu Aug 13 &middot; A Day &middot; First Day of School</div>
+        <div class="day-title font-heading">Begin With the End in Mind</div>
+      </div>
+      <span class="day-flag font-heading">Sets the tone</span>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what"><strong>Welcome + the one question.</strong> "What do you want to be able to say about yourself in May that you can't say today?" Written, not discussed. Collect these &mdash; you'll hand them back at the capstone.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;30</div><div class="min-what"><strong>Show the capstone first.</strong> Walk the capstone requirements before anything else. Everything in this course is preparation for that presentation. Students who see the destination on day one make better choices in week six.</div></div>
+        <div class="min-row"><div class="min-time font-heading">30&ndash;55</div><div class="min-what"><strong>Syllabus + the gate.</strong> Cover grading honestly: half the grade is <em>did you do the thing on time</em>, half is <em>how well did you do it</em>. Then state the gate out loud &mdash; <strong>"Not current, not on the schedule."</strong> Say it on day one so it's never a surprise later.</div></div>
+        <div class="min-row"><div class="min-time font-heading">55&ndash;75</div><div class="min-what"><strong>Site walkthrough.</strong> Every student logs in live, in front of you. Find the weekly hours log, the reflection form, and your 10 skills pages. Do not let anyone leave without a confirmed login.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Career cluster preview + Training Agreement home.</strong> Quick overview of clusters to prime tomorrow's assessment. Training Agreement goes home tonight.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Syllabus copies · Training Agreements · projector for capstone walkthrough · student login list · index cards for the opening question</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Confirmed site login + Activity 1 submitted. Training Agreement sent home.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">2</div>
+      <div>
+        <div class="day-date font-heading">Fri Aug 14 &middot; B Day</div>
+        <div class="day-title font-heading">Career &amp; Self-Assessment</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what"><strong>Training Agreement collection.</strong> Track who's missing &mdash; this is your first read on which students will need the escalation ladder.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;45</div><div class="min-what"><strong>Self-assessment.</strong> Students complete the interest and skills inventory on the site. Frame it as data for their own decision-making, not a test that assigns them a career.</div></div>
+        <div class="min-row"><div class="min-time font-heading">45&ndash;70</div><div class="min-what"><strong>Cluster deep dive.</strong> Students pick their top two clusters and research real local employers in each. This is quietly the groundwork for Block 5 &mdash; they should leave with names.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Pair share + baseline 10-skill self-rating.</strong> Each student rates themselves 4/3/2/1 on all 10 employability skills. <strong>Save this.</strong> It's the baseline the Q1 self-assessment gets measured against, and it's the single most persuasive artifact at the capstone.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Devices for all students · <em>self-assessment.html</em> · local employer list by cluster · baseline skill rating sheet</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Self-assessment submitted · top 2 clusters named · baseline 10-skill rating on file</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">3</div>
+      <div>
+        <div class="day-date font-heading">Mon Aug 17 &middot; A Day</div>
+        <div class="day-title font-heading">Your Professional Brand</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;15</div><div class="min-what"><strong>The search.</strong> Students google themselves and write down exactly what a supervisor would find. Blunt, private, no shaming &mdash; the point is that this is already happening whether they manage it or not.</div></div>
+        <div class="min-row"><div class="min-time font-heading">15&ndash;40</div><div class="min-what"><strong>Email, voicemail, handshake, first impression.</strong> The unglamorous mechanics. Every student writes and sends you one professional email today &mdash; subject line, greeting, ask, sign-off. Reply to each so they see what a real response loop looks like.</div></div>
+        <div class="min-row"><div class="min-time font-heading">40&ndash;70</div><div class="min-what"><strong>Brand audit + cleanup.</strong> Voicemail greeting recorded. Email signature built. Public profiles reviewed. Actual changes made in class, not assigned as homework.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Brand statement.</strong> Two sentences: who you are professionally and what you're building toward. This becomes the opening line of the elevator pitch in Block 6, so make them write it down somewhere they'll find it.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Devices · phones allowed (voicemail) · sample good/bad email pairs · your inbox open to receive 14 emails</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Professional email sent to teacher · voicemail updated · 2-sentence brand statement submitted</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P4 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">4</div>
+      <div>
+        <div class="day-date font-heading">Tue Aug 18 &middot; B Day</div>
+        <div class="day-title font-heading">Resume Workshop</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;15</div><div class="min-what"><strong>What a resume is actually for.</strong> It's not a life summary &mdash; it's a 20-second argument that you're worth a conversation. Show one strong and one weak example side by side.</div></div>
+        <div class="min-row"><div class="min-time font-heading">15&ndash;60</div><div class="min-what"><strong>Build it.</strong> Work time on the template. Circulate constantly &mdash; most students need help translating fast food, babysitting, and sports into transferable-skill language. That translation <em>is</em> the lesson.</div></div>
+        <div class="min-row"><div class="min-time font-heading">60&ndash;80</div><div class="min-what"><strong>Peer review, structured.</strong> Trade with a partner. Three required questions: Is there a typo? Is every bullet a result rather than a duty? Would you call this person? Written feedback, not verbal.</div></div>
+        <div class="min-row"><div class="min-time font-heading">80&ndash;90</div><div class="min-what"><strong>Revise and submit.</strong> Resume must be submitted before students leave &mdash; tomorrow they apply with it. A resume that isn't done today blocks Block 5.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Resume template · strong/weak examples · peer review sheet · a printer if any placements want hard copies</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Completed resume submitted &mdash; required before Block 5</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P5 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">5</div>
+      <div>
+        <div class="day-date font-heading">Wed Aug 19 &middot; A Day</div>
+        <div class="day-title font-heading">Explore &amp; Apply</div>
+      </div>
+      <span class="day-flag font-heading">Starts the paperwork clock</span>
+    </div>
+    <div class="day-body">
+      <div class="callout co-red" style="margin:0 0 1rem">
+        <div class="co-title font-heading">The most schedule-critical block in bootcamp</div>
+        Applications submitted today start the employer paperwork clock. Every day this slips is a day a student's Aug 31 start date slips with it. If a student is absent, they make this up before Friday &mdash; not "sometime."
+      </div>
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;20</div><div class="min-what"><strong>Walk the open positions.</strong> Go through the live positions list together. Name what each site actually wants and what the commute looks like &mdash; transportation reality kills more placements than interest does.</div></div>
+        <div class="min-row"><div class="min-time font-heading">20&ndash;40</div><div class="min-what"><strong>Rank three, honestly.</strong> Each student picks three placements in preference order and writes one sentence on why each fits their cluster work from Block 2. No one gets one option.</div></div>
+        <div class="min-row"><div class="min-time font-heading">40&ndash;75</div><div class="min-what"><strong>Apply.</strong> Application submitted with resume attached. Circulate and check every submission before it goes &mdash; a typo'd application to a partner site costs you the partner, not just the placement.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>What happens next.</strong> Lay out the timeline: interviews, employer paperwork, confirmation in Block 11, start Aug 31. Set the expectation that <em>you</em> may need something from them on 24 hours' notice.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Positions list published and current · <em>positions.html</em> · resumes from Block 4 · transportation map</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Application submitted with resume · 3 ranked preferences on file &mdash; <strong>no exceptions, no extensions</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P6 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">6</div>
+      <div>
+        <div class="day-date font-heading">Thu Aug 20 &middot; B Day</div>
+        <div class="day-title font-heading">Elevator Pitch</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;15</div><div class="min-what"><strong>Why 30 seconds.</strong> Model a strong pitch and a rambling one. The difference is structure, not charisma &mdash; which is good news for every nervous student in the room.</div></div>
+        <div class="min-row"><div class="min-time font-heading">15&ndash;35</div><div class="min-what"><strong>Draft.</strong> Start from the Block 3 brand statement. Structure: who I am &rarr; what I'm pursuing &rarr; what I bring &rarr; what I'm asking for.</div></div>
+        <div class="min-row"><div class="min-time font-heading">35&ndash;70</div><div class="min-what"><strong>Rehearse in rotation.</strong> Three different partners, 30 seconds each, one specific piece of feedback per round. Volume of reps beats depth of coaching here.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Record and submit.</strong> Phone video, 30 seconds, submitted. Recording is non-negotiable &mdash; students who hear themselves fix more than students you correct.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Pitch structure handout · timer · phones for recording · quiet corners or hallway space</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">30-second recorded pitch submitted</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P7 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">7</div>
+      <div>
+        <div class="day-date font-heading">Fri Aug 21 &middot; A Day</div>
+        <div class="day-title font-heading">Interview Skills</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;20</div><div class="min-what"><strong>STAR, taught properly.</strong> Situation, Task, Action, Result. Teach it hard today &mdash; STAR is also the format for every weekly reflection all semester, which means teaching it once here saves you fifteen weeks of vague submissions.</div></div>
+        <div class="min-row"><div class="min-time font-heading">20&ndash;45</div><div class="min-what"><strong>Question bank work.</strong> From <em>interview-question-bank.html</em>, students draft STAR answers to four questions, including "tell me about yourself" and one weakness question.</div></div>
+        <div class="min-row"><div class="min-time font-heading">45&ndash;70</div><div class="min-what"><strong>Partner practice with the bank.</strong> Partners draw questions at random. Answer cold. Being unprepared for the exact question is the actual skill.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Logistics for Monday.</strong> Confirm dress expectations, arrival time, partner names, and rotation order for the mock interview. Print the schedule and post it. Ambiguity Friday becomes chaos Monday.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">STAR handout · <em>interview-question-bank.html</em> · Monday rotation schedule printed · confirmed partner list</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">4 written STAR answers submitted · student knows their Monday interview slot</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P8 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">8</div>
+      <div>
+        <div class="day-date font-heading">Mon Aug 24 &middot; B Day</div>
+        <div class="day-title font-heading">Mock Interview</div>
+      </div>
+      <span class="day-flag font-heading">Community partners on site</span>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">&minus;20&ndash;0</div><div class="min-what"><strong>Partner arrival and briefing.</strong> Partners arrive 20 minutes early. Give each one the feedback form, the rotation schedule, and one sentence of direction: <em>be warm but real &mdash; these students need honest signal, not encouragement.</em></div></div>
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what"><strong>Set the room.</strong> Students in professional dress, phones away, waiting area established. Ten minutes of ritual makes the next seventy feel real.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;75</div><div class="min-what"><strong>Rotation.</strong> 10-minute interviews, 3-minute resets. With 5&ndash;7 partners, all 14 students get through with room for overruns. Students not interviewing complete a structured observation form &mdash; watching is worth nearly as much as doing.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Partner debrief in front of students.</strong> Ask partners for the top two patterns they saw across the whole group. Hearing "most of you undersold yourselves" from a real employer lands differently than hearing it from a teacher.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text"><strong>Partners invited &mdash; confirm headcount by Aug 20</strong> · <em>mock-interview-feedback.html</em> forms · rotation schedule · observation forms · water and coffee for partners · rooms or spaced tables</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Completed interview + signed partner feedback form on file for every student</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P9 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">9</div>
+      <div>
+        <div class="day-date font-heading">Tue Aug 25 &middot; A Day</div>
+        <div class="day-title font-heading">Improvement Plan + Meet Your 10 Employability Skills</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;30</div><div class="min-what"><strong>Interview Improvement Plan.</strong> Students read their partner feedback and name two specific changes plus how they'll practice each. Feedback that isn't converted into a plan is just a compliment or a bruise.</div></div>
+        <div class="min-row"><div class="min-time font-heading">30&ndash;60</div><div class="min-what"><strong>The 10 skills, and how they're graded.</strong> Walk all 10 Illinois employability skills. Then show the 4/3/2/1 scale in plain language and be explicit about the standard: <strong>3 means you performed to the level a paying employer expects</strong> &mdash; not "did fine for a high schooler."</div></div>
+        <div class="min-row"><div class="min-time font-heading">60&ndash;80</div><div class="min-what"><strong>How reflections feed the grade.</strong> Show the mechanism openly: each week's reflection is tagged to one skill, written in STAR, and at quarter close they self-score all 10 <em>citing the week that proves it</em>. Students who understand this write better reflections in week two.</div></div>
+        <div class="min-row"><div class="min-time font-heading">80&ndash;90</div><div class="min-what"><strong>Pick two focus skills.</strong> Each student names the two skills they'll target this semester and writes them into their goal sheet for Block 12.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Returned feedback forms · the 10 <em>skill-*.html</em> pages · 4/3/2/1 scale one-pager · goal sheet</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Improvement Plan submitted · 2 focus skills named</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P10 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">10</div>
+      <div>
+        <div class="day-date font-heading">Wed Aug 26 &middot; B Day</div>
+        <div class="day-title font-heading">Workplace Dilemma Stations</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what"><strong>Setup and rules.</strong> 15 stations across 7 clusters, printed from <em>dilemma-scenarios.html</em>. Pairs, ~5 minutes per station, written response required at each. No right answers &mdash; defensible reasoning only.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;75</div><div class="min-what"><strong>Rotate.</strong> Circulate and listen more than you intervene. Note which dilemmas produce real disagreement &mdash; those are your debrief material.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Debrief the hard three.</strong> Take the three most contested dilemmas whole-group. Land the point that ties them together: <em>almost every workplace problem is solved by telling someone early, not by handling it alone.</em></div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">15 station cards printed and placed <strong>before</strong> class · response sheets · timer · room set for rotation</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Completed station response sheet (all 15)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P11 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">11</div>
+      <div>
+        <div class="day-date font-heading">Thu Aug 27 &middot; A Day</div>
+        <div class="day-title font-heading">Post-Assessment + Placement Confirmed</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;25</div><div class="min-what"><strong>Post-assessment.</strong> Same instrument as Block 2's baseline. Students compare then and now themselves &mdash; two weeks of growth is visible and worth naming out loud.</div></div>
+        <div class="min-row"><div class="min-time font-heading">25&ndash;50</div><div class="min-what"><strong>Placement confirmations.</strong> Hand out site, supervisor name, address, start time, dress code, and reporting instructions. Every student writes their own start details down &mdash; don't let the only copy be a paper you handed them.</div></div>
+        <div class="min-row"><div class="min-time font-heading">50&ndash;75</div><div class="min-what"><strong>Goal conferences begin.</strong> Start 1-on-1s while the rest of the class works on Block 12 materials. Five minutes each: two focus skills, one measurable semester goal, one thing they're nervous about. Finish the rest tomorrow.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Logistics gauntlet.</strong> Out loud, student by student: how are you getting there, what time do you leave, what's your supervisor's name, what do you do if you're sick? <strong>Transportation problems surface here or they surface on Aug 31 as a no-show.</strong></div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Post-assessment · <strong>signed employer paperwork complete</strong> · printed placement detail sheets · goal conference form</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Post-assessment submitted · placement details confirmed in writing · transportation plan verified</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P12 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-place font-heading">12</div>
+      <div>
+        <div class="day-date font-heading">Fri Aug 28 &middot; B Day</div>
+        <div class="day-title font-heading">Internship Plan of Success + Launch Day</div>
+      </div>
+      <span class="day-flag font-heading">Bootcamp completion scored</span>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;35</div><div class="min-what"><strong>Internship Plan of Success.</strong> Written and submitted: two focus skills, semester goal, weekly hours target, what success looks like at this specific site. This is the document you'll hand back at the capstone.</div></div>
+        <div class="min-row"><div class="min-time font-heading">35&ndash;55</div><div class="min-what"><strong>Finish goal conferences.</strong> Anyone remaining from yesterday.</div></div>
+        <div class="min-row"><div class="min-time font-heading">55&ndash;75</div><div class="min-what"><strong>The weekly rhythm, walked live.</strong> Log hours as you go, reflection due <strong>Sunday 11:59 PM</strong>. Everyone submits a practice reflection right now, in class, so no one's first attempt is unsupervised. Then restate the gate: <strong>"Not current, not on the schedule."</strong></div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Launch.</strong> Hand back the day-one index cards. First shift is Monday. Send them out with the reminder that from Monday they represent the school, the program, and the next student who wants that placement.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Plan of Success template · remaining goal conference forms · day-one index cards · gate policy posted</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Plan of Success submitted · goal conference complete · practice reflection submitted &mdash; <strong>all three required to score Bootcamp Completion (15%)</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout co-blue">
+    <div class="co-title font-heading">Mon Aug 31 &mdash; First day at placement</div>
+    Be reachable all day. Expect at least one transportation failure, one student who can't find the entrance, and one supervisor who wasn't told a student was coming. Have every supervisor's cell number in your phone before Monday morning, not in a binder.
+  </div>
+
+  <!-- ================= ENTERPRISE COHORT ================= -->
+  <div class="track-banner tb-ent">
+    <div class="tb-eyebrow font-heading">Cohort B</div>
+    <div class="tb-title font-heading">Enterprise &mdash; A Days, Full Year</div>
+    <div class="tb-text">10 students running their own business or working for Bulldog Media. Bootcamp Aug 13 &ndash; Sep 15 across 12 A days. Quarterly Review Boards instead of an employer evaluation. Capstone in <strong>May</strong>.</div>
+    <div class="tb-stats">
+      <div><div class="tb-stat-num font-heading">10</div><div class="tb-stat-lbl font-heading">Students</div></div>
+      <div><div class="tb-stat-num font-heading">12</div><div class="tb-stat-lbl font-heading">A-Day Blocks</div></div>
+      <div><div class="tb-stat-num font-heading">4</div><div class="tb-stat-lbl font-heading">Review Boards</div></div>
+      <div><div class="tb-stat-num font-heading">60 hrs</div><div class="tb-stat-lbl font-heading">Minimum</div></div>
+    </div>
+  </div>
+
+  <h2 class="font-heading"><span class="sec-num font-heading">4</span>Enterprise Cohort &mdash; Block by Block</h2>
+  <p class="sec-sub">Nine of these twelve blocks are the Placement lesson, unchanged. Only Blocks 5, 8, and 11 are rebuilt, and the framing shifts throughout: their supervisor is a client, and their business is the placement.</p>
+
+  <div class="callout co-green">
+    <div class="co-title font-heading">Run these as one lesson, not two</div>
+    On the shared blocks, teach the same content and adjust the examples in the moment. Where the Placement cohort hears "your supervisor," Enterprise hears "your client." Where Placement hears "your site," Enterprise hears "your business." <strong>Don't build a parallel curriculum &mdash; you'll abandon it by October.</strong>
+  </div>
+
+  <!-- E1 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">1</div>
+      <div>
+        <div class="day-date font-heading">Thu Aug 13 &middot; A Day &middot; First Day of School</div>
+        <div class="day-title font-heading">Begin With the End in Mind</div>
+      </div>
+      <span class="day-flag font-heading">Same block as Placement</span>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what">Same opening question, written and collected.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;30</div><div class="min-what"><strong>Show the May capstone.</strong> Enterprise students have a full year, which cuts both ways &mdash; more room to build something real, and far more room to drift. Naming May on day one is how you fight the drift.</div></div>
+        <div class="min-row"><div class="min-time font-heading">30&ndash;55</div><div class="min-what"><strong>Syllabus + the Enterprise gate.</strong> Same grading model. Different gate: <strong>"Not current, not remote."</strong> Working off-campus is a privilege earned by being current. State plainly that Bulldog Media students also lose equipment and studio access.</div></div>
+        <div class="min-row"><div class="min-time font-heading">55&ndash;75</div><div class="min-what"><strong>Site walkthrough.</strong> Confirmed login before anyone leaves. Emphasize the hours log &mdash; self-directed students under-log, and unlogged hours are ungradeable hours.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Preview the Quarterly Review Board.</strong> Boards are <strong>Oct 15 · Dec 16 · Mar 11</strong>, with Q4 merging into the May capstone. Say now that they present to adults who aren't you. It changes how they work in September.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Syllabus · Training Agreements · review board date sheet · Bulldog Media equipment agreement if applicable</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Confirmed login + Activity 1 submitted · board dates recorded</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E2 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">2</div>
+      <div>
+        <div class="day-date font-heading">Mon Aug 17 &middot; A Day</div>
+        <div class="day-title font-heading">Career &amp; Self-Assessment</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what">Training Agreement collection.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;45</div><div class="min-what"><strong>Self-assessment.</strong> Same instrument. Additional framing for this cohort: your results tell you which parts of running a business you'll need to be deliberate about, because you don't get a supervisor covering your weak spots.</div></div>
+        <div class="min-row"><div class="min-time font-heading">45&ndash;70</div><div class="min-what"><strong>Market research instead of employer research.</strong> Who already does what you do, what do they charge, who buys it? Bulldog Media students research comparable school and small-market media operations.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Baseline 10-skill self-rating.</strong> Same as Placement, and it matters more here &mdash; this is the number the Q1 Review Board sees alongside their own scoring.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Devices · <em>self-assessment.html</em> · market research prompt sheet · baseline rating sheet</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Self-assessment submitted · market research notes · baseline 10-skill rating on file</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E3 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">3</div>
+      <div>
+        <div class="day-date font-heading">Wed Aug 19 &middot; A Day</div>
+        <div class="day-title font-heading">Your Professional Brand <span style="font-weight:600;color:#047857">+ Business Brand</span></div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;15</div><div class="min-what">Same self-search. Sharper stakes: for a self-employed student, their personal brand <em>is</em> the company's brand.</div></div>
+        <div class="min-row"><div class="min-time font-heading">15&ndash;40</div><div class="min-what"><strong>Professional email, sent to you.</strong> Same as Placement &mdash; but written as a business inquiry to a prospective client.</div></div>
+        <div class="min-row"><div class="min-time font-heading">40&ndash;70</div><div class="min-what"><strong>Two brand audits.</strong> Personal cleanup, then the business layer: name, logo, how a customer contacts you, and where they'd find you. Bulldog Media students audit against the school's existing brand standards rather than inventing their own.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Two brand statements.</strong> One personal, one for the business. Both feed the Block 6 pitch.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Devices · phones · sample small-business brand examples · BPS/Bulldog Media brand standards</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Professional email sent · voicemail updated · personal <em>and</em> business brand statements submitted</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E4 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">4</div>
+      <div>
+        <div class="day-date font-heading">Fri Aug 21 &middot; A Day</div>
+        <div class="day-title font-heading">Resume Workshop</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;15</div><div class="min-what"><strong>Why you still build one.</strong> Enterprise students push back on this. The answer: you will need it for college, scholarships, and the day the business ends &mdash; and "founded and ran a business in high school" is the strongest line most of them will have for years.</div></div>
+        <div class="min-row"><div class="min-time font-heading">15&ndash;60</div><div class="min-what"><strong>Build it.</strong> Same template. The hard translation work here is turning self-directed work into resume language with results attached.</div></div>
+        <div class="min-row"><div class="min-time font-heading">60&ndash;80</div><div class="min-what"><strong>Peer review.</strong> Same three questions.</div></div>
+        <div class="min-row"><div class="min-time font-heading">80&ndash;90</div><div class="min-what"><strong>Submit.</strong> Plus: pull the strongest bullet and identify it as the opening line of the client pitch.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Resume template · examples that include self-employment · peer review sheet</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Completed resume submitted</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E5 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">5</div>
+      <div>
+        <div class="day-date font-heading">Tue Aug 25 &middot; A Day</div>
+        <div class="day-title font-heading">Define Your Enterprise</div>
+      </div>
+      <span class="day-flag font-heading">Replaces Explore &amp; Apply</span>
+    </div>
+    <div class="day-body">
+      <div class="callout co-green" style="margin:0 0 1rem">
+        <div class="co-title font-heading">The block that makes the year gradeable</div>
+        Placement students get their scope defined by an employer. Enterprise students have to define their own &mdash; and a student whose enterprise is still vague in November is a student you cannot grade, coach, or defend at a review board. <strong>Do not let anyone leave today without a written scope.</strong>
+      </div>
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;20</div><div class="min-what"><strong>Name the enterprise.</strong> What is the business, who is the customer, what do they pay for? One paragraph, no jargon. If they can't say who pays, they don't have a business yet &mdash; they have an interest, and today's job is to narrow it.</div></div>
+        <div class="min-row"><div class="min-time font-heading">20&ndash;45</div><div class="min-what"><strong>Scope of work.</strong> What will exist by December that doesn't exist today? By May? Concrete deliverables, not aspirations. Bulldog Media students scope against the actual production calendar &mdash; games, events, announcements &mdash; so their year has real deadlines in it.</div></div>
+        <div class="min-row"><div class="min-time font-heading">45&ndash;70</div><div class="min-what"><strong>Hours plan.</strong> 60 hours is the floor, and most of this cohort will pass it easily. The real work is deciding <em>when</em>: which days, how long, logged how. Self-directed students fail on logging, not effort.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Name your client or advisor.</strong> Every student identifies at least one external person who will complete a feedback form &mdash; a paying client, a recurring customer, or the Bulldog Media advisor. <strong>No name today means no external voice in their grade,</strong> so chase this one.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Enterprise scope template · client feedback form sample · Bulldog Media production calendar · hours planning sheet</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Written enterprise scope (Dec + May deliverables) · hours plan · named client or advisor &mdash; <strong>required before Block 8</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E6 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">6</div>
+      <div>
+        <div class="day-date font-heading">Thu Aug 27 &middot; A Day</div>
+        <div class="day-title font-heading">Elevator Pitch <span style="font-weight:600;color:#047857">= Business Pitch</span></div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;15</div><div class="min-what"><strong>Why 30 seconds.</strong> For this cohort the pitch isn't practice for an interview &mdash; it's the tool they'll use every time someone asks what they do. They'll deliver this version dozens of times this year.</div></div>
+        <div class="min-row"><div class="min-time font-heading">15&ndash;35</div><div class="min-what"><strong>Draft.</strong> Structure: what I do &rarr; who it's for &rarr; what problem it solves &rarr; what I'm asking for. Built from the Block 5 scope, so it should write itself if Block 5 landed.</div></div>
+        <div class="min-row"><div class="min-time font-heading">35&ndash;70</div><div class="min-what"><strong>Rehearse in rotation.</strong> Three partners. One added question each round: <em>would you actually buy this?</em></div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Record and submit.</strong> Same 30-second video. Tell them this is the rough draft of what they'll deliver to the panel in Block 8.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Pitch structure handout · timer · phones · Block 5 scope documents in hand</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">30-second recorded business pitch submitted</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E7 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">7</div>
+      <div>
+        <div class="day-date font-heading">Mon Aug 31 &middot; A Day</div>
+        <div class="day-title font-heading">Interview Skills <span style="font-weight:600;color:#047857">as Client Conversations</span></div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;20</div><div class="min-what"><strong>STAR, taught properly.</strong> Same hard teach, same reason: STAR is the weekly reflection format and the language of every review board answer they'll give this year.</div></div>
+        <div class="min-row"><div class="min-time font-heading">20&ndash;45</div><div class="min-what"><strong>Question bank, reframed.</strong> Four STAR answers &mdash; but to client questions: Why should I hire you over someone with more experience? What happens if you miss my deadline? What do you charge and why?</div></div>
+        <div class="min-row"><div class="min-time font-heading">45&ndash;70</div><div class="min-what"><strong>Cold practice.</strong> Partners draw at random, including the uncomfortable pricing questions. Most students have never had to say a number out loud and defend it. Make them.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Wednesday logistics.</strong> Panel order, dress expectations, what to bring. Confirm each student's Block 5 scope is finished &mdash; a student without a scope has nothing to pitch.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">STAR handout · client-question set · panel schedule printed · panelists confirmed</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">4 written STAR answers to client questions · panel slot known</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E8 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">8</div>
+      <div>
+        <div class="day-date font-heading">Wed Sep 2 &middot; A Day</div>
+        <div class="day-title font-heading">Client Pitch Panel</div>
+      </div>
+      <span class="day-flag font-heading">Replaces Mock Interview &middot; guests on site</span>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">&minus;20&ndash;0</div><div class="min-what"><strong>Panelist briefing.</strong> Invite <strong>3&ndash;4</strong> panelists &mdash; a local business owner, the business teacher, the Bulldog Media advisor, an administrator. Same instruction as the mock interviews: <em>be warm but real.</em> This is also your recruiting pool for the Quarterly Review Boards, so treat it as an audition for both sides.</div></div>
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what"><strong>Set the room.</strong> Professional dress, panel table, waiting area.</div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;80</div><div class="min-what"><strong>Pitches.</strong> 5 minutes pitch + 2 minutes questions per student. Ten students fits comfortably. Everyone not pitching completes an observation form &mdash; and with a small cohort, they're watching people they'll work alongside all year.</div></div>
+        <div class="min-row"><div class="min-time font-heading">80&ndash;90</div><div class="min-what"><strong>Panel debrief, out loud.</strong> Top two patterns across the group. Then tell students plainly: <em>these are the people you'll present to in October.</em></div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text"><strong>Panelists invited by Aug 19</strong> · feedback forms · panel schedule · observation forms · projector for student slides</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Delivered pitch + signed panel feedback form on file for every student</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E9 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">9</div>
+      <div>
+        <div class="day-date font-heading">Fri Sep 4 &middot; A Day</div>
+        <div class="day-title font-heading">Improvement Plan + Meet Your 10 Employability Skills</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;30</div><div class="min-what"><strong>Improvement Plan.</strong> Read the panel feedback, name two changes and how you'll practice each. Where the pitch itself was the weak point, revise the scope &mdash; not just the delivery.</div></div>
+        <div class="min-row"><div class="min-time font-heading">30&ndash;60</div><div class="min-what"><strong>The 10 skills and the 4/3/2/1 scale.</strong> Same standard: 3 means you performed to the level a paying client expects.</div></div>
+        <div class="min-row"><div class="min-time font-heading">60&ndash;80</div><div class="min-what"><strong>How the grade actually works here.</strong> Be explicit that Enterprise students have <em>three</em> voices in their skill scores: their own self-assessment, their client feedback form, and the Review Board. Show that a 2-level gap triggers a conversation, not a quiet override.</div></div>
+        <div class="min-row"><div class="min-time font-heading">80&ndash;90</div><div class="min-what"><strong>Pick two focus skills.</strong> Written into the goal sheet for Block 12.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Returned panel feedback · <em>skill-*.html</em> pages · 4/3/2/1 one-pager · Review Board scoring sheet sample</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Improvement Plan submitted · 2 focus skills named</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E10 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">10</div>
+      <div>
+        <div class="day-date font-heading">Wed Sep 9 &middot; A Day</div>
+        <div class="day-title font-heading">Workplace Dilemma Stations <span style="font-weight:600;color:#047857">Enterprise Set</span></div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;10</div><div class="min-what"><strong>Setup.</strong> Same 15 stations from <em>dilemma-scenarios.html</em>. Add an enterprise framing card at each: <em>you have no supervisor to escalate to &mdash; now what?</em></div></div>
+        <div class="min-row"><div class="min-time font-heading">10&ndash;70</div><div class="min-what"><strong>Rotate.</strong> Pairs, ~4 minutes per station with 10 students. Listen for the students who assume a problem will resolve itself &mdash; that instinct is the one that costs them a client.</div></div>
+        <div class="min-row"><div class="min-time font-heading">70&ndash;90</div><div class="min-what"><strong>Debrief + the four they'll actually face.</strong> Take the three most contested, then close on the enterprise-specific set: a client who won't pay, a deadline you're going to miss, work you're not qualified for, and a customer who wants something unethical. <strong>Every one of them will hit at least one of these this year.</strong></div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">15 station cards + enterprise framing cards, placed before class · response sheets · timer</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Completed station response sheet (all 15)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E11 -->
+  <div class="day-card">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">11</div>
+      <div>
+        <div class="day-date font-heading">Fri Sep 11 &middot; A Day</div>
+        <div class="day-title font-heading">Post-Assessment + Enterprise Confirmed</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;25</div><div class="min-what"><strong>Post-assessment.</strong> Same instrument as the Block 2 baseline. Students compare their own then-and-now.</div></div>
+        <div class="min-row"><div class="min-time font-heading">25&ndash;55</div><div class="min-what"><strong>Enterprise confirmation, one at a time.</strong> Sign off individually on: final scope, named client or advisor, hours plan, and where the work physically happens. <strong>An unconfirmed enterprise doesn't get remote privileges</strong> &mdash; this is where the gate gets its teeth.</div></div>
+        <div class="min-row"><div class="min-time font-heading">55&ndash;75</div><div class="min-what"><strong>Remote work agreement.</strong> Written and signed: where you work, how you're reachable during your A-day block, what you submit weekly. Bulldog Media students add the equipment and studio access agreement.</div></div>
+        <div class="min-row"><div class="min-time font-heading">75&ndash;90</div><div class="min-what"><strong>Client feedback form logistics.</strong> Walk through who sends the form, when, and what happens if a client ghosts. Give them the escalation path now &mdash; a missing form in October becomes a missing 20% of the grade.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Post-assessment · remote work agreement template · equipment agreement · client feedback form + instructions</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Post-assessment submitted · enterprise confirmed and signed · remote work agreement on file</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E12 -->
+  <div class="day-card flag">
+    <div class="day-head">
+      <div class="day-num num-ent font-heading">12</div>
+      <div>
+        <div class="day-date font-heading">Tue Sep 15 &middot; A Day</div>
+        <div class="day-title font-heading">Business Plan of Success + Goal Conference + Launch</div>
+      </div>
+      <span class="day-flag font-heading">Bootcamp completion scored</span>
+    </div>
+    <div class="day-body">
+      <div class="mins">
+        <div class="min-row"><div class="min-time font-heading">0&ndash;35</div><div class="min-what"><strong>Business Plan of Success.</strong> Two focus skills, December and May deliverables, weekly hours target, how you'll know it worked. Handed back at the May capstone, so make it specific enough to be judged against.</div></div>
+        <div class="min-row"><div class="min-time font-heading">35&ndash;60</div><div class="min-what"><strong>Goal conferences.</strong> Five minutes each &mdash; ten students fits. Two focus skills, one measurable year goal, one honest worry. Ask each one directly: <em>what would make you quit on this by November?</em> The answer tells you where to coach.</div></div>
+        <div class="min-row"><div class="min-time font-heading">60&ndash;80</div><div class="min-what"><strong>Weekly rhythm + the gate, live.</strong> Log hours as you go, reflection due <strong>Sunday 11:59 PM</strong>. Everyone submits a practice reflection in class. Then the gate, plainly: <strong>"Not current, not remote."</strong> Every freelancer in the world gets paid by submitting documentation on time &mdash; this isn't a school rule.</div></div>
+        <div class="min-row"><div class="min-time font-heading">80&ndash;90</div><div class="min-what"><strong>Launch + the year map.</strong> Hand back the day-one index cards. Post the board dates once more: <strong>Oct 15 · Dec 16 · Mar 11 · May capstone.</strong> First remote A day is Thu Sep 17.</div></div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="meta-label font-heading">Prep &amp; Materials</div><div class="meta-text">Business Plan template · goal conference forms · day-one index cards · board date sheet · gate policy posted</div></div>
+        <div class="meta-box deliv"><div class="meta-label font-heading">Deliverable</div><div class="meta-text">Business Plan of Success · goal conference complete · practice reflection &mdash; <strong>all three required to score Bootcamp Completion (15%)</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout co-green">
+    <div class="co-title font-heading">Thu Sep 17 &mdash; First remote A day</div>
+    Check in with all 10 during that block even though they're off-campus. The first remote day sets the norm for the whole year: if nobody hears from you on Sep 17, the hours logs get thin by October.
+  </div>
+
+  <!-- ================= CONTINGENCIES ================= -->
+  <h2 class="font-heading"><span class="sec-num font-heading">5</span>When It Doesn't Go To Plan</h2>
+  <p class="sec-sub">Twelve blocks with no slack means absences and interruptions need a rule, not a decision each time.</p>
+
+  <div class="callout co-blue">
+    <div class="co-title font-heading">Absence rules by block</div>
+    <ul class="tight">
+      <li><strong>Blocks 4, 5, 8 &mdash; must be made up, on a deadline.</strong> Resume, application, and mock interview/pitch each gate something downstream. Resume and application: made up within 48 hours. A missed mock interview or pitch panel: scheduled with you 1-on-1 within a week, because there's no second panel.</li>
+      <li><strong>Blocks 1, 2, 3, 6, 7, 9, 10 &mdash; asynchronous makeup.</strong> Every one has a submittable deliverable on the site. Assign it and move on; don't reteach.</li>
+      <li><strong>Blocks 11, 12 &mdash; cannot be skipped.</strong> Confirmation, goal conference, and Plan of Success are the three things that let a student start work at all. A student who misses these doesn't launch on time, and that's the honest consequence, not a punishment.</li>
+    </ul>
+  </div>
+
+  <div class="callout co-gold">
+    <div class="co-title font-heading">If you lose a block to an assembly, fire drill, or schedule change</div>
+    Merge, don't cut. The natural pairs are <strong>Blocks 2+3</strong> (both largely independent work time) and <strong>Blocks 9+10</strong> (the improvement plan compresses to 20 minutes if you've already returned the feedback). Never merge Blocks 4, 5, or 8 into anything &mdash; and never cut Block 1, since the tone it sets is the reason the gate works in October.
+  </div>
+
+  <div class="callout co-red">
+    <div class="co-title font-heading">If a placement falls through mid-bootcamp</div>
+    It happens most years. The student keeps moving through the blocks with the cohort &mdash; the bootcamp content is identical regardless of site &mdash; while you work the placement problem separately. Do not park a student in a corner "until we figure it out"; they'll disengage in three days and you'll spend the semester recovering it.
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="summary">
+    <div class="sum-title font-heading">Bootcamp, One Screen</div>
+    <div class="sum-row"><span class="sum-k">Placement cohort</span><span class="sum-v">14 students &middot; Aug 13 &rarr; Aug 28 &middot; 12 blocks</span></div>
+    <div class="sum-row"><span class="sum-k">Enterprise cohort</span><span class="sum-v">10 students &middot; Aug 13 &rarr; Sep 15 &middot; 12 A-day blocks</span></div>
+    <div class="sum-row"><span class="sum-k">Block length</span><span class="sum-v">90 minutes</span></div>
+    <div class="sum-row"><span class="sum-k">Blocks that differ between cohorts</span><span class="sum-v">3 of 12 &mdash; Blocks 5, 8, 11</span></div>
+    <div class="sum-row"><span class="sum-k">Most schedule-critical block</span><span class="sum-v">Block 5 &mdash; starts employer paperwork</span></div>
+    <div class="sum-row"><span class="sum-k">Needs outside adults</span><span class="sum-v">Aug 24 mock interviews &middot; Sep 2 pitch panel</span></div>
+    <div class="sum-row"><span class="sum-k">Placement work begins</span><span class="sum-v">Mon Aug 31</span></div>
+    <div class="sum-row"><span class="sum-k">Enterprise remote work begins</span><span class="sum-v">Thu Sep 17</span></div>
+    <div class="sum-row"><span class="sum-k">Review Boards (Enterprise)</span><span class="sum-v">Oct 15 &middot; Dec 16 &middot; Mar 11 &middot; May capstone</span></div>
+    <div class="sum-row"><span class="sum-k">Capstones</span><span class="sum-v">Placement Dec 17&ndash;18 &middot; Enterprise week of May 10</span></div>
+    <div class="sum-row"><span class="sum-k">The gate</span><span class="sum-v">Placement: not current, not on the schedule<br>Enterprise: not current, not remote</span></div>
+  </div>
+
+  <p style="font-size:.78rem;color:#9ca3af;margin-top:2rem;line-height:1.7">
+    Companion pages: <a href="teacher-grading.html" style="color:#AC161D;font-weight:600">Grading Policy &amp; Plan</a> &middot;
+    <a href="teacher-pacing.html" style="color:#AC161D;font-weight:600">Pacing Guide (by phase)</a> &middot;
+    <a href="teacher-standards.html" style="color:#AC161D;font-weight:600">Standards Alignment</a> &middot;
+    <a href="syllabus.html" style="color:#AC161D;font-weight:600">Syllabus</a>
+  </p>
+</main>
+</body>
+</html>

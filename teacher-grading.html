@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grading Policy &amp; Plan — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .teacher-badge{background:rgba(251,205,7,.15);color:#92400e;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(251,205,7,.35)}
+    .print-btn{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border:none;border-radius:6px;padding:.5rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.4rem}
+    .print-btn:hover{background:#e0b706}
+
+    main{max-width:980px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.85rem;letter-spacing:-.02em;margin-bottom:.375rem}
+    .page-sub{font-size:.875rem;color:#6b7280;margin-bottom:2rem}
+
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;letter-spacing:-.01em;margin:3rem 0 .5rem;display:flex;align-items:center;gap:.625rem}
+    h2 .num{width:1.6rem;height:1.6rem;border-radius:50%;background:#AC161D;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0}
+    .h2-sub{font-size:.85rem;color:#6b7280;line-height:1.7;margin-bottom:1.25rem}
+
+    .principle-box{background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+    .principle-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#92400e;margin-bottom:.625rem}
+    .principle-text{font-size:.875rem;color:#374151;line-height:1.75}
+    .principle-text strong{color:#1c1f2e}
+
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+
+    /* Track headers */
+    .track{background:#fff;border:1px solid #e5e7eb;border-radius:14px;margin-bottom:1.25rem;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .track-head{padding:1.125rem 1.5rem;display:flex;align-items:center;gap:.875rem;flex-wrap:wrap}
+    .track-obl{background:rgba(99,102,241,.09);border-bottom:1px solid rgba(99,102,241,.22)}
+    .track-grw{background:rgba(16,185,129,.08);border-bottom:1px solid rgba(16,185,129,.22)}
+    .track-name{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;flex:1}
+    .track-obl .track-name{color:#3730a3}
+    .track-grw .track-name{color:#065f46}
+    .track-weight{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.35rem;line-height:1}
+    .track-obl .track-weight{color:#4338ca}
+    .track-grw .track-weight{color:#047857}
+    .track-scale{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:999px}
+    .track-obl .track-scale{background:rgba(99,102,241,.16);color:#3730a3}
+    .track-grw .track-scale{background:rgba(16,185,129,.16);color:#065f46}
+    .track-body{padding:1.25rem 1.5rem}
+
+    table{width:100%;border-collapse:collapse;font-size:.82rem}
+    th{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.6rem .75rem;border-bottom:1.5px solid #e5e7eb}
+    td{padding:.7rem .75rem;border-bottom:1px solid #f3f4f6;color:#374151;line-height:1.6;vertical-align:top}
+    tr:last-child td{border-bottom:none}
+    td.wt{font-family:'Montserrat',sans-serif;font-weight:900;color:#1c1f2e;white-space:nowrap}
+    td.nm{font-weight:600;color:#1c1f2e}
+
+    /* 4321 scale */
+    .scale-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.75rem;margin:1rem 0}
+    .scale-card{border-radius:12px;padding:1rem 1.125rem;border:1.5px solid}
+    .s4{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.35)}
+    .s3{background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.3)}
+    .s2{background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.4)}
+    .s1{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.3)}
+    .scale-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;line-height:1;margin-bottom:.3rem}
+    .s4 .scale-num{color:#047857}.s3 .scale-num{color:#1d4ed8}.s2 .scale-num{color:#b45309}.s1 .scale-num{color:#b91c1c}
+    .scale-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#1c1f2e;margin-bottom:.35rem}
+    .scale-desc{font-size:.74rem;color:#4b5563;line-height:1.55}
+    .scale-pct{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.68rem;margin-top:.5rem;padding-top:.5rem;border-top:1px dashed rgba(0,0,0,.12);color:#6b7280}
+
+    /* Gate */
+    .gate{border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;border:1.5px solid}
+    .gate-place{background:rgba(172,22,29,.05);border-color:rgba(172,22,29,.3)}
+    .gate-ent{background:rgba(16,185,129,.05);border-color:rgba(16,185,129,.3)}
+    .gate-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;margin-bottom:.25rem;display:flex;align-items:center;gap:.5rem}
+    .gate-place .gate-title{color:#AC161D}
+    .gate-ent .gate-title{color:#047857}
+    .gate-rule{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:#1c1f2e;margin:.75rem 0;padding:.875rem 1.125rem;background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,.07);line-height:1.5}
+    .gate-text{font-size:.83rem;color:#374151;line-height:1.7}
+    .gate-text strong{color:#1c1f2e}
+
+    /* Ladder */
+    .ladder{display:flex;flex-direction:column;gap:.625rem;margin-top:1rem}
+    .rung{display:flex;gap:1rem;align-items:flex-start;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem}
+    .rung-num{width:2rem;height:2rem;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.8rem;flex-shrink:0;color:#fff}
+    .r1{background:#9ca3af}.r2{background:#f59e0b}.r3{background:#ea580c}.r4{background:#AC161D}
+    .rung-body{flex:1}
+    .rung-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#1c1f2e;margin-bottom:.25rem}
+    .rung-text{font-size:.78rem;color:#4b5563;line-height:1.6}
+    .rung-split{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.6rem}
+    @media(max-width:640px){.rung-split{grid-template-columns:1fr}}
+    .rung-half{background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:.6rem .75rem}
+    .rung-half-label{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.25rem}
+    .rh-place{color:#AC161D}.rh-ent{color:#047857}
+    .rung-half-text{font-size:.74rem;color:#4b5563;line-height:1.55}
+
+    /* Workflow steps */
+    .flow{display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+    .flow-step{display:flex;gap:1rem;align-items:flex-start}
+    .flow-num{width:1.75rem;height:1.75rem;border-radius:50%;background:rgba(172,22,29,.1);border:1px solid rgba(172,22,29,.3);color:#AC161D;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.68rem;flex-shrink:0;margin-top:.1rem}
+    .flow-body{flex:1}
+    .flow-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#1c1f2e;margin-bottom:.2rem}
+    .flow-text{font-size:.79rem;color:#4b5563;line-height:1.65}
+
+    .callout{border-left:3px solid #FBCD07;background:rgba(251,205,7,.07);border-radius:0 8px 8px 0;padding:.875rem 1.125rem;margin:1rem 0;font-size:.81rem;color:#374151;line-height:1.7}
+    .callout strong{color:#1c1f2e}
+    .callout-red{border-left-color:#AC161D;background:rgba(172,22,29,.05)}
+
+    .pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.2rem .6rem;vertical-align:middle}
+    .pill-place{background:rgba(172,22,29,.1);color:#AC161D;border:1px solid rgba(172,22,29,.25)}
+    .pill-ent{background:rgba(16,185,129,.12);color:#047857;border:1px solid rgba(16,185,129,.3)}
+
+    .assumption{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.3);border-radius:10px;padding:.875rem 1.125rem;margin-bottom:2rem;font-size:.8rem;color:#374151;line-height:1.7}
+    .assumption strong{color:#1d4ed8}
+
+    @media print{
+      nav,.print-btn{display:none}
+      body{background:#fff}
+      main{max-width:100%;padding:.5rem}
+      h2{page-break-after:avoid;margin-top:1.5rem}
+      .track,.card,.gate,.rung{page-break-inside:avoid;box-shadow:none}
+      .scale-grid{page-break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Grading Policy &amp; Plan</span>
+    <span class="teacher-badge font-heading">Teacher</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m10-10V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7m10 0v6H7v-6m10 4h.01M7 17h10v4H7v-4z"/></svg>
+    Print / Save PDF
+  </button>
+</nav>
+
+<main>
+  <h1 class="font-heading">Grading Policy &amp; Plan</h1>
+  <p class="page-sub">Field Experience — Work-Based Learning &bull; 2026&ndash;27</p>
+
+  <div class="assumption">
+    <strong>Two cohorts, one grading system.</strong> Throughout this document,
+    <span class="pill pill-place font-heading">Placement</span> refers to the 14 semester students at outside business sites, and
+    <span class="pill pill-ent font-heading">Enterprise</span> refers to the 10 full-year A-day students running their own business or working for a school enterprise (Bulldog Media Team).
+    Both cohorts are graded on the same categories, at the same weights, on the same scale. Only the <em>source of evidence</em> differs.
+  </div>
+
+  <div class="principle-box">
+    <div class="principle-title font-heading">The Core Principle</div>
+    <div class="principle-text">
+      In work-based learning, <strong>reliability is the competency.</strong> An employer does not care whether a timesheet was beautiful — they care whether it was there. So the obligations half of this grade is deliberately binary: you did it or you didn't.<br><br>
+      But showing up is the floor, not the ceiling. The growth half of the grade uses a 4-point scale, because the difference between a student who does the minimum and a student who becomes genuinely valuable to their site is the whole point of the course — and that difference has to be visible somewhere.<br><br>
+      <strong>Most importantly: the grade is not the primary accountability mechanism. The gate is.</strong> Students who fall behind on hours and reflections don't lose points — they lose access to the thing they want. See Section 5.
+    </div>
+  </div>
+
+  <!-- ============ 1. THE TWO TRACKS ============ -->
+  <h2 class="font-heading"><span class="num font-heading">1</span>The Two Tracks</h2>
+  <p class="h2-sub">The five graded categories are not the same kind of thing, so they don't share a scale. Two are pure completion. Three are developmental.</p>
+
+  <div class="track">
+    <div class="track-head track-obl">
+      <div class="track-name font-heading">Professional Obligations</div>
+      <span class="track-scale font-heading">Meets / Not Yet</span>
+      <div class="track-weight font-heading">50%</div>
+    </div>
+    <div class="track-body">
+      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">Did the work arrive, on time, meeting the stated minimum? There is no artistry in a timesheet. These are scored yes/no and nothing else — which makes them fast for you and completely unambiguous for students.</p>
+      <table>
+        <tr><th>Category</th><th>Weight</th><th>What earns "Meets"</th></tr>
+        <tr>
+          <td class="nm">Weekly Hours Log</td><td class="wt">20%</td>
+          <td>Submitted by Sunday 11:59 PM for the prior week, hours accurate, supervisor-verifiable.</td>
+        </tr>
+        <tr>
+          <td class="nm">Weekly Reflection</td><td class="wt">15%</td>
+          <td>Submitted by Sunday 11:59 PM, answers every prompt, meets the stated length minimum. <strong>Not scored for quality</strong> — see Section 4 for what the content is actually used for.</td>
+        </tr>
+        <tr>
+          <td class="nm">Bootcamp Completion</td><td class="wt">15%</td>
+          <td>All 16 bootcamp activities marked complete with deliverables submitted to the site. One-time, front of course.</td>
+        </tr>
+      </table>
+      <div class="callout">
+        <strong>Scoring:</strong> On time = <strong>100</strong>. Late but completed = <strong>85</strong>. Not submitted = <strong>Incomplete</strong>, converting to 0 only at quarter close if still missing. A missing submission is always recoverable until the quarter ends.
+      </div>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="track-head track-grw">
+      <div class="track-name font-heading">Professional Growth</div>
+      <span class="track-scale font-heading">4 &bull; 3 &bull; 2 &bull; 1</span>
+      <div class="track-weight font-heading">50%</div>
+    </div>
+    <div class="track-body">
+      <p style="font-size:.82rem;color:#4b5563;line-height:1.7;margin-bottom:1rem">How well are they doing it? These are scored on the 4-point scale against the 10 Illinois Essential Employability Skills. Scored <strong>once per quarter</strong>, not weekly.</p>
+      <table>
+        <tr><th>Category</th><th>Weight</th><th>Who scores it</th></tr>
+        <tr>
+          <td class="nm">Employer / Advisor Evaluation<br><span style="font-weight:400;font-size:.75rem;color:#6b7280">10 employability skills</span></td><td class="wt">20%</td>
+          <td><span class="pill pill-place font-heading">Placement</span> Site supervisor completes the 10-skill evaluation each quarter.<br><span class="pill pill-ent font-heading">Enterprise</span> Quarterly Review Board scores the same 10 skills (Section 6).</td>
+        </tr>
+        <tr>
+          <td class="nm">Self-Assessment<br><span style="font-weight:400;font-size:.75rem;color:#6b7280">with reflection evidence</span></td><td class="wt">15%</td>
+          <td>Student self-scores all 10 skills at quarter close, citing their own weekly reflections as evidence. You confirm or adjust — see Section 4.</td>
+        </tr>
+        <tr>
+          <td class="nm">Capstone</td><td class="wt">15%</td>
+          <td>Booth presentation + stage talk, scored by you on the 4-point scale.<br><span class="pill pill-place font-heading">Placement</span> December &nbsp; <span class="pill pill-ent font-heading">Enterprise</span> May</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ 2. THE SCALE ============ -->
+  <h2 class="font-heading"><span class="num font-heading">2</span>The 4-Point Scale</h2>
+  <p class="h2-sub">Used for everything in the Professional Growth track. This is the same scale as the observation rubric already in the Teacher Hub, so a site visit and a quarterly evaluation speak the same language.</p>
+
+  <div class="scale-grid">
+    <div class="scale-card s4">
+      <div class="scale-num font-heading">4</div>
+      <div class="scale-label font-heading">Excellent</div>
+      <div class="scale-desc">Performs above what the site expects of a student. Anticipates needs, takes initiative unprompted, is treated as a genuine contributor.</div>
+      <div class="scale-pct font-heading">Gradebook: 100%</div>
+    </div>
+    <div class="scale-card s3">
+      <div class="scale-num font-heading">3</div>
+      <div class="scale-label font-heading">Meets</div>
+      <div class="scale-desc">Performs to the standard a real employer expects. Reliable, professional, does what is asked and does it well. <strong>This is the target.</strong></div>
+      <div class="scale-pct font-heading">Gradebook: 92%</div>
+    </div>
+    <div class="scale-card s2">
+      <div class="scale-num font-heading">2</div>
+      <div class="scale-label font-heading">Does Not Meet</div>
+      <div class="scale-desc">Inconsistent. Meets the standard some days and not others, or requires more prompting than a site should have to give.</div>
+      <div class="scale-pct font-heading">Gradebook: 75%</div>
+    </div>
+    <div class="scale-card s1">
+      <div class="scale-num font-heading">1</div>
+      <div class="scale-label font-heading">Needs Serious Improvement</div>
+      <div class="scale-desc">Falls short in a way that would jeopardize real employment. Triggers an improvement plan and a supervisor conversation.</div>
+      <div class="scale-pct font-heading">Gradebook: 60%</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Why "Meets" is worth 92 and not 80.</strong> The bar for a 3 is not "did fine for a high schooler" — it is <em>performed to the standard a paying employer expects.</em> A student who genuinely hits that every quarter has earned an A&ndash;. Students who don't reach the bar are handled by the gate and the improvement ladder, not by grade deflation. If your administrator wants a different mapping, this single row is the only number that has to change.
+  </div>
+
+  <div class="card">
+    <div class="flow-title font-heading" style="margin-bottom:.5rem">"No Evidence" is a status, not a score</div>
+    <p style="font-size:.81rem;color:#4b5563;line-height:1.7">
+      When nothing was submitted, do not enter a 1. Enter <strong>Incomplete (INC)</strong>. A 1 means <em>I saw the work and it fell well short</em>; INC means <em>nothing arrived and I cannot judge it.</em> Those are different problems with different fixes, and collapsing them hides which students need re-teaching versus which need re-engaging. INC converts to the earned score whenever the work comes in, and to a 0 only at quarter close.
+    </p>
+  </div>
+
+  <!-- ============ 3. GRADEBOOK ============ -->
+  <h2 class="font-heading"><span class="num font-heading">3</span>Gradebook Translation</h2>
+  <p class="h2-sub">Students and parents see competency language. The BPS101 gradebook receives a percentage. This table is the only crosswalk you need.</p>
+
+  <div class="card">
+    <table>
+      <tr><th>Mark</th><th>Meaning</th><th>Gradebook %</th></tr>
+      <tr><td class="nm">4 — Excellent</td><td>Above site expectations</td><td class="wt" style="color:#047857">100</td></tr>
+      <tr><td class="nm">3 — Meets</td><td>Employer standard</td><td class="wt" style="color:#1d4ed8">92</td></tr>
+      <tr><td class="nm">2 — Does Not Meet</td><td>Inconsistent</td><td class="wt" style="color:#b45309">75</td></tr>
+      <tr><td class="nm">1 — Needs Serious Improvement</td><td>Would jeopardize employment</td><td class="wt" style="color:#b91c1c">60</td></tr>
+      <tr><td class="nm">Meets <span style="font-weight:400;color:#6b7280">(Obligations, on time)</span></td><td>Submitted by deadline</td><td class="wt" style="color:#047857">100</td></tr>
+      <tr><td class="nm">Late <span style="font-weight:400;color:#6b7280">(Obligations)</span></td><td>Submitted after deadline</td><td class="wt" style="color:#b45309">85</td></tr>
+      <tr><td class="nm">INC — No Evidence</td><td>Nothing submitted; recoverable</td><td class="wt" style="color:#6b7280">INC &rarr; 0 at quarter close</td></tr>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Category setup in the gradebook:</strong> create six weighted categories matching the two tables in Section 1 — Hours Log 20, Reflections 15, Bootcamp 15, Employer Evaluation 20, Self-Assessment 15, Capstone 15. Everything else is just entering 100 / 92 / 85 / 75 / 60 / INC.
+  </div>
+
+  <!-- ============ 4. SKILLS WITHOUT THE WORK ============ -->
+  <h2 class="font-heading"><span class="num font-heading">4</span>Scoring Employability Skills Without Drowning In It</h2>
+  <p class="h2-sub">The design goal here is a system that produces defensible skill scores while asking you to make roughly two judgment calls per student per quarter — not twenty.</p>
+
+  <div class="principle-box">
+    <div class="principle-title font-heading">The Key Move: Don't Grade the Reflections — Mine Them</div>
+    <div class="principle-text">
+      Weekly reflections are scored <strong>Meets / Not Yet on submission only.</strong> You never read them for a grade. Instead, each week's reflection prompt is <strong>tagged to one of the 10 employability skills on a rotation.</strong> By quarter's end, every student has produced a written evidence file about themselves — one entry per skill, in their own words.<br><br>
+      At quarter close, the student uses that file to self-score all 10 skills. The employer independently scores the same 10. <strong>You only get involved where those two disagree.</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="flow-title font-heading" style="font-size:.95rem;margin-bottom:.75rem">The Quarter-Close Workflow</div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num font-heading">1</div>
+        <div class="flow-body">
+          <div class="flow-title font-heading">Weekly — reflections auto-collect the evidence</div>
+          <div class="flow-text">Each week's prompt targets one skill on rotation (Week 1 Reliability, Week 2 Communication, Week 3 Initiative, and so on through all 10). Students answer in STAR form: the situation, what they did, what happened. You score submission only. <strong>Your weekly time cost: zero reading.</strong></div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num font-heading">2</div>
+        <div class="flow-body">
+          <div class="flow-title font-heading">Quarter close — student self-scores with citations</div>
+          <div class="flow-text">Student rates all 10 skills 4&ndash;3&ndash;2&ndash;1 and must cite the reflection week that justifies each rating. A score with no cited evidence is not accepted — it goes back. This is the step that keeps it honest without costing you anything.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num font-heading">3</div>
+        <div class="flow-body">
+          <div class="flow-title font-heading">Quarter close — employer or board scores the same 10</div>
+          <div class="flow-text"><span class="pill pill-place font-heading">Placement</span> Supervisor completes the same 10-skill form. Takes them about five minutes.<br><span class="pill pill-ent font-heading">Enterprise</span> The Quarterly Review Board scores it during the student's presentation (Section 6).</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num font-heading">4</div>
+        <div class="flow-body">
+          <div class="flow-title font-heading">You adjudicate only the gaps — the whole time saver</div>
+          <div class="flow-text">
+            <strong>Agreement within 1 level &rarr; both scores stand as submitted. You do nothing.</strong> That will be the large majority of skills.<br>
+            <strong>Gap of 2 or more levels &rarr; you look.</strong> Read the cited reflection, weigh it against what you saw on your site visit, and set the self-assessment score. Note the reason in one sentence.<br><br>
+            In practice this is <strong>two or three skills per student per quarter</strong>, and the disagreements are exactly the conversations worth having anyway — a student rating themselves a 4 where the employer said 2 is the single most useful coaching moment in the course.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>You are not the third scorer.</strong> Your site visit observations (Teacher Hub &rarr; Observation Rubric) are a tiebreaker you reach for during step 4 — not a separate pass you owe every student. Resist the urge to independently score all 10 skills for all 24 students; that is the version of this system that collapses by October.
+  </div>
+
+  <!-- ============ 5. THE GATE ============ -->
+  <h2 class="font-heading"><span class="num font-heading">5</span>The Gate</h2>
+  <p class="h2-sub">This is the real accountability mechanism of the course. It mirrors actual employment: you are not fired for missing paperwork — you are simply not on the schedule until it's current.</p>
+
+  <div class="gate gate-place">
+    <div class="gate-title font-heading">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      Placement Students — "Not current, not on the schedule."
+    </div>
+    <div class="gate-rule font-heading">If your hours log and reflection are not submitted by Sunday 11:59 PM, you do not report to your placement site. You report to class and complete them first.</div>
+    <div class="gate-text">
+      The student stays at school for that day's placement block and completes the missing work in your room. They return to their site the following day, current. The site supervisor is notified by you at rung 3 and above — not before, so a single slip doesn't cost the student credibility at work.<br><br>
+      <strong>Why this works:</strong> the student wants to be at their site. Losing a day there is a real, immediate, non-negotiable consequence that no point deduction can replicate — and it teaches exactly the right lesson about how employment actually functions.
+    </div>
+  </div>
+
+  <div class="gate gate-ent">
+    <div class="gate-title font-heading">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Enterprise Students — "Not current, not remote."
+    </div>
+    <div class="gate-rule font-heading">Working off-campus is a privilege earned by being current. If your hours log and reflection are not submitted by Sunday 11:59 PM, you report to Room [___] on your A day until you are caught up.</div>
+    <div class="gate-text">
+      Enterprise students may normally work from home, a client site, or wherever their business takes them. That autonomy is the single most valuable thing they have — and it is <strong>conditional on documentation</strong>, exactly as it would be for any contractor who wants to keep getting paid.<br><br>
+      A student who is behind loses remote privileges and works in your room, on their paperwork, until current. Bulldog Media students additionally lose equipment and studio access during that period, since those are school resources tied to being in good standing.<br><br>
+      <strong>Frame it honestly with them:</strong> "Every freelancer in the world gets paid by submitting documentation on time. This is not a school rule I invented — it is the job."
+    </div>
+  </div>
+
+  <!-- ============ ESCALATION ============ -->
+  <h2 class="font-heading"><span class="num font-heading">6</span>Escalation Ladder</h2>
+  <p class="h2-sub">Write it down, apply it identically to every student, and the gate stops being something a parent can argue with. The counter resets at the start of each quarter.</p>
+
+  <div class="ladder">
+    <div class="rung">
+      <div class="rung-num r1 font-heading">1</div>
+      <div class="rung-body">
+        <div class="rung-title font-heading">First miss — Complete it, carry on</div>
+        <div class="rung-text">Student completes the missing work during that day's block. No parent contact, no supervisor contact. Logged in the tracker so the count is accurate. Everyone has one bad week.</div>
+      </div>
+    </div>
+    <div class="rung">
+      <div class="rung-num r2 font-heading">2</div>
+      <div class="rung-body">
+        <div class="rung-title font-heading">Second miss — The gate closes</div>
+        <div class="rung-text">The gate is enforced for that day, and an email goes home the same day. Short and factual: what was missed, what happened as a result, what fixes it.</div>
+        <div class="rung-split">
+          <div class="rung-half"><div class="rung-half-label rh-place font-heading">Placement</div><div class="rung-half-text">Held from the site that day. Works in your room.</div></div>
+          <div class="rung-half"><div class="rung-half-label rh-ent font-heading">Enterprise</div><div class="rung-half-text">Remote privilege revoked for the week. Reports to your room.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rung">
+      <div class="rung-num r3 font-heading">3</div>
+      <div class="rung-body">
+        <div class="rung-title font-heading">Third miss — Improvement plan</div>
+        <div class="rung-text">Phone call home, not email. Written Improvement Plan signed by student and guardian, with a two-week check-in date. Supervisor or advisor is now looped in — because at a real job, this is the point where a manager would know.</div>
+        <div class="rung-split">
+          <div class="rung-half"><div class="rung-half-label rh-place font-heading">Placement</div><div class="rung-half-text">Site supervisor notified. Hours may be reduced during the plan.</div></div>
+          <div class="rung-half"><div class="rung-half-label rh-ent font-heading">Enterprise</div><div class="rung-half-text">Remote privilege suspended two weeks. Equipment/studio access paused.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rung">
+      <div class="rung-num r4 font-heading">4</div>
+      <div class="rung-body">
+        <div class="rung-title font-heading">Fourth miss — Agreement review</div>
+        <div class="rung-text">Formal review meeting with student, guardian, and employer or advisor, against the Training Agreement. Possible removal from the program with placement into an alternative course. The Professional Obligations portion of the grade reflects what was actually submitted — no retroactive rescue.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-red">
+    <strong>Two protections to build in now.</strong> First, transportation and IEP/504 accommodations are handled <em>before</em> the ladder applies, not as an appeal to it — a student whose ride falls through has an attendance issue, not a compliance issue, and confusing the two is how this policy gets successfully challenged. Second, log every rung in writing the day it happens. A ladder you can document is a ladder that holds.
+  </div>
+
+  <!-- ============ 7. REVIEW BOARD ============ -->
+  <h2 class="font-heading"><span class="num font-heading">7</span>Quarterly Review Board <span class="pill pill-ent font-heading" style="font-size:.6rem">Enterprise Only</span></h2>
+  <p class="h2-sub">Enterprise students have no outside supervisor, so the Review Board is what replaces the employer evaluation. It is also, frankly, better — a founder pitching a board is more authentic than a manager filling out a form.</p>
+
+  <div class="card">
+    <p style="font-size:.83rem;color:#374151;line-height:1.75;margin-bottom:1rem">
+      Each quarter, every enterprise student presents to a small board and answers for their work. The board scores the same 10 employability skills on the same 4-point scale, and that score becomes their Employer/Advisor Evaluation grade.
+    </p>
+    <table>
+      <tr><th>Element</th><th>Detail</th></tr>
+      <tr><td class="nm">Board composition</td><td>You, plus 2&ndash;3 others — a business teacher, the Bulldog Media advisor, an administrator, or a community business owner. Rotate guests; the same three faces every quarter loses its edge.</td></tr>
+      <tr><td class="nm">Format</td><td>8-minute student presentation, 5 minutes of board questions, board scores independently while the next student sets up.</td></tr>
+      <tr><td class="nm">Student must bring</td><td>Hours log for the quarter &bull; deliverables or client work produced &bull; at least one client, customer, or advisor feedback form &bull; their completed 10-skill self-assessment &bull; what they'd do differently next quarter.</td></tr>
+      <tr><td class="nm">Board scores</td><td>All 10 employability skills, 4&ndash;3&ndash;2&ndash;1. Scores are averaged across board members. Disagreement of 2+ levels between board members is resolved by discussion before scores are entered.</td></tr>
+      <tr><td class="nm">Dates <span style="font-weight:400;color:#6b7280">(A days)</span></td><td><strong>Q1</strong> Thu Oct 15 &nbsp;&bull;&nbsp; <strong>Q2</strong> Wed Dec 16 &nbsp;&bull;&nbsp; <strong>Q3</strong> Thu Mar 11 &nbsp;&bull;&nbsp; <strong>Q4</strong> merges into the May capstone</td></tr>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>The one thing to guard against:</strong> a student whose business is genuinely slow this quarter is not automatically a 2. Score the <em>employability skills</em> — initiative, planning, communication, problem-solving — not the revenue. A student who hustled hard into a bad market has demonstrated more than one who coasted on an easy one, and the board needs to be told that explicitly before the first session.
+  </div>
+
+  <!-- ============ 8. CALENDAR ============ -->
+  <h2 class="font-heading"><span class="num font-heading">8</span>Grading Calendar</h2>
+  <p class="h2-sub">Every date on which something must be scored. Everything not on this list is submission-checking, which the site does for you.</p>
+
+  <div class="card">
+    <table>
+      <tr><th>When</th><th>What gets scored</th><th>Who</th></tr>
+      <tr><td class="nm">Weekly, Sundays</td><td>Hours log + reflection submitted — Meets / Late / INC</td><td>Site auto-flags; you confirm</td></tr>
+      <tr><td class="nm">Fri Aug 28</td><td>Bootcamp Completion <span class="pill pill-place font-heading">Placement</span></td><td>You</td></tr>
+      <tr><td class="nm">Tue Sep 15</td><td>Bootcamp Completion <span class="pill pill-ent font-heading">Enterprise</span></td><td>You</td></tr>
+      <tr><td class="nm">Week of Oct 12</td><td>Q1 — 10-skill self-assessment + employer evaluation</td><td>Student + employer</td></tr>
+      <tr><td class="nm">Thu Oct 15</td><td>Q1 Review Board <span class="pill pill-ent font-heading">Enterprise</span></td><td>Board</td></tr>
+      <tr><td class="nm">Fri Oct 16</td><td><strong>Term 1 ends</strong> — INC converts to 0; adjudicate skill gaps</td><td>You</td></tr>
+      <tr><td class="nm">Week of Dec 14</td><td>Q2 — 10-skill self-assessment + employer evaluation</td><td>Student + employer</td></tr>
+      <tr><td class="nm">Wed Dec 16</td><td>Q2 Review Board <span class="pill pill-ent font-heading">Enterprise</span></td><td>Board</td></tr>
+      <tr><td class="nm">Dec 17&ndash;18</td><td><strong>Capstone</strong> <span class="pill pill-place font-heading">Placement</span> — booth + stage talk</td><td>You</td></tr>
+      <tr><td class="nm">Week of Mar 8</td><td>Q3 — 10-skill self-assessment</td><td>Student</td></tr>
+      <tr><td class="nm">Thu Mar 11</td><td>Q3 Review Board <span class="pill pill-ent font-heading">Enterprise</span></td><td>Board</td></tr>
+      <tr><td class="nm">Fri Mar 12</td><td><strong>Term 3 ends</strong> — INC converts to 0</td><td>You</td></tr>
+      <tr><td class="nm">Week of May 10</td><td><strong>Capstone + Q4 Review Board</strong> <span class="pill pill-ent font-heading">Enterprise</span></td><td>You + board</td></tr>
+      <tr><td class="nm">Thu May 20</td><td>Last day — final grades</td><td>You</td></tr>
+    </table>
+  </div>
+
+  <!-- ============ 9. QUICK REF ============ -->
+  <h2 class="font-heading"><span class="num font-heading">9</span>One-Screen Summary</h2>
+
+  <div class="card" style="background:#0e1520;border-color:#0e1520">
+    <table style="color:#e5e7eb">
+      <tr><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15)">Professional Obligations — 50%</th><th style="color:#FBCD07;border-bottom-color:rgba(255,255,255,.15);text-align:right">Meets / Not Yet</th></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Weekly Hours Log</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">20%</td></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Weekly Reflection</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">15%</td></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Bootcamp Completion</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">15%</td></tr>
+      <tr><th style="color:#6ee7b7;border-bottom-color:rgba(255,255,255,.15);padding-top:1.25rem">Professional Growth — 50%</th><th style="color:#6ee7b7;border-bottom-color:rgba(255,255,255,.15);text-align:right;padding-top:1.25rem">4 &bull; 3 &bull; 2 &bull; 1</th></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Employer / Advisor Evaluation</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">20%</td></tr>
+      <tr><td style="color:#e5e7eb;border-bottom-color:rgba(255,255,255,.08)">Self-Assessment w/ Reflection Evidence</td><td class="wt" style="color:#fff;text-align:right;border-bottom-color:rgba(255,255,255,.08)">15%</td></tr>
+      <tr><td style="color:#e5e7eb">Capstone</td><td class="wt" style="color:#fff;text-align:right">15%</td></tr>
+    </table>
+    <p style="font-size:.78rem;color:#9ca3af;line-height:1.7;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.12)">
+      <strong style="color:#FBCD07">4</strong> Excellent = 100 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">3</strong> Meets = 92 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">2</strong> Does Not Meet = 75 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">1</strong> Needs Serious Improvement = 60 &nbsp;&bull;&nbsp; <strong style="color:#FBCD07">INC</strong> No Evidence, recoverable until quarter close<br><br>
+      <strong style="color:#fff">The gate:</strong> hours and reflection not in by Sunday 11:59 PM &rarr; no placement that day <span style="color:#6b7280">(Placement)</span> / no remote work that week <span style="color:#6b7280">(Enterprise)</span>. Ladder: complete it &rarr; gate + email home &rarr; call home + improvement plan &rarr; Training Agreement review. Counter resets each quarter.
+    </p>
+  </div>
+
+</main>
+</body>
+</html>
