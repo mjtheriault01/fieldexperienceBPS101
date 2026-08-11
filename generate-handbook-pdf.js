@@ -15,7 +15,10 @@ const REPO = __dirname;
 const OUT_DIR = path.join(os.homedir(), 'Downloads', 'Field Experience Bootcamp');
 
 const DOCS = [
-  { file: 'handbook.html',        pdf: 'Field Experience Handbook.pdf',        footer: false },
+  { file: 'handbook.html',          pdf: 'Field Experience Handbook.pdf',      footer: false },
+  // Standalone signable copy for the employer/parent — regenerate it from the
+  // handbook with tmp/make_standalone.py if the agreement text ever changes.
+  { file: 'training-agreement.html', pdf: 'Training Agreement (signable).pdf', footer: true  },
   { file: 'capstone-rubric.html', pdf: 'Capstone Rubric.pdf',                  footer: true  },
   { file: 'portfolio-guide.html', pdf: 'Portfolio Guide.pdf',                  footer: true  },
   { file: 'syllabus.html',        pdf: 'Course Syllabus.pdf',                  footer: true  },
