@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pitch Prep Sheet — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:840px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1.1rem}
+    .lede{font-size:.88rem;color:#4b5563;line-height:1.8;margin-bottom:1.4rem}
+
+    /* name bar */
+    .namebar{display:flex;gap:1.25rem;flex-wrap:wrap;border:1px solid #d8dbe0;border-radius:10px;padding:.85rem 1.1rem;background:#fff;margin-bottom:1.5rem}
+    .nb{display:flex;align-items:baseline;gap:.45rem;flex:1;min-width:12rem}
+    .nb-l{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;white-space:nowrap}
+    .nb-line{flex:1;border-bottom:1px solid #cfd3d9;height:1.1rem}
+
+    /* the why box */
+    .why{background:#0e1520;color:#fff;border-radius:14px;padding:1.5rem 1.7rem;margin-bottom:1.5rem}
+    .why-t{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.05rem;color:#FBCD07;margin-bottom:.55rem}
+    .why p{font-size:.86rem;line-height:1.8;color:#d1d5db}
+    .why p+p{margin-top:.7rem}
+    .why strong{color:#fff}
+
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;margin:2.25rem 0 .3rem}
+    .h2-sub{font-size:.82rem;color:#6b7280;margin-bottom:1rem;line-height:1.65}
+
+    /* pitch part block */
+    .part{background:#fff;border:1px solid #d8dbe0;border-radius:13px;margin-bottom:1rem;overflow:hidden;break-inside:avoid;page-break-inside:avoid}
+    .part-head{display:flex;align-items:center;gap:.85rem;padding:.8rem 1.2rem;border-bottom:1px solid #f1f2f4;background:#fcfcfd}
+    .part-time{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.68rem;color:#fff;background:#AC161D;border-radius:999px;padding:.28rem .7rem;white-space:nowrap;flex-shrink:0}
+    .part-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.98rem;color:#1c1f2e;flex:1;line-height:1.25}
+    .part-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.85rem;color:#c4c8ce;flex-shrink:0}
+    .part-body{padding:1rem 1.2rem 1.15rem}
+    .part-goal{font-size:.83rem;color:#4b5563;line-height:1.7;margin-bottom:.85rem;padding-bottom:.75rem;border-bottom:1px dashed #e5e7eb}
+    .part-goal strong{color:#1c1f2e}
+
+    .pl{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;margin-bottom:.4rem}
+    ul.prompts{list-style:none;margin:0 0 .9rem}
+    ul.prompts li{position:relative;padding-left:1.2rem;font-size:.84rem;color:#374151;line-height:1.65;margin-bottom:.42rem}
+    ul.prompts li:before{content:'';position:absolute;left:.3rem;top:.55rem;width:.32rem;height:.32rem;border-radius:50%;background:#AC161D}
+    ul.prompts li em{color:#6b7280}
+
+    .rule{border-bottom:1px solid #d8dbe0;height:1.5rem}
+    .rule.tight{height:1.3rem}
+
+    /* callouts */
+    .box{border-radius:11px;padding:1rem 1.2rem;margin:1.1rem 0;font-size:.84rem;line-height:1.72;color:#374151}
+    .box strong{color:#1c1f2e}
+    .box-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;margin-bottom:.4rem}
+    .b-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .b-gold .box-t{color:#92400e}
+    .b-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .b-red .box-t{color:#AC161D}
+    .b-green{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.3)}
+    .b-green .box-t{color:#047857}
+    .b-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .b-blue .box-t{color:#1d4ed8}
+    .box ul{margin:.4rem 0 0 1.2rem}
+    .box li{font-size:.83rem;margin-bottom:.26rem;line-height:1.6}
+
+    /* draft page */
+    .draft{background:#fff;border:1.5px solid #1c1f2e;border-radius:13px;overflow:hidden;margin-bottom:1.1rem;break-inside:avoid}
+    .draft-head{background:#0e1520;color:#fff;padding:.8rem 1.2rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+    .draft-t{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem}
+    .draft-meta{margin-left:auto;font-size:.7rem;color:#9ca3af}
+    .draft-body{padding:1.1rem 1.2rem 1.25rem}
+    .draft-seg{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#AC161D;margin:.9rem 0 .35rem}
+    .draft-seg:first-child{margin-top:0}
+
+    /* practice checklist */
+    .chk{display:flex;align-items:flex-start;gap:.65rem;padding:.5rem 0;border-top:1px solid #f1f2f4}
+    .chk:first-of-type{border-top:none}
+    .chk-b{width:1rem;height:1rem;border:1.5px solid #9ca3af;border-radius:3px;flex-shrink:0;margin-top:.2rem}
+    .chk-t{font-size:.84rem;color:#374151;line-height:1.6;flex:1}
+    .chk-t strong{color:#1c1f2e}
+
+    /* example */
+    .ex{background:rgba(59,130,246,.05);border-left:3px solid #60a5fa;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.1rem 0}
+    .ex-l{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#1d4ed8;margin-bottom:.4rem}
+    .ex p{font-size:.85rem;color:#374151;line-height:1.75;font-style:italic}
+    .ex-note{font-size:.78rem;color:#6b7280;margin-top:.6rem;font-style:normal;line-height:1.6}
+
+    .foot{font-size:.72rem;color:#9ca3af;margin-top:2rem;line-height:1.7}
+
+    @media print{
+      nav,.print-btn{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h2{page-break-after:avoid}
+      .part,.box,.draft,.ex,.why,.namebar{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+      .part{margin-bottom:.7rem}
+      .rule{height:1.35rem}
+      p,li{font-size:.8rem}
+      .page-break{page-break-before:always;break-before:page}
+    }
+    @page{margin:.5in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="capstone.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Capstone
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Pitch Prep Sheet</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+
+<main>
+  <h1 class="font-heading">Your 90-Second Pitch &mdash; Prep Sheet</h1>
+  <p class="page-sub">Field Experience Capstone &middot; the Black Box stage, Fine Arts Center</p>
+  <p class="lede">
+    At the capstone you deliver <strong>one minute and thirty seconds</strong> on yourself and your Field Experience. Fully prepared, live, on a real stage, to a real audience. No prompt to react to, no questions to survive &mdash; just your 90 seconds, done well.
+  </p>
+  <p class="lede" style="margin-top:-.6rem">
+    That's a shorter time than you think, and the students who do it well are the ones who <strong>decided in advance exactly what they wanted to say.</strong> This sheet is how you decide. Work through the prompts, write down whatever comes, then pick your strongest material and build the pitch out of it.
+  </p>
+
+  <div class="namebar">
+    <div class="nb"><span class="nb-l font-heading">Name</span><span class="nb-line"></span></div>
+    <div class="nb"><span class="nb-l font-heading">Placement</span><span class="nb-line"></span></div>
+    <div class="nb"><span class="nb-l font-heading">Cluster</span><span class="nb-line"></span></div>
+  </div>
+
+  <div class="why">
+    <div class="why-t font-heading">What this pitch is actually for</div>
+    <p>You are not summarizing a class. You are telling a room full of adults &mdash; employers, administrators, families, community members, maybe your own supervisor &mdash; <strong>what this experience did to you and where it's pointing you next.</strong></p>
+    <p>Two things have to come through in 90 seconds, and everything on this sheet exists to help you find them:</p>
+    <p><strong>1. Why this experience mattered.</strong> Not "it was a great opportunity." What specifically changed because you did it &mdash; something you can now do, understand, or handle that you couldn't in August.</p>
+    <p><strong>2. How it's shaping your path.</strong> Confirmed a direction, changed one, closed a door, opened one you didn't know existed. <em>All four of those are good answers.</em> "I found out this isn't for me" is one of the most valuable outcomes this course produces &mdash; and it takes more honesty to say out loud than a comfortable answer does.</p>
+  </div>
+
+  <div class="box b-gold">
+    <div class="box-t font-heading">How to use this sheet</div>
+    <p><strong>Read every prompt. Answer the ones that spark something.</strong> You will not use all of this material in your pitch &mdash; 90 seconds is roughly 200&ndash;230 words, so you'll use maybe three or four of these answers total. The point of going through all of them is to find your <em>best</em> three or four instead of settling for the first ones you thought of.</p>
+    <p style="margin-top:.5rem">Write in fragments. Nobody grades this sheet.</p>
+  </div>
+
+  <!-- ══════════ PART 1 ══════════ -->
+  <h2 class="font-heading">Build it in four pieces</h2>
+  <p class="h2-sub">A 90-second pitch has roughly this shape. The timings are a guide, not a rule &mdash; but if any one piece runs much past its share, the others get squeezed out.</p>
+
+  <div class="part">
+    <div class="part-head">
+      <span class="part-n font-heading">1</span>
+      <span class="part-name font-heading">Who you are and where you were</span>
+      <span class="part-time font-heading">~15 sec</span>
+    </div>
+    <div class="part-body">
+      <div class="part-goal"><strong>Goal:</strong> get the audience oriented fast. Name, placement, cluster. No wind-up, no "um, so basically." This is the easiest part to nail and the easiest to waste.</div>
+      <div class="pl font-heading">Prompts</div>
+      <ul class="prompts">
+        <li>Where did you spend your semester, and what does that organization actually do? <em>(one sentence a stranger would understand)</em></li>
+        <li>What was your role called &mdash; and if it didn't have a title, what would you call it?</li>
+        <li>How would you describe your placement to someone who has never heard of it?</li>
+      </ul>
+      <div class="pl font-heading">Notes</div>
+      <div class="rule"></div><div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="part">
+    <div class="part-head">
+      <span class="part-n font-heading">2</span>
+      <span class="part-name font-heading">What you actually did</span>
+      <span class="part-time font-heading">~30 sec</span>
+    </div>
+    <div class="part-body">
+      <div class="part-goal"><strong>Goal:</strong> prove you were really there. Specific beats impressive every single time &mdash; one real task described concretely lands harder than a list of five vague ones. If your answer could describe any student at any placement, dig deeper.</div>
+      <div class="pl font-heading">Prompts</div>
+      <ul class="prompts">
+        <li>What did you do on a normal day? Walk through it start to finish.</li>
+        <li>What's one task you <strong>owned</strong> &mdash; something that was yours, not something you watched?</li>
+        <li>What did you get trusted with by the end that you weren't trusted with at the start?</li>
+        <li>Did you make, build, fix, write, or organize anything? What was it?</li>
+        <li>What's the hardest thing you were asked to do?</li>
+        <li>Was there a moment someone relied on you? What happened?</li>
+        <li>If your supervisor described your contribution in one sentence, what would they say?</li>
+      </ul>
+      <div class="pl font-heading">Notes</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="part">
+    <div class="part-head">
+      <span class="part-n font-heading">3</span>
+      <span class="part-name font-heading">Why it mattered &mdash; what changed in you</span>
+      <span class="part-time font-heading">~30 sec</span>
+    </div>
+    <div class="part-body">
+      <div class="part-goal"><strong>Goal:</strong> this is the part people remember, and the part most students skip past with something generic. <strong>Name something real.</strong> A mistake you made, a skill that finally clicked, a moment you were wrong, something that was harder than you expected. Honesty is more impressive here than polish.</div>
+      <div class="pl font-heading">Prompts</div>
+      <ul class="prompts">
+        <li>What can you do now that you couldn't do in August?</li>
+        <li>What surprised you about this work? What did you expect that turned out to be wrong?</li>
+        <li>What was the hardest day, and what did you do about it?</li>
+        <li>Tell me about a mistake. What did you learn from it? <em>(This is the single strongest thing you can put in a pitch. Adults trust people who can name their own mistakes.)</em></li>
+        <li>Who taught you something there &mdash; and what was it?</li>
+        <li>What's something small you now understand about how a real workplace functions?</li>
+        <li>Which of the 10 employability skills grew the most? Where's your proof?</li>
+        <li>Look back at your pre-assessment and your weekly reflections. What's the gap between the person who wrote those and you now?</li>
+      </ul>
+      <div class="pl font-heading">Notes</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="part">
+    <div class="part-head">
+      <span class="part-n font-heading">4</span>
+      <span class="part-name font-heading">Where it's pointing you next</span>
+      <span class="part-time font-heading">~15 sec</span>
+    </div>
+    <div class="part-body">
+      <div class="part-goal"><strong>Goal:</strong> close with direction, not with "yeah, that's it." This is the piece the audience is actually listening for &mdash; they want to know what this did to your future. <strong>Any honest answer works, including "this isn't for me."</strong></div>
+      <div class="pl font-heading">Prompts</div>
+      <ul class="prompts">
+        <li>Did this confirm what you want to do, or change it?</li>
+        <li>What's your next step &mdash; a program, a major, a certification, a job, more of this same work?</li>
+        <li>Did this close a door for you? <em>(Finding out a field isn't right is a real, useful result. Say it plainly and say why.)</em></li>
+        <li>Did it open one you didn't know existed?</li>
+        <li>What would you tell a student considering this placement next year?</li>
+        <li>What do you want to be able to do five years from now that this got you closer to?</li>
+        <li>What's the one thing you're taking with you no matter where you end up?</li>
+      </ul>
+      <div class="pl font-heading">Notes</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ EXAMPLE ══════════ -->
+  <div class="page-break"></div>
+  <h2 class="font-heading">What 90 seconds sounds like</h2>
+  <p class="h2-sub">One example, roughly 215 words. Notice how little of it is about the organization and how much is about the student.</p>
+
+  <div class="ex">
+    <div class="ex-l font-heading">Example &mdash; Health Sciences placement</div>
+    <p>"Hi, I'm Jordan, and I spent my semester at Batavia Animal Hospital in the Health Sciences cluster.</p>
+    <p style="margin-top:.6rem">Most days I was restraining animals for exams, cleaning and prepping treatment rooms, and running the sterilization cycle on surgical instruments. By November I was trusted to walk new clients through post-surgery care instructions on my own &mdash; which meant a stranger was taking medical direction from a seventeen-year-old, and I had to actually know what I was talking about.</p>
+    <p style="margin-top:.6rem">The thing that changed me was a day I got a dosage question wrong in front of a vet tech. She corrected me in about four seconds and moved on, and I realized nobody there was going to be gentle with me &mdash; not because they were mean, but because the animal mattered more than my feelings. After that I started writing everything down and asking questions before I acted instead of after.</p>
+    <p style="margin-top:.6rem">Going in, I thought I wanted human medicine. Now I'm looking hard at veterinary school, and I'm applying to shadow at an emergency clinic this summer. I came in thinking this semester would confirm a plan. It replaced it with a better one."</p>
+    <div class="ex-note">
+      <strong>Why this works:</strong> it names specific tasks, admits a real mistake without drama, explains exactly what changed as a result, and ends with a concrete next step. It never once says "great opportunity" or "learned a lot."
+    </div>
+  </div>
+
+  <!-- ══════════ DRAFT ══════════ -->
+  <h2 class="font-heading">Now draft it</h2>
+  <p class="h2-sub">Go back through your notes, star your three or four strongest answers, and write the pitch here. Aim for <strong>200&ndash;230 words</strong> &mdash; that's 90 seconds at a natural speaking pace. Write it how you'd say it, not how you'd write an essay.</p>
+
+  <div class="draft">
+    <div class="draft-head">
+      <div class="draft-t font-heading">My 90-Second Pitch &mdash; Draft</div>
+      <div class="draft-meta">Target: 200&ndash;230 words</div>
+    </div>
+    <div class="draft-body">
+      <div class="draft-seg font-heading">Open &mdash; who and where (~15 sec)</div>
+      <div class="rule"></div><div class="rule"></div>
+
+      <div class="draft-seg font-heading">What I did (~30 sec)</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div>
+
+      <div class="draft-seg font-heading">Why it mattered &mdash; what changed (~30 sec)</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div>
+
+      <div class="draft-seg font-heading">Where it's pointing me (~15 sec)</div>
+      <div class="rule"></div><div class="rule"></div><div class="rule"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ PRACTICE ══════════ -->
+  <h2 class="font-heading">Practice it properly</h2>
+  <p class="h2-sub">Reading it silently is not practicing. Work this list and the stage stops being scary.</p>
+
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Time yourself out loud.</strong> Not in your head &mdash; out loud, with a timer. Most first drafts run long. Cut, don't rush.</div></div>
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Record it on your phone and watch it back.</strong> Uncomfortable, and the fastest fix available to you. You'll catch filler words and flat delivery instantly.</div></div>
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Say it to someone who wasn't at your placement.</strong> Ask them one question afterward: <em>what do you now know about me?</em> If they can't answer, the pitch isn't landing yet.</div></div>
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Practice the first sentence until it's automatic.</strong> Nerves hit hardest in the first five seconds. If your open is muscle memory, the rest follows.</div></div>
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Learn it, don't memorize it word for word.</strong> Memorized pitches collapse when you lose one line. Know your four pieces and the key phrases in each, and you can always keep going.</div></div>
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Practice standing up, looking at a wall.</strong> On stage you'll be standing and looking out at people, not down at a desk.</div></div>
+  <div class="chk"><div class="chk-b"></div><div class="chk-t"><strong>Plan your ending.</strong> Know your exact last sentence and stop there. Don't trail off with "so&hellip; yeah."</div></div>
+
+  <div class="box b-red">
+    <div class="box-t font-heading">The five things that sink a pitch</div>
+    <ul>
+      <li><strong>Describing the organization instead of yourself.</strong> The audience came to hear about you. Two sentences of context is plenty.</li>
+      <li><strong>"I learned a lot" with nothing behind it.</strong> Every student says this. Replace it with the specific thing you learned.</li>
+      <li><strong>Reading from your phone.</strong> It costs you eye contact, which is most of what people judge you on.</li>
+      <li><strong>Listing everything.</strong> Five vague tasks are weaker than one described well. Trust the one.</li>
+      <li><strong>Running out of time before your ending.</strong> The last 15 seconds are the ones that stay with people. Protect them by cutting from the middle.</li>
+    </ul>
+  </div>
+
+  <div class="box b-green">
+    <div class="box-t font-heading">Where to find your material if you're stuck</div>
+    <p>You have written more about this semester than you remember. Go read it before you decide you have nothing to say:</p>
+    <ul>
+      <li><strong>Your weekly reflections</strong> &mdash; fifteen weeks of specifics you've already forgotten. This is the single best source.</li>
+      <li><strong>Your pre- and post-assessments</strong> &mdash; the actual measured difference in your 10 employability skills.</li>
+      <li><strong>Your Internship Plan of Success and your Launch Card</strong> &mdash; the goals you set in August. Did you hit them? That's a pitch line either way.</li>
+      <li><strong>Your timesheet task notes</strong> &mdash; a plain record of what you actually did, week by week.</li>
+      <li><strong>Your portfolio artifacts</strong> &mdash; if a piece is worth putting on your table, it's worth 10 seconds in your pitch.</li>
+    </ul>
+  </div>
+
+  <div class="box b-blue">
+    <div class="box-t font-heading">If you run your own business or work for Bulldog Media</div>
+    <p>Same four pieces, same 90 seconds. Two shifts: in part 2, "what you did" is what you <em>built</em> &mdash; the business, the client work, the product &mdash; and in part 4, your next step is what happens to that venture after this year. If you had paying clients or real audience numbers, say so plainly. Outcomes are your advantage; use them.</p>
+  </div>
+
+  <p class="foot">
+    Related: <a href="capstone.html">Capstone Details</a> &middot;
+    <a href="capstone-rubric.html">How the Pitch Is Scored</a> &middot;
+    <a href="portfolio-guide.html">Portfolio Guide</a> &middot;
+    <a href="weekly-reflection.html">Weekly Reflection</a>
+  </p>
+</main>
+</body>
+</html>

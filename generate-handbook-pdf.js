@@ -20,6 +20,7 @@ const DOCS = [
   // handbook with tmp/make_standalone.py if the agreement text ever changes.
   { file: 'training-agreement.html', pdf: 'Training Agreement (signable).pdf', footer: true  },
   { file: 'capstone-rubric.html', pdf: 'Capstone Rubric.pdf',                  footer: true  },
+  { file: 'pitch-prompts.html',   pdf: 'Pitch Prep Sheet (student).pdf',       footer: true  },
   { file: 'portfolio-guide.html', pdf: 'Portfolio Guide.pdf',                  footer: true  },
   { file: 'syllabus.html',        pdf: 'Course Syllabus.pdf',                  footer: true  },
   { file: 'teacher-grading.html', pdf: 'Grading Policy (Teacher).pdf',         footer: true  },

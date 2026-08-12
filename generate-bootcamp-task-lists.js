@@ -33,6 +33,9 @@ const OUT_PDF_DIR = path.join(os.homedir(), 'Downloads', 'Field Experience Bootc
 const EDIT = {
   p1_course_overview: {
     coteach: 'partial',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'Sets the tone and the gate for the whole year. Never compress this one.',
     why: 'The launch, syllabus, site tour and expectations are identical. Split only for the last 15 minutes: the two cohorts have different capstone dates and a different gate.',
     entMode: 'adapted',
     entShort: 'May capstone instead of December; gate is &ldquo;not current, not remote&rdquo;',
@@ -40,6 +43,9 @@ const EDIT = {
   },
   p1_career_reflection: {
     coteach: 'full',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'The baseline 10-skill rating is what their Review Board scores get measured against.',
     why: 'Individual assessment plus whole-group discussion. More voices in the discussion is a gain, not a cost.',
     entMode: 'adapted',
     entShort: 'Adds market research &mdash; who else does this, what do they charge',
@@ -47,6 +53,9 @@ const EDIT = {
   },
   p1_digital_footprint: {
     coteach: 'full',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'They need MORE here, not less — personal brand plus the business brand layer.',
     why: 'Google-yourself, the 7-item audit, LinkedIn setup, email signature and the cold-call roleplay are the same for everyone.',
     entMode: 'adapted',
     entShort: 'Adds a business brand layer on top of the personal one',
@@ -54,6 +63,9 @@ const EDIT = {
   },
   p1_resume_complete: {
     coteach: 'full',
+    pace: 'compress',
+    paceTime: '45 min',
+    paceNote: 'Still required, but it is not their main event. Build it, peer review, submit — skip the extended conference cycle.',
     why: 'Identical build, AI feedback, peer review and conference cycle.',
     entMode: 'same',
     entShort: 'Nothing &mdash; teach it as written',
@@ -61,6 +73,9 @@ const EDIT = {
   },
   p1_application_submitted: {
     coteach: 'separate',
+    pace: 'replaced',
+    paceTime: '90 min',
+    paceNote: 'Becomes Define Your Enterprise. Full block, do not shorten.',
     why: 'There is no job menu to browse and no employer to apply to. Nothing in this activity transfers.',
     entMode: 'replaced',
     entShort: 'Becomes <strong>Define Your Enterprise</strong>',
@@ -68,6 +83,9 @@ const EDIT = {
   },
   p2_elevator_pitch: {
     coteach: 'full',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'This is their business pitch and they will use it all year. High value, keep it whole.',
     why: 'Same lesson, same structure, same record-and-submit. Only the subject of the pitch differs, and that is a per-student difference anyway.',
     entMode: 'adapted',
     entShort: 'Pitch is the business, not the job seeker',
@@ -75,6 +93,9 @@ const EDIT = {
   },
   p2_star_practice: {
     coteach: 'full',
+    pace: 'compress',
+    paceTime: '45 min',
+    paceNote: 'Keep STAR (it is the reflection format) and the client-side questions. Drop the depth on interview dress and job-interview logistics.',
     why: 'Dress, body language, communication and STAR are identical. Teach STAR hard here for both cohorts — it is also the weekly reflection format all year.',
     entMode: 'adapted',
     entShort: 'Same STAR teach, client-side questions including pricing',
@@ -82,6 +103,9 @@ const EDIT = {
   },
   p2_mock_interview: {
     coteach: 'partial',
+    pace: 'compress',
+    paceTime: '60 min',
+    paceNote: 'Skip the peer speed-interview half. Go straight to the Client Pitch Panel, which is the part that matters for them.',
     why: 'Step 1 (peer speed interviews) is better with 24 students than 14 — more partners, more reps. Step 2 splits: one cohort needs interviewers, the other needs a pitch panel.',
     entMode: 'adapted',
     entShort: 'Step 1 shared; Step 2 becomes a <strong>Client Pitch Panel</strong>',
@@ -89,6 +113,9 @@ const EDIT = {
   },
   p2_interview_plan: {
     coteach: 'full',
+    pace: 'compress',
+    paceTime: '30 min',
+    paceNote: 'Read the panel feedback, name two changes. Short and focused.',
     why: 'Each student works from their own feedback form. Identical process regardless of who gave the feedback.',
     entMode: 'same',
     entShort: 'Nothing &mdash; teach it as written',
@@ -96,6 +123,9 @@ const EDIT = {
   },
   p3_ethics_scenarios: {
     coteach: 'full',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'Keep whole — and treat it as the on-ramp to the Business Ethics block below.',
     why: 'Actively better together. 15 stations support more pairs than one cohort fills, and the debrief is richer with placement and enterprise students arguing from different positions.',
     entMode: 'adapted',
     entShort: 'Adds &ldquo;no supervisor to escalate to&rdquo; framing at each station',
@@ -103,6 +133,9 @@ const EDIT = {
   },
   p3_skills_simulation: {
     coteach: 'full',
+    pace: 'compress',
+    paceTime: '45 min',
+    paceNote: 'Walk the 10 skills and the scale. They do not need the full simulation treatment.',
     why: 'Same 10 skills, same 4/3/2/1 scale, same standard: a 3 means you performed to the level a paying employer expects.',
     entMode: 'adapted',
     entShort: 'Adds the three scoring voices: self, client, Review Board',
@@ -110,6 +143,9 @@ const EDIT = {
   },
   p3_self_assessment: {
     coteach: 'full',
+    pace: 'compress',
+    paceTime: '30 min',
+    paceNote: 'Individual work on the same instrument. Can run alongside something else.',
     why: 'Individual work on the identical instrument, compared against each student\'s own Phase 1 baseline.',
     entMode: 'same',
     entShort: 'Nothing &mdash; teach it as written',
@@ -117,6 +153,9 @@ const EDIT = {
   },
   p3_placement_confirmed: {
     coteach: 'separate',
+    pace: 'replaced',
+    paceTime: '90 min',
+    paceNote: 'Becomes Enterprise Confirmed. Full block — this is where the remote-work gate gets its teeth.',
     why: 'No employer, no training agreement with an outside business, no onboarding paperwork.',
     entMode: 'replaced',
     entShort: 'Becomes <strong>Enterprise Confirmed</strong>',
@@ -124,6 +163,9 @@ const EDIT = {
   },
   p4_goal_conference: {
     coteach: 'full',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'Essential. Self-directed students fail from drift, and this is the block where you catch it.',
     why: 'The single biggest co-teach win in the bootcamp. These are 1-on-1s: 24 students at 7 minutes is 168 minutes for one teacher, or 84 minutes each if you split the list. Same form, same questions, run in parallel.',
     entMode: 'same',
     entShort: 'Adds one question: what would make you quit by November?',
@@ -131,6 +173,9 @@ const EDIT = {
   },
   p4_internship_plan: {
     coteach: 'partial',
+    pace: 'full',
+    paceTime: '90 min',
+    paceNote: 'Becomes the Business Plan of Success. Needs the whole block — it is their roadmap to May.',
     why: 'Same lesson and same work time; the template and the intro email target differ.',
     entMode: 'adapted',
     entShort: 'Becomes <strong>Business Plan of Success</strong>; Dec + May scope',
@@ -138,6 +183,9 @@ const EDIT = {
   },
   p4_commitment: {
     coteach: 'full',
+    pace: 'compress',
+    paceTime: '30 min',
+    paceNote: 'Launch ritual only. Pair it with the Business Plan block.',
     why: 'Same ritual, same Launch Card. Only worth co-teaching if you decide to align the two cohorts\' final day — under the current calendar they are three weeks apart.',
     entMode: 'adapted',
     entShort: 'Same ritual, different date; post the Review Board dates',
@@ -203,6 +251,101 @@ const ENT_REPLACEMENTS = [
       },
     ],
     deliverable: 'Post-assessment submitted · enterprise confirmed and signed by you · remote work agreement on file · equipment agreement where applicable.',
+  },
+];
+
+// Enterprise-only content that fills the time recovered by compressing the blocks
+// above. Business Ethics is the one Michael named specifically; the other two are
+// the strongest candidates for the remaining recovered time.
+const ENT_ADDITIONS = [
+  {
+    title: 'Business Ethics — Building Something That Lasts',
+    time: '~90 min',
+    priority: 'Michael\'s call — build this one first',
+    why: 'Most students starting a business are optimizing for one thing: make money fast. That instinct is not wrong, it is just short-sighted — and it is the single fastest way to end a business at seventeen. This block exists to make the case that <strong>the way you make the money is the business</strong>, and that a reputation is the only asset a young founder actually has to sell.',
+    sections: [
+      {
+        label: 'The core argument to make',
+        bullets: [
+          'You can make money once by cutting a corner. You cannot make it twice. Every customer you burn is a customer who tells other customers.',
+          'At seventeen, with no track record, no reviews, and no brand — <strong>your reputation is your entire inventory.</strong> It is the thing customers are actually buying when they take a chance on you.',
+          'Legal is the floor, not the goal. Plenty of things you can legally do to a customer will still finish your business.',
+          'The students who are still running something in two years are almost never the ones who charged the most. They are the ones people trusted enough to come back to.',
+        ],
+      },
+      {
+        label: 'Dilemmas built for people who work for themselves',
+        bullets: [
+          'A customer overpays you and clearly has not noticed. What do you do, and what does it cost you either way?',
+          'You can finish this job in half the time by cutting a corner nobody will ever see. Does "nobody will see it" change whether it is wrong?',
+          'You are mid-job and realize you are not actually qualified to finish it well. Admitting that is embarrassing and expensive. Finishing badly is neither — until later.',
+          'A customer asks you to trash a competitor. That competitor is a classmate.',
+          'Cash job, no record, nobody would ever know. Do you report it?',
+          'You promised a deadline you now cannot hit. When do you tell them — as soon as you know, or when you have to?',
+          'You could use a photo, logo, font, or song you do not own and almost certainly not get caught.',
+          'Someone offers you good money for work that is legal but makes you uncomfortable.',
+        ],
+      },
+      {
+        label: 'Pricing honestly',
+        bullets: [
+          'Charging what the work is worth versus charging what you can get away with — and why the second one only works on people who will not come back.',
+          '<strong>Underpricing is also an ethics problem,</strong> not just a business mistake: it devalues the work, it teaches customers your time is free, and it usually ends in you resenting the job and doing it badly.',
+          'Telling a customer the true price before you start, including the part they will not like.',
+        ],
+      },
+      {
+        label: 'What you owe a customer even when it costs you',
+        bullets: [
+          'Telling them early when something goes wrong — the single highest-value professional habit in this entire course.',
+          'When a refund or a redo is the right answer, and how to offer one without falling apart.',
+          'Saying no to work you cannot do well. Turning down money is a skill.',
+          'For Bulldog Media and anyone who says "I go to Batavia": your conduct attaches to the school\'s name whether you intend it to or not.',
+        ],
+      },
+    ],
+    deliverable: 'Written responses to two dilemmas, plus <strong>three rules of their own</strong> — "things I will not do for money" — signed and added to their Business Plan of Success. Hand these back at the May capstone and ask whether they held.',
+    note: 'Run this <em>after</em> the Workplace Dilemma Stations block, not before. The stations warm them up on workplace ethics generally; this block narrows it to the specific problem of having no boss, no HR, and nobody but themselves deciding where the line is.',
+  },
+  {
+    title: 'Money — Pricing, Tracking, and the Tax Conversation',
+    time: '~90 min',
+    priority: 'Strong candidate for the second recovered block',
+    why: 'Self-employed students almost universally under-track. They know roughly what came in, nothing about what went out, and nothing about the fact that some of it is not theirs to keep. This is also where the 60-hour requirement stops being abstract for them.',
+    sections: [
+      {
+        label: 'What we do in class',
+        bullets: [
+          'Set a price for their actual service, out loud, and defend it to the room.',
+          'Build a one-page tracker: money in, money out, hours spent. Simple enough that they will actually keep it.',
+          'Cost of doing business: materials, software, gas, equipment, the time you do not bill for. Most students discover their real hourly rate is far below what they assumed.',
+          'The tax conversation at a survival level — that self-employment income is reportable, that keeping records now is what makes that survivable later, and that this is a real adult obligation rather than a school hypothetical.',
+          'Separating business money from personal money, and why mixing them is the mistake that makes everything else unknowable.',
+        ],
+      },
+    ],
+    deliverable: 'A working tracker with real numbers in it, plus a written price for their service with the reasoning behind it.',
+    note: 'You are not teaching accounting or giving tax advice. The goal is that no student reaches May with no idea what they earned or spent. If a local accountant or the business teacher will give you 20 minutes as a guest, this is the block to use them on.',
+  },
+  {
+    title: 'Customers & Commitments',
+    time: '~90 min',
+    priority: 'Third recovered block, if you get it',
+    why: 'Enterprise students have no supervisor assigning them work, which means every job starts with a conversation they have to run themselves. Most have never scoped a job, agreed a price out loud, or told someone bad news.',
+    sections: [
+      {
+        label: 'What we do in class',
+        bullets: [
+          'How you actually get customers when nobody knows you exist — and which of those channels is realistic for them this year.',
+          'Scoping a job in writing before starting it: what is included, what is not, when it is due, what it costs. Plain language, not legalese.',
+          'The conversation where you tell a customer something they do not want to hear. Roleplay it, both sides.',
+          'What "done" means, and getting agreement on that up front so it cannot move later.',
+          'Following up after the job — the step nearly everyone skips and the one that produces repeat customers.',
+        ],
+      },
+    ],
+    deliverable: 'A one-page scope template they will actually use, filled in for a real or realistic job.',
+    note: 'Pairs naturally with the Business Ethics block — scope creep and unclear expectations are where most small-business ethics problems actually start, rather than in dramatic moral choices.',
   },
 ];
 
@@ -643,7 +786,64 @@ function buildEnterprise(acts) {
   </div>`;
   });
 
+  // ── Pacing plan: what to compress, and what the recovered time buys ──
+  const compressed = acts.filter((a) => EDIT[a.id].pace === 'compress');
   h += `
+  <h2 class="font-heading">Pacing &mdash; What to Compress, and What It Buys You</h2>
+  <p class="sec-sub">This cohort does not need every block at full length, and they need things the Placement cohort never will. Shortening the ${compressed.length} blocks below frees roughly <strong>three blocks</strong> of A-day time for enterprise-only content.</p>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">The principle</div>
+    Compress the blocks that assume <strong>somebody else is going to hire you</strong>, and spend the time on the blocks that assume <strong>you are the one running it.</strong> A student who will never sit in a job interview this year does not need the full interview-logistics treatment &mdash; but they urgently need to know what to charge and where their own ethical line is.
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:2rem">#</th><th>Activity</th><th style="width:5.5rem">Run it</th><th style="width:4rem">Time</th><th>Why</th></tr></thead>
+      <tbody>
+        ${acts.map((a, i) => {
+          const e = EDIT[a.id];
+          const cls = e.pace === 'full' ? 'em-same' : e.pace === 'compress' ? 'em-adapt' : 'em-repl';
+          const label = e.pace === 'full' ? 'Full' : e.pace === 'compress' ? 'Compress' : 'Replaced';
+          return `<tr><td class="n">${i + 1}</td><td class="t">${esc(a.title)}</td>`
+            + `<td><span class="chip ${cls} font-heading">${label}</span></td>`
+            + `<td style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;white-space:nowrap">${esc(e.paceTime)}</td>`
+            + `<td style="font-size:.74rem">${esc(e.paceNote)}</td></tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="font-heading">Enterprise-Only Blocks</h2>
+  <p class="sec-sub">What the recovered time is for. These are proposals with note space &mdash; the first one is the one specifically asked for.</p>`;
+
+  ENT_ADDITIONS.forEach((x, xi) => {
+    h += `
+  <div class="act${xi === 0 ? ' sep-act' : ''}">
+    <div class="act-head">
+      <div class="act-num font-heading" style="background:#0f766e">+${xi + 1}</div>
+      <div class="act-titles">
+        <div class="act-title font-heading">${esc(x.title)}</div>
+        <div class="act-sub">${esc(x.priority)}</div>
+      </div>
+      <div class="act-meta"><span class="chip em-repl font-heading">New</span><span class="act-time font-heading">${esc(x.time)}</span></div>
+    </div>
+    <div class="act-body">
+      <div class="why ent" style="margin-top:0"><b>Why this block exists</b>${x.why}</div>
+      ${renderSections(x.sections)}
+      <div class="deliv"><div class="deliv-l font-heading">Student produces</div><div class="deliv-t">${x.deliverable}</div></div>
+      <div class="why"><b>Running it</b>${x.note}</div>
+      ${noteBlock('Our changes', 3)}
+    </div>
+  </div>`;
+  });
+
+  h += `
+  <div class="co co-red">
+    <div class="co-t font-heading">Sequencing note that matters</div>
+    Put <strong>Business Ethics after the Workplace Dilemma Stations</strong>, not before. The stations warm students up on workplace ethics in general; the ethics block narrows it to the specific situation of having no boss, no HR, and nobody but themselves deciding where the line is. Reversed, the stations feel like a repeat.
+  </div>
+
   <h2 class="font-heading">Activity-by-activity reframing</h2>
   <p class="sec-sub">The ten adapted activities. Same lesson in the same room &mdash; these are the adjustments you make out loud while teaching, not a separate plan.</p>`;
 
