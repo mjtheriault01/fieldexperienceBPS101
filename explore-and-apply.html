@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore &amp; Apply — One-Pager — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:800px;margin:0 auto;padding:1.75rem 1.5rem 3rem}
+    .sheet{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1.6rem 1.8rem}
+
+    /* header */
+    .wh{display:flex;align-items:flex-start;gap:.8rem;padding-bottom:.5rem;border-bottom:2px solid #1c1f2e;margin-bottom:.6rem}
+    .wh-num{width:1.9rem;height:1.9rem;border-radius:7px;background:#AC161D;color:#fff;display:flex;align-items:center;justify-content:center;
+            font-family:'Montserrat',sans-serif;font-weight:900;font-size:.8rem;flex-shrink:0}
+    .wh-t{flex:1;min-width:0}
+    .wh-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.12rem;color:#1c1f2e;line-height:1.15}
+    .wh-sub{font-size:.68rem;color:#6b7280;margin-top:.1rem;line-height:1.4}
+    .wh-meta{text-align:right;flex-shrink:0}
+    .wh-phase{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;line-height:1.3}
+    .wh-time{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.62rem;color:#6b7280;margin-top:.1rem;white-space:nowrap}
+
+    .ns-row{display:flex;gap:1rem;margin-bottom:.6rem}
+    .ns{display:flex;align-items:baseline;gap:.35rem;flex:1}
+    .ns-l{font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;white-space:nowrap}
+    .ns-line{flex:1;border-bottom:1px solid #cfd3d9;height:.9rem}
+
+    /* urgency strip */
+    .urg{background:rgba(172,22,29,.06);border:1px solid rgba(172,22,29,.3);border-radius:7px;padding:.5rem .7rem;margin-bottom:.7rem}
+    .urg-t{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.7rem;color:#AC161D;margin-bottom:.15rem}
+    .urg p{font-size:.7rem;color:#374151;line-height:1.5}
+    .urg strong{color:#1c1f2e}
+
+    h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;color:#1c1f2e;margin:.7rem 0 .3rem;
+       letter-spacing:.02em;padding-bottom:.15rem;border-bottom:1px solid #e5e7eb}
+    h3:first-of-type{margin-top:.2rem}
+
+    ul.steps{list-style:none;margin:0}
+    ul.steps li{position:relative;padding-left:1.35rem;font-size:.7rem;color:#374151;line-height:1.5;margin-bottom:.14rem}
+    ul.steps li .n{position:absolute;left:0;top:0;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.62rem;color:#AC161D}
+    ul.steps li strong{color:#1c1f2e}
+
+    /* research table */
+    table{width:100%;border-collapse:collapse;margin-top:.15rem}
+    th{font-family:'Montserrat',sans-serif;font-size:.53rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#1c1f2e;
+       background:#f1f2f4;border:1px solid #cfd3d9;padding:.24rem .35rem;text-align:left}
+    td{border:1px solid #cfd3d9;padding:.3rem .35rem;height:2.4rem;vertical-align:top}
+    td.rank{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.72rem;color:#AC161D;text-align:center;width:1.6rem;background:#fafafa}
+
+    /* checklist */
+    ul.chk{list-style:none;margin:.1rem 0 0}
+    ul.chk li{position:relative;padding-left:1.25rem;font-size:.7rem;color:#374151;line-height:1.45;margin-bottom:.22rem}
+    ul.chk li:before{content:'';position:absolute;left:0;top:.05rem;width:.8rem;height:.8rem;border:1.5px solid #6b7280;border-radius:3px}
+
+    .rule{border-bottom:1px solid #cfd3d9;height:1.25rem}
+
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+
+    .tip{background:#f8f9fa;border-left:3px solid #9ca3af;padding:.42rem .6rem;font-size:.66rem;color:#4b5563;line-height:1.5;margin-top:.25rem}
+    .tip strong{color:#1c1f2e}
+
+    .foot{display:flex;justify-content:space-between;margin-top:.8rem;padding-top:.4rem;border-top:1px solid #eef0f2;
+          font-family:'Montserrat',sans-serif;font-size:.53rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#c4c8ce}
+
+    @media(max-width:640px){.two{grid-template-columns:1fr}.sheet{padding:1.15rem 1rem}}
+
+    @media print{
+      nav,.print-btn{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      .sheet{border:none;border-radius:0;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h3,.urg-t{break-after:avoid;page-break-after:avoid}
+      table,.urg,.tip,ul.chk{break-inside:avoid;page-break-inside:avoid}
+    }
+    @page{margin:.45in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="bootcamp.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Explore &amp; Apply</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+
+<main>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">5</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Explore &amp; Apply</div>
+        <div class="wh-sub">Browse the job menu &middot; Research employers &middot; Meet with your teacher &middot; Apply &middot; Follow up</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Phase 1 &middot; Activity 5</div>
+        <div class="wh-time font-heading">~90 min</div>
+      </div>
+    </div>
+
+    <div class="ns-row">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Cluster</span><span class="ns-line"></span></div>
+    </div>
+
+    <div class="urg">
+      <div class="urg-t font-heading">This is the one that can't wait</div>
+      <p>Applying today <strong>starts the clock on employer paperwork.</strong> Every day this slips is a day your start date slips with it. Absent today? Make this up within 48 hours &mdash; not "sometime."</p>
+    </div>
+
+    <h3 class="font-heading">What we do in class</h3>
+    <ul class="steps">
+      <li><span class="n font-heading">1</span>Browse the placement list &mdash; all <strong>7 career clusters</strong>, not just the obvious one.</li>
+      <li><span class="n font-heading">2</span><strong>Employer scavenger hunt:</strong> research your top 2&ndash;3. What do they do, who works there, what do they value?</li>
+      <li><span class="n font-heading">3</span>Match the skills on your resume to the placements you want.</li>
+      <li><span class="n font-heading">4</span>Meet with your teacher to talk through your choices and confirm your plan.</li>
+      <li><span class="n font-heading">5</span><strong>Submit your application.</strong> Sooner is better &mdash; see above.</li>
+    </ul>
+
+    <h3 class="font-heading">Rank your top 3 &mdash; and do the research before you apply</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:1.6rem"></th>
+          <th style="width:30%">Placement</th>
+          <th>What do they actually do? Anything recent &mdash; expanded, hired, new location?</th>
+          <th style="width:26%">Why you fit <span style="font-weight:600;text-transform:none;letter-spacing:0">(from your resume)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="rank">1</td><td></td><td></td><td></td></tr>
+        <tr><td class="rank">2</td><td></td><td></td><td></td></tr>
+        <tr><td class="rank">3</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="tip"><strong>Why the research column matters:</strong> the goal is to walk into your interview able to say <em>"I noticed you just opened a second location"</em> &mdash; not <em>"so what do you guys do again?"</em> Check their website, LinkedIn, and Google reviews.</div>
+
+    <div class="two">
+      <div>
+        <h3 class="font-heading">Before you leave today</h3>
+        <ul class="chk">
+          <li>I browsed the placement list across all 7 career clusters</li>
+          <li>I researched my top 2&ndash;3 choices</li>
+          <li>I matched my resume skills to those placements</li>
+          <li>I met with my teacher and confirmed my plan</li>
+          <li>I submitted my application(s)</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-heading">After you apply</h3>
+        <ul class="steps">
+          <li><span class="n font-heading">&rarr;</span><strong>Follow-up email</strong> 5&ndash;7 business days after applying if you haven't heard back. Brief, professional, confirms interest.</li>
+          <li><span class="n font-heading">&rarr;</span><strong>Thank-you email</strong> within 24 hours of any interview. One paragraph, reference something specific from the conversation.</li>
+          <li><span class="n font-heading">&rarr;</span>Save both. They go in your <strong>portfolio</strong> as evidence of professional communication.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="font-heading">Confirm your application &mdash; turn this in</h3>
+    <p style="font-size:.68rem;color:#6b7280;line-height:1.45;margin-bottom:.2rem">Which placement(s) did you apply to, how did you submit, and on what date?</p>
+    <div class="rule"></div>
+    <div class="rule"></div>
+
+    <div class="foot">
+      <span>Field Experience &middot; Phase 1 &middot; Explore &amp; Apply</span>
+      <span>Skills: Initiative &middot; Planning &amp; Organizing &middot; Communication</span>
+    </div>
+  </div>
+</main>
+</body>
+</html>

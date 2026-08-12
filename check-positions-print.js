@@ -29,8 +29,12 @@ async function main() {
   const browser = await puppeteer.launch({ executablePath: CHROME_PATH, headless: 'new' });
   const page = await browser.newPage();
   await page.setViewport({ width: PAGE_W, height: PAGE_H });
-  await page.goto(URL, { waitUntil: 'networkidle0', timeout: 30000 });
-  await page.waitForSelector('.position-card', { timeout: 15000 });
+  // Not networkidle0: the live page keeps a Supabase connection open and never
+  // reaches it. Wait for the cards themselves, then let fonts settle.
+  await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForSelector('.position-card', { timeout: 20000 });
+  await page.evaluate(() => document.fonts && document.fonts.ready);
+  await new Promise((r) => setTimeout(r, 600));
   await page.emulateMediaType('print');
 
   const cards = await page.evaluate(() => Array.from(document.querySelectorAll('.position-card')).map((el, i) => {

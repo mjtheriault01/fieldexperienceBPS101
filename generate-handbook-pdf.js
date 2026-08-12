@@ -21,6 +21,8 @@ const DOCS = [
   { file: 'training-agreement.html', pdf: 'Training Agreement (signable).pdf', footer: true  },
   { file: 'capstone-rubric.html', pdf: 'Capstone Rubric.pdf',                  footer: true  },
   { file: 'pitch-prompts.html',   pdf: 'Pitch Prep Sheet (student).pdf',       footer: true  },
+  // One-pagers for single activities. No footer — these must stay exactly 1 page.
+  { file: 'explore-and-apply.html', pdf: 'Explore and Apply (1-pager).pdf',    footer: false },
   { file: 'portfolio-guide.html', pdf: 'Portfolio Guide.pdf',                  footer: true  },
   { file: 'syllabus.html',        pdf: 'Course Syllabus.pdf',                  footer: true  },
   { file: 'teacher-grading.html', pdf: 'Grading Policy (Teacher).pdf',         footer: true  },
