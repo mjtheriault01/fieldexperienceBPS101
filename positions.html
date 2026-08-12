@@ -91,7 +91,12 @@
       body.print-one .cluster-section-header { display:none !important; }
       body.print-one #card-print-target { display:block !important; box-shadow:none !important; border-radius:0 !important; page-break-after:avoid; }
 
-      /* Print all: one card per page */
+      /* Print all: exactly one card per page.
+         break-inside:avoid is the part that matters — page-break-after alone only
+         starts the NEXT card on a new page; without this a card whose content grows
+         past one sheet would split across two. Run check-positions-print.js after
+         adding or editing a position to confirm everything still fits. */
+      .position-card { break-inside:avoid !important; page-break-inside:avoid !important; }
       body:not(.print-one) .position-card { page-break-after:always; break-after:page; box-shadow:none !important; margin-bottom:0 !important; }
       body:not(.print-one) .position-card:last-child { page-break-after:avoid; break-after:avoid; }
       body:not(.print-one) .cluster-section-header { page-break-after:avoid; break-after:avoid; }

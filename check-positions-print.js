@@ -1,0 +1,75 @@
+// node check-positions-print.js
+//
+// Verifies the one-page-per-job-description guarantee on positions.html.
+// Every position card must fit inside a single Letter page in print mode; run this
+// after adding or editing a position, because a longer task list is what would
+// eventually push a card onto a second sheet.
+//
+// Exits non-zero if any card overflows, so it can gate a deploy.
+//
+// Usage:
+//   node check-positions-print.js                      (uses the live site)
+//   POSITIONS_URL=http://localhost:8000/positions.html node check-positions-print.js
+
+const fs = require('fs');
+const path = require('path');
+const puppeteer = require('puppeteer-core');
+
+const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const URL = process.env.POSITIONS_URL || 'https://fieldexperiencebps101.net/positions.html';
+
+// positions.html sets @page margin 0.35in on Letter (816 x 1056 px at 96dpi).
+const MARGIN_PX = Math.round(0.35 * 96);
+const PAGE_W = 816 - MARGIN_PX * 2;   // 748
+const PAGE_H = 1056 - MARGIN_PX * 2;  // 988
+
+async function main() {
+  if (!fs.existsSync(CHROME_PATH)) throw new Error('Chrome not found at ' + CHROME_PATH);
+
+  const browser = await puppeteer.launch({ executablePath: CHROME_PATH, headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: PAGE_W, height: PAGE_H });
+  await page.goto(URL, { waitUntil: 'networkidle0', timeout: 30000 });
+  await page.waitForSelector('.position-card', { timeout: 15000 });
+  await page.emulateMediaType('print');
+
+  const cards = await page.evaluate(() => Array.from(document.querySelectorAll('.position-card')).map((el, i) => {
+    const h2 = el.querySelector('h2');
+    return { i, h: Math.round(el.getBoundingClientRect().height), name: h2 ? h2.textContent.trim() : `card ${i}` };
+  }));
+
+  // Also confirm print-all renders exactly one PDF page per card.
+  const tmpPdf = path.join(require('os').tmpdir(), 'positions-print-check.pdf');
+  await page.pdf({
+    path: tmpPdf, printBackground: true, format: 'Letter',
+    margin: { top: '0.35in', right: '0.35in', bottom: '0.35in', left: '0.35in' },
+  });
+  const pdfPages = (fs.readFileSync(tmpPdf).toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
+  fs.unlinkSync(tmpPdf);
+
+  await browser.close();
+
+  console.log(`Checking ${cards.length} position cards against one Letter page (${PAGE_W}x${PAGE_H}px)\n`);
+  const over = cards.filter((c) => c.h > PAGE_H);
+  cards.sort((a, b) => b.h - a.h).forEach((c) => {
+    const pct = Math.round((c.h / PAGE_H) * 100);
+    const flag = c.h > PAGE_H ? `  OVERFLOWS by ${c.h - PAGE_H}px` : (pct > 90 ? '  (tight)' : '');
+    console.log(`  ${String(c.h).padStart(4)}px  ${String(pct).padStart(3)}%  ${c.name}${flag}`);
+  });
+
+  const tallest = cards[0];
+  console.log(`\nTallest: ${tallest.name} at ${tallest.h}px (${Math.round((tallest.h / PAGE_H) * 100)}% of a page)`);
+  console.log(`Print-all output: ${pdfPages} PDF pages for ${cards.length} cards ` +
+    (pdfPages === cards.length ? '— 1:1, correct' : '— MISMATCH'));
+
+  if (over.length || pdfPages !== cards.length) {
+    console.error(`\nFAIL: ${over.length} card(s) exceed one page.`);
+    over.forEach((c) => console.error(`  - ${c.name}`));
+    console.error('\nFix by shortening the position\'s task list/description, or by tightening the\n' +
+      '"Compress each card to fit one page" block in positions.html\'s @media print rules.');
+    process.exit(1);
+  }
+  console.log('\nPASS: every job description fits on exactly one page.');
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });
