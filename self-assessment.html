@@ -22,6 +22,42 @@
     .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
     .back-btn:hover{color:#1c1f2e}
     .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    /* ── Print: turn the live form into a clean blank worksheet ──
+       No portal yet, so these pages get printed and filled in by hand. Empty
+       fields must show as ruled writing space, not invisible boxes. */
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;
+               font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+               padding:.45rem .85rem;cursor:pointer;white-space:nowrap}
+    .print-btn:hover{background:#0e1520}
+    @media print{
+      nav,.print-btn,.nav-greeting,.btn-ghost,.complete-btn,.btn-primary,
+      #results-view,.status-msg,.hero-eyebrow{display:none!important}
+      body{background:#fff!important;color:#000}
+      main{max-width:100%!important;padding:0!important}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none!important}
+      /* Empty inputs become writing space */
+      textarea.field-input,input.field-input,textarea,input[type="text"],input[type="number"],input[type="date"]{
+        border:none!important;border-bottom:1px solid #b0b4ba!important;border-radius:0!important;
+        background:transparent!important;min-height:2.6rem;padding:.15rem 0!important;
+        font-size:.85rem;color:#000;resize:none}
+      textarea.field-input,textarea{min-height:3.4rem}
+      .field-label{font-weight:700;color:#000}
+      .card,.section,.skill-row{border-color:#c9ccd1!important;background:#fff!important;
+        break-inside:avoid;page-break-inside:avoid}
+      h1,h2,h3{color:#000}
+      /* The radio itself is display:none; the visible control is .level-label.
+         Print those as crisp bordered boxes the student circles by hand. */
+      .level-label{border:1.5px solid #6b7280!important;background:#fff!important;
+        min-width:4.2rem;padding:.35rem .6rem!important;break-inside:avoid}
+      .level-options{gap:.4rem!important}
+      .level-num{font-weight:900;color:#000}
+      .level-word{font-size:.66rem;color:#374151}
+      .skill-row{border-bottom:1px solid #e5e7eb!important;padding-bottom:.6rem;margin-bottom:.6rem}
+      .baseline-note{color:#374151!important}
+      .print-only{display:block!important}
+    }
+    .print-only{display:none}
+
     .nav-greeting{font-size:.78rem;color:#6b7280}
     .nav-greeting strong{color:#1c1f2e}
 
@@ -110,11 +146,19 @@
     <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading" id="nav-title">Self-Assessment</span>
   </div>
-  <span class="nav-greeting">Signed in as <strong id="nav-name">—</strong></span>
+  <div style="display:flex;align-items:center;gap:.9rem">
+    <span class="nav-greeting">Signed in as <strong id="nav-name">—</strong></span>
+    <button class="print-btn font-heading" onclick="window.print()">Print Blank</button>
+  </div>
 </nav>
 
 <main>
   <div id="form-view">
+  <div class="print-only" style="border:1.5px solid #1c1f2e;border-radius:8px;padding:.7rem 1rem;margin-bottom:1.1rem;
+       font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;color:#1c1f2e">
+    Name ___________________________________  &nbsp;&nbsp; Date _______________
+  </div>
+
     <p class="hero-eyebrow font-heading" id="hero-eyebrow">Phase 1 · Career &amp; Self-Assessment</p>
     <h1 class="font-heading" id="page-h1">Employability Skills Pre-Assessment</h1>
     <p class="page-sub" id="page-sub">Rate yourself honestly on all 10 employability skills — this is your baseline. You'll do this again in Phase 3 to see how you've grown.</p>

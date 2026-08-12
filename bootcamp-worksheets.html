@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootcamp Worksheets — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+    /* one .sheet == one printed worksheet */
+    .sheet{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:2rem 2.25rem;margin-bottom:1.25rem}
+    .sheet.cover{background:#fff;border-color:#e5e7eb;color:#1c1f2e;text-align:center;padding:2.25rem 2.25rem 1.75rem;border-top:6px solid #FBCD07}
+
+    /* worksheet header */
+    .wh{display:flex;align-items:flex-start;gap:.9rem;padding-bottom:.75rem;border-bottom:2px solid #1c1f2e;margin-bottom:1rem}
+    .wh-num{width:2.1rem;height:2.1rem;border-radius:8px;background:#AC161D;color:#fff;display:flex;align-items:center;justify-content:center;
+            font-family:'Montserrat',sans-serif;font-weight:900;font-size:.85rem;flex-shrink:0}
+    .wh-t{flex:1;min-width:0}
+    .wh-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.2rem;color:#1c1f2e;line-height:1.2}
+    .wh-sub{font-size:.74rem;color:#6b7280;margin-top:.2rem;line-height:1.45}
+    .wh-meta{text-align:right;flex-shrink:0}
+    .wh-phase{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;line-height:1.3}
+    .wh-time{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.66rem;color:#6b7280;margin-top:.15rem;white-space:nowrap}
+
+    /* name strip */
+    .name-strip{display:flex;gap:1.1rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:.85rem;border-bottom:1px dashed #d8dbe0}
+    .ns{display:flex;align-items:baseline;gap:.4rem;flex:1;min-width:10rem}
+    .ns-l{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;white-space:nowrap}
+    .ns-line{flex:1;border-bottom:1px solid #cfd3d9;height:1rem}
+
+    h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;color:#1c1f2e;margin:1.15rem 0 .45rem}
+    .lbl{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:#9ca3af;margin:1rem 0 .4rem}
+    p{font-size:.82rem;color:#374151;line-height:1.7}
+
+    ul.bul{list-style:none;margin:0 0 .5rem}
+    ul.bul li{position:relative;padding-left:1.05rem;font-size:.79rem;color:#4b5563;line-height:1.6;margin-bottom:.24rem}
+    ul.bul li:before{content:'';position:absolute;left:.28rem;top:.55rem;width:.26rem;height:.26rem;border-radius:50%;background:#AC161D}
+
+    ul.chk{list-style:none;margin:0 0 .5rem}
+    ul.chk li{position:relative;padding-left:1.35rem;font-size:.79rem;color:#374151;line-height:1.55;margin-bottom:.34rem}
+    ul.chk li:before{content:'';position:absolute;left:0;top:.1rem;width:.85rem;height:.85rem;border:1.5px solid #6b7280;border-radius:3px}
+
+    /* question block */
+    .q{margin-bottom:.9rem;break-inside:avoid;page-break-inside:avoid}
+    .q-t{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.81rem;color:#1c1f2e;margin-bottom:.4rem;line-height:1.45}
+    .rule{border-bottom:1px solid #cfd3d9;height:1.55rem}
+
+    /* skills rating grid */
+    .grid-wrap{border:1.5px solid #1c1f2e;border-radius:8px;overflow:hidden;margin:.85rem 0;break-inside:avoid}
+    table{width:100%;border-collapse:collapse}
+    th{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#1c1f2e;background:#f1f2f4;border-bottom:1.5px solid #1c1f2e;padding:.45rem .4rem;text-align:center;line-height:1.3}
+    th.sk{text-align:left;padding-left:.7rem}
+    td{border-bottom:1px solid #eef0f2;padding:.42rem .4rem;font-size:.76rem;color:#374151;vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    td.sk{padding-left:.7rem;line-height:1.35}
+    td.sk b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;color:#1c1f2e;display:block}
+    td.sk span{font-size:.67rem;color:#6b7280;line-height:1.35}
+    td.lv{text-align:center;width:2.9rem;padding:.42rem .2rem}
+    th.lv{width:2.9rem}
+    .circ{width:1.3rem;height:1.3rem;border:1.5px solid #9ca3af;border-radius:50%;display:inline-block;vertical-align:middle}
+
+    .box{border-radius:9px;padding:.85rem 1.05rem;margin:.9rem 0;font-size:.8rem;line-height:1.7;color:#374151}
+    .box strong{color:#1c1f2e}
+    .box-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;margin-bottom:.3rem}
+    .b-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .b-gold .box-t{color:#92400e}
+    .b-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .b-blue .box-t{color:#1d4ed8}
+    .b-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .b-red .box-t{color:#AC161D}
+
+    .tool-note{background:#f8f9fa;border-left:3px solid #9ca3af;padding:.6rem .85rem;margin:.85rem 0;font-size:.78rem;color:#4b5563;line-height:1.6}
+
+    .foot{display:flex;justify-content:space-between;gap:1rem;margin-top:1.4rem;padding-top:.6rem;border-top:1px solid #eef0f2;
+          font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#c4c8ce}
+
+    /* cover */
+    .cover img{height:2.9rem;margin-bottom:.9rem}
+    .cover-eyebrow{font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#AC161D;margin-bottom:.55rem}
+    .cover h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;line-height:1.06;letter-spacing:-.02em;margin-bottom:.35rem;color:#0e1520}
+    .cover-sub{font-size:.84rem;color:#6b7280;margin-bottom:1.1rem}
+    .cover-rule{height:3px;width:3.5rem;background:#AC161D;margin:0 auto 1.1rem}
+    .cover-np{border:1.5px solid #d8dbe0;border-radius:10px;padding:.85rem 1.1rem;margin:0 auto 1.15rem;max-width:20rem;text-align:left}
+    .cover-np .ns-l{color:#AC161D}
+    .cover-np .ns-line{border-bottom-color:#cfd3d9}
+    .cover-np .ns{margin-bottom:.7rem}
+    .cover-np .ns:last-child{margin-bottom:0}
+    .cover-note{font-size:.75rem;color:#4b5563;line-height:1.7;max-width:25rem;margin:0 auto}
+    .cover-note strong{color:#1c1f2e}
+
+    /* contents */
+    .toc-row{display:flex;align-items:baseline;gap:.5rem;padding:.4rem 0;border-bottom:1px solid #f1f2f4;font-size:.82rem}
+    .toc-row:last-child{border-bottom:none}
+    .toc-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.72rem;color:#AC161D;width:1.5rem;flex-shrink:0}
+    .toc-t{font-family:'Montserrat',sans-serif;font-weight:700;color:#1c1f2e}
+    .toc-dots{flex:1;border-bottom:1px dotted #d1d5db;margin:0 .3rem;min-width:.8rem}
+    .toc-ph{font-size:.72rem;color:#9ca3af;white-space:nowrap}
+
+    @media(max-width:640px){.sheet{padding:1.35rem 1.15rem}}
+
+    @media print{
+      nav,.print-btn,.screen-only{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .sheet{border:none;border-radius:0;padding:0;margin:0;page-break-after:always;break-after:page}
+      .sheet:last-child{page-break-after:auto;break-after:auto}
+      .sheet.cover{padding:.9in .55in .5in;border-top:6px solid #FBCD07}
+      h3,.lbl,.q-t{page-break-after:avoid;break-after:avoid}
+      .grid-wrap,.box,.q,.tool-note,.name-strip{break-inside:avoid;page-break-inside:avoid}
+      tr{break-inside:avoid}
+    }
+    @page{margin:.5in}
+</style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Bootcamp Worksheets</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print Packet</button>
+</nav>
+<main>
+  <div class="sheet cover">
+    <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/v1770990807/field-study-logo-trans_kewube.png" alt="Field Experience">
+    <div class="cover-eyebrow font-heading">Batavia High School</div>
+    <h1 class="font-heading">Bootcamp<br>Worksheets</h1>
+    <div class="cover-sub">Field Experience &middot; every activity, on paper</div>
+    <div class="cover-rule"></div>
+    <div class="cover-np">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Class Period</span><span class="ns-line"></span></div>
+    </div>
+    <div class="cover-note">
+      Keep this packet together &mdash; you will use it every day of bootcamp. Each worksheet is one activity, and the section at the bottom marked <strong>&ldquo;turn this in&rdquo;</strong> is what your teacher collects and scores.<br><br>
+      <strong>Michael Theriault</strong> &middot; michael.theriault@bps101.net<br>
+      <strong>Austun Savitski</strong> &middot; austun.savitski@bps101.net
+    </div>
+  </div>
+  <div class="sheet">
+    <div class="wh" style="border-bottom-width:2px">
+      <div class="wh-t">
+        <div class="wh-title font-heading">What's In This Packet</div>
+        <div class="wh-sub">Sixteen worksheets, in the order you'll do them.</div>
+      </div>
+    </div>
+    <div class="toc-row"><span class="toc-n font-heading">1</span><span class="toc-t font-heading">Begin With the End in Mind</span><span class="toc-dots"></span><span class="toc-ph">Professional Identity &amp; Course Launch</span></div><div class="toc-row"><span class="toc-n font-heading">2</span><span class="toc-t font-heading">Career &amp; Self-Assessment</span><span class="toc-dots"></span><span class="toc-ph">Professional Identity &amp; Course Launch</span></div><div class="toc-row"><span class="toc-n font-heading">3</span><span class="toc-t font-heading">Your Professional Brand</span><span class="toc-dots"></span><span class="toc-ph">Professional Identity &amp; Course Launch</span></div><div class="toc-row"><span class="toc-n font-heading">4</span><span class="toc-t font-heading">Resume Workshop</span><span class="toc-dots"></span><span class="toc-ph">Professional Identity &amp; Course Launch</span></div><div class="toc-row"><span class="toc-n font-heading">5</span><span class="toc-t font-heading">Explore &amp; Apply</span><span class="toc-dots"></span><span class="toc-ph">Professional Identity &amp; Course Launch</span></div><div class="toc-row"><span class="toc-n font-heading">6</span><span class="toc-t font-heading">Elevator Pitch</span><span class="toc-dots"></span><span class="toc-ph">Interview Prep</span></div><div class="toc-row"><span class="toc-n font-heading">7</span><span class="toc-t font-heading">Interview Skills</span><span class="toc-dots"></span><span class="toc-ph">Interview Prep</span></div><div class="toc-row"><span class="toc-n font-heading">8</span><span class="toc-t font-heading">Mock Interview</span><span class="toc-dots"></span><span class="toc-ph">Interview Prep</span></div><div class="toc-row"><span class="toc-n font-heading">9</span><span class="toc-t font-heading">Interview Improvement Plan</span><span class="toc-dots"></span><span class="toc-ph">Interview Prep</span></div><div class="toc-row"><span class="toc-n font-heading">10</span><span class="toc-t font-heading">Workplace Dilemma Stations</span><span class="toc-dots"></span><span class="toc-ph">Workplace Readiness</span></div><div class="toc-row"><span class="toc-n font-heading">11</span><span class="toc-t font-heading">Meet Your 10 Employability Skills</span><span class="toc-dots"></span><span class="toc-ph">Workplace Readiness</span></div><div class="toc-row"><span class="toc-n font-heading">12</span><span class="toc-t font-heading">Post-Assessment</span><span class="toc-dots"></span><span class="toc-ph">Workplace Readiness</span></div><div class="toc-row"><span class="toc-n font-heading">13</span><span class="toc-t font-heading">Placement Confirmed</span><span class="toc-dots"></span><span class="toc-ph">Workplace Readiness</span></div><div class="toc-row"><span class="toc-n font-heading">14</span><span class="toc-t font-heading">Goal Conference</span><span class="toc-dots"></span><span class="toc-ph">Launch</span></div><div class="toc-row"><span class="toc-n font-heading">15</span><span class="toc-t font-heading">Internship Plan of Success</span><span class="toc-dots"></span><span class="toc-ph">Launch</span></div><div class="toc-row"><span class="toc-n font-heading">16</span><span class="toc-t font-heading">Launch Day</span><span class="toc-dots"></span><span class="toc-ph">Launch</span></div>
+
+    <div class="box b-red">
+      <div class="box-t font-heading">Two rules for this packet</div>
+      <strong>1. Don't lose it.</strong> Replacing a worksheet is easy; replacing your written answers is not.<br>
+      <strong>2. Write in pen, in full sentences, on the lines.</strong> A one-word answer where a sentence was asked for scores a 2 &mdash; not because the handwriting matters, but because it shows you didn't engage with the question.
+    </div>
+
+    <div class="box b-gold">
+      <div class="box-t font-heading">How each worksheet is scored</div>
+      <strong>4</strong> &mdash; turned in on time and genuinely strong; went past the prompt.<br>
+      <strong>3</strong> &mdash; turned in on time and complete. You did what was asked, properly. <em>This is the target.</em><br>
+      <strong>2</strong> &mdash; late, or incomplete: missing sections, one-line answers, boxes unchecked.<br>
+      <strong>1</strong> &mdash; barely attempted.<br>
+      <strong>INC</strong> &mdash; nothing turned in. Recoverable until the quarter closes.
+    </div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Contents</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">1</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Begin With the End in Mind</div>
+        <div class="wh-sub">Course overview · Capstone preview · Syllabus · Website tour · Expectations</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Professional Identity &amp; Course Launch</div>
+        <div class="wh-time font-heading">~90 min · Day 1</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>See the capstone — your 1:30 elevator pitch on the Black Box stage, and your trade show station in the BFAC Lobby. This is where the semester ends. Today we reverse-engineer it.</li><li>Review the syllabus, course contract, and what 60 hours of field experience actually looks like</li><li>Walk through this website together: your dashboard, weekly log, reflection form, and bootcamp phases</li><li>Discussion: what's the difference between showing up as a student versus showing up as an employee?</li><li>Overview of the 7 career clusters and what placements are available</li><li>Preview the 10 Illinois Essential Employability Skills you'll be assessed on</li></ul>
+    <div class="tool-note">This activity is a guided walkthrough. Your teacher will lead it — use this page for the discussion question and notes.</div>
+    <div class="lbl font-heading">Course Launch Guide &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Notes</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 1</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">2</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Employability Skills Pre-Assessment</div>
+        <div class="wh-sub">Rate yourself honestly. This is your baseline — nobody is graded on where they start.</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Phase 1</div>
+        <div class="wh-time font-heading">~30&ndash;45 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+
+    <p><strong>Circle one number for each skill.</strong> Be honest rather than generous — the whole point is to have a real starting line to measure against in December.</p>
+
+    
+    <div class="grid-wrap">
+      <table>
+        <thead><tr><th class="sk">Employability Skill</th><th class="lv">1<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Just Starting</span></th><th class="lv">2<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Developing</span></th><th class="lv">3<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Solid</span></th><th class="lv">4<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Strength</span></th></tr></thead>
+        <tbody>
+          <tr><td class="sk"><b>1. Communication</b><span>Speaks clearly, listens actively, writes with appropriate professionalism</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>2. Critical Thinking</b><span>Questions assumptions, evaluates information before acting, reasons through complexity</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>3. Teamwork</b><span>Collaborates effectively, navigates disagreement professionally, builds trust with coworkers</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>4. Problem Solving</b><span>Identifies root causes, generates options, acts on solutions with appropriate judgment</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>5. Adaptability</b><span>Adjusts when plans change, maintains effectiveness under new or uncertain conditions</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>6. Initiative</b><span>Identifies what needs to be done and acts without being asked, within appropriate boundaries</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>7. Decision Making</b><span>Weighs consequences, applies ethical reasoning, consults when appropriate</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>8. Cultural Awareness</b><span>Works respectfully across differences in background, perspective, and identity</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>9. Reliability</b><span>Arrives on time, follows through on commitments, owns mistakes without deflecting</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>10. Planning &amp; Organizing</b><span>Prioritizes based on deadlines and dependencies, tracks tasks, stays on top of deliverables</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h3 class="font-heading">Career Interests</h3>
+    <div class="q"><div class="q-t font-heading">What fields or industries interest you?</div><div class="rule"></div><div class="rule"></div></div>
+    <div class="q"><div class="q-t font-heading">What do you want to explore or learn more about?</div><div class="rule"></div><div class="rule"></div></div>
+    <div class="q"><div class="q-t font-heading">What are you already good at? <span style="font-weight:400;color:#6b7280">Skills, subjects, or things people already come to you for.</span></div><div class="rule"></div><div class="rule"></div></div>
+
+    <h3 class="font-heading">Your Professional Goal for the Semester</h3>
+    <div class="q"><div class="q-t font-heading">What I want to do <span style="font-weight:400;color:#6b7280">&mdash; a specific outcome, not "get better at communication"</span></div><div class="rule"></div><div class="rule"></div></div>
+    <div class="q"><div class="q-t font-heading">Why it matters to me <span style="font-weight:400;color:#6b7280">&mdash; your real reason, not what sounds good</span></div><div class="rule"></div><div class="rule"></div></div>
+    <div class="q"><div class="q-t font-heading">How I'll know I got there <span style="font-weight:400;color:#6b7280">&mdash; one thing you'll be able to show or do</span></div><div class="rule"></div><div class="rule"></div></div>
+
+    <div class="box b-gold">
+      <div class="box-t font-heading">Keep this</div>
+      Your teacher collects this sheet, and you get it back at the end of the semester. The gap between what you write today and what you write in December <em>is</em> the evidence for your capstone pitch.
+    </div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Pre-Assessment</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">3</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Your Professional Brand</div>
+        <div class="wh-sub">Digital footprint audit · LinkedIn setup · Professional email signature · Social media + first impressions</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Professional Identity &amp; Course Launch</div>
+        <div class="wh-time font-heading">~90 min · Day 2–3</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Google yourself — right now, in class. What comes up? What would an employer see?</li><li>Social media audit discussion: what's public, what's professional, what needs to change before you start interviewing</li><li>Build your professional email signature — your name, title (Field Experience Student), school, and contact info</li><li>Real examples: how a digital footprint has cost people jobs and opportunities</li><li>Phone communication roleplay: cold-calling a potential employer</li></ul><div class="lbl font-heading">Social media audit checklist &mdash; check each one off</div><ul class="chk"><li>My profile photo is something an employer would think is professional</li><li>I checked my most recent public posts — nothing I wouldn't want my placement supervisor to see</li><li>I removed or made private anything tagged, shared, or public that needed it</li><li>My bio describes me the way I want to be described professionally</li></ul><div class="lbl font-heading">LinkedIn setup &mdash; check each one off</div><ul class="chk"><li>I created or cleaned up my LinkedIn profile — professional photo, current city, high school listed</li><li>I wrote a headline that says more than my school (e.g., "Field Experience Student | Interested in Healthcare + Business")</li><li>I left space on my profile to add my resume in Activity 4</li></ul>
+    
+    <div class="lbl font-heading">Confirm Your Email Signature &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Paste your professional email signature here as written (name, title, school, contact)…</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 3</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">4</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Resume Workshop</div>
+        <div class="wh-sub">Build · AI feedback · Peer review · Conference · Final draft</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Professional Identity &amp; Course Launch</div>
+        <div class="wh-time font-heading">~90 min · Day 3–4</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Resume structure walkthrough — what goes where and why different resumes look different for different people</li><li>Translating school experiences into workforce language: "I was on the team" → "Led a 12-person team through…"</li><li>Action verb practice — the difference between listing a job and owning one</li><li>References: how to ask professionally, who to ask, what they need to say</li><li>In-class build time + peer review with a partner</li><li>Use AI to get a first-round review before your peer: paste your resume into Claude or ChatGPT and ask "What's weak on this resume and what would make it stronger?" — fix those first, then swap with a partner</li><li>Teacher or partner conference on your draft before final</li><li>Once your resume is final, upload it to your LinkedIn profile — it becomes a portfolio artifact employers can see before they even open an application</li></ul>
+    
+    <div class="lbl font-heading">Submit Your Resume Link &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Notes</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 4</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">5</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Explore &amp; Apply</div>
+        <div class="wh-sub">Browse job menu · Research employers · Meet with teacher · Apply · Follow-up</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Professional Identity &amp; Course Launch</div>
+        <div class="wh-time font-heading">~90 min · Day 4–5 (apply over weekend)</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Browse the placement list on this site — explore what's available across all 7 career clusters</li><li>Employer scavenger hunt: research your top 2–3 choices. Find out what they do, who works there, what they value</li><li>Match your skills from your resume to the placements you're interested in</li><li>Meet with your teacher to talk through your choices and confirm your application plan</li><li>Submit your application(s) — this starts the clock on employer paperwork, so the sooner the better</li></ul><div class="lbl font-heading">Employer research — know before you go</div><ul class="bul"><li>Before applying: look up their website, LinkedIn, and Google reviews. What do they do? Who works there? Did they recently expand or hire?</li><li>Goal: walk into your interview able to say "I noticed you just opened a second location" or "I saw your team focuses heavily on youth programs" — not "so what do you guys do again?"</li></ul><div class="lbl font-heading">After you apply</div><ul class="bul"><li>Send a follow-up email 5–7 business days after applying if you haven't heard back — brief, professional, confirms your interest</li><li>Send a thank-you email within 24 hours of any interview — one paragraph, reference something specific from the conversation, confirm you want the role</li><li>Both emails go in your portfolio — they're evidence of professional communication, not just formalities</li></ul>
+    
+    <div class="lbl font-heading">Your Top Placements &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Top choice placement…</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">2nd choice placement…</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">3rd choice placement…</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">Which placement(s) did you apply to, and how did you submit? (e.g., 'Applied to Penrose Brewing and Batavia Public Library through the site on 8/28')</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 5</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">6</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Elevator Pitch</div>
+        <div class="wh-sub">Write it · Workshop it · Record it</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Interview Prep</div>
+        <div class="wh-time font-heading">~90 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Structure: hook → background → value → ask. Thirty seconds to tell someone exactly why they should hire you</li><li>Write your pitch in class — first draft, no judgment</li><li>Deliver it to three different partners. Get real feedback: was it clear? Did you sound confident? Did it sound rehearsed?</li><li>Refine and record your final video pitch — this becomes a portfolio piece and your capstone warmup</li></ul>
+    
+    <div class="lbl font-heading">Submit Your Elevator Pitch &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Or paste your written pitch script here…</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 6</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">7</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Interview Skills</div>
+        <div class="wh-sub">Real situations · What to wear · Body language · Communication</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Interview Prep</div>
+        <div class="wh-time font-heading">~90 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Situational practice: "Tell me about a time when…" — you'll work through real scenarios from actual workplaces. The goal is having your own stories ready, not memorizing scripts.</li><li>Common interview questions + how to prep honest answers without sounding rehearsed</li><li>What to wear: professional appearance varies by placement type — a hospital, a restaurant, and a law firm all look different</li><li>Body language: what nervous looks like from the outside and how to correct for it — eye contact, posture, what to do with your hands</li><li>Communication: how to handle a question you don't know, how to ask for clarification, what to do when the answer honestly is "I'm not sure yet"</li></ul>
+    
+    <div class="lbl font-heading">Two Quick Scenarios &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Write out your real response — not 'I'd figure it out,' the actual words you'd say…</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">Be specific to your placement — a hospital, a job site, and an office all call for something different…</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 7</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">8</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Mock Interview</div>
+        <div class="wh-sub">Peer speed interviews · Formal mock · Real feedback · Question bank</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Interview Prep</div>
+        <div class="wh-time font-heading">~90 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">Step 1 — Peer speed interviews (whole class)</div><ul class="bul"><li>Class splits in half: one side interviews, the other answers. Each pair gets 2–3 questions from the interview question bank, then rotate down the line.</li><li>After 30 minutes, switch sides — the interviewers become interviewees. Everyone practices both roles.</li><li>Interviewees don't know which questions are coming. That's the point — you get comfortable answering live, unrehearsed, for a rotating set of people.</li></ul><div class="lbl font-heading">Step 2 — Formal mock interview (community partner)</div><ul class="bul"><li>1-on-1 with a business partner, chamber member, or administrator — ideally someone you don't know well</li><li>Your interviewer uses a structured feedback form. You receive written feedback immediately after — specific, honest, actionable.</li><li>Goal is two interviews each during this block. When you're not in the chair, review the feedback from your last one.</li><li>No one gets a perfect mock interview. That's the point. You find out what to fix before the real one.</li></ul>
+    
+    <div class="lbl font-heading">Confirm Mock Interview Completed &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Who interviewed you? (name and organization)</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">What was one piece of feedback you received?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 8</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">9</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Interview Improvement Plan</div>
+        <div class="wh-sub">Review feedback · Identify gaps · Write action steps · AI practice partner</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Interview Prep</div>
+        <div class="wh-time font-heading">~30–45 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Review the feedback from your mock interview — what did you do well, what needs work?</li><li>Identify 2–3 specific areas to improve before your real interview</li><li>Write concrete action steps: not "be more confident" — "practice answering the 'tell me about yourself' question out loud three times before my interview"</li><li>Use AI as a practice partner between now and your real interview: open a chat and say "Act as the hiring manager at [company name]. Interview me for [role] and give me real questions. Rate my answers and tell me what to improve." — repeat until you feel ready.</li></ul>
+    
+    <div class="lbl font-heading">Submit Your Improvement Plan &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">What's the first thing you're working on?</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">Your concrete action step for it…</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">What's the second thing you're working on?</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">Your concrete action step for it…</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">A third area, if you have one…</div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">Your concrete action step for it…</div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 9</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">10</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Workplace Dilemma Stations</div>
+        <div class="wh-sub">15 dilemmas · Carousel stations · Career clusters · Class debrief</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Workplace Readiness</div>
+        <div class="wh-time font-heading">~90 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Carousel activity: 15 dilemma stations set up around the room. Small groups rotate every few minutes, read the scenario, and discuss what they'd do.</li><li>Scenarios span all 7 career clusters — a healthcare confidentiality situation, a manufacturing safety shortcut, a supervisor asking something that feels wrong in an education setting, a customer conflict in retail, and more</li><li>After rotating, the class picks 2–3 scenarios to debrief together — groups share what they decided and why</li><li>You'll disagree with each other. That's the activity. There's often no single right answer — what matters is how you think it through.</li><li>If you were absent: all 15 dilemma scenarios are linked here so you can review them and mark complete</li></ul>
+    
+    <div class="lbl font-heading">Which Dilemma Stuck With You? &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Which of the 15 dilemmas stuck with you, and what would you actually do in that situation?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 10</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">11</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Meet Your 10 Employability Skills</div>
+        <div class="wh-sub">Quick overview · What each one actually means · Why you'll see them all semester</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Workplace Readiness</div>
+        <div class="wh-time font-heading">~45–60 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>This is your quick shot — a fast walkthrough of all 10 Illinois Essential Employability Skills before you rate yourself again in the post-assessment. We're going for breadth, not depth.</li><li>For each skill, you'll write one sentence in your own words: what does it actually mean, and where did you see it show up in Phase 1 or 2?</li><li>We'll clarify the ones that get confused with each other — critical thinking vs. problem-solving vs. decision-making are not the same thing, and the difference matters when you're in the field</li><li>By the end, you should be able to name all 10 and describe each one without looking at the list. You'll go deeper into each one throughout the semester — this is the foundation.</li></ul>
+    
+    <div class="lbl font-heading">One Sentence, Each Skill &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Notes</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 11</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">12</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Employability Skills Post-Assessment</div>
+        <div class="wh-sub">Rate yourself again. Then compare against your pre-assessment and see what moved.</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Phase 3</div>
+        <div class="wh-time font-heading">~30&ndash;45 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+
+    <p><strong>Circle one number for each skill.</strong> Do not look at your pre-assessment until you have finished rating yourself here.</p>
+
+    
+    <div class="grid-wrap">
+      <table>
+        <thead><tr><th class="sk">Employability Skill</th><th class="lv">1<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Just Starting</span></th><th class="lv">2<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Developing</span></th><th class="lv">3<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Solid</span></th><th class="lv">4<br><span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:.55rem">Strength</span></th></tr></thead>
+        <tbody>
+          <tr><td class="sk"><b>1. Communication</b><span>Speaks clearly, listens actively, writes with appropriate professionalism</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>2. Critical Thinking</b><span>Questions assumptions, evaluates information before acting, reasons through complexity</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>3. Teamwork</b><span>Collaborates effectively, navigates disagreement professionally, builds trust with coworkers</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>4. Problem Solving</b><span>Identifies root causes, generates options, acts on solutions with appropriate judgment</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>5. Adaptability</b><span>Adjusts when plans change, maintains effectiveness under new or uncertain conditions</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>6. Initiative</b><span>Identifies what needs to be done and acts without being asked, within appropriate boundaries</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>7. Decision Making</b><span>Weighs consequences, applies ethical reasoning, consults when appropriate</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>8. Cultural Awareness</b><span>Works respectfully across differences in background, perspective, and identity</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>9. Reliability</b><span>Arrives on time, follows through on commitments, owns mistakes without deflecting</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr><tr><td class="sk"><b>10. Planning &amp; Organizing</b><span>Prioritizes based on deadlines and dependencies, tracks tasks, stays on top of deliverables</span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td><td class="lv"><span class="circ"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h3 class="font-heading">Your Growth</h3>
+    <div class="q"><div class="q-t font-heading">Which skills moved the most since Phase 1, and what specifically caused it?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    <div class="q"><div class="q-t font-heading">What surprised you about your own growth?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    <div class="q"><div class="q-t font-heading">What do you most want to develop during the rest of your hours?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+
+    <div class="box b-blue">
+      <div class="box-t font-heading">Where this goes next</div>
+      Put your pre- and post-assessment side by side in your capstone portfolio. It is the cleanest piece of evidence you will have that this semester changed something.
+    </div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Post-Assessment</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">13</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Placement Confirmed</div>
+        <div class="wh-sub">Confirm your employer · Training agreement · Onboarding paperwork</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Workplace Readiness</div>
+        <div class="wh-time font-heading">Complete as soon as your offer is accepted</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What this means</div><ul class="bul"><li>You've accepted an offer from a placement employer — congratulations</li><li>Confirm your employer here so your teacher can start the hiring paperwork process</li><li>The earlier this is confirmed, the more time your employer has to complete all required documents before your start date</li><li>Your employer may also have their own onboarding paperwork — especially if you're getting paid. This can include tax forms, direct deposit info, and ID verification. Sit down with a parent or guardian to complete these. Don't guess on legal documents.</li><li>Don't have a confirmed placement yet? Keep at it. Talk to your teacher about next steps.</li></ul>
+    
+    <div class="lbl font-heading">Confirm Your Placement &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Employer name and your start date (e.g., 'Penrose Brewing — starting Sept 9')…</div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 13</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">14</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Goal Conference</div>
+        <div class="wh-sub">Prep your goals · One-on-one with your teacher · Get expectations cleared</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Launch</div>
+        <div class="wh-time font-heading">5–10 min per student · Runs across 1–2 class days</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">Come prepared</div><ul class="bul"><li>Before your conference, draft your 2–3 goals. Your teacher shouldn't be the one prompting you to come up with them — arrive with answers ready.</li><li>Think through: What do you want to get out of this placement? What skill do you most want to improve? What would make this semester feel worth it?</li><li>Come with any questions or concerns too. What are you nervous about? What's still unclear? This is the place to name it — not Day 1 at your placement.</li></ul><div class="lbl font-heading">What we do in class</div><ul class="bul"><li>5–10 minute one-on-one with your teacher — not a check-in, a real conversation about your placement and what you want from it</li><li>Set 2–3 goals for your semester: specific, achievable, and tied to what you actually care about</li><li>Review the time log and reflection process one more time — everyone does a test submission so there are no surprises</li></ul><div class="lbl font-heading">While you wait for your conference</div><ul class="bul"><li>Conferences run 1–2 full class days. When you're not in the chair, you'll get started on the first in-depth employability skill lesson or continue refining your elevator pitch for the capstone.</li></ul>
+    
+    <div class="lbl font-heading">Come Prepared — Draft Your Goals &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">Draft your 2-3 goals for the semester, plus any questions or concerns you want to raise…</div><div class="rule"></div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 14</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">15</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Internship Plan of Success</div>
+        <div class="wh-sub">Your roadmap for the semester · Professional intro email</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Launch</div>
+        <div class="wh-time font-heading">~45–60 min</div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What we do in class</div><ul class="bul"><li>Write your internship plan of success — your schedule, your goals, how you'll handle challenges, and how you'll track your 60 hours</li><li>Draft a professional introduction or thank you email to your placement supervisor — your first real professional communication with them</li><li>Review: what does logging hours look like on the site? What does a good weekly reflection look like? We'll do a live test submission together so everyone knows the process before it counts.</li></ul>
+    
+    <div class="lbl font-heading">Submit Your Internship Plan &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">What days/times will you typically be at your placement?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">What do you want to walk away with?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">If something goes wrong — a scheduling conflict, a tough day — what's your plan?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div><div class="q"><div class="q-t font-heading">Roughly how many hours a week, and by when do you expect to hit 60?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 15</span></div>
+  </div>
+  <div class="sheet">
+    <div class="wh">
+      <div class="wh-num font-heading">16</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">Launch Day</div>
+        <div class="wh-sub">Set your #1 goal · Submit &amp; Launch · Receive your Launch Card</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">Launch</div>
+        <div class="wh-time font-heading"></div>
+      </div>
+    </div>
+    
+    <div class="name-strip">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    <div class="lbl font-heading">What this moment is</div><ul class="bul"><li>You've done the work. Resume built. Pitch practiced. Interview survived. Placement confirmed. Goals set.</li><li>Write your single most important goal for this semester — one sentence, honest and specific</li><li>Hit Submit &amp; Launch. Your Launch Card generates and lives on your dashboard permanently</li><li>You are no longer a student preparing for a job. You're a student employee. Go make it count.</li></ul>
+    
+    <div class="lbl font-heading">Your #1 Goal This Semester &mdash; turn this in</div>
+    <div class="q"><div class="q-t font-heading">One sentence. Specific and honest. What do you most want to accomplish or learn during your 60 hours?</div><div class="rule"></div><div class="rule"></div><div class="rule"></div></div>
+    
+    <div class="foot"><span>Field Experience &middot; Bootcamp Worksheet</span><span>Activity 16</span></div>
+  </div>
+</main>
+</body>
+</html>

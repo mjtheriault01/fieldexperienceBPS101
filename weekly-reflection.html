@@ -109,6 +109,38 @@
                   color:#9ca3af;letter-spacing:.06em;text-transform:uppercase}
 
     .char-count{font-size:.72rem;color:#9ca3af;text-align:right;margin-top:.25rem}
+  
+    /* ── Print: turn the live form into a clean blank worksheet ──
+       No portal yet, so these pages get printed and filled in by hand. Empty
+       fields must show as ruled writing space, not invisible boxes. */
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;
+               font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+               padding:.45rem .85rem;cursor:pointer;white-space:nowrap}
+    .print-btn:hover{background:#0e1520}
+    @media print{
+      nav,.print-btn,.nav-greeting,.btn-ghost,.complete-btn,.btn-primary,
+      #results-view,.status-msg,.hero-eyebrow{display:none!important}
+      body{background:#fff!important;color:#000}
+      main{max-width:100%!important;padding:0!important}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none!important}
+      /* Empty inputs become writing space */
+      textarea.field-input,input.field-input,textarea,input[type="text"],input[type="number"],input[type="date"]{
+        border:none!important;border-bottom:1px solid #b0b4ba!important;border-radius:0!important;
+        background:transparent!important;min-height:2.6rem;padding:.15rem 0!important;
+        font-size:.85rem;color:#000;resize:none}
+      textarea.field-input,textarea{min-height:3.4rem}
+      .field-label{font-weight:700;color:#000}
+      .card,.section,.skill-row{border-color:#c9ccd1!important;background:#fff!important;
+        break-inside:avoid;page-break-inside:avoid}
+      h1,h2,h3{color:#000}
+      /* Rating scales print as empty circles to hand-mark */
+      input[type="radio"]{-webkit-appearance:none;appearance:none;width:1.15rem;height:1.15rem;
+        border:1.5px solid #6b7280!important;border-radius:50%;background:#fff!important;
+        border-bottom-width:1.5px!important;min-height:0}
+      .print-only{display:block!important}
+    }
+    .print-only{display:none}
+
   </style>
 </head>
 <body>
@@ -125,11 +157,17 @@
   </a>
   <div class="nav-right">
     <span class="nav-greeting">Welcome, <strong id="nav-name">—</strong></span>
+    <button class="print-btn font-heading" onclick="window.print()">Print Blank</button>
     <button class="btn-ghost" onclick="signOut()">Sign out</button>
   </div>
 </nav>
 
 <main>
+  <div class="print-only" style="border:1.5px solid #1c1f2e;border-radius:8px;padding:.7rem 1rem;margin-bottom:1.1rem;
+       font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;color:#1c1f2e">
+    Name ___________________________________  &nbsp;&nbsp; Date _______________
+  </div>
+
   <a href="dashboard.html" class="back-link">
     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
     Back to Dashboard

@@ -26,21 +26,23 @@
     .page{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:2.25rem 2.5rem;margin-bottom:1.25rem}
     .page-num{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c4c8ce;text-align:right;margin-top:1.5rem;padding-top:.6rem;border-top:1px solid #f1f2f4}
 
-    /* cover */
-    .cover{background:#0e1520;border-color:#0e1520;color:#fff;text-align:center;padding:3.5rem 2.5rem}
-    .cover img{height:4.5rem;margin-bottom:1.75rem}
-    .cover-eyebrow{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#FBCD07;margin-bottom:1rem}
-    .cover h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.6rem;line-height:1.05;letter-spacing:-.03em;margin-bottom:.6rem}
-    .cover-sub{font-size:.95rem;color:#9ca3af;margin-bottom:2.25rem}
-    .cover-rule{height:3px;width:4rem;background:#FBCD07;margin:0 auto 2.25rem}
-    .cover-quote{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.05rem;color:#e5e7eb;line-height:1.6;max-width:26rem;margin:0 auto 2.25rem}
-    .cover-meta{font-size:.8rem;color:#6b7280;line-height:1.9}
-    .cover-meta strong{color:#e5e7eb}
-    .name-plate{border:1.5px solid rgba(255,255,255,.25);border-radius:10px;padding:1.1rem 1.35rem;margin:0 auto 2rem;max-width:22rem;text-align:left}
-    .np-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.85rem}
+    /* cover — deliberately white. These get printed in class sets, so no full-bleed
+       dark background; the gold bar and crimson rule carry the brand instead. */
+    .cover{background:#fff;border-color:#e5e7eb;color:#1c1f2e;text-align:center;padding:2.5rem 2.5rem 2rem;
+           border-top:6px solid #FBCD07}
+    .cover img{height:3.1rem;margin-bottom:1rem}
+    .cover-eyebrow{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#AC161D;margin-bottom:.6rem}
+    .cover h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.15rem;line-height:1.05;letter-spacing:-.03em;margin-bottom:.4rem;color:#0e1520}
+    .cover-sub{font-size:.86rem;color:#6b7280;margin-bottom:1.15rem}
+    .cover-rule{height:3px;width:3.5rem;background:#AC161D;margin:0 auto 1.15rem}
+    .cover-quote{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.95rem;color:#374151;line-height:1.55;max-width:24rem;margin:0 auto 1.25rem}
+    .cover-meta{font-size:.76rem;color:#6b7280;line-height:1.7}
+    .cover-meta strong{color:#1c1f2e}
+    .name-plate{border:1.5px solid #d8dbe0;border-radius:10px;padding:.9rem 1.15rem;margin:0 auto 1.25rem;max-width:21rem;text-align:left}
+    .np-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.7rem}
     .np-row:last-child{margin-bottom:0}
-    .np-l{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#FBCD07;white-space:nowrap}
-    .np-line{flex:1;border-bottom:1px solid rgba(255,255,255,.3);height:1rem}
+    .np-l{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#AC161D;white-space:nowrap}
+    .np-line{flex:1;border-bottom:1px solid #cfd3d9;height:.95rem}
 
     /* contents */
     .toc-row{display:flex;align-items:baseline;gap:.6rem;padding:.6rem 0;border-bottom:1px solid #f1f2f4;font-size:.88rem}
@@ -134,13 +136,17 @@
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       .page{border:none;border-radius:0;padding:0;margin:0;page-break-after:always;break-after:page}
       .page:last-child{page-break-after:auto;break-after:auto}
-      .cover{padding:1.5in .75in 1in}
-      .cover img{height:3.4rem;margin-bottom:1.1rem}
-      .cover h1{font-size:2.1rem}
-      .cover-quote{font-size:.95rem;margin-bottom:1.6rem}
-      .cover-rule{margin-bottom:1.6rem}
-      .cover-sub{margin-bottom:1.6rem}
-      .name-plate{margin-bottom:1.5rem}
+      /* Cover must land inside one sheet — 9in of content box at 0.55in margins. */
+      .cover{padding:.9in .55in .5in;border-top:6px solid #FBCD07}
+      .cover img{height:2.6rem;margin-bottom:.8rem}
+      .cover-eyebrow{font-size:.6rem;margin-bottom:.5rem}
+      .cover h1{font-size:1.95rem}
+      .cover-sub{font-size:.8rem;margin-bottom:.9rem}
+      .cover-rule{margin-bottom:.9rem}
+      .cover-quote{font-size:.88rem;margin-bottom:1rem}
+      .name-plate{margin-bottom:1rem;padding:.8rem 1rem}
+      .np-row{margin-bottom:.6rem}
+      .cover-meta{font-size:.72rem;line-height:1.6}
 
       /* Tighten typography so each section fits fewer sheets without cramping */
       p,li{font-size:.8rem;line-height:1.62}
