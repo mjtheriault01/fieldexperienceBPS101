@@ -306,56 +306,71 @@ function skillsGrid(skills, levels) {
 
 function assessmentSheet(kind, skills, levels) {
   const isPre = kind === 'pre';
-  return `
-  <div class="sheet">
+  const num = isPre ? '2' : '12';
+  const phase = isPre ? 'Phase 1' : 'Phase 3';
+  const label = isPre ? 'Pre' : 'Post';
+
+  // Two sheets on purpose: ratings on the front, written answers on the back.
+  // Print double-sided and each student gets one sheet of paper.
+  const header = (side, sub) => `
     <div class="wh">
-      <div class="wh-num font-heading">${isPre ? '2' : '12'}</div>
+      <div class="wh-num font-heading">${num}</div>
       <div class="wh-t">
-        <div class="wh-title font-heading">Employability Skills ${isPre ? 'Pre' : 'Post'}-Assessment</div>
-        <div class="wh-sub">${isPre
-          ? 'Rate yourself honestly. This is your baseline — nobody is graded on where they start.'
-          : 'Rate yourself again. Then compare against your pre-assessment and see what moved.'}</div>
+        <div class="wh-title font-heading">Employability Skills ${label}-Assessment</div>
+        <div class="wh-sub">${sub}</div>
       </div>
       <div class="wh-meta">
-        <div class="wh-phase font-heading">${isPre ? 'Phase 1' : 'Phase 3'}</div>
+        <div class="wh-phase font-heading">${phase} &middot; ${side}</div>
         <div class="wh-time font-heading">~30&ndash;45 min</div>
       </div>
-    </div>
+    </div>`;
+
+  const front = `
+  <div class="sheet">
+    ${header('Front &mdash; ratings', isPre
+      ? 'Rate yourself honestly. This is your baseline &mdash; nobody is graded on where they start.'
+      : 'Rate yourself again, then compare against your pre-assessment.')}
     ${NAME_STRIP}
-
     <p><strong>Circle one number for each skill.</strong> ${isPre
-      ? 'Be honest rather than generous — the whole point is to have a real starting line to measure against in December.'
+      ? 'Be honest rather than generous &mdash; the whole point is to have a real starting line to measure against in December.'
       : 'Do not look at your pre-assessment until you have finished rating yourself here.'}</p>
-
     ${skillsGrid(skills, levels)}
+    <p style="font-size:.75rem;color:#6b7280;margin-top:.5rem">Short answer questions are on the back of this sheet.</p>
+    ${sheetFoot(`${label}-Assessment &middot; front`)}
+  </div>`;
 
+  const back = `
+  <div class="sheet">
+    ${header('Back &mdash; short answer', 'Answer in full sentences. Fragments are fine as long as they are specific.')}
     ${isPre ? `
     <h3 class="font-heading">Career Interests</h3>
-    <div class="q"><div class="q-t font-heading">What fields or industries interest you?</div>${lines(2)}</div>
-    <div class="q"><div class="q-t font-heading">What do you want to explore or learn more about?</div>${lines(2)}</div>
-    <div class="q"><div class="q-t font-heading">What are you already good at? <span style="font-weight:400;color:#6b7280">Skills, subjects, or things people already come to you for.</span></div>${lines(2)}</div>
+    <div class="q"><div class="q-t font-heading">What fields or industries interest you?</div>${lines(3)}</div>
+    <div class="q"><div class="q-t font-heading">What do you want to explore or learn more about?</div>${lines(3)}</div>
+    <div class="q"><div class="q-t font-heading">What are you already good at? <span style="font-weight:400;color:#6b7280">Skills, subjects, or things people already come to you for.</span></div>${lines(3)}</div>
 
     <h3 class="font-heading">Your Professional Goal for the Semester</h3>
-    <div class="q"><div class="q-t font-heading">What I want to do <span style="font-weight:400;color:#6b7280">&mdash; a specific outcome, not "get better at communication"</span></div>${lines(2)}</div>
+    <div class="q"><div class="q-t font-heading">What I want to do <span style="font-weight:400;color:#6b7280">&mdash; a specific outcome, not "get better at communication"</span></div>${lines(3)}</div>
     <div class="q"><div class="q-t font-heading">Why it matters to me <span style="font-weight:400;color:#6b7280">&mdash; your real reason, not what sounds good</span></div>${lines(2)}</div>
     <div class="q"><div class="q-t font-heading">How I'll know I got there <span style="font-weight:400;color:#6b7280">&mdash; one thing you'll be able to show or do</span></div>${lines(2)}</div>
 
     <div class="box b-gold">
       <div class="box-t font-heading">Keep this</div>
-      Your teacher collects this sheet, and you get it back at the end of the semester. The gap between what you write today and what you write in December <em>is</em> the evidence for your capstone pitch.
+      Your teacher collects this sheet and you get it back at the end of the semester. The gap between what you write today and what you write in December <em>is</em> the evidence for your capstone pitch.
     </div>`
     : `
     <h3 class="font-heading">Your Growth</h3>
-    <div class="q"><div class="q-t font-heading">Which skills moved the most since Phase 1, and what specifically caused it?</div>${lines(3)}</div>
-    <div class="q"><div class="q-t font-heading">What surprised you about your own growth?</div>${lines(3)}</div>
-    <div class="q"><div class="q-t font-heading">What do you most want to develop during the rest of your hours?</div>${lines(3)}</div>
+    <div class="q"><div class="q-t font-heading">Which skills moved the most since Phase 1, and what specifically caused it?</div>${lines(4)}</div>
+    <div class="q"><div class="q-t font-heading">What surprised you about your own growth?</div>${lines(4)}</div>
+    <div class="q"><div class="q-t font-heading">What do you most want to develop during the rest of your hours?</div>${lines(4)}</div>
 
     <div class="box b-blue">
       <div class="box-t font-heading">Where this goes next</div>
       Put your pre- and post-assessment side by side in your capstone portfolio. It is the cleanest piece of evidence you will have that this semester changed something.
     </div>`}
-    ${sheetFoot(isPre ? 'Pre-Assessment' : 'Post-Assessment')}
+    ${sheetFoot(`${label}-Assessment &middot; back`)}
   </div>`;
+
+  return front + back;
 }
 
 // ── one worksheet per activity ───────────────────────────────────────────────
