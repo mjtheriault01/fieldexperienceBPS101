@@ -98,7 +98,12 @@
          adding or editing a position to confirm everything still fits. */
       .position-card { break-inside:avoid !important; page-break-inside:avoid !important; }
       body:not(.print-one) .position-card { page-break-after:always; break-after:page; box-shadow:none !important; margin-bottom:0 !important; }
-      body:not(.print-one) .position-card:last-child { page-break-after:avoid; break-after:avoid; }
+      /* Only the final card in the whole document may skip its trailing break —
+         that break is what would otherwise emit a blank last page. This must NOT be
+         :last-child: every cluster section is its own wrapper, so :last-child also
+         matched the last card of each section and swallowed the page break before
+         the first card of the next section. */
+      body:not(.print-one) .position-card.print-last { page-break-after:avoid; break-after:avoid; }
       body:not(.print-one) .cluster-section-header { page-break-after:avoid; break-after:avoid; }
 
       .modal-backdrop { display:none !important; }
@@ -514,7 +519,22 @@ function render() {
     `;
     list.appendChild(section);
   });
+
+  markLastCard();
 }
+
+// The one-card-per-page rule leans on every card forcing a page break after itself,
+// which leaves a blank final page. Tag the last card in document order so only that
+// break is suppressed. Cards are spread across per-cluster wrappers, so this cannot
+// be expressed as a CSS :last-child.
+function markLastCard() {
+  const cards = document.querySelectorAll('.position-card');
+  cards.forEach(c => c.classList.remove('print-last'));
+  if (cards.length) cards[cards.length - 1].classList.add('print-last');
+}
+
+// Re-tag on Ctrl+P as well, in case listings arrived after the initial render.
+window.addEventListener('beforeprint', markLastCard);
 
 // Static fallback — same 9 businesses from build-cluster-pages.js
 const BPS_L = BPS_LOGO;
