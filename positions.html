@@ -465,11 +465,25 @@ async function loadPositions() {
     ),
   ]).then(results => results.map(r => r.status === 'fulfilled' ? r.value : []));
 
-  // Supabase wins on name collision
-  const sbNames = new Set(sbRows.map(r => r.name.toLowerCase()));
+  // Supabase wins over the Google Form sheet for the same listing.
+  //
+  // Company name alone is not a reliable key: partners type their own company name
+  // into the form, so a typo sails straight past an exact match and the listing
+  // renders twice. That is exactly what "Batavia Public Libray" was — the same
+  // Batavia Public Library posting, same mentor, same role, misspelled on the form.
+  //
+  // Mentor email + role title identifies a posting far more reliably, and two
+  // genuinely different postings essentially never share both.
+  const norm = s => (s || '').trim().toLowerCase();
+  const roleKey = r => (r.mentorEmail && r.role) ? norm(r.mentorEmail) + '|' + norm(r.role) : null;
+
+  const sbNames = new Set(sbRows.map(r => norm(r.name)));
+  const sbRoles = new Set(sbRows.map(roleKey).filter(Boolean));
+  const isDuplicate = r => sbNames.has(norm(r.name)) || sbRoles.has(roleKey(r));
+
   const merged = [
     ...sbRows,
-    ...sheetRows.filter(r => !sbNames.has(r.name.toLowerCase())),
+    ...sheetRows.filter(r => !isDuplicate(r)),
   ].map((p, idx) => ({ ...p, idx }));
 
   if (merged.length > 0) {
