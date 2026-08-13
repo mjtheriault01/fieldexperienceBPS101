@@ -37,6 +37,40 @@ const PAGE_H = 1056 - M * 2;  // 970
 // ─────────────────────────────────────────────────────────────────────────────
 const ruled = (n) => Array.from({ length: n }, () => '<div class="rule"></div>').join('');
 
+// The 10 employability skills, worded exactly as in bootcamp-worksheets.html so the
+// one-pager and the stapled packet can never disagree about what a skill means.
+const SKILLS = [
+  ['Communication', 'Speaks clearly, listens actively, writes with appropriate professionalism'],
+  ['Critical Thinking', 'Questions assumptions, evaluates information before acting, reasons through complexity'],
+  ['Teamwork', 'Collaborates effectively, navigates disagreement professionally, builds trust with coworkers'],
+  ['Problem Solving', 'Identifies root causes, generates options, acts on solutions with appropriate judgment'],
+  ['Adaptability', 'Adjusts when plans change, maintains effectiveness under new or uncertain conditions'],
+  ['Initiative', 'Identifies what needs to be done and acts without being asked, within appropriate boundaries'],
+  ['Decision Making', 'Weighs consequences, applies ethical reasoning, consults when appropriate'],
+  ['Cultural Awareness', 'Works respectfully across differences in background, perspective, and identity'],
+  ['Reliability', 'Arrives on time, follows through on commitments, owns mistakes without deflecting'],
+  ['Planning &amp; Organizing', 'Prioritizes based on deadlines and dependencies, tracks tasks, stays on top of deliverables'],
+];
+
+const LEVELS = [['1', 'Just Starting'], ['2', 'Developing'], ['3', 'Solid'], ['4', 'Strength']];
+
+// The rate-yourself grid. Used by the pre-assessment (activity 2); the post-
+// assessment (activity 12) can take the same call when it moves off its own sheet.
+const ratingGrid = () => `
+    <div class="grid-wrap">
+      <table>
+        <thead><tr><th class="sk">Employability Skill</th>${
+          LEVELS.map(([n, l]) => `<th class="lv">${n}<br><span class="lv-sub">${l}</span></th>`).join('')
+        }</tr></thead>
+        <tbody>${
+          SKILLS.map(([name, desc], i) =>
+            `<tr><td class="sk"><b>${i + 1}. ${name}</b><span>${desc}</span></td>${
+              LEVELS.map(() => '<td class="lv"><span class="circ"></span></td>').join('')
+            }</tr>`).join('')
+        }</tbody>
+      </table>
+    </div>`;
+
 const EDIT = {
   p1_course_overview: {
     slug: '01-begin-with-the-end-in-mind',
@@ -54,22 +88,38 @@ const EDIT = {
     </div>`,
   },
 
+  // The only two-sheet activity: the rating grid needs a full page of its own, so
+  // the written half moves to the back rather than being cut or crushed.
   p1_career_reflection: {
     slug: '02-career-and-self-assessment',
     why: { t: 'This is your starting line', p: 'You rate yourself on all 10 employability skills today and again at the end. Nobody is graded on where they start &mdash; but the gap between the two is the single best piece of evidence you will have at your capstone. Be honest, not generous.' },
     lean: true,
-    custom: `
-    <div class="tip"><strong>The 10-skill rating grid is a separate sheet</strong> &mdash; use the Employability Skills Pre-Assessment worksheet. This page is for the written half.</div>
-
+    sheets: [
+      {
+        part: 'Front &mdash; ratings',
+        sub: 'Rate yourself on all 10 employability skills',
+        custom: `
+    <p class="q-lead"><strong>Circle one number for each skill.</strong> Be honest rather than generous &mdash; the whole point is to have a real starting line to measure against in December.</p>
+    ${ratingGrid()}
+    <div class="tip"><strong>Career interests and your semester goal are on the back of this sheet.</strong> Finish the ratings first &mdash; don't skip ahead.</div>`,
+      },
+      {
+        part: 'Back &mdash; written',
+        sub: 'Career interests &amp; professional goals &middot; Full sentences',
+        why: null,
+        custom: `
     <h3 class="font-heading">Career interests</h3>
-    <div class="pl font-heading">What fields or industries interest you?</div>${ruled(2)}
-    <div class="pl font-heading">What do you want to explore or learn more about?</div>${ruled(2)}
-    <div class="pl font-heading">What are you already good at? <span class="hint">Skills, subjects, or things people come to you for.</span></div>${ruled(2)}
+    <div class="pl font-heading">What fields or industries interest you?</div>${ruled(3)}
+    <div class="pl font-heading">What do you want to explore or learn more about?</div>${ruled(3)}
+    <div class="pl font-heading">What are you already good at? <span class="hint">Skills, subjects, or things people come to you for.</span></div>${ruled(3)}
 
     <h3 class="font-heading">Your professional goal for the semester</h3>
-    <div class="pl font-heading">What I want to do <span class="hint">&mdash; a specific outcome, not "get better at communication"</span></div>${ruled(2)}
-    <div class="pl font-heading">Why it matters to me <span class="hint">&mdash; your real reason, not what sounds good</span></div>${ruled(1)}
-    <div class="pl font-heading">How I'll know I got there <span class="hint">&mdash; one thing you'll be able to show or do</span></div>${ruled(1)}`,
+    <div class="pl font-heading">What I want to do <span class="hint">&mdash; a specific outcome, not "get better at communication"</span></div>${ruled(3)}
+    <div class="pl font-heading">Why it matters to me <span class="hint">&mdash; your real reason, not what sounds good</span></div>${ruled(2)}
+    <div class="pl font-heading">How I'll know I got there <span class="hint">&mdash; one thing you'll be able to show or do</span></div>${ruled(2)}
+    <div class="tip"><strong>Keep this.</strong> Your teacher collects it and hands it back at the end of the semester. The gap between what you write today and what you write in December <em>is</em> the evidence for your capstone pitch.</div>`,
+      },
+    ],
   },
 
   p1_digital_footprint: {
@@ -200,9 +250,7 @@ const EDIT = {
     <table class="ws small">
       <thead><tr><th style="width:9.5rem">Skill</th><th>What it looks like when I do it well</th></tr></thead>
       <tbody>
-        ${['Communication', 'Critical Thinking', 'Teamwork', 'Problem Solving', 'Adaptability',
-           'Initiative', 'Decision Making', 'Cultural Awareness', 'Reliability', 'Planning &amp; Organizing']
-          .map((s, i) => `<tr><td class="lbl-cell">${i + 1}. ${s}</td><td></td></tr>`).join('')}
+        ${SKILLS.map(([name], i) => `<tr><td class="lbl-cell">${i + 1}. ${name}</td><td></td></tr>`).join('')}
       </tbody>
     </table>
 
@@ -413,6 +461,23 @@ const STYLE = `
     .tip{background:#f8f9fa;border-left:3px solid #9ca3af;padding:.4rem .58rem;font-size:.645rem;color:#4b5563;line-height:1.48;margin-top:.22rem}
     .tip strong{color:#1c1f2e}
 
+    /* 10-skill rating grid — same look as the worksheet packet, but every selector
+       is scoped to .grid-wrap so it cannot leak onto table.ws above. */
+    .grid-wrap{border:1.5px solid #1c1f2e;border-radius:8px;overflow:hidden;margin:.5rem 0;break-inside:avoid}
+    .grid-wrap table{width:100%;border-collapse:collapse}
+    .grid-wrap th{font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+       color:#1c1f2e;background:#f1f2f4;border-bottom:1.5px solid #1c1f2e;padding:.4rem .35rem;text-align:center;line-height:1.3}
+    .grid-wrap th.sk{text-align:left;padding-left:.6rem}
+    .grid-wrap th.lv{width:2.7rem}
+    .grid-wrap td{border-bottom:1px solid #eef0f2;padding:.38rem .35rem;font-size:.72rem;color:#374151;vertical-align:middle}
+    .grid-wrap tr:last-child td{border-bottom:none}
+    .grid-wrap td.sk{padding-left:.6rem;line-height:1.32}
+    .grid-wrap td.sk b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.735rem;color:#1c1f2e;display:block}
+    .grid-wrap td.sk span{font-size:.635rem;color:#6b7280;line-height:1.32}
+    .grid-wrap td.lv{text-align:center;width:2.7rem;padding:.38rem .18rem}
+    .lv-sub{font-weight:600;text-transform:none;letter-spacing:0;font-size:.5rem}
+    .circ{width:1.2rem;height:1.2rem;border:1.5px solid #9ca3af;border-radius:50%;display:inline-block;vertical-align:middle}
+
     .foot{display:flex;justify-content:space-between;gap:1rem;margin-top:.7rem;padding-top:.35rem;border-top:1px solid #eef0f2;
           font-family:'Montserrat',sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#c4c8ce}
 
@@ -420,8 +485,10 @@ const STYLE = `
        whole page is usable, rather than leaving the bottom third empty. */
     .e2 .rule{height:1.75rem} .e2 table.ws td{height:3rem} .e2 table.ws.small td{height:2.1rem}
     .e2 h3{margin-top:.85rem} .e2 .pl{margin-top:.5rem}
+    .e2 .grid-wrap td{padding-top:.66rem;padding-bottom:.66rem} .e2 .circ{width:1.34rem;height:1.34rem}
     .e1 .rule{height:1.45rem} .e1 table.ws td{height:2.55rem} .e1 table.ws.small td{height:1.8rem}
     .e1 h3{margin-top:.72rem} .e1 .pl{margin-top:.42rem}
+    .e1 .grid-wrap td{padding-top:.52rem;padding-bottom:.52rem} .e1 .circ{width:1.27rem;height:1.27rem}
 
     /* density tiers applied only if a sheet would overflow one page */
     .d1 .rule{height:1.1rem} .d1 h3{margin-top:.5rem} .d1 table.ws td{height:2rem} .d1 table.ws.small td{height:1.35rem}
@@ -430,21 +497,40 @@ const STYLE = `
     .d3 .rule{height:.9rem} .d3 h3{margin-top:.35rem;font-size:.66rem} .d3 table.ws td{height:1.6rem} .d3 table.ws.small td{height:1.1rem}
     .d3 ul.steps li,.d3 ul.chk li,.d3 .q-lead,.d3 .urg p{font-size:.63rem;line-height:1.38}
     .d3 .pl{font-size:.64rem} .d3 .wh-title{font-size:1.02rem}
+    .d1 .grid-wrap td{padding-top:.3rem;padding-bottom:.3rem}
+    .d2 .grid-wrap td{padding-top:.24rem;padding-bottom:.24rem;font-size:.69rem} .d2 .circ{width:1.1rem;height:1.1rem}
+    .d3 .grid-wrap td{padding-top:.18rem;padding-bottom:.18rem;font-size:.66rem}
+    .d3 .grid-wrap td.sk span{font-size:.6rem} .d3 .circ{width:1rem;height:1rem}
+
+    /* Multi-sheet activities: each .sheet is its own printed page. */
+    .sheet + .sheet{margin-top:1.5rem}
 
     @media(max-width:640px){.two{grid-template-columns:1fr}.sheet{padding:1.15rem 1rem}}
     @media print{
       nav,.print-btn{display:none!important}
       body{background:#fff}
       main{max-width:100%;padding:0}
-      .sheet{border:none;border-radius:0;padding:0}
+      .sheet{border:none;border-radius:0;padding:0;margin:0;page-break-after:always;break-after:page}
+      .sheet:last-child{page-break-after:auto;break-after:auto}
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       h3,.urg-t,.pl{break-after:avoid;page-break-after:avoid}
-      table.ws,.urg,.tip,ul.chk{break-inside:avoid;page-break-inside:avoid}
+      table.ws,.urg,.tip,ul.chk,.grid-wrap{break-inside:avoid;page-break-inside:avoid}
+      .grid-wrap tr{break-inside:avoid}
     }
     @page{margin:${MARGIN_IN}in}
 `;
 
-function renderSheet(a, seq, e, density) {
+// An activity is normally one sheet. `sheets` opts into several — each one becomes
+// its own printed page, and each is measured and tiered independently.
+function sheetsOf(e) {
+  return e.sheets || [{ custom: e.custom }];
+}
+
+// Everything pulled automatically out of bootcamp.html, split so it can keep its
+// original position around the hand-written custom block: context bullets above it,
+// checklists and extracted questions below. On a multi-sheet activity both ride on
+// the last sheet, so nothing is silently dropped.
+function autoContent(a, e) {
   // Context bullets, unless the sheet is lean on space.
   let context = '';
   if (!e.lean) {
@@ -484,6 +570,49 @@ function renderSheet(a, seq, e, density) {
     }
   }
 
+  return {
+    context,
+    tail: checks + (qs ? `<h3 class="font-heading">${esc(a.czLabel || 'Your answers')} &mdash; turn this in</h3>${qs}` : ''),
+  };
+}
+
+function sheetBody(a, seq, e, s, density, isLast) {
+  // A sheet inherits the activity's "why" box unless it names its own — or sets it
+  // to null, which is how a back page opts out of repeating the front's callout.
+  const why = 'why' in s ? s.why : e.why;
+  const auto = isLast ? autoContent(a, e) : { context: '', tail: '' };
+  return `  <div class="sheet${density ? ' ' + density : ''}">
+    <div class="wh">
+      <div class="wh-num font-heading">${seq}</div>
+      <div class="wh-t">
+        <div class="wh-title font-heading">${esc(a.title)}</div>
+        <div class="wh-sub">${s.sub || esc(a.subtitle || '')}</div>
+      </div>
+      <div class="wh-meta">
+        <div class="wh-phase font-heading">${esc(a.phase || '')} &middot; Activity ${seq}${s.part ? ' &middot; ' + s.part : ''}</div>
+        <div class="wh-time font-heading">${esc(a.time || '')}</div>
+      </div>
+    </div>
+    <div class="ns-row">
+      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
+      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
+    </div>
+    ${why ? `<div class="urg">
+      <div class="urg-t font-heading">${why.t}</div>
+      <p>${why.p}</p>
+    </div>` : ''}
+    ${auto.context}
+    ${s.custom || ''}
+    ${auto.tail}
+    <div class="foot">
+      <span>Field Experience &middot; ${esc(a.phase || '')}</span>
+      <span>Activity ${seq} &middot; ${esc(a.title)}${s.part ? ' &middot; ' + s.part : ''}</span>
+    </div>
+  </div>`;
+}
+
+function renderDoc(a, seq, e, tiers) {
+  const sheets = sheetsOf(e);
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -506,35 +635,7 @@ function renderSheet(a, seq, e, density) {
   <button class="print-btn font-heading" onclick="window.print()">Print</button>
 </nav>
 <main>
-  <div class="sheet${density ? ' ' + density : ''}">
-    <div class="wh">
-      <div class="wh-num font-heading">${seq}</div>
-      <div class="wh-t">
-        <div class="wh-title font-heading">${esc(a.title)}</div>
-        <div class="wh-sub">${esc(a.subtitle || '')}</div>
-      </div>
-      <div class="wh-meta">
-        <div class="wh-phase font-heading">${esc(a.phase || '')} &middot; Activity ${seq}</div>
-        <div class="wh-time font-heading">${esc(a.time || '')}</div>
-      </div>
-    </div>
-    <div class="ns-row">
-      <div class="ns"><span class="ns-l font-heading">Name</span><span class="ns-line"></span></div>
-      <div class="ns"><span class="ns-l font-heading">Date</span><span class="ns-line"></span></div>
-    </div>
-    <div class="urg">
-      <div class="urg-t font-heading">${e.why.t}</div>
-      <p>${e.why.p}</p>
-    </div>
-    ${context}
-    ${e.custom || ''}
-    ${checks}
-    ${qs ? `<h3 class="font-heading">${esc(a.czLabel || 'Your answers')} &mdash; turn this in</h3>${qs}` : ''}
-    <div class="foot">
-      <span>Field Experience &middot; ${esc(a.phase || '')}</span>
-      <span>Activity ${seq} &middot; ${esc(a.title)}</span>
-    </div>
-  </div>
+${sheets.map((s, i) => sheetBody(a, seq, e, s, tiers[i], i === sheets.length - 1)).join('\n')}
 </main>
 </body>
 </html>
@@ -586,8 +687,8 @@ function indexPage(items) {
 </nav>
 <main>
   <h1 class="font-heading">Bootcamp One-Pagers</h1>
-  <p class="sub">All 16 activities &middot; one printable page each</p>
-  <p class="lede">Every bootcamp activity as a single sheet you can run off and hand out. Each has a Print button, and each is verified to fit exactly one page &mdash; so a class set is one sheet per student per activity, nothing more.</p>
+  <p class="sub">All 16 activities &middot; ${items.reduce((n, it) => n + it.pages, 0)} printable pages</p>
+  <p class="lede">Every bootcamp activity as a sheet you can run off and hand out. Each has a Print button, and every page is verified to fit &mdash; nothing spills or gets cut. All are one page except <strong>Activity 2</strong>, which is two: the 10-skill rating grid on the front, career interests and goals on the back. Print that one double-sided.</p>
   <div class="box">
     <strong>These are hard copies, not the packet.</strong> The <a href="bootcamp-worksheets.html" style="color:#AC161D;font-weight:700">Bootcamp Worksheets</a> packet is all 16 stapled together for a student to keep. These one-pagers are for handing out an activity at a time as you get to it. Same questions, same source &mdash; pick whichever fits how you're running the day.
   </div>
@@ -595,7 +696,7 @@ function indexPage(items) {
   <h2 class="font-heading">${esc(phase)}</h2>
   <div class="grid">
     ${list.map((it) => `<a href="${it.file}" class="card">
-      <div class="card-n font-heading">Activity ${it.seq}</div>
+      <div class="card-n font-heading">Activity ${it.seq}${it.pages > 1 ? ` &middot; ${it.pages} pages` : ''}</div>
       <div class="card-t font-heading">${esc(it.title)}</div>
       <div class="card-s">${esc(it.subtitle || '')}</div>
       <div class="card-go font-heading">Open &amp; print &rarr;</div>
@@ -634,23 +735,39 @@ async function main() {
     const file = `onepager-${e.slug}.html`;
     const fp = path.join(REPO, file);
 
-    let used = null, height = 0;
-    for (const tier of TIERS) {
-      fs.writeFileSync(fp, renderSheet(a, seq, e, tier));
+    // Every sheet in the file gets its own tier: start all at the most generous and
+    // tighten only the ones that are over, until nothing overflows or a sheet runs
+    // out of tiers. Converges in at most TIERS.length passes.
+    const sheets = sheetsOf(e);
+    const tierIdx = sheets.map(() => 0);
+    let heights = [];
+    for (;;) {
+      fs.writeFileSync(fp, renderDoc(a, seq, e, tierIdx.map((t) => TIERS[t])));
       await measure.goto('file:///' + fp.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
       await measure.emulateMediaType('print');
-      height = await measure.evaluate(() => Math.round(document.querySelector('.sheet').getBoundingClientRect().height));
-      if (height <= PAGE_H) { used = tier; break; }
+      heights = await measure.evaluate(() =>
+        Array.from(document.querySelectorAll('.sheet')).map((el) => Math.round(el.getBoundingClientRect().height)));
+      let tightened = false;
+      heights.forEach((h, i) => {
+        if (h > PAGE_H && tierIdx[i] < TIERS.length - 1) { tierIdx[i]++; tightened = true; }
+      });
+      if (!tightened) break;
     }
-    if (used === null) {
-      failures.push({ title: a.title, height });
-      console.log(`  !! ${String(seq).padStart(2)}  ${a.title} — ${height}px, still over ${PAGE_H}px at tightest tier`);
+
+    const over = heights.filter((h) => h > PAGE_H);
+    if (over.length) {
+      failures.push({ title: a.title, height: Math.max(...over) });
+      console.log(`  !! ${String(seq).padStart(2)}  ${a.title} — ${over.join(', ')}px, still over ${PAGE_H}px at tightest tier`);
       continue;
     }
-    const pct = Math.round((height / PAGE_H) * 100);
-    console.log(`  ok ${String(seq).padStart(2)}  ${String(height).padStart(3)}px ${String(pct).padStart(3)}%  ${used ? '[' + used + '] ' : '      '}${a.title}`);
+    heights.forEach((h, i) => {
+      const tier = TIERS[tierIdx[i]];
+      const pct = Math.round((h / PAGE_H) * 100);
+      const label = sheets.length > 1 ? `${a.title} (p${i + 1}/${sheets.length})` : a.title;
+      console.log(`  ok ${String(seq).padStart(2)}  ${String(h).padStart(3)}px ${String(pct).padStart(3)}%  ${tier ? '[' + tier + '] ' : '      '}${label}`);
+    });
 
-    items.push({ seq, title: a.title, subtitle: a.subtitle, phase: a.phase, file, slug: e.slug });
+    items.push({ seq, title: a.title, subtitle: a.subtitle, phase: a.phase, file, slug: e.slug, pages: sheets.length });
   }
 
   // Index page
@@ -668,7 +785,7 @@ async function main() {
     await pdfPage.pdf({ path: out, printBackground: true, format: 'Letter',
       margin: { top: `${MARGIN_IN}in`, right: `${MARGIN_IN}in`, bottom: `${MARGIN_IN}in`, left: `${MARGIN_IN}in` } });
     const pages = (fs.readFileSync(out).toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
-    if (pages !== 1) { badPdf++; console.log(`  !! ${it.title} PDF is ${pages} pages`); }
+    if (pages !== it.pages) { badPdf++; console.log(`  !! ${it.title} PDF is ${pages} pages, expected ${it.pages}`); }
   }
 
   await browser.close();
@@ -678,7 +795,7 @@ async function main() {
     console.error(`\nFAIL: ${failures.length} sheet(s) could not be fit, ${badPdf} PDF(s) not 1 page.`);
     process.exit(1);
   }
-  console.log('PASS: every one-pager fits exactly one page.');
+  console.log('PASS: every sheet fits exactly one page, and every PDF has the expected page count.');
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

@@ -69,6 +69,23 @@
     .tip{background:#f8f9fa;border-left:3px solid #9ca3af;padding:.4rem .58rem;font-size:.645rem;color:#4b5563;line-height:1.48;margin-top:.22rem}
     .tip strong{color:#1c1f2e}
 
+    /* 10-skill rating grid — same look as the worksheet packet, but every selector
+       is scoped to .grid-wrap so it cannot leak onto table.ws above. */
+    .grid-wrap{border:1.5px solid #1c1f2e;border-radius:8px;overflow:hidden;margin:.5rem 0;break-inside:avoid}
+    .grid-wrap table{width:100%;border-collapse:collapse}
+    .grid-wrap th{font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+       color:#1c1f2e;background:#f1f2f4;border-bottom:1.5px solid #1c1f2e;padding:.4rem .35rem;text-align:center;line-height:1.3}
+    .grid-wrap th.sk{text-align:left;padding-left:.6rem}
+    .grid-wrap th.lv{width:2.7rem}
+    .grid-wrap td{border-bottom:1px solid #eef0f2;padding:.38rem .35rem;font-size:.72rem;color:#374151;vertical-align:middle}
+    .grid-wrap tr:last-child td{border-bottom:none}
+    .grid-wrap td.sk{padding-left:.6rem;line-height:1.32}
+    .grid-wrap td.sk b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.735rem;color:#1c1f2e;display:block}
+    .grid-wrap td.sk span{font-size:.635rem;color:#6b7280;line-height:1.32}
+    .grid-wrap td.lv{text-align:center;width:2.7rem;padding:.38rem .18rem}
+    .lv-sub{font-weight:600;text-transform:none;letter-spacing:0;font-size:.5rem}
+    .circ{width:1.2rem;height:1.2rem;border:1.5px solid #9ca3af;border-radius:50%;display:inline-block;vertical-align:middle}
+
     .foot{display:flex;justify-content:space-between;gap:1rem;margin-top:.7rem;padding-top:.35rem;border-top:1px solid #eef0f2;
           font-family:'Montserrat',sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#c4c8ce}
 
@@ -76,8 +93,10 @@
        whole page is usable, rather than leaving the bottom third empty. */
     .e2 .rule{height:1.75rem} .e2 table.ws td{height:3rem} .e2 table.ws.small td{height:2.1rem}
     .e2 h3{margin-top:.85rem} .e2 .pl{margin-top:.5rem}
+    .e2 .grid-wrap td{padding-top:.66rem;padding-bottom:.66rem} .e2 .circ{width:1.34rem;height:1.34rem}
     .e1 .rule{height:1.45rem} .e1 table.ws td{height:2.55rem} .e1 table.ws.small td{height:1.8rem}
     .e1 h3{margin-top:.72rem} .e1 .pl{margin-top:.42rem}
+    .e1 .grid-wrap td{padding-top:.52rem;padding-bottom:.52rem} .e1 .circ{width:1.27rem;height:1.27rem}
 
     /* density tiers applied only if a sheet would overflow one page */
     .d1 .rule{height:1.1rem} .d1 h3{margin-top:.5rem} .d1 table.ws td{height:2rem} .d1 table.ws.small td{height:1.35rem}
@@ -86,16 +105,25 @@
     .d3 .rule{height:.9rem} .d3 h3{margin-top:.35rem;font-size:.66rem} .d3 table.ws td{height:1.6rem} .d3 table.ws.small td{height:1.1rem}
     .d3 ul.steps li,.d3 ul.chk li,.d3 .q-lead,.d3 .urg p{font-size:.63rem;line-height:1.38}
     .d3 .pl{font-size:.64rem} .d3 .wh-title{font-size:1.02rem}
+    .d1 .grid-wrap td{padding-top:.3rem;padding-bottom:.3rem}
+    .d2 .grid-wrap td{padding-top:.24rem;padding-bottom:.24rem;font-size:.69rem} .d2 .circ{width:1.1rem;height:1.1rem}
+    .d3 .grid-wrap td{padding-top:.18rem;padding-bottom:.18rem;font-size:.66rem}
+    .d3 .grid-wrap td.sk span{font-size:.6rem} .d3 .circ{width:1rem;height:1rem}
+
+    /* Multi-sheet activities: each .sheet is its own printed page. */
+    .sheet + .sheet{margin-top:1.5rem}
 
     @media(max-width:640px){.two{grid-template-columns:1fr}.sheet{padding:1.15rem 1rem}}
     @media print{
       nav,.print-btn{display:none!important}
       body{background:#fff}
       main{max-width:100%;padding:0}
-      .sheet{border:none;border-radius:0;padding:0}
+      .sheet{border:none;border-radius:0;padding:0;margin:0;page-break-after:always;break-after:page}
+      .sheet:last-child{page-break-after:auto;break-after:auto}
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       h3,.urg-t,.pl{break-after:avoid;page-break-after:avoid}
-      table.ws,.urg,.tip,ul.chk{break-inside:avoid;page-break-inside:avoid}
+      table.ws,.urg,.tip,ul.chk,.grid-wrap{break-inside:avoid;page-break-inside:avoid}
+      .grid-wrap tr{break-inside:avoid}
     }
     @page{margin:0.45in}
 </style>
@@ -146,7 +174,6 @@
       <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
     </table>
     <div class="tip"><strong>Record it before you submit.</strong> Students who hear themselves back fix more than students a teacher corrects.</div>
-    
     <h3 class="font-heading">Submit Your Elevator Pitch &mdash; turn this in</h3><div class="pl font-heading">Or paste your written pitch script here…</div><div class="rule"></div><div class="rule"></div><div class="rule"></div>
     <div class="foot">
       <span>Field Experience &middot; Interview Prep</span>
