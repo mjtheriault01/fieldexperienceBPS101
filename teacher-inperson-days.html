@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Person Day Plan — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:980px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.7rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1.1rem}
+    .lede{font-size:.85rem;color:#4b5563;line-height:1.75;margin-bottom:1.5rem}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;margin:2.25rem 0 .35rem}
+    .h2-sub{font-size:.8rem;color:#6b7280;margin-bottom:1.1rem;line-height:1.6}
+
+    .part-band{display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;border-radius:12px;padding:1rem 1.25rem;margin:2.25rem 0 1rem;color:#fff}
+    .pb-talk{background:linear-gradient(135deg,#AC161D,#7f1015)}
+    .pb-cap{background:linear-gradient(135deg,#1d4ed8,#1e3a8a)}
+    .pb-skill{background:linear-gradient(135deg,#0f766e,#134e4a)}
+    .pb-eyebrow{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+    .pb-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem}
+    .pb-meta{margin-left:auto;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;background:rgba(255,255,255,.16);border-radius:999px;padding:.3rem .75rem;white-space:nowrap}
+
+    .tbl-wrap{overflow-x:auto;background:#fff;border:1px solid #d8dbe0;border-radius:12px;margin-bottom:1.1rem;break-inside:avoid}
+    table{width:100%;border-collapse:collapse;min-width:640px}
+    th{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#6b7280;text-align:left;padding:.6rem .7rem;background:#f8f9fa;border-bottom:1px solid #e5e7eb;vertical-align:bottom}
+    td{padding:.6rem .7rem;font-size:.76rem;color:#374151;border-bottom:1px solid #f1f2f4;border-right:1px solid #f1f2f4;vertical-align:top;line-height:1.5}
+    td:last-child,th:last-child{border-right:none}
+    tr:last-child td{border-bottom:none}
+
+    .co{border-radius:10px;padding:1rem 1.2rem;margin:1.1rem 0;font-size:.82rem;line-height:1.7;color:#374151}
+    .co strong{color:#1c1f2e}
+    .co-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.83rem;margin-bottom:.4rem}
+    .co-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .co-gold .co-t{color:#92400e}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .co-red .co-t{color:#AC161D}
+    .co-blue{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.3)}
+    .co-blue .co-t{color:#1d4ed8}
+    .co-teal{background:rgba(15,118,110,.06);border:1px solid rgba(15,118,110,.3)}
+    .co-teal .co-t{color:#0f766e}
+    .co ul{margin:.4rem 0 0 1.15rem}
+    .co li{margin-bottom:.28rem}
+
+    .card{background:#fff;border:1px solid #d8dbe0;border-radius:12px;padding:1.15rem 1.35rem;margin-bottom:1.1rem;break-inside:avoid}
+    .card-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;color:#1c1f2e;margin-bottom:.5rem}
+    .card p{font-size:.81rem;color:#4b5563;line-height:1.7}
+
+    /* minute-by-minute strip */
+    .min-row{display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid #f1f2f4}
+    .min-row:last-child{border-bottom:none}
+    .min-time{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.8rem;color:#AC161D;width:5.5rem;flex-shrink:0}
+    .min-what{font-size:.81rem;color:#374151;line-height:1.65}
+
+    /* question deck */
+    .qdeck{background:#fff;border:1px solid #d8dbe0;border-radius:12px;overflow:hidden;margin-bottom:1.1rem}
+    .qrow{display:flex;gap:.85rem;align-items:flex-start;padding:.7rem 1.1rem;border-bottom:1px solid #f1f2f4}
+    .qrow:last-child{border-bottom:none}
+    .qnum{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.75rem;color:#fff;background:#AC161D;width:1.5rem;height:1.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+    .qtext{font-size:.83rem;color:#1c1f2e;font-weight:600;line-height:1.5}
+    .qtext span{display:block;font-weight:400;font-size:.72rem;color:#9ca3af;margin-top:.15rem}
+
+    .pill{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.2rem .6rem;vertical-align:middle}
+    .pill-place{background:rgba(99,102,241,.13);color:#4338ca;border:1px solid rgba(99,102,241,.3)}
+
+    .foot{font-size:.72rem;color:#9ca3af;margin-top:2rem;line-height:1.7}
+
+    @media print{
+      nav,.print-btn{display:none!important}
+      body{background:#fff}
+      main{max-width:100%;padding:0}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      h2,.part-band{page-break-after:avoid}
+      table{min-width:0;font-size:.7rem}
+      .tbl-wrap,.card,.co,.qdeck{box-shadow:none;break-inside:avoid}
+    }
+    @page{margin:.45in}
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="teacher-hub.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Teacher Hub
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">In-Person Day Plan</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+
+<main>
+  <h1 class="font-heading">In-Person Day Plan</h1>
+  <p class="page-sub">Field Experience &middot; Placement cohort &middot; every-other-Tuesday class days</p>
+  <p class="lede">
+    <span class="pill pill-place font-heading">Placement</span>
+    Once placements begin, Placement students are at their site most days &mdash; but return to school every other Tuesday for a 90-minute in-person class. This is the plan for that day: <strong>three fixed parts, same structure every time</strong>, so students and you both know what to expect without re-explaining it each session. The Enterprise cohort (A days) is unaffected &mdash; it already meets on its own calendar; see <a href="teacher-calendar.html">Teacher Calendar</a>.
+  </p>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">The seven in-person Tuesdays</div>
+    <strong>Sep 15 &middot; Sep 29 &middot; Oct 13 &middot; Oct 27 &middot; Nov 12 &middot; Nov 24 &middot; Dec 8</strong> &mdash; the last one before capstone (tentatively Dec 15). Not a perfectly even two-week cadence throughout (Nov 12 breaks the pattern), so treat this list, not a recurring rule, as the source of truth if building a calendar invite or slide deck.
+  </div>
+
+  <!-- ============== THE STRUCTURE ============== -->
+  <h2 class="font-heading">The Structure — Three Parts, Every Time</h2>
+  <p class="h2-sub">A 90-minute block splits roughly 25 / 35 / 25, with 5 minutes of slack for transitions. Adjust the split by a few minutes per session as needed &mdash; the order and purpose of each part should not change.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:6rem">Time</th><th>Part</th><th>What happens</th><th>Who leads</th></tr></thead>
+      <tbody>
+        <tr><td><strong>0&ndash;25</strong></td><td><strong>1. Discussion</strong><br><span style="color:#6b7280">Speed-dating reflection</span></td><td>Students rotate in pairs, answering a new reflection question with a new partner every few minutes.</td><td>Teacher-emceed (calls questions, calls rotations)</td></tr>
+        <tr><td><strong>25&ndash;60</strong></td><td><strong>2. Capstone</strong><br><span style="color:#6b7280">Teach + work time</span></td><td>Short teach segment on that week's capstone focus, then independent work building portfolio/pitch artifacts.</td><td>Teacher-led opening, then circulates</td></tr>
+        <tr><td><strong>60&ndash;85</strong></td><td><strong>3. Skills</strong><br><span style="color:#6b7280">Employability packet</span></td><td>Students work two skill worksheets solo or in pairs, no teacher instruction needed &mdash; the packet is self-contained.</td><td>Students self-directed; teacher circulates for 1:1s</td></tr>
+        <tr><td><strong>85&ndash;90</strong></td><td colspan="3">Wrap &mdash; collect exit info (attendance, any flags from 1:1 conversations), remind students what's due before the next in-person day.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============== PART 1 ============== -->
+  <div class="part-band pb-talk">
+    <div><div class="pb-eyebrow font-heading">Part 1 &middot; ~25 min</div><div class="pb-title font-heading">Discussion — Speed-Dating Reflection</div></div>
+    <div class="pb-meta font-heading">Rotate every 3 min</div>
+  </div>
+  <p class="h2-sub">Two rows or two concentric circles of chairs, facing each other. You call out a question; each pair talks for ~3 minutes; you call "rotate" and one row/circle shifts one seat. New question, new partner. The questions are pulled straight from <a href="weekly-reflection.html">the weekly reflection form</a> students already fill out at their placement &mdash; this is the same reflecting they're already doing, just spoken instead of typed, and to a peer instead of a form.</p>
+
+  <div class="card">
+    <div class="card-t font-heading">Room setup for ~14 students</div>
+    <p>Two rows of 7 chairs facing each other (or two concentric circles, inner facing out). Each round, the outer row/circle moves one seat to the right; the inner row stays put. Odd numbers: one group of three, or you fill the gap and rotate through yourself.</p>
+  </div>
+
+  <h2 class="font-heading" style="margin-top:1.5rem;font-size:1rem">Question Deck</h2>
+  <p class="h2-sub">Pick 5&ndash;6 per session, not all 8 &mdash; that's roughly the 25-minute budget at 3 min/round. Vary which ones you use across the seven sessions so it doesn't feel scripted, and don't hesitate to swap in a question that comes up naturally from something a student says.</p>
+
+  <div class="qdeck">
+    <div class="qrow"><div class="qnum font-heading">1</div><div class="qtext font-heading">What did you work on this week?<span>Straight off the weekly reflection form.</span></div></div>
+    <div class="qrow"><div class="qnum font-heading">2</div><div class="qtext font-heading">What is one key thing you learned or observed?</div></div>
+    <div class="qrow"><div class="qnum font-heading">3</div><div class="qtext font-heading">What was a highlight from your week?</div></div>
+    <div class="qrow"><div class="qnum font-heading">4</div><div class="qtext font-heading">Did you face any challenges this week?<span>Or: the week went smoothly because…</span></div></div>
+    <div class="qrow"><div class="qnum font-heading">5</div><div class="qtext font-heading">How did this week's experience impact you?</div></div>
+    <div class="qrow"><div class="qnum font-heading">6</div><div class="qtext font-heading">What is one area you want to improve next week?</div></div>
+    <div class="qrow"><div class="qnum font-heading">7</div><div class="qtext font-heading">Which employability skill did you work on this week &mdash; and how did you demonstrate or grow in it?<span>Two-part; give it a full round.</span></div></div>
+    <div class="qrow"><div class="qnum font-heading">8</div><div class="qtext font-heading">Wildcard &mdash; add your own live<span>e.g. "what's the most 'adult' thing you've had to do at your placement so far?" React to what's actually happening in the room that week.</span></div></div>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t font-heading">One question is deliberately left out</div>
+    The reflection form's ninth question &mdash; <em>"something my teacher should know / concerns or support you may need"</em> &mdash; is written for a private audience of one. Don't put it in the peer rotation. If it comes up in casual conversation between partners, fine, but it belongs in a 1:1 with you (Part 2/3 circulation), not spoken to a rotating stranger.
+  </div>
+
+  <!-- ============== PART 2 ============== -->
+  <div class="part-band pb-cap">
+    <div><div class="pb-eyebrow font-heading">Part 2 &middot; ~35 min</div><div class="pb-title font-heading">Capstone — Teach + Work Time</div></div>
+    <div class="pb-meta font-heading">5 min teach &middot; 30 min build</div>
+  </div>
+  <p class="h2-sub">Open with a short segment on that week's capstone focus (see the calendar below), then let students build. This is the recurring, ongoing block where the Capstone actually gets made &mdash; not a single cram session in December. Reference tools: <a href="capstone.html">Capstone Details</a> &middot; <a href="capstone-rubric.html">Capstone Rubric</a> &middot; <a href="portfolio-guide.html">Portfolio Guide</a> &middot; <a href="pitch-prompts.html">Pitch Prep Sheet</a>.</p>
+
+  <div class="co co-blue">
+    <div class="co-t font-heading">The rubric is intentionally broad</div>
+    <a href="capstone-rubric.html">capstone-rubric.html</a> already does exactly what was asked here &mdash; it doesn't prescribe what the portfolio has to contain (a welding student and an accounting student shouldn't bring the same things), but it does score everyone on the same five criteria: evidence, range, curation, ownership, professionalism. That's the model to keep repeating out loud during these work-time openings: <strong>"any format, these five things must be true of it."</strong>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:6rem">Session</th><th>5-min teach segment</th><th>Work time focus</th></tr></thead>
+      <tbody>
+        <tr><td>1 &middot; Sep 15</td><td>What the capstone is, why it's 25% of the grade, the "broad format, five fixed criteria" rule</td><td>Start a portfolio artifact list &mdash; what you already have from Week 1&ndash;2</td></tr>
+        <tr><td>2 &middot; Sep 29</td><td>Elevator pitch structure (the four pieces, ~15/30/30/15 sec)</td><td>Start the <a href="pitch-prompts.html">Pitch Prep Sheet</a> &mdash; first draft of each piece</td></tr>
+        <tr><td>3 &middot; Oct 13</td><td>What counts as a portfolio artifact vs. what doesn't (per the Portfolio Guide)</td><td>Pull and label 2&ndash;3 real artifacts from the placement so far</td></tr>
+        <tr><td>4 &middot; Oct 27</td><td>Trade Show expectations &mdash; station setup, handling cold questions</td><td>Sketch a station layout; keep drafting the pitch</td></tr>
+        <tr><td>5 &middot; Nov 12</td><td>Mid-point gut check &mdash; range and curation, not just volume</td><td>Full pitch draft; trade partners for a first read/listen</td></tr>
+        <tr><td>6 &middot; Nov 24</td><td>Full pitch rehearsal &mdash; every student says it out loud once, timed</td><td>Score yourself against the rubric; revise the weak criterion</td></tr>
+        <tr><td>7 &middot; Dec 8</td><td>Final logistics &mdash; dress code, arrival time, what to bring</td><td>Final dress rehearsal + station setup dry run</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co co-blue">
+    <div class="co-t font-heading">Where portfolio artifacts actually live</div>
+    Students keep a <strong>"Field Experience" folder in their own Google Drive</strong> and save artifacts there as they go &mdash; not through <code>portfolio.html</code> on the student portal (which writes to Supabase and sits in the same SOPPA-affected bucket as the hours/reflection tools, see <a href="teacher-status.html">the Google-native rebuild notes</a>). This is deliberate: it's already fully Google-native, works throughout the semester without waiting on any tooling decision, and each student owns their own folder. Say this explicitly in Session 1's capstone mini-teach &mdash; "start your Field Experience folder today" &mdash; so nobody is scrambling to assemble a portfolio from scratch in December.
+  </div>
+
+  <!-- ============== PART 3 ============== -->
+  <div class="part-band pb-skill">
+    <div><div class="pb-eyebrow font-heading">Part 3 &middot; ~25 min</div><div class="pb-title font-heading">Employability Skills — Packet Work Time</div></div>
+    <div class="pb-meta font-heading">2 skills / session</div>
+  </div>
+  <p class="h2-sub">Students work through two skill worksheets from the <a href="employability-skills-packet.html">Employability Skills Packet</a>, solo or with a partner, without teacher instruction &mdash; each worksheet already carries the scenario, the concept, and the activities on the page. This frees you to do what actually needs a teacher: <strong>circulate and hold 1:1 conversations</strong> about placement experiences, businesses, or whatever came up in Part 1.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:6rem">Session</th><th>Skills covered</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>1 &middot; Sep 15</td><td>1. Teamwork &amp; Conflict Resolution &middot; 2. Communication</td><td>First run &mdash; walk through the packet format once as a group before turning them loose (2 min)</td></tr>
+        <tr><td>2 &middot; Sep 29</td><td>3. Problem Solving &middot; 4. Decision Making</td><td></td></tr>
+        <tr><td>3 &middot; Oct 13</td><td>5. Critical Thinking &middot; 6. Adaptability</td><td></td></tr>
+        <tr><td>4 &middot; Oct 27</td><td>7. Initiative &middot; 8. Reliability</td><td></td></tr>
+        <tr><td>5 &middot; Nov 12</td><td>9. Cultural Competence &middot; 10. Planning &amp; Organizing</td><td>All 10 skills complete after this session</td></tr>
+        <tr><td>6 &middot; Nov 24</td><td><a href="skill-indicators-activity.html">Skill Indicators Activity</a> (review, all 10)</td><td>Already built for bootcamp &mdash; reuse it here as a deeper review now that students have real placement evidence to test it against. Uses the <strong>real BPS101 Performance Indicator Rubrics</strong> (5 named indicators/skill, binary Meets Expectation / Needs Practice) &mdash; a different, more precise scale than the packet's own 4-point self-rating boxes. Worth saying out loud to students: same 10 skills, two lenses on them.</td></tr>
+        <tr><td>7 &middot; Dec 8</td><td>Catch-up only</td><td>No new content &mdash; anyone behind on the packet finishes here; everyone else gets extra capstone time</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co co-teal">
+    <div class="co-t font-heading">Answer key exists &mdash; keep it off the student tables</div>
+    <a href="employability-answer-key.html">employability-answer-key.html</a> has the correct Activity 1 response and one-line reasoning for all 10 skills, for your own reference while circulating. It's a separate page from the student packet on purpose &mdash; there's no risk of it accidentally going out with a stack of worksheets.
+  </div>
+
+  <div class="co co-gold">
+    <div class="co-t font-heading">Open item &mdash; how this gets graded</div>
+    The packet isn't yet mapped to a category in the grading model (Bootcamp / Weekly Tasks / Capstone / Employer Feedback, each 25% &mdash; see <a href="teacher-grading.html">Grading Policy</a>). Options: fold it into Weekly Tasks as a light completion check, treat it as ungraded formative practice (the self-rating circles are the point, not a score), or create a small new line. Left open deliberately &mdash; flag before quarter grades are calculated, same as the Skill Indicators activity's open grading question.
+  </div>
+
+  <p class="foot">
+    Related: <a href="employability-skills-packet.html">Employability Skills Packet</a> &middot;
+    <a href="employability-answer-key.html">Answer Key (teacher only)</a> &middot;
+    <a href="capstone-rubric.html">Capstone Rubric</a> &middot;
+    <a href="teacher-calendar.html">Teacher Calendar</a> &middot;
+    <a href="weekly-reflection.html">Weekly Reflection Form</a>
+  </p>
+</main>
+</body>
+</html>
