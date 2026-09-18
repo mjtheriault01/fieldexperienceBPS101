@@ -4,7 +4,7 @@ Reference for anyone (human or AI) building or editing pages on this site. Writt
 
 ## Logo
 
-**File:** `field-study-logo-trans_kewube.png` (Cloudinary account `dsbllwpbh`) — the full-color "Field Experience — Batavia Bulldogs — BPS101" badge (gold bulldog, crimson circle, gold ring, black linework, transparent background).
+**File:** `field-study-logo-trans_kewube.png` — the full-color "Field Experience — Batavia Bulldogs — BPS101" badge (gold bulldog, crimson circle, gold ring, black linework, transparent background). Lives at `https://res.cloudinary.com/dikkdclum/image/upload/field-experience/branding/field-study-logo-trans_kewube.png` (moved 2026-09-18 from the old `dsbllwpbh` account, which had no saved API credentials, to `dikkdclum`, the shared account used everywhere else — same move fixed a baked-in typo, "HIGH SHOOL" → "HIGH SCHOOL", in the subtitle banner).
 
 - **Always use this file for real branding moments** — nav bars, login screens, footers. It's high-contrast enough (black outline, saturated fill) to read on light *or* dark backgrounds without any filter.
 - **Never apply `brightness-0 invert`** or similar filters to flatten it to white. That was a recurring bug on this site (index.html password screen, several footers, login.html) — it destroys all the color/detail and reads as a blurry white blob. If you see this filter combo anywhere, it's a bug, not a style choice.
