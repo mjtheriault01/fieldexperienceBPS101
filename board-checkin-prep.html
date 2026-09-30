@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+
+<title>Board Check-In: What to Expect — Field Experience BHS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{size:letter;margin:.42in}
+  body{font-family:'Open Sans',Arial,sans-serif;color:#221c1c;font-size:10px;line-height:1.5;background:#fff}
+  .heading{font-family:'Montserrat',Arial,sans-serif}
+  .page{width:7.66in}
+  .topband{border-bottom:3px solid #AC161D;padding-bottom:7px;margin-bottom:10px}
+  .eyebrow{font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#AC161D}
+  .h1{font-family:'Montserrat',sans-serif;font-size:23px;font-weight:900;color:#111;margin-top:2px}
+  .h1 span{color:#AC161D}
+  .lede{font-size:10.5px;color:#4a4340;margin-top:5px}
+  .lede strong{color:#181212}
+  h2{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#AC161D;margin:12px 0 6px}
+  h2 small{font-family:'Open Sans',sans-serif;font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;color:#8a8378;font-style:italic;margin-left:6px}
+
+  .bring{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .bringitem{background:#faf4ea;border-left:3px solid #AC161D;padding:8px 10px}
+  .bringitem .t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;color:#181212;margin-bottom:2px}
+  .bringitem .bd{font-size:9px;color:#4a4340;line-height:1.4}
+
+  .scale{display:flex;gap:6px;margin-bottom:7px}
+  .scale div{flex:1;border-top:3px solid;background:#faf9f6;padding:3px 7px;font-size:8.6px;color:#4a4340}
+  .scale b{font-family:'Montserrat',sans-serif;font-weight:900;font-size:11px;margin-right:3px}
+  .scale .s4{border-color:#1a7a3c}.scale .s4 b{color:#1a7a3c}
+  .scale .s3{border-color:#c9a227}.scale .s3 b{color:#8a6d00}
+  .scale .s2{border-color:#c77a1e}.scale .s2 b{color:#a15c0f}
+  .scale .s1{border-color:#AC161D}.scale .s1 b{color:#AC161D}
+
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .d{border:1px solid #d9d2c9;border-radius:3px;overflow:hidden}
+  .d-head{background:#181212;color:#fff;padding:4px 9px;display:flex;align-items:center;gap:6px}
+  .d-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:10.5px;color:#FBCD07}
+  .d-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:9.4px}
+  .d-body{padding:5px 9px;font-size:8.9px;color:#3a3532;line-height:1.45}
+  .d-body .q{display:block;margin-top:3px;color:#181212;font-weight:600}
+  .d-body .q:before{content:'Be ready: ';font-family:'Montserrat',sans-serif;font-weight:800;font-size:7.8px;letter-spacing:.3px;text-transform:uppercase;color:#AC161D}
+
+  .loop{display:flex;gap:6px;align-items:stretch}
+  .loop .step{flex:1;background:#faf9f6;border:1px solid #ece7e0;padding:7px 9px}
+  .loop .n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:10px;color:#AC161D;text-transform:uppercase;letter-spacing:.4px}
+  .loop .t{font-size:8.8px;color:#4a4340;margin-top:1px;line-height:1.4}
+  .loop .arrow{display:flex;align-items:center;font-family:'Montserrat',sans-serif;font-weight:900;color:#c9c1b6;font-size:14px}
+
+  .exprow{display:flex;gap:7px}
+  .expcard{flex:1;background:#faf9f6;border:1px solid #ece7e0;padding:7px 9px;text-align:center}
+  .expcard .t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:8.8px;text-transform:uppercase;letter-spacing:.4px;color:#181212}
+  .expcard .dd{font-size:8.5px;color:#6b6360;margin-top:2px;line-height:1.35}
+
+  .foot{margin-top:11px;text-align:center;font-size:8.6px;color:#8a8378;border-top:1px solid #ece7e0;padding-top:7px}
+
+  @media screen{
+    body{background:#e9e6e1;padding:24px 0}
+    .page{background:#fff;margin:0 auto 24px;padding:.42in;width:8.5in;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+  }
+
+  .toolbar{display:none}
+  @media screen{
+    .toolbar{display:flex;align-items:center;justify-content:space-between;max-width:8.5in;margin:0 auto 14px;font-family:'Montserrat',Arial,sans-serif}
+    .toolbar a{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .toolbar a:hover{color:#111}
+    .toolbar button{background:#1c1f2e;color:#fff;border:0;border-radius:8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;cursor:pointer}
+    @media (max-width:900px){ body{padding:12px 0} .page{transform-origin:top left} }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="index.html">&larr; Field Experience</a><button onclick="window.print()">Print</button></div>
+<div class="page">
+
+  <div class="topband">
+    <div class="eyebrow heading">Field Experience &middot; Self-Enterprise</div>
+    <div class="h1 heading">Board Check-In &mdash; <span>What to Expect</span></div>
+    <div class="lede">You're presenting to a real board: your instructors, an administrator, and a community business partner. Treat it like a real investor update, because that's exactly what it is. <strong>This sheet shows exactly what the board scores</strong>, so nothing on the rubric should surprise you.</div>
+  </div>
+
+  <h2 class="heading">Bring This With You</h2>
+  <div class="bring">
+    <div class="bringitem"><div class="t heading">Slide Deck</div><div class="bd">Updated, readable, and practiced out loud. Not thrown together the night before.</div></div>
+    <div class="bringitem"><div class="t heading">Financial Statements</div><div class="bd">A P&amp;L (revenue, costs, profit/loss), budget vs. actual, and cash on hand, all current as of this week.</div></div>
+    <div class="bringitem"><div class="t heading">Promises Report</div><div class="bd">The commitments you made at your last check-in, and where each one actually stands. (Check-In #1: skip.)</div></div>
+  </div>
+
+  <h2 class="heading">What the Board Scores <small>8 areas, each circled 4 / 3 / 2 / 1. Here's what a 4 looks like.</small></h2>
+  <div class="scale">
+    <div class="s4"><b>4</b>Board-ready: all of it, no gaps</div>
+    <div class="s3"><b>3</b>Solid: one small gap</div>
+    <div class="s2"><b>2</b>Getting there: clear gaps</div>
+    <div class="s1"><b>1</b>Not yet: missing or unprepared</div>
+  </div>
+  <div class="dgrid">
+    <div class="d"><div class="d-head"><span class="d-num heading">01</span><span class="d-title heading">Financial Transparency</span></div>
+      <div class="d-body">Every dollar is accounted for: how much you spent, on what, and why. Nothing estimated or hidden; mistakes owned openly.<span class="q">Where did the money go?</span></div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">02</span><span class="d-title heading">Financial Statements</span></div>
+      <div class="d-body">All three, current: P&amp;L, budget vs. actual, cash on hand.<span class="q">Are you making or losing money right now?</span></div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">03</span><span class="d-title heading">Traction &amp; Results</span></div>
+      <div class="d-body">Real numbers since last time (customers, sales, units, orders), compared to last check-in, with what moved them. Honest numbers beat big numbers.<span class="q">What changed since we last saw you?</span></div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">04</span><span class="d-title heading">Problem-Solving &amp; Advisor Use</span></div>
+      <div class="d-body">Name your #1 bottleneck and its cause, what you changed because of customer or board feedback, and one specific ask for the board.<span class="q">What do you need from us?</span></div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">05</span><span class="d-title heading">Next-Step Goals</span></div>
+      <div class="d-body">2&ndash;3 goals, each with a number and a date: &ldquo;sell 40 units by 11/13,&rdquo; not &ldquo;grow sales.&rdquo;<span class="q">What will be true by next time?</span></div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">06</span><span class="d-title heading">Presentation Skills</span></div>
+      <div class="d-body">Talk to the board, not your slides: eye contact, clear voice, no reading. Clean slides. Finish on time.</div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">07</span><span class="d-title heading">Professionalism</span></div>
+      <div class="d-body">On time and set up before the board sits down. Dressed to job-interview standard, phone away, materials printed or loaded.</div></div>
+    <div class="d"><div class="d-head"><span class="d-num heading">08</span><span class="d-title heading">Board Q&amp;A</span></div>
+      <div class="d-body">Answer directly and briefly, with numbers. If you don't know, say <strong>&ldquo;I don't know yet; I'll follow up by ___.&rdquo;</strong> Never guess.</div></div>
+  </div>
+
+  <h2 class="heading">After You Present <small>The part that actually moves your business forward.</small></h2>
+  <div class="loop">
+    <div class="step"><div class="n heading">Debrief</div><div class="t">The board tells you your glows: what worked and should be repeated.</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="step"><div class="n heading">Commit</div><div class="t">Together you write 2&ndash;3 next steps, each with how it'll be measured and a due date. Take a photo.</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="step"><div class="n heading">Report back</div><div class="t">Next check-in opens with &ldquo;Promises Kept?&rdquo;: kept, partly, or not yet.</div></div>
+  </div>
+
+  <h2 class="heading">Presentation Expectations</h2>
+  <div class="exprow">
+    <div class="expcard"><div class="t heading">Everyone Speaks</div><div class="dd">Every founder owns part of the update.</div></div>
+    <div class="expcard"><div class="t heading">Know Your Numbers</div><div class="dd">Cold. No looking them up live.</div></div>
+    <div class="expcard"><div class="t heading">Be Honest</div><div class="dd">A real struggle with a plan beats a fake win.</div></div>
+    <div class="expcard"><div class="t heading">Bring an Ask</div><div class="dd">The board is a resource. Use it.</div></div>
+  </div>
+
+  <div class="foot">Batavia High School &middot; Field Experience &middot; Self-Enterprise Board Check-In</div>
+</div>
+</body>
+</html>

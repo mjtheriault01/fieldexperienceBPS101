@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+
+<title>Board Check-In Rubric — Field Experience BHS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{size:letter;margin:.4in}
+  body{font-family:'Open Sans',Arial,sans-serif;color:#221c1c;font-size:10px;line-height:1.4;background:#fff}
+  .heading{font-family:'Montserrat',Arial,sans-serif}
+  .page{width:7.7in;height:10.1in;display:flex;flex-direction:column}
+  .page + .page{break-before:page}
+
+  /* ===== HEADER ===== */
+  .topband{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:3px solid #AC161D;padding-bottom:6px;margin-bottom:9px}
+  .eyebrow{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#AC161D}
+  .h1{font-family:'Montserrat',sans-serif;font-size:21px;font-weight:900;color:#111;margin-top:1px}
+  .h1 span{color:#AC161D}
+  .pagetag{font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8a8378}
+
+  .idgrid{display:grid;grid-template-columns:1.25fr 1.25fr .8fr;gap:9px 16px;margin-bottom:10px}
+  .idfield{border-bottom:1px solid #888;height:27px}
+  .idlabel{font-family:'Montserrat',sans-serif;font-weight:800;font-size:7.8px;letter-spacing:.8px;text-transform:uppercase;color:#6b6360;display:block}
+  .circles{font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:9px;padding-top:3px}
+
+  /* ===== SCALE KEY ===== */
+  .key{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:9px}
+  .keycell{border-top:3px solid;background:#faf9f6;padding:4px 7px}
+  .keycell b{font-family:'Montserrat',sans-serif;font-weight:900;font-size:13px;margin-right:4px}
+  .keycell span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:8.6px;text-transform:uppercase;letter-spacing:.4px}
+  .keycell div{font-size:8.6px;color:#4a4340;margin-top:1px}
+  .k4{border-color:#1a7a3c}.k4 b,.k4 span{color:#1a7a3c}
+  .k3{border-color:#c9a227}.k3 b,.k3 span{color:#8a6d00}
+  .k2{border-color:#c77a1e}.k2 b,.k2 span{color:#a15c0f}
+  .k1{border-color:#AC161D}.k1 b,.k1 span{color:#AC161D}
+
+  /* ===== DOMAIN TABLE ===== */
+  table.rubric{width:100%;border-collapse:collapse;flex:1}
+  table.rubric th{background:#181212;color:#fff;font-family:'Montserrat',sans-serif;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;text-align:left;padding:5px 8px}
+  table.rubric th.c{text-align:center}
+  table.rubric td{border-bottom:1px solid #e3ddd4;padding:6px 8px;vertical-align:middle}
+  table.rubric tr:nth-child(even) td{background:#fcfaf7}
+  .dnum{font-family:'Montserrat',sans-serif;font-weight:900;font-size:11px;color:#AC161D;width:24px}
+  .dname{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10.5px;color:#111;width:1.45in;line-height:1.25}
+  .dlooks{font-size:9.4px;color:#3a3532;line-height:1.42}
+  .dlooks em{font-style:normal;font-weight:700;color:#181212}
+  .dscore{width:1.3in;text-align:center;white-space:nowrap}
+  .dscore i{font-style:normal;display:inline-block;width:21px;height:21px;line-height:19px;border:1.4px solid #9a928a;border-radius:50%;margin:0 2px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:10.5px;color:#333}
+
+  .totalrow{display:flex;justify-content:space-between;align-items:center;margin-top:9px;gap:14px}
+  .totalnote{font-size:8.8px;color:#6b6360;flex:1}
+  .totalnote strong{color:#181212}
+  .totalbox{border:2px solid #AC161D;padding:5px 14px;text-align:center}
+  .totalbox .tl{font-size:7.6px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#AC161D;font-family:'Montserrat',sans-serif}
+  .totalbox .tv{font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px}
+
+  /* ===== PAGE 2 ===== */
+  .sec{margin-bottom:10px}
+  .sectitle{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+  .sectitle .t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;color:#AC161D}
+  .sectitle .when{font-size:8.6px;color:#8a8378;font-style:italic}
+  .box{border:1.2px solid #bdb5ab;border-radius:3px}
+  .notes{display:grid;grid-template-columns:1.6fr 1fr;height:3.75in}
+  .notes > div{padding:5px 8px}
+  .notes > div + div{border-left:1.2px solid #bdb5ab}
+  .colhead{font-family:'Montserrat',sans-serif;font-weight:800;font-size:8px;letter-spacing:.6px;text-transform:uppercase;color:#6b6360;background:#fff;display:inline-block;padding-right:4px}
+
+  table.grid2{width:100%;border-collapse:collapse}
+  table.grid2 th{background:#faf4ea;font-family:'Montserrat',sans-serif;font-size:7.8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b6360;text-align:left;padding:4px 8px;border:1px solid #e0d6c4}
+  table.grid2 th.c{text-align:center}
+  table.grid2 td{border:1px solid #e0d6c4;height:31px;padding:3px 8px;font-size:9px}
+  .kept{text-align:center;white-space:nowrap;font-family:'Montserrat',sans-serif;font-weight:700;font-size:8.6px;color:#555;letter-spacing:.3px}
+  .kept i{font-style:normal;display:inline-block;border:1.2px solid #a9a198;border-radius:10px;padding:1px 6px;margin:0 1px}
+  .rn{font-family:'Montserrat',sans-serif;font-weight:900;color:#AC161D;width:20px;text-align:center}
+
+  .glows{padding:4px 8px}
+  .gline{border-bottom:1px solid #d8d1c7;height:29px;display:flex;align-items:flex-end;padding-bottom:2px}
+  .gline b{font-family:'Montserrat',sans-serif;color:#1a7a3c;font-size:10px;margin-right:6px}
+
+  .carry{margin-top:4px;font-size:8.6px;color:#6b6360}
+  .carry strong{color:#181212}
+
+  .sigrow{display:flex;gap:24px;margin-top:auto;padding-top:8px}
+  .sigfield{flex:1}
+  .sigline{border-bottom:1px solid #333;height:20px}
+  .siglabel{font-family:'Montserrat',sans-serif;font-weight:700;font-size:7.8px;color:#6b6360;display:block;margin-top:2px}
+
+  @media screen{
+    body{background:#e9e6e1;padding:24px 0}
+    .page{background:#fff;margin:0 auto 24px;padding:.4in;width:8.5in;height:11in;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+  }
+  @media print{ .page{padding:0} }
+
+  .toolbar{display:none}
+  @media screen{
+    .toolbar{display:flex;align-items:center;justify-content:space-between;max-width:8.5in;margin:0 auto 14px;font-family:'Montserrat',Arial,sans-serif}
+    .toolbar a{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .toolbar a:hover{color:#111}
+    .toolbar button{background:#1c1f2e;color:#fff;border:0;border-radius:8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;cursor:pointer}
+    @media (max-width:900px){ body{padding:12px 0} .page{transform-origin:top left} }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="teacher-enterprise-track.html">&larr; Enterprise Hub</a><button onclick="window.print()">Print</button></div>
+
+<!-- ======================= PAGE 1 — SCORING ======================= -->
+<div class="page">
+
+  <div class="topband">
+    <div>
+      <div class="eyebrow heading">Field Experience &middot; Self-Enterprise</div>
+      <div class="h1 heading">Board <span>Check-In</span> Rubric</div>
+    </div>
+    <div class="pagetag heading">Side 1 &middot; Score</div>
+  </div>
+
+  <div class="idgrid">
+    <div class="idfield"><span class="idlabel">Student / Team</span></div>
+    <div class="idfield"><span class="idlabel">Business</span></div>
+    <div class="idfield"><span class="idlabel">Date</span></div>
+    <div class="idfield"><span class="idlabel">Evaluator</span></div>
+    <div class="idfield"><span class="idlabel">Role</span><div class="circles" style="font-size:8.6px;letter-spacing:.3px;font-weight:700">Instructor &nbsp;&middot;&nbsp; Business Partner &nbsp;&middot;&nbsp; Admin</div></div>
+    <div class="idfield"><span class="idlabel">Check-In # (circle)</span><div class="circles">1 2 3 4</div></div>
+  </div>
+
+  <div class="key">
+    <div class="keycell k4"><b>4</b><span>Board-Ready</span><div>Everything in the description, no gaps.</div></div>
+    <div class="keycell k3"><b>3</b><span>Solid</span><div>Most of it. One small gap.</div></div>
+    <div class="keycell k2"><b>2</b><span>Getting There</span><div>Some of it. Clear gaps to fix.</div></div>
+    <div class="keycell k1"><b>1</b><span>Not Yet</span><div>Missing or not prepared.</div></div>
+  </div>
+
+  <table class="rubric">
+    <tr><th></th><th>Domain</th><th>A 4 looks like&hellip;</th><th class="c">Circle one</th></tr>
+    <tr>
+      <td class="dnum">01</td><td class="dname">Financial Transparency</td>
+      <td class="dlooks">Every dollar of capital is accounted for: <em>how much was spent, on what, and why.</em> Nothing is estimated or hidden, and mistakes are owned openly.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">02</td><td class="dname">Financial Statements</td>
+      <td class="dlooks">Brings all three, current as of this week: a <em>P&amp;L</em> (revenue, costs, profit/loss), <em>budget vs. actual</em>, and <em>cash on hand</em>.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">03</td><td class="dname">Traction &amp; Results</td>
+      <td class="dlooks">Shows <em>real numbers</em> since the last check-in: customers, sales, units, or orders. Compares them to last time and explains what moved them.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">04</td><td class="dname">Problem-Solving &amp; Advisor Use</td>
+      <td class="dlooks">Names the <em>#1 bottleneck</em> and its cause, says what was changed because of customer or board feedback, and brings <em>one specific ask</em> for the board.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">05</td><td class="dname">Next-Step Goals</td>
+      <td class="dlooks"><em>2&ndash;3 goals</em> for the next check-in, each with a number and a date (&ldquo;sell 40 units by 11/13&rdquo;), not &ldquo;grow sales.&rdquo;</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">06</td><td class="dname">Presentation Skills</td>
+      <td class="dlooks">Talks <em>to the board, not the slides</em>: eye contact, clear voice, no reading. Slides are clean and readable, and the pitch <em>finishes on time</em>.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">07</td><td class="dname">Professionalism</td>
+      <td class="dlooks"><em>On time and set up</em> before the board sits down. Dressed to job-interview standard, no phone out, materials printed or loaded. Respectful and owns the room.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+    <tr>
+      <td class="dnum">08</td><td class="dname">Board Q&amp;A</td>
+      <td class="dlooks">Answers <em>directly and briefly</em>, backs answers with numbers, and says <em>&ldquo;I don&rsquo;t know yet, I&rsquo;ll follow up by ___&rdquo;</em> instead of guessing.</td>
+      <td class="dscore"><i>4</i><i>3</i><i>2</i><i>1</i></td>
+    </tr>
+  </table>
+
+  <div class="totalrow">
+    <div class="totalnote"><strong>Scores are a snapshot, not a verdict.</strong> The back of this sheet (the notes, promises kept, glows, and next steps) is what the student leaves with and what the next check-in builds on.</div>
+    <div class="totalbox">
+      <div class="tl heading">Total</div>
+      <div class="tv heading">____ / 32</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======================= PAGE 2 — FEEDBACK ======================= -->
+<div class="page">
+
+  <div class="topband">
+    <div>
+      <div class="eyebrow heading">Field Experience &middot; Self-Enterprise</div>
+      <div class="h1 heading">Board <span>Feedback &amp; Debrief</span></div>
+    </div>
+    <div class="pagetag heading">Side 2 &middot; Grow</div>
+  </div>
+
+  <div class="sec">
+    <div class="sectitle"><span class="t heading">Promises Kept?</span><span class="when">Copy in the commitments from last check-in&rsquo;s debrief, then circle one each. Skip on Check-In #1.</span></div>
+    <table class="grid2">
+      <tr><th></th><th>What they committed to last time</th><th class="c" style="width:2.05in">Kept?</th></tr>
+      <tr><td class="rn">1</td><td></td><td class="kept"><i>Kept</i> <i>Partly</i> <i>Not yet</i></td></tr>
+      <tr><td class="rn">2</td><td></td><td class="kept"><i>Kept</i> <i>Partly</i> <i>Not yet</i></td></tr>
+      <tr><td class="rn">3</td><td></td><td class="kept"><i>Kept</i> <i>Partly</i> <i>Not yet</i></td></tr>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sectitle"><span class="t heading">Notes &amp; Questions</span><span class="when">Fill in during the presentation.</span></div>
+    <div class="box notes">
+      <div><span class="colhead heading">What I&rsquo;m seeing / hearing</span></div>
+      <div><span class="colhead heading">Questions to ask</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sectitle"><span class="t heading">Glows</span><span class="when">What they did well. Be specific enough that they&rsquo;ll repeat it.</span></div>
+    <div class="box glows">
+      <div class="gline"><b>+</b></div>
+      <div class="gline"><b>+</b></div>
+      <div class="gline" style="border-bottom:0"><b>+</b></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sectitle"><span class="t heading">Next Steps / Commitments</span><span class="when">Fill in <u>with the student</u> at the debrief.</span></div>
+    <table class="grid2">
+      <tr><th></th><th>Commitment (specific + measurable)</th><th style="width:1.7in">How we&rsquo;ll know it&rsquo;s done</th><th style="width:.95in">Due by</th></tr>
+      <tr><td class="rn">1</td><td></td><td></td><td></td></tr>
+      <tr><td class="rn">2</td><td></td><td></td><td></td></tr>
+      <tr><td class="rn">3</td><td></td><td></td><td></td></tr>
+    </table>
+    <div class="carry"><strong>These carry forward:</strong> they become the &ldquo;Promises Kept?&rdquo; rows on the next check-in&rsquo;s rubric. Student keeps a photo of this side.</div>
+  </div>
+
+  <div class="sigrow">
+    <div class="sigfield"><div class="sigline"></div><span class="siglabel heading">Student Signature &middot; Date</span></div>
+    <div class="sigfield"><div class="sigline"></div><span class="siglabel heading">Evaluator Signature &middot; Date</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>

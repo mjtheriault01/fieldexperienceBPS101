@@ -5,7 +5,8 @@
 //
 //   teacher-task-list.html        -> Bootcamp Master Task List (all 16 activities,
 //                                    with co-teach alignment codes + blank pacing space)
-//   teacher-enterprise-track.html -> What the A-day Enterprise cohort does differently
+//   enterprise-bootcamp-archive.html -> What the A-day Enterprise cohort did differently in bootcamp (archived).
+//     teacher-enterprise-track.html is now the hand-written Enterprise hub; do not generate over it.
 //
 // The task bullets, checklists, deliverables and time estimates are read out of
 // bootcamp.html itself, so these documents can never silently drift from what the
@@ -715,11 +716,12 @@ function buildEnterprise(acts) {
   const modes = { same: [], adapted: [], replaced: [] };
   acts.forEach((a, i) => modes[EDIT[a.id].entMode].push({ n: i + 1, title: a.title }));
 
-  let h = head('Enterprise Track — What\'s Different', 'Enterprise Track');
+  let h = head('Enterprise Bootcamp (Archived)', 'Enterprise Bootcamp · Archived');
 
   h += `
-  <h1 class="font-heading">Enterprise Track &mdash; What's Different</h1>
+  <h1 class="font-heading">Enterprise Bootcamp &mdash; What Was Different <span style="color:#AC161D;font-size:.9rem">(Archived)</span></h1>
   <p class="page-sub">Field Experience · 10 A-day students · self-enterprise &amp; Bulldog Media</p>
+  <div class="howto" style="background:rgba(172,22,29,.06);border-color:rgba(172,22,29,.35)"><div class="howto-t font-heading" style="color:#AC161D">Archived &mdash; Bootcamp ran Aug 13 &ndash; Sep 15, 2026</div><p>This is the bootcamp-era planning doc, kept for reference. The Review Board dates and format described below are <strong>out of date</strong>. For current Enterprise materials (board check-ins, the scoring rubric, student prep) go to the <a href="teacher-enterprise-track.html">Enterprise hub</a>.</p></div>
   <p class="lede">These 10 students meet on A days for the full year and run their own business or work for a school enterprise. They do not go to an outside placement, which means two activities have to be replaced outright and ten need reframing. This document is only the differences &mdash; everything not listed here is identical to the Placement cohort and can be taught in the same room.</p>
 
   <div class="howto">
@@ -999,7 +1001,7 @@ async function main() {
 
   const docs = [
     { file: 'teacher-task-list.html',        pdf: 'Bootcamp Master Task List.pdf',            html: buildTaskList(acts) },
-    { file: 'teacher-enterprise-track.html', pdf: 'Enterprise Track - What Is Different.pdf', html: buildEnterprise(acts) },
+    { file: 'enterprise-bootcamp-archive.html', pdf: 'Enterprise Bootcamp - Archived.pdf', html: buildEnterprise(acts) },
   ];
 
   docs.forEach((d) => {
