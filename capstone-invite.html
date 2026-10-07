@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Invited — Capstone Breakfast · Field Experience BHS</title>
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="You're Invited — Field Experience Capstone Breakfast">
+  <meta property="og:description" content="Tuesday, December 15, 2026 · 8–10 AM · Batavia High School Fine Arts Center">
+  <meta property="og:image" content="https://res.cloudinary.com/dikkdclum/image/upload/field-experience/email/capstone-envelope-2026-12-15.jpg">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,500&family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--crimson:#AC161D;--deep:#7A1220;--gold:#FBCD07;--gold2:#c9a227;--paper:#fbf6ec;--paper2:#f3ead8;--ink:#181212;--body:#4a4340}
+    html,body{min-height:100%}
+    body{font-family:'Open Sans',system-ui,sans-serif;color:var(--ink);
+      background:radial-gradient(ellipse at 50% 35%,#c21d25 0%,#8f1218 65%,#5f0b10 100%) fixed;min-height:100vh;overflow-x:hidden}
+
+    /* ---------- Stage 1: the envelope ---------- */
+    .stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;transition:opacity .6s ease}
+    .eyebrow{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--gold);letter-spacing:.42em;text-transform:uppercase;font-size:clamp(.62rem,2.4vw,.85rem);text-align:center;margin-bottom:clamp(28px,6vh,48px)}
+    .env-wrap{position:relative;width:min(560px,92vw);aspect-ratio:7/4.4;perspective:1400px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .env-back{position:absolute;inset:0;background:#e9dec7;border-radius:10px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+    .peek{position:absolute;left:6%;right:6%;top:8%;height:84%;background:var(--paper);border-radius:6px;
+      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:9%;
+      box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .9s cubic-bezier(.2,.8,.2,1) .55s;z-index:1}
+    .peek .p-k{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(.5rem,1.8vw,.7rem);letter-spacing:.3em;color:var(--gold2);text-transform:uppercase}
+    .peek .p-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.3rem,5vw,2.1rem);color:var(--deep);margin-top:.3em}
+    .env-front{position:absolute;inset:0;border-radius:10px;overflow:hidden;z-index:2;pointer-events:none}
+    .env-front:before,.env-front:after{content:"";position:absolute;bottom:0;width:50.5%;height:62%}
+    .env-front:before{left:0;background:linear-gradient(to top right,#f1e7d3 49.7%,transparent 50%)}
+    .env-front:after{right:0;background:linear-gradient(to top left,#ece1cb 49.7%,transparent 50%)}
+    .env-front .bottom{position:absolute;left:0;right:0;bottom:0;height:46%;background:#f6eedd;clip-path:polygon(0 100%,50% 0,100% 100%)}
+    .flap{position:absolute;left:0;top:0;width:100%;height:62%;transform-origin:top center;z-index:3;
+      transition:transform .7s cubic-bezier(.4,0,.2,1),z-index 0s .35s}
+    .flap{filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+    .flap i{position:absolute;inset:0;background:linear-gradient(180deg,#f7f0e1 0%,#efe4cc 100%);clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0}
+    .seal{position:absolute;left:50%;top:62%;width:clamp(78px,20vw,112px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;z-index:4;
+      background:radial-gradient(circle at 38% 32%,#f7d64a 0%,#d9a91c 45%,#a87a0b 100%);
+      box-shadow:0 8px 18px rgba(0,0,0,.35),inset 0 -6px 12px rgba(0,0,0,.25),inset 0 6px 10px rgba(255,255,255,.35);
+      display:flex;align-items:center;justify-content:center;transition:transform .45s ease,opacity .45s ease}
+    .seal:after{content:"";position:absolute;inset:9%;border-radius:50%;border:2px dashed rgba(110,70,0,.45)}
+    .seal img{width:66%;position:relative;z-index:1}
+    .env-wrap:hover .seal{transform:translate(-50%,-50%) scale(1.06)}
+    .tap{margin-top:clamp(28px,6vh,44px);font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(.85rem,3vw,1.05rem);letter-spacing:.22em;text-transform:uppercase;
+      background:var(--gold);color:var(--ink);border:0;padding:16px 34px;border-radius:4px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.3);animation:pulse 2.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+    .when{margin-top:22px;color:rgba(255,255,255,.88);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:clamp(.65rem,2.4vw,.85rem);text-align:center}
+
+    .opening .seal{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+    .opening .flap{transform:rotateX(180deg);z-index:0}
+    .opening .peek{transform:translateY(-62%)}
+    .opening .tap{animation:none;opacity:0;transition:opacity .3s}
+    .gone{opacity:0}
+
+    /* ---------- Stage 2: the invitation card ---------- */
+    .invite{display:none;padding:clamp(20px,5vw,56px) 16px 64px;justify-content:center}
+    .revealed .stage{display:none}
+    .revealed .invite{display:flex}
+    .card{width:min(640px,100%);background:var(--paper);border-radius:8px;box-shadow:0 30px 70px rgba(0,0,0,.45);position:relative;overflow:hidden;
+      animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes rise{from{opacity:0;transform:translateY(80px) scale(.94)}to{opacity:1;transform:none}}
+    .card:before{content:"";position:absolute;inset:12px;border:1px solid var(--gold2);border-radius:4px;pointer-events:none}
+    .card-in{padding:clamp(36px,7vw,60px) clamp(24px,7vw,64px) clamp(32px,6vw,52px);text-align:center;position:relative}
+    .logo{width:110px;margin:0 auto 14px;display:block}
+    .k{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold2)}
+    h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:var(--deep);font-size:clamp(2.4rem,9vw,3.6rem);line-height:1.05;margin:.25em 0 .1em}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.05rem,4vw,1.4rem);letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+    .rule{width:64px;height:2px;background:var(--gold2);margin:22px auto}
+    .lead{font-size:clamp(.95rem,2.6vw,1.05rem);line-height:1.8;color:var(--body);max-width:30em;margin:0 auto}
+    .lead strong{color:var(--ink)}
+    .date{margin:28px auto 6px;display:inline-block;border-top:2px solid var(--crimson);border-bottom:2px solid var(--crimson);padding:14px 22px}
+    .date .d{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.15rem,4.4vw,1.5rem);letter-spacing:.06em;color:var(--crimson);text-transform:uppercase}
+    .date .t{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.12em;color:var(--ink);margin-top:4px}
+    .place{font-size:.92rem;color:#6b6360;margin-top:10px}
+    .agenda{margin:30px auto 8px;max-width:420px;text-align:left}
+    .row{display:flex;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px dashed #dccfb3}
+    .row:last-child{border-bottom:0}
+    .row .tm{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.06em;color:var(--crimson);min-width:72px}
+    .row .w{font-size:.95rem;line-height:1.55;color:var(--body)}
+    .row .w b{color:var(--ink)}
+    .btns{display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:30px}
+    .btn{display:inline-block;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:4px;transition:transform .15s,box-shadow .15s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-main{background:var(--crimson);color:#fff;font-size:1rem;padding:17px 48px;box-shadow:0 8px 18px rgba(172,22,29,.3)}
+    .sub{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .btn-ghost{border:2px solid var(--crimson);color:var(--crimson);font-size:.72rem;padding:11px 18px;background:transparent;cursor:pointer}
+    .note{font-size:.8rem;color:#8a8080;margin-top:6px}
+    .sign{margin-top:32px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--body)}
+    .sign b{display:block;font-family:'Montserrat',sans-serif;font-style:normal;font-size:.85rem;letter-spacing:.06em;color:var(--ink);margin-top:6px}
+    .sign span{display:block;font-family:'Open Sans',sans-serif;font-style:normal;font-size:.78rem;color:#8a8080;margin-top:2px}
+    .card-foot{background:var(--crimson);color:#fff;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;padding:14px}
+
+    /* video modal */
+    .modal{position:fixed;inset:0;background:rgba(10,4,4,.86);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+    .modal.on{display:flex}
+    .modal video{max-height:86vh;max-width:100%;border-radius:8px;background:#000}
+    .modal .x{position:absolute;top:14px;right:18px;background:none;border:0;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1}
+
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Stage 1: sealed envelope -->
+  <section class="stage" id="stage">
+    <div class="eyebrow">Field Experience &middot; Capstone Breakfast</div>
+    <div class="env-wrap" id="env" role="button" tabindex="0" aria-label="Open your invitation">
+      <div class="env-back"></div>
+      <div class="peek"><div class="p-k">Batavia High School</div><div class="p-t">You're Invited</div></div>
+      <div class="env-front"><div class="bottom"></div></div>
+      <div class="flap"><i></i></div>
+      <div class="seal"><img src="https://res.cloudinary.com/dikkdclum/image/upload/f_auto,q_auto,w_220/field-experience/branding/field-study-logo-trans_kewube.png" alt=""></div>
+    </div>
+    <button class="tap" id="tap">&#9993;&nbsp; Tap to Open</button>
+    <div class="when">Tuesday &middot; December 15 &middot; 8&ndash;10 AM</div>
+  </section>
+
+  <!-- Stage 2: the invitation -->
+  <section class="invite" id="invite" aria-live="polite">
+    <article class="card">
+      <div class="card-in">
+        <img class="logo" src="https://res.cloudinary.com/dikkdclum/image/upload/f_auto,q_auto,w_260/field-experience/branding/field-study-logo-trans_kewube.png" alt="Field Experience — Batavia Bulldogs">
+        <div class="k">The pleasure of your company is requested at the</div>
+        <h1>Capstone Breakfast</h1>
+        <h2>Field Experience &middot; Fall 2026</h2>
+        <div class="rule"></div>
+        <p class="lead">
+          This semester, our interns have spent real hours at real workplaces &mdash; learning,
+          contributing, and growing <strong>because of mentors like you</strong>. Join us for
+          breakfast and hear, straight from them, what it all added up to.
+        </p>
+
+        <div class="date">
+          <div class="d">Tuesday, December 15, 2026</div>
+          <div class="t">8:00 &ndash; 10:00 AM</div>
+        </div>
+        <div class="place">Batavia High School &middot; Fine Arts Center &mdash; Black Box &amp; BFAC Lobby</div>
+
+        <div class="agenda">
+          <div class="row"><div class="tm">8:00 AM</div><div class="w"><b>Arrival &amp; breakfast.</b> Coffee and a bite in the BFAC Lobby.</div></div>
+          <div class="row"><div class="tm">8:30 AM</div><div class="w"><b>Spotlight talks.</b> All 14 interns on the Black Box stage &mdash; ninety seconds each.</div></div>
+          <div class="row"><div class="tm">9:10 AM</div><div class="w"><b>Trade show.</b> Walk the lobby and talk with each intern one-on-one.</div></div>
+        </div>
+
+        <div class="btns">
+          <a class="btn btn-main" href="https://docs.google.com/forms/d/e/1FAIpQLScL85hh6ejozcTK84EZyJkGzlL_U8ZtmD861sRnqQ65j1vlQw/viewform?usp=header" target="_blank" rel="noopener">RSVP &rarr;</a>
+          <div class="note">Please respond so we can plan breakfast for the right number of guests</div>
+          <div class="sub">
+            <a class="btn btn-ghost" target="_blank" rel="noopener"
+               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Field%20Experience%20Capstone%20Breakfast&amp;dates=20261215T080000/20261215T100000&amp;ctz=America/Chicago&amp;location=Batavia%20High%20School%20Fine%20Arts%20Center%2C%201201%20Main%20St%2C%20Batavia%2C%20IL&amp;details=Breakfast%2C%20intern%20spotlight%20talks%2C%20and%20a%20trade%20show.%20Black%20Box%20%26%20BFAC%20Lobby.">+ Google Calendar</a>
+            <button class="btn btn-ghost" id="ics">+ Outlook / Apple</button>
+            <button class="btn btn-ghost" id="play">&#9654; Watch Our Interns</button>
+          </div>
+        </div>
+
+        <div class="sign">
+          We can't wait to see you there.
+          <b>Michael Theriault &amp; Austun Savitski</b>
+          <span>Field Experience Teachers, Batavia High School</span>
+        </div>
+      </div>
+      <div class="card-foot">Batavia High School &middot; Field Experience Program</div>
+    </article>
+  </section>
+
+  <div class="modal" id="modal" role="dialog" aria-label="Field Experience video">
+    <button class="x" id="close" aria-label="Close">&times;</button>
+    <video id="vid" controls playsinline preload="none"
+           poster="https://res.cloudinary.com/dikkdclum/video/upload/so_3,w_720/wbl/video/penrose.jpg"
+           src="https://res.cloudinary.com/dikkdclum/video/upload/vc_h264,f_mp4/wbl/video/penrose.mp4"></video>
+  </div>
+
+  <script>
+    (function () {
+      var body = document.body, env = document.getElementById('env'), stage = document.getElementById('stage');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var opened = false;
+
+      function reveal() { body.classList.add('revealed'); window.scrollTo(0, 0); }
+      function open() {
+        if (opened) return; opened = true;
+        if (reduce) return reveal();
+        stage.classList.add('opening');
+        setTimeout(function () { stage.classList.add('gone'); }, 1500);
+        setTimeout(reveal, 2050);
+      }
+
+      env.addEventListener('click', open);
+      env.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      document.getElementById('tap').addEventListener('click', open);
+      if (/[?&]open\b/.test(location.search)) reveal();
+
+      // .ics for Outlook / Apple Calendar
+      document.getElementById('ics').addEventListener('click', function () {
+        var ics = [
+          'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//BHS Field Experience//Capstone//EN',
+          'BEGIN:VEVENT', 'UID:fe-capstone-2026-12-15@fieldexperiencebps101.net',
+          'DTSTAMP:20261007T120000Z', 'DTSTART:20261215T140000Z', 'DTEND:20261215T160000Z',
+          'SUMMARY:Field Experience Capstone Breakfast',
+          'LOCATION:Batavia High School Fine Arts Center\\, 1201 Main St\\, Batavia\\, IL',
+          'DESCRIPTION:Breakfast\\, intern spotlight talks\\, and a trade show. Black Box & BFAC Lobby.',
+          'END:VEVENT', 'END:VCALENDAR'
+        ].join('\r\n');
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+        a.download = 'FE-Capstone-Breakfast.ics';
+        document.body.appendChild(a); a.click(); a.remove();
+      });
+
+      // video modal
+      var modal = document.getElementById('modal'), vid = document.getElementById('vid');
+      document.getElementById('play').addEventListener('click', function () { modal.classList.add('on'); vid.play(); });
+      function shut() { vid.pause(); modal.classList.remove('on'); }
+      document.getElementById('close').addEventListener('click', shut);
+      modal.addEventListener('click', function (e) { if (e.target === modal) shut(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
+    })();
+  </script>
+</body>
+</html>
