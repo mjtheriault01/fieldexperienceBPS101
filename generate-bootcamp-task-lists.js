@@ -373,7 +373,7 @@ const ENT_YEARLONG = [
   {
     title: 'Capstone in May, not December',
     when: 'Week of May 10',
-    detail: 'Same three scored parts as the Placement cohort — 1:30 elevator pitch on the Black Box stage, trade show station in the BFAC Lobby, and portfolio — with nine months of work behind it instead of four. The Q4 Review Board folds into it rather than running separately.',
+    detail: 'Same three scored parts as the Placement cohort — 1:30 Field Experience Spotlight talk on the Black Box stage, Field Experience Showcase station in the BFAC Lobby, and portfolio — with nine months of work behind it instead of four. The Q4 Review Board folds into it rather than running separately.',
     note: 'Hand back their Business Plan of Success and their day-one index card at the capstone. Nine months is long enough that they will have forgotten what they wrote.',
   },
 ];

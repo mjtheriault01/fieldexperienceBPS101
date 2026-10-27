@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Evidence Board — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;
+        display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+    .print-btn:hover{background:#0e1520}
+
+    main{max-width:1040px;margin:0 auto;padding:2.25rem 1.5rem 4rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.75rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .page-sub{font-size:.85rem;color:#6b7280;margin-bottom:1.1rem}
+    .lede{font-size:.88rem;color:#4b5563;line-height:1.8;margin-bottom:1.5rem;max-width:760px}
+    h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.2rem;margin:2.5rem 0 .35rem}
+    .h2-sub{font-size:.82rem;color:#6b7280;margin-bottom:1.1rem;line-height:1.65;max-width:760px}
+
+    .big-idea{background:#0e1520;color:#fff;border-radius:16px;padding:1.6rem 1.75rem;margin-bottom:1.75rem}
+    .big-idea-t{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:#FBCD07;margin-bottom:.6rem}
+    .big-idea p{font-size:.87rem;line-height:1.8;color:#d1d5db}
+    .big-idea p+p{margin-top:.8rem}
+    .big-idea strong{color:#fff}
+
+    .co{border-radius:11px;padding:1.05rem 1.25rem;margin:1.15rem 0;font-size:.83rem;line-height:1.7;color:#374151}
+    .co strong{color:#1c1f2e}
+    .co-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;margin-bottom:.4rem}
+    .co-gold{background:rgba(251,205,7,.1);border:1px solid rgba(251,205,7,.4)}
+    .co-gold .co-t{color:#92400e}
+    .co-red{background:rgba(172,22,29,.05);border:1px solid rgba(172,22,29,.3)}
+    .co-red .co-t{color:#AC161D}
+    .co ul{margin:.45rem 0 0 1.15rem}
+    .co li{margin-bottom:.3rem}
+
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+    .step{background:#fff;border:1px solid #d8dbe0;border-left:4px solid #AC161D;border-radius:0 11px 11px 0;padding:.95rem 1.1rem}
+    .step-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#AC161D;margin-bottom:.2rem}
+    .step-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;margin-bottom:.3rem}
+    .step-d{font-size:.8rem;color:#4b5563;line-height:1.6}
+
+    .tabs{display:flex;gap:.5rem;margin:.4rem 0 1rem;flex-wrap:wrap}
+    .tab{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1rem;border-radius:8px;border:1px solid #d8dbe0;background:#fff;color:#6b7280;cursor:pointer}
+    .tab.on{background:#AC161D;border-color:#AC161D;color:#fff}
+
+    /* ===== the board (11x17 landscape, scaled to fit on screen) ===== */
+    .board-wrap{overflow-x:auto;border-radius:12px;background:#e9e6e0;padding:14px}
+    .board{width:17in;height:11in;background:#fff;transform-origin:top left;display:flex;flex-direction:column;
+           -webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .b-top{background:#111;color:#fff;height:1.35in;display:flex;align-items:center;gap:.3in;padding:0 .45in;border-bottom:6px solid #FBCD07}
+    .b-top img{height:1.05in}
+    .b-eye{font-family:'Montserrat',sans-serif;font-size:11pt;font-weight:800;letter-spacing:.3em;color:#FBCD07}
+    .b-title{font-family:'Montserrat',sans-serif;font-size:30pt;font-weight:900;letter-spacing:-.01em;line-height:1.05}
+    .b-who{margin-left:auto;text-align:right;font-family:'Montserrat',sans-serif}
+    .b-who .nm{font-size:20pt;font-weight:900}
+    .b-who .pl{font-size:11pt;font-weight:600;color:#cfc9bd;margin-top:2px}
+    .b-grid{flex:1;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:auto 1fr 1fr;gap:.12in .16in;padding:.22in .35in .2in}
+    .b-pair{font-family:'Montserrat',sans-serif;font-size:10pt;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#AC161D;text-align:center;padding:.07in .05in;border-radius:4px}
+    .b-pair.alt{background:#1c1f2e;color:#FBCD07}
+    .tile{border:2px solid #e3d5bd;border-radius:8px;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+    .t-skill{font-family:'Montserrat',sans-serif;font-size:13pt;font-weight:900;padding:.07in .12in;border-bottom:2px solid #e3d5bd;background:#faf4ea;color:#1c1f2e}
+    .t-photo{flex:1;min-height:1.3in;margin:.09in .11in 0;border:2px dashed #cfc6b4;border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:9pt;color:#9a9180;padding:.08in;background:#fbfaf7}
+    .t-photo.ex{border-style:solid;border-color:#d8d2c4;background:linear-gradient(135deg,#ece7dc,#ddd5c4);color:#6b6152;font-style:italic}
+    .t-line{padding:.07in .12in .1in;font-size:9.5pt;line-height:1.35;color:#3a3532}
+    .t-line b{font-family:'Montserrat',sans-serif;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:#AC161D;display:block;margin-bottom:1px}
+    .t-line .blank{border-bottom:1px solid #cfc6b4;height:.22in}
+    .b-foot{height:.42in;background:linear-gradient(90deg,#AC161D 0 72%,#FBCD07 72% 100%);display:flex;align-items:center;padding:0 .45in;
+            font-family:'Montserrat',sans-serif;font-size:9pt;font-weight:800;letter-spacing:.26em;color:#fff}
+
+    @media print{
+      @page{size:17in 11in;margin:0}
+      body{background:#fff}
+      main{max-width:none;margin:0;padding:0}
+      nav,main>*:not(.board-section){display:none!important}
+      .board-section>*:not(.board-wrap){display:none!important}
+      .board-wrap{padding:0;background:none;overflow:visible;border-radius:0}
+      .board{transform:none!important}
+      .board[hidden]{display:none!important}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="capstone.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Capstone
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Skills Evidence Board</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print board (11x17)</button>
+</nav>
+
+<main>
+  <h1>Skills Evidence Board</h1>
+  <p class="page-sub">Required &middot; goes in your Portfolio and on your table at the Field Experience Showcase</p>
+  <p class="lede">All semester you've been working on ten employability skills. Your mentor rated you on them at midterm. The Skills Evidence Board is where you <strong>prove</strong> them: one 11x17 board with one tile per skill, and each tile has a photo or artifact plus one sentence about a specific moment. It's the culminating piece of your Field Experience, and it's the first thing a guest will read at your table while you're talking to someone else.</p>
+
+  <div class="big-idea">
+    <div class="big-idea-t">Claiming a skill isn't the same as showing it</div>
+    <p>"I have good communication skills" is a claim. <strong>"I ran the Monday safety huddle for six people after two weeks of watching my mentor do it"</strong> is evidence, especially next to a photo of you doing it.</p>
+    <p>Every tile answers one question: <strong>when, exactly, did you show this skill?</strong> A real moment, from your placement, that only you could write.</p>
+  </div>
+
+  <h2>What goes on each tile</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1 &middot; Photo or artifact</div><div class="step-t">Show it</div><div class="step-d">A photo of you working, something you made, a screenshot, a schedule you built, a note from your mentor. Real and from your placement. No stock images, and nothing confidential.</div></div>
+    <div class="step"><div class="step-n">2 &middot; "I showed this when&hellip;"</div><div class="step-t">One specific sentence</div><div class="step-d">One moment, with details: who, what, when. Not "I always communicate well." Aim for 15&ndash;30 words.</div></div>
+    <div class="step"><div class="step-n">3 &middot; Optional</div><div class="step-t">Mentor quote</div><div class="step-d">If your mentor said something about this skill in your midterm evaluation or in person, add it (ask first). It's the strongest evidence you can have.</div></div>
+  </div>
+
+  <div class="co co-gold">
+    <div class="co-t">The ten skills (same five pairs your mentor rated at midterm)</div>
+    <strong>Communication &amp; Teamwork</strong> &middot; <strong>Critical Thinking &amp; Problem Solving</strong> &middot; <strong>Initiative &amp; Decision Making</strong> &middot; <strong>Reliability &amp; Planning/Organizing</strong> &middot; <strong>Adaptability &amp; Cultural Awareness</strong>
+  </div>
+
+  <div class="co co-red">
+    <div class="co-t">Start collecting now, not the week before</div>
+    You need ten moments. Each week, take one photo and write one sentence about a skill you used. Keep them in one folder. If your placement doesn't allow photos, photograph something you made, your own notes, or your workspace, or ask your mentor for a short written note. Tell us early if that's your situation.
+  </div>
+
+  <h2>How to make it</h2>
+  <ul style="font-size:.85rem;color:#374151;line-height:1.9;margin-left:1.2rem;max-width:760px">
+    <li><strong>Digital:</strong> build it in Google Slides or Canva set to <strong>17 x 11 in</strong>, using the layout below. We'll print it in color on 11x17 for your table.</li>
+    <li><strong>Paper:</strong> print the blank template below (Print board button, 11x17), then glue your photos in and write neatly or print your sentences.</li>
+    <li><strong>In your Portfolio:</strong> include the digital file, or a clear photo of the finished board.</li>
+    <li><strong>At the Showcase:</strong> stand it up on your table so guests can read it from where they're standing.</li>
+  </ul>
+
+  <section class="board-section">
+    <h2>The layout</h2>
+    <p class="h2-sub">Switch between a filled-in example and the blank template. "Print board" prints whichever one is showing.</p>
+    <div class="tabs">
+      <button class="tab on font-heading" data-show="ex">Example</button>
+      <button class="tab font-heading" data-show="blank">Blank template</button>
+    </div>
+    <div class="board-wrap" id="wrap">
+      <div class="board" id="board-ex"></div>
+      <div class="board" id="board-blank" hidden></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const LOGO = "https://res.cloudinary.com/dikkdclum/image/upload/field-experience/branding/field-study-logo-trans_kewube.png";
+  const PAIRS = [
+    ["Communication & Teamwork", ["Communication", "Teamwork"]],
+    ["Critical Thinking & Problem Solving", ["Critical Thinking", "Problem Solving"]],
+    ["Initiative & Decision Making", ["Initiative", "Decision Making"]],
+    ["Reliability & Planning", ["Reliability", "Planning & Organizing"]],
+    ["Adaptability & Cultural Awareness", ["Adaptability", "Cultural Awareness"]]
+  ];
+  // Example student: a made-up plumbing intern, for illustration only
+  const EX = {
+    "Communication": ["Photo: me explaining a water-heater install to the homeowner", "My mentor had me walk the homeowner through how the new water heater works and answer her questions myself."],
+    "Teamwork": ["Photo: two-person crew carrying a tub to the upstairs bath", "On a bathroom remodel I worked the second end of every lift and called out turns so my crew lead could focus on placement."],
+    "Critical Thinking": ["Photo: my notes comparing two leak locations", "When a ceiling stain didn't line up with the pipe we expected, I traced the drip path back and found the joint that was actually leaking."],
+    "Problem Solving": ["Photo: the tool-kit checklist I made", "We kept driving back to the shop for forgotten fittings, so I built a checklist for the van. We haven't made a return trip since."],
+    "Initiative": ["Photo: the shop shelves I organized", "On a slow afternoon I asked if I could label and sort the fittings shelf instead of waiting to be told what to do."],
+    "Decision Making": ["Artifact: job sheet with my call circled", "I noticed a corroded shutoff valve and decided to flag it before we opened the line, not after. My mentor said that was the right call."],
+    "Reliability": ["Artifact: my hours log, 0 late arrivals", "I was on time to all 31 shifts, including two 6:30 AM starts, and I texted ahead the one time traffic held me up."],
+    "Planning & Organizing": ["Photo: my weekly schedule plan", "I planned my placement days around my practice schedule each Sunday and shared them with my mentor so he could book jobs I could join."],
+    "Adaptability": ["Photo: me at the emergency call site", "When a burst pipe call came in, we dropped the planned job. I switched tasks fast and helped with cleanup and shutoff instead."],
+    "Cultural Awareness": ["Photo: shoe covers at the door of a client's home", "I learned to ask each family about their house rules, like removing shoes or avoiding certain rooms, before we start working."]
+  };
+
+  function board(example) {
+    let head = PAIRS.map((p, i) => `<div class="b-pair ${i % 2 ? "alt" : ""}">${p[0].replace("&", "&amp;")}</div>`).join("");
+    let row = (k) => PAIRS.map(p => {
+      const skill = p[1][k];
+      const ex = EX[skill];
+      return `<div class="tile">
+        <div class="t-skill">${skill.replace("&", "&amp;")}</div>
+        <div class="t-photo ${example ? "ex" : ""}">${example ? ex[0] : "Photo or artifact"}</div>
+        <div class="t-line"><b>I showed this when&hellip;</b>${example ? ex[1] : '<div class="blank"></div><div class="blank"></div><div class="blank"></div>'}</div>
+      </div>`;
+    }).join("");
+    return `<div class="b-top">
+        <img src="${LOGO}" alt="">
+        <div><div class="b-eye">FIELD EXPERIENCE SHOWCASE</div><div class="b-title">Skills Evidence Board</div></div>
+        <div class="b-who"><div class="nm">${example ? "Jordan Example" : "Your Name"}</div><div class="pl">${example ? "Plumbing &amp; Pipefitting Intern &middot; Bulldog Plumbing" : "Role &middot; Placement"}</div></div>
+      </div>
+      <div class="b-grid">${head}${row(0)}${row(1)}</div>
+      <div class="b-foot">BATAVIA HIGH SCHOOL &middot; FIELD EXPERIENCE &middot; CAPSTONE ${new Date().getFullYear()}</div>`;
+  }
+  document.getElementById("board-ex").innerHTML = board(true);
+  document.getElementById("board-blank").innerHTML = board(false);
+
+  // scale the 17in board to fit the screen
+  function fit() {
+    const wrap = document.getElementById("wrap");
+    const avail = wrap.clientWidth - 28;
+    const full = 17 * 96, s = Math.min(1, avail / full);
+    document.querySelectorAll(".board").forEach(b => { b.style.transform = `scale(${s})`; b.style.marginBottom = `${-(11 * 96) * (1 - s)}px`; b.style.marginRight = `${-full * (1 - s)}px`; });
+  }
+  window.addEventListener("resize", fit); fit();
+  window.addEventListener("beforeprint", () => document.querySelectorAll(".board").forEach(b => { b.style.marginBottom = b.style.marginRight = "0"; }));
+  window.addEventListener("afterprint", fit);
+
+  document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
+    document.getElementById("board-ex").hidden = t.dataset.show !== "ex";
+    document.getElementById("board-blank").hidden = t.dataset.show !== "blank";
+  });
+</script>
+</body>
+</html>
