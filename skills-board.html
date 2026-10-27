@@ -70,7 +70,9 @@
     .tile{border:2px solid #e3d5bd;border-radius:8px;display:flex;flex-direction:column;overflow:hidden;background:#fff}
     .t-skill{font-family:'Montserrat',sans-serif;font-size:13pt;font-weight:900;padding:.07in .12in;border-bottom:2px solid #e3d5bd;background:#faf4ea;color:#1c1f2e}
     .t-photo{flex:1;min-height:1.3in;margin:.09in .11in 0;border:2px dashed #cfc6b4;border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:9pt;color:#9a9180;padding:.08in;background:#fbfaf7}
-    .t-photo.ex{border-style:solid;border-color:#d8d2c4;background:linear-gradient(135deg,#ece7dc,#ddd5c4);color:#6b6152;font-style:italic}
+    .t-photo.img{padding:0;border:0;background:#eee;overflow:hidden;min-height:0}
+    .t-photo.img img{width:100%;height:100%;object-fit:cover;display:block}
+    .t-cap{margin:.04in .12in 0;font-size:7.5pt;font-style:italic;color:#8a8080;line-height:1.25}
     .t-line{padding:.07in .12in .1in;font-size:9.5pt;line-height:1.35;color:#3a3532}
     .t-line b{font-family:'Montserrat',sans-serif;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:#AC161D;display:block;margin-bottom:1px}
     .t-line .blank{border-bottom:1px solid #cfc6b4;height:.22in}
@@ -98,13 +100,13 @@
     <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading">Skills Evidence Board</span>
   </div>
-  <button class="print-btn font-heading" onclick="window.print()">Print board (11x17)</button>
+  <button class="print-btn font-heading" onclick="window.print()">Print (11x17)</button>
 </nav>
 
 <main>
   <h1>Skills Evidence Board</h1>
-  <p class="page-sub">Required &middot; goes in your Portfolio and on your table at the Field Experience Showcase</p>
-  <p class="lede">All semester you've been working on ten employability skills. Your mentor rated you on them at midterm. The Skills Evidence Board is where you <strong>prove</strong> them: one 11x17 board with one tile per skill, and each tile has a photo or artifact plus one sentence about a specific moment. It's the culminating piece of your Field Experience, and it's the first thing a guest will read at your table while you're talking to someone else.</p>
+  <p class="page-sub">Required &middot; a big poster board on your table at the Field Experience Showcase, plus a photo of it in your Portfolio</p>
+  <p class="lede">All semester you've been working on ten employability skills. Your mentor rated you on them at midterm. The Skills Evidence Board is where you <strong>prove</strong> them: <strong>one big poster board</strong> with one section per skill, and each tile has a photo or artifact plus one sentence about a specific moment. It's the culminating piece of your Field Experience, and it's the first thing a guest will read at your table while you're talking to someone else.</p>
 
   <div class="big-idea">
     <div class="big-idea-t">Claiming a skill isn't the same as showing it</div>
@@ -131,18 +133,19 @@
 
   <h2>How to make it</h2>
   <ul style="font-size:.85rem;color:#374151;line-height:1.9;margin-left:1.2rem;max-width:760px">
-    <li><strong>Digital:</strong> build it in Google Slides or Canva set to <strong>17 x 11 in</strong>, using the layout below. We'll print it in color on 11x17 for your table.</li>
-    <li><strong>Paper:</strong> print the blank template below (Print board button, 11x17), then glue your photos in and write neatly or print your sentences.</li>
-    <li><strong>In your Portfolio:</strong> include the digital file, or a clear photo of the finished board.</li>
-    <li><strong>At the Showcase:</strong> stand it up on your table so guests can read it from where they're standing.</li>
+    <li><strong>Step 1, plan it on the template.</strong> Fill in the blank template below (we'll print it for you): pick your ten moments, write your sentences, and note which photo goes with each one.</li>
+    <li><strong>Step 2, build a big poster board.</strong> Use a tri-fold or a large foam poster board. Follow the same layout: your name and placement across the top, the five skill pairs, and ten sections, each with a printed photo and your sentence. Make it big enough to read from a few feet away.</li>
+    <li><strong>Step 3, stand it up on your table</strong> at the Showcase, toward the back, so guests can read it while you talk with someone else.</li>
+    <li><strong>In your Portfolio:</strong> include a clear photo of the finished poster board.</li>
   </ul>
+  <p class="h2-sub">The boards below are examples, not something to print and hand in. The filled-in one shows what strong evidence looks like. The blank one is your planning template.</p>
 
   <section class="board-section">
     <h2>The layout</h2>
-    <p class="h2-sub">Switch between a filled-in example and the blank template. "Print board" prints whichever one is showing.</p>
+    <p class="h2-sub">Switch between the filled-in example and the blank planning template. The Print button prints whichever one is showing.</p>
     <div class="tabs">
       <button class="tab on font-heading" data-show="ex">Example</button>
-      <button class="tab font-heading" data-show="blank">Blank template</button>
+      <button class="tab font-heading" data-show="blank">Blank planning template</button>
     </div>
     <div class="board-wrap" id="wrap">
       <div class="board" id="board-ex"></div>
@@ -160,18 +163,25 @@
     ["Reliability & Planning", ["Reliability", "Planning & Organizing"]],
     ["Adaptability & Cultural Awareness", ["Adaptability", "Cultural Awareness"]]
   ];
-  // Example board: Mr. Theriault, written as if a teacher made his own board
+  // Example board: Mr. Theriault & Ms. Savitski, written as if the two teachers made their own board
   const EX = {
-    "Communication": ["Photo: me talking with business owners at the Career Connections event", "After meeting new businesses at Career Connections, I sent each one a personal follow-up the same week so they had our program info while the conversation was fresh."],
-    "Teamwork": ["Photo: Ms. Savitski and me planning at the whiteboard", "I co-teach Field Experience with Ms. Savitski. We split the cohorts, plan every in-person day together, and sign every email from both of us."],
-    "Critical Thinking": ["Artifact: midterm evaluation form with skill pairs", "Mentors kept giving vague feedback, so I rebuilt the midterm evaluation around five skill pairs with a clear 4-point scale and a \"no evidence yet\" option."],
-    "Problem Solving": ["Artifact: the weekly Google Forms on a Chromebook", "When our hours-logging website got blocked on student Chromebooks, I moved the weekly log to Google Forms before the deadline so no one lost hours."],
-    "Initiative": ["Photo: the partner thank-you plaque", "No one asked for it, but I designed a thank-you plaque so every business that hosts an intern gets public credit for helping Batavia students."],
-    "Decision Making": ["Artifact: Showcase Table Planner, page 1", "I decided to change the capstone from a \"trade show\" to the Field Experience Showcase and put this board at the center of it, so students prove skills instead of claiming them."],
-    "Reliability": ["Artifact: a weekly update email to students", "Every week this semester, students got an update email from us with deadlines, reminders, and links, sent ahead of time so no one was surprised."],
-    "Planning & Organizing": ["Artifact: the Capstone Breakfast run of show", "I planned the Capstone Breakfast backward from December 15: invitations in October, partner evaluations at midterm, planning sheets and practice in November."],
-    "Adaptability": ["Photo: a Self-Enterprise student business logo wall", "This year we added a second cohort of students running their own businesses, so I adapted the bootcamp and replaced employer evaluations with Board Check-Ins."],
-    "Cultural Awareness": ["Photo: the placement roster with 15 different fields", "Our 15 interns work in law, salons, plumbing, therapy, and schools. I learn each workplace's rules and culture before I visit so I can coach students to fit in."]
+    "Communication": ["Photo: us talking with business owners at the Career Connections event", "After meeting new businesses at Career Connections, we sent each one a personal follow-up the same week so they had our program info while the conversation was fresh."],
+    "Teamwork": ["Photo: the two of us planning at the whiteboard", "We co-teach Field Experience as a team. We split the cohorts, plan every in-person day together, and sign every email from both of us."],
+    "Critical Thinking": ["Artifact: the midterm evaluation rubric", "Mentors kept giving vague feedback, so we rebuilt the midterm evaluation around five skill pairs with a clear 4-point scale and a \"no evidence yet\" option."],
+    "Problem Solving": ["Photo: a student logging hours in Google Forms", "When our hours-logging website got blocked on student Chromebooks, we moved the weekly log to Google Forms before the deadline so no one lost hours."],
+    "Initiative": ["Photo: the partner thank-you plaque", "No one asked for it, but we designed a thank-you plaque so every business that hosts an intern gets public credit for helping Batavia students."],
+    "Decision Making": ["Artifact: Showcase Table Planner, page 1", "We decided to change the capstone from a \"trade show\" to the Field Experience Showcase and put this board at the center of it, so students prove skills instead of claiming them."],
+    "Reliability": ["Photo: sending the weekly update email", "Every week this semester, students got an update email from us with deadlines, reminders, and links, sent ahead of time so no one was surprised."],
+    "Planning & Organizing": ["Artifact: the run of show at breakfast setup", "We planned the Capstone Breakfast backward from December 15: invitations in October, partner evaluations at midterm, planning sheets and practice in November."],
+    "Adaptability": ["Photo: Self-Enterprise student businesses on display", "This year we added a second cohort of students running their own businesses, so we adapted the bootcamp and replaced employer evaluations with Board Check-Ins."],
+    "Cultural Awareness": ["Photo: four of our placement workplaces", "Our 15 interns work in law, salons, plumbing, therapy, and schools. We learn each workplace's rules and culture before we visit so we can coach students to fit in."]
+  };
+
+  // example tile images (AI-generated, except the plaque and planner, which are real artifacts)
+  const IMG = {
+    "Communication": "communication", "Teamwork": "teamwork", "Critical Thinking": "critical", "Problem Solving": "problem",
+    "Initiative": "initiative", "Decision Making": "decision", "Reliability": "reliability", "Planning & Organizing": "planning",
+    "Adaptability": "adaptability", "Cultural Awareness": "cultural"
   };
 
   function board(example) {
@@ -181,14 +191,16 @@
       const ex = EX[skill];
       return `<div class="tile">
         <div class="t-skill">${skill.replace("&", "&amp;")}</div>
-        <div class="t-photo ${example ? "ex" : ""}">${example ? ex[0] : "Photo or artifact"}</div>
-        <div class="t-line"><b>I showed this when&hellip;</b>${example ? ex[1] : '<div class="blank"></div><div class="blank"></div><div class="blank"></div>'}</div>
+        ${example
+          ? `<div class="t-photo img"><img src="img/skills-board/${IMG[skill]}.jpg" alt="${ex[0].replace(/"/g, "&quot;")}"></div><div class="t-cap">${ex[0]}</div>`
+          : `<div class="t-photo">Photo or artifact</div>`}
+        <div class="t-line"><b>${example ? "We" : "I"} showed this when&hellip;</b>${example ? ex[1] : '<div class="blank"></div><div class="blank"></div><div class="blank"></div>'}</div>
       </div>`;
     }).join("");
     return `<div class="b-top">
         <img src="${LOGO}" alt="">
         <div><div class="b-eye">FIELD EXPERIENCE SHOWCASE</div><div class="b-title">Skills Evidence Board</div></div>
-        <div class="b-who"><div class="nm">${example ? "Mr. Theriault" : "Your Name"}</div><div class="pl">${example ? "EXAMPLE &middot; Field Experience Coordinator &middot; Batavia High School" : "Role &middot; Placement"}</div></div>
+        <div class="b-who"><div class="nm">${example ? "Mr. Theriault &amp; Ms. Savitski" : "Your Name"}</div><div class="pl">${example ? "EXAMPLE &middot; Field Experience Coordinators &middot; Batavia High School" : "Role &middot; Placement"}</div></div>
       </div>
       <div class="b-grid">${head}${row(0)}${row(1)}</div>
       <div class="b-foot">BATAVIA HIGH SCHOOL &middot; FIELD EXPERIENCE &middot; CAPSTONE ${new Date().getFullYear()}</div>`;
