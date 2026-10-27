@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showcase Table Planner — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+    a{color:#AC161D}
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
+    .print-btn{background:#1c1f2e;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .9rem;cursor:pointer}
+
+    .page{width:8.5in;min-height:11in;margin:20px auto;background:#fff;padding:.5in .55in;box-shadow:0 1px 3px rgba(16,24,40,.08);position:relative}
+    .hdr{display:flex;align-items:center;gap:14px;background:#111;color:#fff;margin:-.5in -.55in .25in;padding:.22in .55in;border-bottom:5px solid #FBCD07}
+    .hdr img{height:62px}
+    .hdr .eye{font-family:Montserrat;font-size:7.5pt;font-weight:800;letter-spacing:.25em;color:#FBCD07}
+    .hdr h1{font-family:Montserrat;font-weight:900;font-size:19pt;line-height:1.1}
+    .hdr .nm{margin-left:auto;font-family:Montserrat;font-size:8pt;font-weight:700;color:#cfc9bd;text-align:right;line-height:1.9}
+    .hdr .nm span{display:inline-block;width:2.1in;border-bottom:1px solid #777}
+    h2{font-family:Montserrat;font-weight:900;font-size:11.5pt;color:#AC161D;letter-spacing:.06em;text-transform:uppercase;margin:.2in 0 .08in}
+    p,li{font-size:9.5pt;line-height:1.55;color:#374151}
+    .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:.06in}
+    .fact{background:#faf4ea;border-left:3px solid #AC161D;padding:7px 10px;font-size:8.5pt;line-height:1.45}
+    .fact b{display:block;font-family:Montserrat;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#AC161D}
+
+    .req{display:grid;grid-template-columns:.32in 1fr 2.55in;gap:0 12px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 11px;margin-bottom:6px;break-inside:avoid;align-items:start}
+    .req.big{border:2px solid #AC161D;background:rgba(172,22,29,.03)}
+    .req .n{font-family:Montserrat;font-weight:900;font-size:18pt;color:#AC161D;line-height:1}
+    .req .t{font-family:Montserrat;font-weight:800;font-size:10pt;color:#1c1f2e}
+    .req .t small{font-weight:700;font-size:7pt;letter-spacing:.12em;color:#fff;background:#AC161D;padding:1px 6px;border-radius:999px;margin-left:5px;vertical-align:2px}
+    .req .d{font-size:8.6pt;line-height:1.45;color:#4b5563;margin-top:2px}
+    .req .mine{font-size:7pt;font-family:Montserrat;font-weight:800;letter-spacing:.1em;color:#8a8080;text-transform:uppercase}
+    .req .mine div{border-bottom:1px solid #cfc6b4;height:.24in}
+    .exp{columns:2;column-gap:.3in;margin-top:2px}
+    .exp li{font-size:8.8pt;margin:0 0 3px 14px}
+
+    /* table map */
+    .map{margin:.04in 0 .1in}
+    .map svg{width:100%;height:auto;display:block}
+    table.items{width:100%;border-collapse:collapse;font-size:8.5pt}
+    table.items th{font-family:Montserrat;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;text-align:left;border-bottom:2px solid #e5e7eb;padding:4px 5px}
+    table.items td{border-bottom:1px solid #e3d5bd;height:.3in;padding:2px 5px;vertical-align:bottom;color:#9ca3af;font-size:7.5pt}
+    table.items td.num{font-family:Montserrat;font-weight:900;color:#AC161D;width:.3in;font-size:10pt}
+    .walk{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .walk div{border:1px solid #e5e7eb;border-top:3px solid #FBCD07;border-radius:6px;padding:6px 9px;min-height:1in;font-size:8.3pt;color:#4b5563}
+    .walk b{display:block;font-family:Montserrat;font-size:8pt;color:#1c1f2e;margin-bottom:2px}
+    .practice{display:flex;gap:.12in;align-items:flex-end;margin-top:7px;font-size:8.5pt;color:#374151;white-space:nowrap}
+    .practice span{display:inline-block;width:1.1in;border-bottom:1px solid #999}
+
+    .mock-grid{display:grid;gap:.14in}
+    .mock{break-inside:avoid}
+    .mock img{width:100%;border-radius:6px;display:block}
+    .mock .cap{font-size:8.5pt;color:#4b5563;margin-top:3px}
+    .mock .cap b{font-family:Montserrat;color:#1c1f2e}
+    .note{font-size:7.8pt;color:#8a8080;font-style:italic}
+
+    @media print{
+      @page{size:Letter;margin:0}
+      body{background:#fff}
+      nav{display:none}
+      .page{margin:0;box-shadow:none;page-break-after:always;min-height:auto;height:11in;overflow:hidden}
+    }
+    @media screen and (max-width:880px){ .page{width:auto;margin:12px} }
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="capstone.html" class="back-btn font-heading"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Capstone</a>
+    <span style="color:#e5e7eb">|</span><span class="nav-title font-heading">Showcase Table Planner</span>
+  </div>
+  <button class="print-btn font-heading" onclick="window.print()">Print</button>
+</nav>
+
+<!-- ================= PAGE 1: WHAT YOU NEED ================= -->
+<div class="page">
+  <div class="hdr">
+    <img src="https://res.cloudinary.com/dikkdclum/image/upload/field-experience/branding/field-study-logo-trans_kewube.png" alt="">
+    <div><div class="eye">CAPSTONE · PART 1</div><h1>Field Experience Showcase<br>Table Planner</h1></div>
+    <div class="nm">NAME <span></span><br>PLACEMENT <span></span></div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>When &amp; where</b>Tue, Dec 15 &middot; BFAC Lobby, right after the Field Experience Spotlight</div>
+    <div class="fact"><b>What you do</b>Guests walk up; you give a 60&ndash;90 second walkthrough, then answer questions. Again and again.</div>
+    <div class="fact"><b>The real test</b>Doing it well the tenth time, for someone who just walked up and knows nothing about your placement.</div>
+  </div>
+
+  <h2>Your table needs these five things</h2>
+
+  <div class="req big">
+    <div class="n">1</div>
+    <div><div class="t">Skills Evidence Board <small>BIGGEST PART</small></div>
+      <div class="d">One 11x17 board showing how you met each of the 10 employability skills during your internship: a photo or artifact and one "I showed this when&hellip;" sentence per skill. Template and example: fieldexperiencebps101.net/skills-board.html</div></div>
+    <div class="mine">Moments I already have (how many of 10?)<div></div><div></div></div>
+  </div>
+
+  <div class="req">
+    <div class="n">2</div>
+    <div><div class="t">Something real from your work that guests can touch</div>
+      <div class="d">An interactive piece you can point to and say "here's what I learned, look at this." Simple is fine. It has to be real and worth talking about.</div>
+      <ul class="exp">
+        <li>Plumbing: pipe, fittings, a joint you made</li>
+        <li>Salon: foil or color samples, a styled mannequin</li>
+        <li>Engineering: a blueprint, CAD print, a part</li>
+        <li>Automotive: a worn vs. new part</li>
+        <li>Health/therapy: an exercise sheet or tool (no patient info)</li>
+        <li>Business/marketing: a piece you designed or a report</li>
+      </ul></div>
+    <div class="mine">My hands-on piece<div></div><div></div><div></div></div>
+  </div>
+
+  <div class="req">
+    <div class="n">3</div>
+    <div><div class="t">A visual of your experience</div>
+      <div class="d">A picture/deliverable board <strong>or</strong> a Chromebook, iPad, or laptop running a slideshow of photos and work. Devices must be charged, looping, and need no logins.</div></div>
+    <div class="mine">Board or device? What's on it?<div></div><div></div></div>
+  </div>
+
+  <div class="req">
+    <div class="n">4</div>
+    <div><div class="t">Your resume</div><div class="d">Displayed on the table where a guest can read it. Updated with your Field Experience.</div></div>
+    <div class="mine">Updated? &nbsp;&#9744; yes &nbsp;&#9744; not yet<div></div></div>
+  </div>
+
+  <div class="req">
+    <div class="n">5</div>
+    <div><div class="t">Your table card</div><div class="d">Name, placement with logo, and career field. <strong>We print these for you.</strong> Check that your career field is right.</div></div>
+    <div class="mine">My career field<div></div></div>
+  </div>
+
+  <h2>Setup expectations</h2>
+  <ul style="margin-left:15px">
+    <li><strong>Fully set up before doors open.</strong> Your setup is scored before guests arrive.</li>
+    <li><strong>Professional dress</strong>, the same standard as your mock interview.</li>
+    <li><strong>You staff the table the whole time</strong> and present to everyone who stops.</li>
+    <li><strong>Label your artifacts.</strong> While you talk to one guest, two more are reading your table.</li>
+    <li><strong>Ask your supervisor</strong> before you bring photos or anything from your workplace.</li>
+  </ul>
+</div>
+
+<!--MOCKUPS-->
+
+<!-- ================= PAGE 3: TABLE MAP ================= -->
+<div class="page">
+  <div class="hdr">
+    <img src="https://res.cloudinary.com/dikkdclum/image/upload/field-experience/branding/field-study-logo-trans_kewube.png" alt="">
+    <div><div class="eye">PLAN IT BEFORE YOU BUILD IT</div><h1>Map Your Table</h1></div>
+    <div class="nm">NAME <span></span></div>
+  </div>
+  <p>Sketch your table from above. Draw each item where it will sit and give it a number, then list it below. Put the things you want guests to <strong>touch</strong> at the front edge, and things they <strong>read</strong> (Skills Board, resume) up high and toward the back so they're visible while you talk. Your table is about 6 ft x 2.5 ft.</p>
+
+  <div class="map">
+    <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" font-family="Montserrat, Arial, sans-serif">
+      <defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#ece6d9" stroke-width="1"/></pattern></defs>
+      <text x="380" y="22" text-anchor="middle" font-size="12" font-weight="800" fill="#6b7280" letter-spacing="2">YOU STAND HERE (BACK OF TABLE)</text>
+      <rect x="40" y="40" width="680" height="270" rx="6" fill="url(#g)" stroke="#1c1f2e" stroke-width="3"/>
+      <line x1="266" y1="40" x2="266" y2="310" stroke="#d5ccb9" stroke-dasharray="6 6"/>
+      <line x1="493" y1="40" x2="493" y2="310" stroke="#d5ccb9" stroke-dasharray="6 6"/>
+      <text x="153" y="60" text-anchor="middle" font-size="10" font-weight="700" fill="#b8ad97">LEFT</text>
+      <text x="380" y="60" text-anchor="middle" font-size="10" font-weight="700" fill="#b8ad97">CENTER</text>
+      <text x="606" y="60" text-anchor="middle" font-size="10" font-weight="700" fill="#b8ad97">RIGHT</text>
+      <rect x="40" y="276" width="680" height="34" fill="rgba(172,22,29,.08)"/>
+      <text x="380" y="298" text-anchor="middle" font-size="10" font-weight="800" fill="#AC161D" letter-spacing="1.5">FRONT EDGE · TOUCH ZONE (hands-on items, table card)</text>
+      <text x="380" y="345" text-anchor="middle" font-size="13" font-weight="800" fill="#AC161D" letter-spacing="2">&#9650; GUESTS STAND HERE &#9650;</text>
+      <text x="380" y="368" text-anchor="middle" font-size="10" fill="#8a8080">about 6 ft wide</text>
+    </svg>
+  </div>
+
+  <table class="items">
+    <tr><th>#</th><th style="width:36%">Item</th><th>Which of the 5?</th><th>Where it comes from (home / placement / school)</th><th>Supervisor OK?</th></tr>
+    <tr><td class="num">1</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+    <tr><td class="num">2</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+    <tr><td class="num">3</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+    <tr><td class="num">4</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+    <tr><td class="num">5</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+    <tr><td class="num">6</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+    <tr><td class="num">7</td><td></td><td></td><td></td><td>&#9744;</td></tr>
+  </table>
+
+  <h2>My 60&ndash;90 second walkthrough</h2>
+  <div class="walk">
+    <div><b>1. Hook (10 sec)</b>Who I am, where I interned, and what I did there in one line:</div>
+    <div><b>2. Show (45 sec)</b>What I point to or hand them first, then second:</div>
+    <div><b>3. Close (15 sec)</b>The biggest thing I learned, and what's next for me:</div>
+  </div>
+  <div class="practice"><strong>Practice it 3 times with a partner.</strong><span style="border:0;width:auto">Partner initials:</span>#1 <span></span>#2 <span></span>#3 <span></span></div>
+</div>
+
+</body>
+</html>
