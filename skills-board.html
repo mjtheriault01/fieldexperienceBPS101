@@ -160,18 +160,18 @@
     ["Reliability & Planning", ["Reliability", "Planning & Organizing"]],
     ["Adaptability & Cultural Awareness", ["Adaptability", "Cultural Awareness"]]
   ];
-  // Example student: a made-up plumbing intern, for illustration only
+  // Example board: Mr. Theriault, written as if a teacher made his own board
   const EX = {
-    "Communication": ["Photo: me explaining a water-heater install to the homeowner", "My mentor had me walk the homeowner through how the new water heater works and answer her questions myself."],
-    "Teamwork": ["Photo: two-person crew carrying a tub to the upstairs bath", "On a bathroom remodel I worked the second end of every lift and called out turns so my crew lead could focus on placement."],
-    "Critical Thinking": ["Photo: my notes comparing two leak locations", "When a ceiling stain didn't line up with the pipe we expected, I traced the drip path back and found the joint that was actually leaking."],
-    "Problem Solving": ["Photo: the tool-kit checklist I made", "We kept driving back to the shop for forgotten fittings, so I built a checklist for the van. We haven't made a return trip since."],
-    "Initiative": ["Photo: the shop shelves I organized", "On a slow afternoon I asked if I could label and sort the fittings shelf instead of waiting to be told what to do."],
-    "Decision Making": ["Artifact: job sheet with my call circled", "I noticed a corroded shutoff valve and decided to flag it before we opened the line, not after. My mentor said that was the right call."],
-    "Reliability": ["Artifact: my hours log, 0 late arrivals", "I was on time to all 31 shifts, including two 6:30 AM starts, and I texted ahead the one time traffic held me up."],
-    "Planning & Organizing": ["Photo: my weekly schedule plan", "I planned my placement days around my practice schedule each Sunday and shared them with my mentor so he could book jobs I could join."],
-    "Adaptability": ["Photo: me at the emergency call site", "When a burst pipe call came in, we dropped the planned job. I switched tasks fast and helped with cleanup and shutoff instead."],
-    "Cultural Awareness": ["Photo: shoe covers at the door of a client's home", "I learned to ask each family about their house rules, like removing shoes or avoiding certain rooms, before we start working."]
+    "Communication": ["Photo: me talking with business owners at the Career Connections event", "After meeting new businesses at Career Connections, I sent each one a personal follow-up the same week so they had our program info while the conversation was fresh."],
+    "Teamwork": ["Photo: Ms. Savitski and me planning at the whiteboard", "I co-teach Field Experience with Ms. Savitski. We split the cohorts, plan every in-person day together, and sign every email from both of us."],
+    "Critical Thinking": ["Artifact: midterm evaluation form with skill pairs", "Mentors kept giving vague feedback, so I rebuilt the midterm evaluation around five skill pairs with a clear 4-point scale and a \"no evidence yet\" option."],
+    "Problem Solving": ["Artifact: the weekly Google Forms on a Chromebook", "When our hours-logging website got blocked on student Chromebooks, I moved the weekly log to Google Forms before the deadline so no one lost hours."],
+    "Initiative": ["Photo: the partner thank-you plaque", "No one asked for it, but I designed a thank-you plaque so every business that hosts an intern gets public credit for helping Batavia students."],
+    "Decision Making": ["Artifact: Showcase Table Planner, page 1", "I decided to change the capstone from a \"trade show\" to the Field Experience Showcase and put this board at the center of it, so students prove skills instead of claiming them."],
+    "Reliability": ["Artifact: a weekly update email to students", "Every week this semester, students got an update email from us with deadlines, reminders, and links, sent ahead of time so no one was surprised."],
+    "Planning & Organizing": ["Artifact: the Capstone Breakfast run of show", "I planned the Capstone Breakfast backward from December 15: invitations in October, partner evaluations at midterm, planning sheets and practice in November."],
+    "Adaptability": ["Photo: a Self-Enterprise student business logo wall", "This year we added a second cohort of students running their own businesses, so I adapted the bootcamp and replaced employer evaluations with Board Check-Ins."],
+    "Cultural Awareness": ["Photo: the placement roster with 15 different fields", "Our 15 interns work in law, salons, plumbing, therapy, and schools. I learn each workplace's rules and culture before I visit so I can coach students to fit in."]
   };
 
   function board(example) {
@@ -188,7 +188,7 @@
     return `<div class="b-top">
         <img src="${LOGO}" alt="">
         <div><div class="b-eye">FIELD EXPERIENCE SHOWCASE</div><div class="b-title">Skills Evidence Board</div></div>
-        <div class="b-who"><div class="nm">${example ? "Jordan Example" : "Your Name"}</div><div class="pl">${example ? "Plumbing &amp; Pipefitting Intern &middot; Bulldog Plumbing" : "Role &middot; Placement"}</div></div>
+        <div class="b-who"><div class="nm">${example ? "Mr. Theriault" : "Your Name"}</div><div class="pl">${example ? "EXAMPLE &middot; Field Experience Coordinator &middot; Batavia High School" : "Role &middot; Placement"}</div></div>
       </div>
       <div class="b-grid">${head}${row(0)}${row(1)}</div>
       <div class="b-foot">BATAVIA HIGH SCHOOL &middot; FIELD EXPERIENCE &middot; CAPSTONE ${new Date().getFullYear()}</div>`;
