@@ -100,7 +100,7 @@
     <span style="color:#e5e7eb">|</span>
     <span class="nav-title font-heading">Skills Evidence Board</span>
   </div>
-  <button class="print-btn font-heading" onclick="window.print()">Print (11x17)</button>
+  <div style="display:flex;gap:.5rem"><button class="print-btn font-heading" onclick="printBoard('letter')" style="background:#AC161D">Print 8.5x11</button><button class="print-btn font-heading" onclick="printBoard('tabloid')">Print 11x17</button></div>
 </nav>
 
 <main>
@@ -147,10 +147,13 @@
 
   <section class="board-section">
     <h2>The layout</h2>
-    <p class="h2-sub">Switch between the filled-in example and the blank planning template. The Print button prints whichever one is showing.</p>
+    <p class="h2-sub">Switch between the filled-in example and the blank planning template, then print whichever one is showing. <strong>8.5x11</strong> fits a regular sheet (set the printer to <strong>landscape</strong>); 11x17 is full size.</p>
     <div class="tabs">
       <button class="tab on font-heading" data-show="ex">Example</button>
       <button class="tab font-heading" data-show="blank">Blank planning template</button>
+      <span style="flex:1"></span>
+      <button class="tab font-heading" onclick="printBoard('letter')" style="background:#AC161D;border-color:#AC161D;color:#fff">Print 8.5x11 &rarr;</button>
+      <button class="tab font-heading" onclick="printBoard('tabloid')">Print 11x17</button>
     </div>
     <div class="board-wrap" id="wrap">
       <div class="board" id="board-ex"></div>
@@ -223,6 +226,16 @@
   window.addEventListener("resize", fit); fit();
   window.addEventListener("beforeprint", () => document.querySelectorAll(".board").forEach(b => { b.style.marginBottom = b.style.marginRight = "0"; }));
   window.addEventListener("afterprint", fit);
+
+  // letter = the 17x11 board scaled to fit 11x8.5 landscape (same layout, 64.7%)
+  function printBoard(size) {
+    let st = document.getElementById("print-size");
+    if (!st) { st = document.createElement("style"); st.id = "print-size"; document.head.appendChild(st); }
+    st.textContent = size === "letter"
+      ? "@media print{@page{size:11in 8.5in;margin:0}.board{zoom:0.647;height:13.1in}}"
+      : "@media print{@page{size:17in 11in;margin:0}}";
+    window.print();
+  }
 
   document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
     document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
