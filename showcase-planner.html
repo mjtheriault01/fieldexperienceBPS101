@@ -60,7 +60,18 @@
     .mock .cap b{font-family:Montserrat;color:#1c1f2e}
     .note{font-size:7.8pt;color:#8a8080;font-style:italic}
 
+    table.chk,table.sk-plan{width:100%;border-collapse:collapse;font-size:9pt}
+    table.chk th,table.sk-plan th{font-family:Montserrat;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;text-align:left;border-bottom:2px solid #e5e7eb;padding:4px 6px}
+    table.chk td{border-bottom:1px solid #e3d5bd;padding:5px 6px;vertical-align:top;line-height:1.35}
+    table.chk td.bx{font-size:13pt;color:#AC161D;text-align:center}
+    table.sk-plan td{border-bottom:1px solid #e3d5bd;height:.47in;padding:3px 6px;vertical-align:top}
+    table.sk-plan td.sk{font-family:Montserrat;font-weight:800;font-size:8.5pt;color:#1c1f2e}
+    table.sk-plan tr:nth-child(odd) td{background:#fcfaf6}
+    .sm{font-size:8pt;color:#6b7280}
+    .big{font-family:Montserrat;font-size:6.5pt;font-weight:800;letter-spacing:.1em;color:#fff;background:#AC161D;padding:1px 6px;border-radius:999px;vertical-align:1px}
+    .screen-only{}
     @media print{
+      .screen-only{display:none!important}
       @page{size:Letter;margin:0}
       body{background:#fff}
       nav{display:none}
@@ -82,82 +93,52 @@
 <div class="page">
   <div class="hdr">
     <img src="https://res.cloudinary.com/dikkdclum/image/upload/field-experience/branding/field-study-logo-trans_kewube.png" alt="">
-    <div><div class="eye">CAPSTONE · PART 1</div><h1>Field Experience Showcase<br>Table Planner</h1></div>
+    <div><div class="eye">CAPSTONE · SHOWCASE PREP</div><h1>Field Experience Showcase<br>Table Planner</h1></div>
     <div class="nm">NAME <span></span><br>PLACEMENT <span></span></div>
   </div>
 
-  <div class="facts">
-    <div class="fact"><b>When &amp; where</b>Tue, Dec 15 &middot; BFAC Lobby, right after the Field Experience Spotlight</div>
-    <div class="fact"><b>What you do</b>Guests walk up; you give a 60&ndash;90 second walkthrough, then answer questions. Again and again.</div>
-    <div class="fact"><b>The real test</b>Doing it well the tenth time, for someone who just walked up and knows nothing about your placement.</div>
-  </div>
+  <p style="margin-bottom:.06in"><strong>Tue, Dec 15 &middot; BFAC Lobby.</strong> Guests walk up to your table and you give a 60&ndash;90 second walkthrough, again and again. Fill this out today.</p>
 
-  <h2>Your table needs these five things</h2>
+  <h2>1 &middot; Your table needs these five things</h2>
+  <table class="chk">
+    <tr><th style="width:4%"></th><th style="width:46%">What</th><th style="width:50%">My plan</th></tr>
+    <tr><td class="bx">&#9744;</td><td><b>1. Skills Evidence Board</b> <span class="big">BIGGEST PART</span><br><span class="sm">Canva at 11x17 and printed, or a bigger board. Stands out, labeled correctly.</span></td><td><span class="sm">&#9744; Canva 11x17 &nbsp; &#9744; bigger board</span></td></tr>
+    <tr><td class="bx">&#9744;</td><td><b>2. Something real guests can touch</b><br><span class="sm">Pipes, foils, a blueprint, a part, a piece you made</span></td><td></td></tr>
+    <tr><td class="bx">&#9744;</td><td><b>3. A visual of your experience</b><br><span class="sm">Photo board, or a device slideshow (charged, looping, no login)</span></td><td></td></tr>
+    <tr><td class="bx">&#9744;</td><td><b>4. Your resume</b>, updated and displayed</td><td><span class="sm">&#9744; updated &nbsp; &#9744; not yet</span></td></tr>
+    <tr><td class="bx">&#9744;</td><td><b>5. Your table card</b> (we print it)</td><td><span class="sm">My career field:</span></td></tr>
+  </table>
 
-  <div class="req big">
-    <div class="n">1</div>
-    <div><div class="t">Skills Evidence Board <small>BIGGEST PART</small></div>
-      <div class="d">A big poster board (tri-fold or foam board) showing how you met each of the 10 employability skills during your internship: a photo or artifact and one "I showed this when&hellip;" sentence per skill. Plan it on the template first: fieldexperiencebps101.net/skills-board.html</div></div>
-    <div class="mine">Moments I already have (how many of 10?)<div></div><div></div></div>
-  </div>
-
-  <div class="req">
-    <div class="n">2</div>
-    <div><div class="t">Something real from your work that guests can touch</div>
-      <div class="d">An interactive piece you can point to and say "here's what I learned, look at this." Simple is fine. It has to be real and worth talking about.</div>
-      <ul class="exp">
-        <li>Plumbing: pipe, fittings, a joint you made</li>
-        <li>Salon: foil or color samples, a styled mannequin</li>
-        <li>Engineering: a blueprint, CAD print, a part</li>
-        <li>Automotive: a worn vs. new part</li>
-        <li>Health/therapy: an exercise sheet or tool (no patient info)</li>
-        <li>Business/marketing: a piece you designed or a report</li>
-      </ul></div>
-    <div class="mine">My hands-on piece<div></div><div></div><div></div></div>
-  </div>
-
-  <div class="req">
-    <div class="n">3</div>
-    <div><div class="t">A visual of your experience</div>
-      <div class="d">A picture/deliverable board <strong>or</strong> a Chromebook, iPad, or laptop running a slideshow of photos and work. Devices must be charged, looping, and need no logins.</div></div>
-    <div class="mine">Board or device? What's on it?<div></div><div></div></div>
-  </div>
-
-  <div class="req">
-    <div class="n">4</div>
-    <div><div class="t">Your resume</div><div class="d">Displayed on the table where a guest can read it. Updated with your Field Experience.</div></div>
-    <div class="mine">Updated? &nbsp;&#9744; yes &nbsp;&#9744; not yet<div></div></div>
-  </div>
-
-  <div class="req">
-    <div class="n">5</div>
-    <div><div class="t">Your table card</div><div class="d">Name, placement with logo, and career field. <strong>We print these for you.</strong> Check that your career field is right.</div></div>
-    <div class="mine">My career field<div></div></div>
-  </div>
-
-  <h2>Setup expectations</h2>
-  <ul style="margin-left:15px">
-    <li><strong>Fully set up before doors open.</strong> Your setup is scored before guests arrive.</li>
-    <li><strong>Professional dress</strong>, the same standard as your mock interview.</li>
-    <li><strong>You staff the table the whole time</strong> and present to everyone who stops.</li>
-    <li><strong>Label your artifacts.</strong> While you talk to one guest, two more are reading your table.</li>
-    <li><strong>Ask your supervisor</strong> before you bring photos or anything from your workplace.</li>
-  </ul>
+  <h2>2 &middot; Plan your Skills Evidence Board</h2>
+  <p class="sm" style="margin-bottom:4px">One real moment per skill. Be specific: who, what, when. Then the photo or artifact that proves it.</p>
+  <table class="sk-plan">
+    <tr><th style="width:21%">Skill</th><th style="width:49%">I showed this when&hellip;</th><th style="width:30%">Photo / artifact</th></tr>
+      <tr><td class="sk">Communication</td><td></td><td></td></tr>
+      <tr><td class="sk">Teamwork</td><td></td><td></td></tr>
+      <tr><td class="sk">Critical Thinking</td><td></td><td></td></tr>
+      <tr><td class="sk">Problem Solving</td><td></td><td></td></tr>
+      <tr><td class="sk">Initiative</td><td></td><td></td></tr>
+      <tr><td class="sk">Decision Making</td><td></td><td></td></tr>
+      <tr><td class="sk">Reliability</td><td></td><td></td></tr>
+      <tr><td class="sk">Planning &amp; Organizing</td><td></td><td></td></tr>
+      <tr><td class="sk">Adaptability</td><td></td><td></td></tr>
+      <tr><td class="sk">Cultural Awareness</td><td></td><td></td></tr>
+  </table>
 </div>
 
 <!--MOCKUPS-START-->
-<!-- ================= PAGE 2: MOCKUPS  ================= -->
-<div class="page">
+<!-- ================= MOCKUPS (screen only; they are in the slides) ================= -->
+<div class="page screen-only">
   <div class="hdr">
     <img src="https://res.cloudinary.com/dikkdclum/image/upload/field-experience/branding/field-study-logo-trans_kewube.png" alt="">
     <div><div class="eye">WHAT A STRONG TABLE LOOKS LIKE</div><h1>Three Example Tables</h1></div>
   </div>
-  <p style="margin-bottom:.1in">Look for the same five things on every table: the <strong>Skills Evidence Board</strong> on an easel, a <strong>hands-on piece</strong> up front, a <strong>visual</strong> (board or device slideshow), the <strong>resume</strong> in a stand, and the <strong>table card</strong>. You can tell what each internship was from across the room.</p>
+  <p style="margin-bottom:.1in">Every table has all five: <strong>(1) Skills Evidence Board</strong>, <strong>(2) a hands-on piece</strong>, <strong>(3) a visual</strong>, <strong>(4) resume</strong>, <strong>(5) table card</strong>. Square table, readable things in back, touchable things in front.</p>
   <div class="mock-grid">
-    <div class="mock"><img src="img/showcase/mock_plumbing.jpg"><div class="cap"><b>Plumbing.</b> Skills Board on the left, resume in a stand, laptop slideshow in the center, and a tray of real pipe, fittings, and a cutter that guests can pick up.</div></div>
+    <div class="mock"><img src="img/showcase/mock_plumbing.jpg"><div class="cap"><b>Plumbing.</b> (1) Skills Board on the easel, (2) a tray of real pipe and fittings up front, (3) laptop slideshow, (4) resume in a stand, (5) table card at the front edge.</div></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.14in">
-      <div class="mock"><img src="img/showcase/mock_salon.jpg"><div class="cap"><b>Salon.</b> A styled mannequin, color swatches, and tools up front, with the board, resume, and tablet slideshow behind.</div></div>
-      <div class="mock"><img src="img/showcase/mock_engineering.jpg"><div class="cap"><b>Engineering.</b> A blueprint guests can lean over, CAD on the Chromebook, and real parts and calipers to handle.</div></div>
+      <div class="mock"><img src="img/showcase/mock_salon.jpg"><div class="cap"><b>Salon.</b> (1) Skills Board, (2) styled mannequin, color swatches, and tools, (3) tablet slideshow, (4) resume in a stand, (5) table card.</div></div>
+      <div class="mock"><img src="img/showcase/mock_engineering.jpg"><div class="cap"><b>Engineering.</b> (1) Skills Board, (2) blueprint, calipers, and real parts, (3) CAD on the Chromebook, (4) resume in a stand, (5) table card.</div></div>
     </div>
   </div>
   <p class="note" style="margin-top:.12in">AI-generated mockups to show the idea. Your table will look like your placement, not like these.</p>
@@ -171,7 +152,7 @@
     <div><div class="eye">PLAN IT BEFORE YOU BUILD IT</div><h1>Map Your Table</h1></div>
     <div class="nm">NAME <span></span></div>
   </div>
-  <p>Sketch your table from above. Draw each item where it will sit and give it a number, then list it below. Put the things you want guests to <strong>touch</strong> at the front edge, and things they <strong>read</strong> (Skills Board, resume) up high and toward the back so they're visible while you talk. Your table is a <strong>square</strong>: narrower than a long table but deeper, so plan in rows from front to back.</p>
+  <p>Sketch your <strong>square</strong> table from above. Draw and number each item, then list it below. Things guests <strong>touch</strong> go in front. Things they <strong>read</strong> (Skills Board, resume) go in back, up high.</p>
 
   <div class="map">
     <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" font-family="Montserrat, Arial, sans-serif">
@@ -220,6 +201,7 @@
     <div><b>3. Close (15 sec)</b>The biggest thing I learned, and what's next for me:</div>
   </div>
   <div class="practice"><strong>Practice it 3 times with a partner.</strong><span style="border:0;width:auto">Partner initials:</span>#1 <span></span>#2 <span></span>#3 <span></span></div>
+  <div style="margin-top:.14in;background:#111;color:#fff;border-radius:8px;padding:9px 13px;font-size:8.6pt;line-height:1.5"><b style="color:#FBCD07;font-family:Montserrat;letter-spacing:.08em">SHOWCASE DAY:</b> fully set up before doors open &middot; professional dress &middot; staff your table the whole time &middot; label everything &middot; supervisor OK for any photos or items</div>
 </div>
 
 </body>
