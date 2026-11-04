@@ -239,7 +239,9 @@ function formatTasks(raw) {
   return raw.split('\n')
     .map(s => s.replace(/^[-–•]\s*/,'').trim())
     .filter(Boolean)
-    .map(s => `<div class="task-line"><span>${esc(s)}</span></div>`)
+    .map(s => s.startsWith('## ')
+      ? `<div class="font-heading font-bold text-navy-900 mt-3 mb-1">${esc(s.slice(3).split('|')[0].trim())}</div>`
+      : `<div class="task-line"><span>${esc(s)}</span></div>`)
     .join('');
 }
 
