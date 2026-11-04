@@ -264,6 +264,16 @@ function normalizeCluster(raw) {
   return map[(raw||'').toLowerCase().trim()] || 'other';
 }
 
+// Multi-role listings: tasks holds "## Role Title | Category" headings, each followed by its own bullets
+function parseRoles(text) {
+  if (!text || !/^##\s/m.test(text)) return [];
+  return text.split(/^##\s+/m).slice(1).map(chunk => {
+    const lines = chunk.split('\n');
+    const [title, cats = ''] = lines[0].split('|').map(s => s.trim());
+    return { title, cats, body: lines.slice(1).join('\n').trim() };
+  }).filter(r => r.title);
+}
+
 let allPositions = [];
 
 function buildCard(b, idx) {
@@ -288,7 +298,7 @@ function buildCard(b, idx) {
         <div>
           <span class="cluster-tag text-white mb-1 inline-block" style="background:rgba(255,255,255,.2)">${esc(CLUSTER_NAMES[clusterId] || b.sector || '')}</span>
           <h2 class="font-heading font-black text-white text-xl leading-tight">${esc(b.name)}</h2>
-          <p class="text-white/80 text-sm mt-0.5 font-semibold">${esc(b.role || 'Internship')}</p>
+          <p class="text-white/80 text-sm mt-0.5 font-semibold">${esc(parseRoles(b.tasks).length ? `${parseRoles(b.tasks).length} internship options: ` + parseRoles(b.tasks).map(r => r.title).join(' · ') : (b.role || 'Internship'))}</p>
         </div>
       </div>
       <button
@@ -628,7 +638,14 @@ function openJobModal(idx) {
         <h3 class="font-heading font-bold text-sm uppercase tracking-wide text-navy-900 mb-1">About ${esc(b.name)}</h3>
         <p class="text-gray-600 text-sm leading-relaxed">${esc(b.mission)}</p>
       </div>` : ''}
-      ${b.tasks ? `<div>
+      ${parseRoles(b.tasks).length ? `<div>
+        <h3 class="font-heading font-bold text-navy-900 mb-3">Internship Options</h3>
+        <div class="space-y-3">${parseRoles(b.tasks).map(r => `<div class="rounded-xl border border-gray-200 p-4">
+          <p class="font-heading font-bold text-navy-900 text-sm">${esc(r.title)}</p>
+          ${r.cats ? `<p class="text-xs text-gray-400 mb-2">${esc(r.cats)}</p>` : ''}
+          <ul class="space-y-1.5">${bl(r.body)}</ul>
+        </div>`).join('')}</div>
+      </div>` : b.tasks ? `<div>
         <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
           <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:${colors.bg}">✓</span>
           What You'll Do

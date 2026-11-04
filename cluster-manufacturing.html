@@ -369,6 +369,23 @@
       .join('');
   }
 
+
+  // Category match by substring, so "Manufacturing, Engineering & Trades" survives comma-separated industry lists
+  function clustersFor(sector) {
+    const s = (sector || '').toLowerCase();
+    return [...new Set(Object.entries(CLUSTER_MAP).filter(([k]) => s.includes(k)).map(([, v]) => v))];
+  }
+
+  // Multi-role listings: tasks holds "## Role Title | Category" headings, each followed by its own bullets
+  function parseRoles(text) {
+    if (!text || !/^##\s/m.test(text)) return [];
+    return text.split(/^##\s+/m).slice(1).map(chunk => {
+      const lines = chunk.split('\n');
+      const [title, cats = ''] = lines[0].split('|').map(s => s.trim());
+      return { title, cats, clusters: clustersFor(cats), body: lines.slice(1).join('\n').trim() };
+    }).filter(r => r.title);
+  }
+
   function badge(icon, label, val) {
     if (!val) return '';
     return `<div class="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
@@ -406,6 +423,10 @@
       const isBps = (b.name || '').toLowerCase().includes('bps');
       const cardLogoBg = isBps ? 'background:#AC161D' : 'background:#f9fafb';
       const cardLogoBorder = isBps ? '' : 'border border-gray-100';
+      const roles = parseRoles(b.tasks);
+      const here = roles.filter(r => r.clusters.includes(CLUSTER_ID));
+      const roleLine = here.length ? here.map(r => r.title).join(' · ') : (b.role || 'Internship');
+      const others = roles.length - here.length;
       const envBadges = (b.environment||'').split(',').map(e=>e.trim()).filter(Boolean).slice(0,2)
         .map(e=>`<span class="env-badge">${esc(e)}</span>`).join('');
 
@@ -421,7 +442,8 @@
             </div>
             <div class="flex-1 min-w-0">
               <p class="font-heading font-bold text-navy-900 text-base leading-snug mb-0.5">${esc(b.name)}</p>
-              <p class="text-sm font-semibold" style="color:${CLUSTER_COLOR}">${esc(b.role || 'Internship')}</p>
+              <p class="text-sm font-semibold" style="color:${CLUSTER_COLOR}">${esc(roleLine)}</p>
+              ${others > 0 ? `<p class="text-xs text-gray-400 font-semibold mt-1">+ ${others} more internship option${others > 1 ? 's' : ''} here</p>` : ''}
             </div>
           </div>
 
@@ -465,6 +487,27 @@
       ? appMethods.map(m=>`<li class="flex items-start gap-2 text-sm text-gray-600"><span class="font-bold mt-0.5 flex-shrink-0" style="color:#5a3e1b">→</span><span>${esc(m)}</span></li>`).join('')
       : '<li class="text-sm text-gray-600">Contact the mentor listed below.</li>';
 
+    const roles = parseRoles(b.tasks);
+    const sortedRoles = [...roles.filter(r => r.clusters.includes(CLUSTER_ID)), ...roles.filter(r => !r.clusters.includes(CLUSTER_ID))];
+    const optionsHtml = `<div>
+          <h3 class="font-heading font-bold text-navy-900 mb-1 flex items-center gap-2">
+            <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:#AC161D">✓</span>
+            Internship Options
+          </h3>
+          <p class="text-xs text-gray-400 mb-3">${roles.length} areas at ${esc(b.name)}. Pick the one that fits your interests.</p>
+          <div class="space-y-3">${sortedRoles.map(r => {
+            const match = r.clusters.includes(CLUSTER_ID);
+            return `<div class="rounded-xl border p-4" style="border-color:${match ? '#AC161D' : '#e5e7eb'}">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <p class="font-heading font-bold text-navy-900 text-sm">${esc(r.title)}</p>
+                ${match ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full text-white flex-shrink-0" style="background:#AC161D">This pathway</span>` : ''}
+              </div>
+              ${r.cats ? `<p class="text-xs text-gray-400 mb-2">${esc(r.cats)}</p>` : ''}
+              <ul class="space-y-1.5">${bulletLines(r.body)}</ul>
+            </div>`;
+          }).join('')}</div>
+        </div>`;
+
     document.getElementById('job-modal-inner').innerHTML = `
       <div class="text-white px-6 py-5 flex items-start justify-between gap-4" style="background:#5a3e1b">
         <div class="flex items-center gap-4">
@@ -472,7 +515,7 @@
           <div>
             <p class="text-xs uppercase tracking-widest font-semibold opacity-75 mb-0.5">${esc(b.sector)}</p>
             <h2 class="font-heading text-xl font-bold leading-tight">${esc(b.name)}</h2>
-            <p class="text-sm opacity-85 mt-0.5">${esc(b.role)}</p>
+            <p class="text-sm opacity-85 mt-0.5">${esc(roles.length ? `${roles.length} internship options` : b.role)}</p>
           </div>
         </div>
         <button onclick="closeJobModal()" class="w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center flex-shrink-0 transition-colors mt-1">
@@ -493,7 +536,7 @@
           <p class="text-gray-600 text-sm leading-relaxed">${esc(b.mission)}</p>
         </div>` : ''}
 
-        ${b.tasks ? `<div>
+        ${roles.length ? optionsHtml : b.tasks ? `<div>
           <h3 class="font-heading font-bold text-navy-900 mb-2 flex items-center gap-2">
             <span class="w-5 h-5 rounded text-white flex items-center justify-center text-xs font-bold" style="background:#5a3e1b">✓</span>
             What You'll Do
@@ -598,7 +641,7 @@
           appInstructions: (row.application_instructions || '').trim(),
           idealCandidate:  (row.ideal_candidate || '').trim(),
           otherInfo:       (row.other_info || '').trim(),
-          clusterId:       (() => { const full = CLUSTER_MAP[sector.toLowerCase()]; if (full) return [full]; return sector.split(',').map(s => CLUSTER_MAP[s.trim().toLowerCase()]).filter(Boolean); })(),
+          clusterId:       clustersFor(sector),
         };
       });
       const sbNames = new Set(fresh.map(r => (r.name||'').toLowerCase()));
