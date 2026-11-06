@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Indicators — Field Experience BHS</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsbllwpbh/image/upload/v1771966521/fieldexperience-favicon_jgdotp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Open Sans',system-ui,sans-serif;background:#f7f7f9;color:#1c1f2e;min-height:100vh}
+    .font-heading{font-family:'Montserrat',system-ui,sans-serif}
+
+    nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb;
+        position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+    .back-btn{display:flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;text-decoration:none;transition:color .15s}
+    .back-btn:hover{color:#1c1f2e}
+    .nav-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#1c1f2e}
+    .print-btn{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border:none;border-radius:6px;padding:.5rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.4rem}
+    .print-btn:hover{background:#e0b706}
+
+    main{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+    .hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#AC161D;margin-bottom:.75rem}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.75rem,4vw,2.5rem);letter-spacing:-.02em;margin-bottom:.75rem}
+    .page-sub{font-size:.9rem;color:#6b7280;line-height:1.7;max-width:660px;margin-bottom:1.5rem}
+
+    .how-box{background:rgba(251,205,7,.09);border:1px solid rgba(251,205,7,.3);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+    .how-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#92400e;margin-bottom:.625rem}
+    .how-box p{font-size:.85rem;color:#374151;line-height:1.6;margin-bottom:.5rem}
+    .how-box p:last-child{margin-bottom:0}
+
+    .round-header{margin:2.5rem 0 1.25rem}
+    .round-header:first-of-type{margin-top:0}
+    .round-eyebrow{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7e22ce;margin-bottom:.4rem}
+    .round-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:.4rem}
+    .round-desc{font-size:.85rem;color:#6b7280;line-height:1.6;max-width:660px}
+
+    .q-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem 1.5rem 1.75rem;margin-bottom:1.25rem;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+    .q-top{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap}
+    .q-num{width:2.25rem;height:2.25rem;border-radius:50%;background:#1e2d3d;color:#fff;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .skill-badge{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#AC161D;border-radius:999px;padding:.3rem .75rem;display:inline-block}
+    .indicator-line{font-size:.72rem;color:#92400e;font-weight:600;margin-bottom:.9rem;line-height:1.5}
+    .indicator-line strong{font-family:'Montserrat',sans-serif;text-transform:uppercase;font-size:.6rem;letter-spacing:.08em;color:#92400e}
+    .q-text{font-size:.92rem;color:#374151;line-height:1.7;margin-bottom:1.125rem}
+
+    .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-bottom:.25rem}
+    .choice-grid.binary{grid-template-columns:1fr 1fr}
+    .choice-btn{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;text-align:left;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:8px;padding:.6rem .8rem;cursor:pointer;transition:all .15s;color:#374151}
+    .choice-btn:hover:not(:disabled){border-color:#9ca3af}
+    .choice-btn.binary-btn{text-align:center}
+    .choice-btn:disabled{cursor:default}
+    .choice-btn.picked-right{background:rgba(34,197,94,.12);border-color:#22c55e;color:#166534}
+    .choice-btn.picked-wrong{background:rgba(239,68,68,.1);border-color:#ef4444;color:#991b1b}
+    .choice-btn.reveal-right{background:rgba(34,197,94,.12);border-color:#22c55e;color:#166534}
+
+    .reveal{display:none;margin-top:1.1rem;padding-top:1.1rem;border-top:1px dashed #e5e7eb}
+    .reveal.shown{display:block}
+    .reveal-label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;margin-bottom:.6rem}
+    .reveal-cols{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    @media (max-width:560px){.reveal-cols{grid-template-columns:1fr}}
+    .reveal-col{border-radius:0 8px 8px 0;padding:.75rem .9rem;background:#f9fafb;border-left:3px solid #d1d5db}
+    .reveal-col.is-correct{border-left-color:#FBCD07;background:rgba(251,205,7,.08)}
+    .reveal-col-label{font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;margin-bottom:.4rem}
+    .reveal-col.is-correct .reveal-col-label{color:#92400e}
+    .reveal-col ul{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+    .reveal-col li{font-size:.8rem;color:#1c1f2e;line-height:1.5;padding-left:.9rem;position:relative}
+    .reveal-col li::before{content:'—';position:absolute;left:0;color:#9ca3af}
+    .match-note{font-size:.8rem;color:#6b7280;margin-top:.7rem}
+
+    .wrap-box{background:#0e1520;border-radius:16px;padding:2rem 1.75rem;margin-top:2.5rem;text-align:center}
+    .wrap-box h2{font-family:'Montserrat',sans-serif;color:#fff;font-size:1.3rem;font-weight:800;margin-bottom:.6rem}
+    .wrap-box p{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.6;max-width:520px;margin:0 auto 1.25rem}
+    .wrap-box a{display:inline-flex;align-items:center;gap:.4rem;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0e1520;background:#FBCD07;border-radius:999px;padding:.75rem 1.5rem;text-decoration:none}
+
+    /* Full Rubric Reference */
+    .ref-section{margin-top:3rem}
+    .ref-source{font-size:.78rem;color:#6b7280;line-height:1.6;max-width:660px;margin-bottom:1.5rem}
+    .ref-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;margin-bottom:.9rem;overflow:hidden}
+    .ref-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;cursor:pointer;background:#fff}
+    .ref-head:hover{background:#fafafa}
+    .ref-head-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem}
+    .ref-head-sub{font-size:.75rem;color:#6b7280;margin-top:.15rem;line-height:1.5}
+    .ref-chevron{flex-shrink:0;transition:transform .2s;color:#9ca3af}
+    .ref-card.open .ref-chevron{transform:rotate(180deg)}
+    .ref-body{display:none;padding:0 1.25rem 1.25rem}
+    .ref-card.open .ref-body{display:block}
+    .ref-indicator{border-top:1px solid #f0f0f0;padding:1rem 0}
+    .ref-indicator:first-child{border-top:none}
+    .ref-indicator-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;margin-bottom:.7rem;color:#1c1f2e}
+    .ref-cols{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    @media (max-width:560px){.ref-cols{grid-template-columns:1fr}}
+    .ref-col{border-radius:0 8px 8px 0;padding:.65rem .85rem}
+    .ref-col.meets{background:rgba(34,197,94,.06);border-left:3px solid #22c55e}
+    .ref-col.needs{background:rgba(239,68,68,.06);border-left:3px solid #ef4444}
+    .ref-col-label{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem}
+    .ref-col.meets .ref-col-label{color:#166534}
+    .ref-col.needs .ref-col-label{color:#991b1b}
+    .ref-col ul{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+    .ref-col li{font-size:.78rem;color:#374151;line-height:1.5;padding-left:.85rem;position:relative}
+    .ref-col li::before{content:'—';position:absolute;left:0;color:#9ca3af}
+
+    @media print{
+      nav, .how-box, .choice-grid, .wrap-box, .ref-chevron{display:none!important}
+      body{background:#fff;color:#000}
+      main{max-width:100%;padding:1rem}
+      h1{color:#000}
+      .page-sub{display:none}
+      .round-title, .ref-head-title{color:#000}
+      .q-card{page-break-inside:avoid;border:1px solid #000;background:#fff}
+      .q-num{background:#000}
+      .skill-badge{background:#000}
+      .q-text{color:#000}
+      .indicator-line{color:#000}
+      .reveal{display:block!important;border-top:1px solid #000}
+      .reveal-col{background:#fff;border-left:2px solid #000}
+      .reveal-col.is-correct{background:#fff;border-left:3px solid #000}
+      .match-note{display:none}
+      .ref-section{page-break-before:always}
+      .ref-card{page-break-inside:avoid;border:1px solid #000}
+      .ref-head{cursor:default}
+      .ref-body{display:block!important}
+      .ref-col.meets{background:#fff;border-left:2px solid #000}
+      .ref-col.needs{background:#fff;border-left:2px solid #000}
+
+      /* Student worksheet mode: no answers, no rubric reference, blank boxes to circle */
+      body.print-student .reveal{display:none!important}
+      body.print-student .ref-section{display:none!important}
+      body.print-student .choice-btn{display:block!important}
+      body.print-student .q-card{page-break-inside:avoid}
+    }
+    .print-header-fields{display:none}
+    @media print{
+      body.print-student .print-header-fields{display:flex!important;gap:2rem;margin-bottom:1.5rem;font-size:.85rem;color:#000;border-bottom:1px solid #000;padding-bottom:.75rem}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a href="bootcamp.html" class="back-btn font-heading">
+      <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>Bootcamp
+    </a>
+    <span style="color:#e5e7eb">|</span>
+    <span class="nav-title font-heading">Skill Indicators</span>
+  </div>
+  <div style="display:flex;gap:.5rem">
+    <button class="print-btn font-heading" style="background:#fff;color:#1c1f2e;border:1.5px solid #d1d5db" onclick="printStudentWorksheet()">
+      <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m10-10V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7m10 0v6H7v-6m10 4h.01M7 17h10v4H7v-4z"/></svg>
+      Print Student Worksheet
+    </button>
+    <button class="print-btn font-heading" onclick="revealAllForPrint();window.print()">
+      <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m10-10V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7m10 0v6H7v-6m10 4h.01M7 17h10v4H7v-4z"/></svg>
+      Print Answer Key
+    </button>
+  </div>
+</nav>
+
+<main>
+  <div class="print-header-fields"><span>Name: ____________________________</span><span>Period: _______</span><span>Date: ____________</span></div>
+  <p class="hero-eyebrow font-heading">Phase 3 · Workplace Readiness</p>
+  <h1 class="font-heading">Skill Indicators</h1>
+  <p class="page-sub">You already know the names of the 10 employability skills. This is about knowing what they actually <em>look like</em> — using the real BPS101 Performance Indicator Rubrics, the same ones your work is measured against.</p>
+
+  <div class="how-box">
+    <div class="how-label font-heading">How this works</div>
+    <p><strong>Round 1 — Which skill is this?</strong> Read a short scene from a real workplace. Click the skill it demonstrates. No skill names are given — you have to recognize it.</p>
+    <p><strong>Round 2 — Meets Expectation or Needs Practice?</strong> Now the skill and the specific indicator are labeled. Read the scene and decide which side of the rubric it lands on, before seeing the real rubric language for both sides.</p>
+    <p><strong>Full Rubric Reference</strong> at the bottom has all 5 indicators for all 10 skills, in full — the complete rubric, not just the samples used above.</p>
+    <p><strong>If you were absent:</strong> work through both rounds below, then go back to the Bootcamp page and submit your reflection to mark it complete.</p>
+  </div>
+
+  <div class="round-header">
+    <div class="round-eyebrow font-heading">Round 1 of 2</div>
+    <div class="round-title font-heading">Which Skill Is This?</div>
+    <p class="round-desc">Click the skill name each scene demonstrates.</p>
+  </div>
+  <div id="round1"></div>
+
+  <div class="round-header">
+    <div class="round-eyebrow font-heading">Round 2 of 2</div>
+    <div class="round-title font-heading">Meets Expectation or Needs Practice?</div>
+    <p class="round-desc">The skill and indicator are labeled. Decide which side of the rubric the behavior lands on, then compare to the real rubric language for both sides.</p>
+  </div>
+  <div id="round2"></div>
+
+  <div class="wrap-box">
+    <h2 class="font-heading">Now Rate Yourself</h2>
+    <p>Pick the skill where your Round 2 guess was furthest off from the real rubric. That's usually the one worth thinking about honestly before you re-rate yourself.</p>
+    <a href="bootcamp.html" class="font-heading">Back to Bootcamp to Submit Your Reflection →</a>
+  </div>
+
+  <div class="ref-section">
+    <div class="round-header">
+      <div class="round-eyebrow font-heading">Reference</div>
+      <div class="round-title font-heading">Full Rubric — All 10 Skills</div>
+      <p class="ref-source">Every indicator, in full, straight from the BPS101 Performance Indicator Rubrics for each skill. Click a skill to expand it. This whole section prints in full — use it as your rubric reference sheet.</p>
+    </div>
+    <div id="refList"></div>
+  </div>
+</main>
+
+<script>
+const RUBRIC = {
+  teamwork: {
+    title: 'Teamwork & Conflict Resolution',
+    summary: "Students can use their understanding of working cooperatively with others to complete work assignments and achieve mutual goals.",
+    indicators: [
+      { name: 'Establishes a high degree of trust, confidentiality, and credibility with others to develop shared purpose',
+        meets: ['Confidential', 'Builds trust in their team by providing example', 'Intervenes on tough issues', 'Provides honest feedback to peers'],
+        needs: ['Not confidential', 'Causes strife or drama in a team setting', 'Sits quietly when a tough issue is presented', 'Provides inaccurate feedback or unprofessional statements'] },
+      { name: "Encourages others' contribution of ideas, opinions, and perspectives through thoughtful and positive interactions",
+        meets: ['Encourages others', 'Positive interactions'],
+        needs: ['Discourages others', 'Negative interactions'] },
+      { name: 'Coordinates with others to achieve identified outcomes and objectives',
+        meets: ['Sets time aside to coordinate with others', 'Has clear outcomes and objectives'],
+        needs: ['Manages time poorly', 'Objectives are unclear'] },
+      { name: 'De-escalates difficult situations constructively and positively',
+        meets: ['De-escalates situations'],
+        needs: ['Escalates situations or keeps status quo'] },
+      { name: 'Is committed to solving problems/finding resolutions',
+        meets: ['Provides feedback to team on how to address issues', 'Actively engages others to work together on problem solving'],
+        needs: ['Provides little to no feedback for the team', 'Does not engage with others to work to solve problems'] },
+    ]
+  },
+  communication: {
+    title: 'Communication',
+    summary: "Verbal: convey an idea, express information, and be understood by others. Written: standard business English that is clear, direct, courteous, and grammatically correct. Digital: email, keyboarding, word processing, and digital media that is clear, direct, courteous, and grammatically correct.",
+    indicators: [
+      { name: "Builds understanding through active listening, asking questions, focusing on context, and acknowledging others' points of view",
+        meets: ['Actively listens through repeating what they heard, taking notes, or another listening strategy', 'Asks clarifying questions', 'Acknowledges when points are made'],
+        needs: ['Displays no strategies of active listening', 'Does not ask clarifying questions', 'Does not acknowledge when points are made in a group discussion'] },
+      { name: 'Writes in a manner so that others understand',
+        meets: ['Writes in a fashion that most people can understand', 'Uses proper writing conventions'],
+        needs: ['Fashion or style of writing is unconducive to understanding the main ideas', 'Uses unprofessional writing'] },
+      { name: 'Speaks in a manner so others understand',
+        meets: ['Speaks clearly and loud enough', 'Takes time to answer questions'],
+        needs: ['Speaks unclearly or not loud enough for others to hear', 'Does not seek to answer questions'] },
+      { name: 'Selects and uses proper digital tools',
+        meets: ['Uses proper digital tools'],
+        needs: ['Uses improper digital tools'] },
+      { name: 'Adjusts word choice, tone, and time based on audience, purpose of communication, and situational context',
+        meets: ['Uses situational context when communicating'],
+        needs: ["Doesn't use situational awareness when communicating"] },
+    ]
+  },
+  problemsolving: {
+    title: 'Problem Solving',
+    summary: "Students can use their critical thinking skills to generate and evaluate solutions as they relate to the needs of the team, customer, and company.",
+    indicators: [
+      { name: "Defines the problem by assessing the situation and considering one's role within the problem and multiple potential causes",
+        meets: ['Defines the problem', 'Understands their role in the problem', 'Understands causes of the problem', 'Understands multiple solutions'],
+        needs: ['Cannot define the problem', 'Does not understand their role', 'Cannot articulate causes and solutions'] },
+      { name: 'Organizes information and consults several different sources to understand all aspects of the problem as defined',
+        meets: ['Organizes a list or survey of sources', 'Understands questions associated with the problem', 'Organizes information in a format that works for them/the audience'],
+        needs: ['Displays information in an unorganized fashion', "Doesn't fully recognize clarifying questions to the problem", 'Formatting needs work'] },
+      { name: 'Identifies and communicates multiple options for solutions',
+        meets: ['Identifies multiple solutions (3–5)', 'Communicates solutions clearly'],
+        needs: ['Identifies 1–2 solutions', "Communication style doesn't meet audience needs"] },
+      { name: 'Evaluates advantages and disadvantages associated with each potential solution',
+        meets: ['Can decipher advantages and disadvantages'],
+        needs: ['Struggles identifying advantages and disadvantages'] },
+      { name: 'Selects and implements the best solution to the problem based on evaluation of advantages and disadvantages',
+        meets: ['Implementation plan is based on the best solution'],
+        needs: ['Implementation plan is incoherent, or chooses a solution that offers only secondary results'] },
+    ]
+  },
+  decisionmaking: {
+    title: 'Decision Making',
+    summary: "Students can use their understanding of problem solving to implement and communicate solutions.",
+    indicators: [
+      { name: 'Defines the goal, purpose, key issues and desired outcome of making a decision',
+        meets: ['Defines the goal', 'Defines the purpose', 'Defines key issues', 'Defines desired outcomes'],
+        needs: ['Does not define the goal', 'Does not define the purpose', 'Does not define key issues', 'Does not define desired outcomes'] },
+      { name: 'Identifies the individuals and resources involved in the decision-making process',
+        meets: ['Identifies the individuals and their role in the decision-making process', 'Identifies resources needed for the best/desired outcome'],
+        needs: ['Misses people needed to make the process work', "Misidentifies resources or focuses on resources that won't deliver the desired outcome"] },
+      { name: 'Organizes information and identifies multiple potential solutions and communicates the consequences, pros, and cons of each solution',
+        meets: ['Organizes information in a specific format', 'Provides multiple solutions', 'Communicates pros and cons'],
+        needs: ['No specific organizational format', 'Identifies 1–2 solutions', 'Communicates pros or cons, but not both'] },
+      { name: 'Selects and implements the most effective decision to achieve desired outcomes',
+        meets: ['Selects and implements the best/desired outcome'],
+        needs: ['Chooses an outcome that is secondary or lacking'] },
+      { name: 'Monitors and collects feedback after a decision is made',
+        meets: ['Monitors and collects feedback (some form of tracking document)'],
+        needs: ["Doesn't monitor and track feedback"] },
+    ]
+  },
+  criticalthinking: {
+    title: 'Critical Thinking',
+    summary: "Students use their understanding of logic and reasoning to analyze and address problems.",
+    indicators: [
+      { name: 'Reviews, summarizes, and interprets existing information',
+        meets: ['Establishes a process that shows they reviewed the material', 'Summarizes and interprets existing information'],
+        needs: ['No established process that shows the material was reviewed', 'Summary or interpretation is vague or underdeveloped'] },
+      { name: 'Makes comparisons across content areas and identifies inconsistent or missing information',
+        meets: ['Makes comparisons across content', 'Identifies missing information'],
+        needs: ['Misses comparisons or connections across content', 'Little to no identification of missing information'] },
+      { name: 'Seeks opportunities to learn new information',
+        meets: ['Lists or establishes ways they can learn new information'],
+        needs: ['No specific details on seeking new information'] },
+      { name: 'Analyzes new and old information collectively in order to draw conclusions, solve problems, or form a hypothesis',
+        meets: ['Draws a clear conclusion, solves the problem, or forms a hypothesis'],
+        needs: ['Lacks clarity — or lacks a conclusion, solution, or hypothesis at all'] },
+      { name: 'Communicates conclusions and new ideas to appropriate individuals and team members',
+        meets: ['Communicates conclusions clearly', 'Works with team members or other individuals'],
+        needs: ["Doesn't communicate a clear conclusion", "Doesn't work with others on it"] },
+    ]
+  },
+  adaptability: {
+    title: 'Adaptability & Flexibility',
+    summary: "Students can use their understanding of workplace change and variety to be open to new ideas and handle ambiguity.",
+    indicators: [
+      { name: 'Embraces new ideas and approaches when opportunity arises',
+        meets: ['Embraces new ideas', 'Is open to suggestions', 'Listens to and considers ideas before making decisions'],
+        needs: ["Refuses new ideas or doesn't act on them", 'Not open to suggestions', 'Makes decisions without data or evidence'] },
+      { name: 'Seeks opportunities to improve processes and accomplish goals',
+        meets: ['Improves processes by offering suggestions', 'Writes down goals'],
+        needs: ['Shows no drive or action to improve', 'Has no goals, or no plan to approach them'] },
+      { name: 'Effectively changes plans, goals, actions and priorities to deal with changing situations',
+        meets: ['Adapts to changes effortlessly'],
+        needs: ['Does not adapt to changes easily, or struggles to adapt'] },
+      { name: 'Reflects on and modifies own work behaviors based on feedback',
+        meets: ['Provides reflection, either written or one-to-one with a teacher/supervisor'],
+        needs: ['Refuses reflection, or only answers the questions they want to address'] },
+      { name: 'Asks questions in the face of ambiguity to gain clarity and identify next steps',
+        meets: ['Asks questions', 'Shows drive to learn'],
+        needs: ["Doesn't ask questions", 'Needs assistance clarifying their role or next steps'] },
+    ]
+  },
+  initiative: {
+    title: 'Initiative & Self-Drive',
+    summary: "Students can use their understanding of goal setting and personal impact to achieve professional goals and understand personal impact.",
+    indicators: [
+      { name: 'Develops a clear career goal and plan to achieve it',
+        meets: ['Has clear career goals', 'Develops a plan to achieve them'],
+        needs: ['No goals, or unclear goals', 'No plan, or an underdeveloped plan'] },
+      { name: 'Shows increasing effort and improved outcomes over a period of time',
+        meets: ['Puts forth effort in monitoring goals over time, which leads to better outcomes'],
+        needs: ['Little to no effort in monitoring goals over time, leading to poor outcomes'] },
+      { name: 'Reflects on effort given and its impact on outcomes',
+        meets: ["Offers self-reflection on what they've accomplished and where they need to go"],
+        needs: ['Offers little self-reflection, or sets no plan for the future'] },
+      { name: 'Builds and maintains a professional portfolio of experiences, credentials, certificates, and types of work',
+        meets: ['Has a well-developed system to track experiences, credentials, and certificates (portfolio, resume, etc.)'],
+        needs: ['No system present, or not updated regularly'] },
+      { name: 'Demonstrates self-awareness about their own career preparedness and needed areas of growth',
+        meets: ['Is self-aware of the challenges they face', 'Is prepared to address those challenges with a plan'],
+        needs: ['Lacks self-awareness of challenges ahead', 'Is unprepared due to poor planning'] },
+    ]
+  },
+  reliability: {
+    title: 'Reliability & Accountability',
+    summary: "Students can use their understanding of commitment, time management, and follow through to ensure that a professional team functions properly and meets collective goals.",
+    indicators: [
+      { name: 'Participates fully in task or project from initiation to completion',
+        meets: ['Participates fully at the beginning of a project', 'Finishes strong at completion'],
+        needs: ['Struggles to fully participate at the beginning', 'Lacks follow-through at the end'] },
+      { name: 'Follows written and verbal directions',
+        meets: ['Follows written and verbal directions'],
+        needs: ['Pays little to no attention to directions'] },
+      { name: 'Remains calm and self-controlled under stressful situations',
+        meets: ['Remains calm in tense circumstances'],
+        needs: ['Reacts impulsively, or puts extreme stress on themselves or others in tough situations'] },
+      { name: 'Is engaged and consistent',
+        meets: ['Is fully engaged in the process', 'Remains consistent throughout the process'],
+        needs: ['No system present or not being updated regularly'] },
+      { name: 'Acts responsibly with the interests of the larger team in mind',
+        meets: ['Takes responsibility for the interests of the group'],
+        needs: ['Pushes accountability onto others when not warranted'] },
+    ]
+  },
+  cultural: {
+    title: 'Cultural Competence',
+    summary: "Students can use their understanding of diversity and inclusion to communicate and work effectively across a multitude of abilities, cultures, and backgrounds.",
+    indicators: [
+      { name: 'Exhibits understanding of workplace ethics by treating others with confidentiality, respect and dignity',
+        meets: ['Makes decisions that are ethically sound', 'Is confidential', 'Respects other individuals', 'Places special attention on honoring and dignifying others'],
+        needs: ['Makes unethical decisions', "Shares too much or breaks others' confidence", "Is disrespectful or doesn't respond professionally", 'Creates a toxic work experience for others'] },
+      { name: 'Demonstrates commitment to understanding and recognizing social and cultural differences',
+        meets: ['Is willing to learn about other cultures broadly', 'Communicates well with others'],
+        needs: ['Does not engage in conversations around cultural issues', 'Is socially/culturally awkward and needs coaching'] },
+      { name: 'Leverages differences in abilities, aspirations, and interests to improve work quality',
+        meets: ['Works well with others of diverse ability levels'],
+        needs: ['Does not want to engage with others of varying ability levels'] },
+      { name: 'Works effectively in teams across a multitude of abilities, cultures, and backgrounds (social, cultural, racial, gender, education, etc.)',
+        meets: ['Responds well to the needs of people from different backgrounds — age, ability, gender, race, and more'],
+        needs: ['Refuses to reflect on equity issues brought to their attention'] },
+      { name: 'Fosters the values of diversity and inclusion by coordinating work with team members to reach mutual goals',
+        meets: ['Works with stakeholders to meet shared goals'],
+        needs: ['Refuses to work with, or struggles to coordinate with, other stakeholders'] },
+    ]
+  },
+  planning: {
+    title: 'Planning & Organizing',
+    summary: "Students can use their understanding of time management to plan effectively and accomplish assigned tasks.",
+    indicators: [
+      { name: 'Establishes work priorities',
+        meets: ['Has a clear list of goals/priorities needed to be successful'],
+        needs: ['Lacks a list of goals/priorities'] },
+      { name: 'Follows prioritized work schedule',
+        meets: ['Follows a regimented schedule', 'Work is completed on time and on or under budget'],
+        needs: ['Pays little to no attention to any form of scheduling'] },
+      { name: 'Identifies and seeks resources needed to complete a project/task',
+        meets: ['Identifies resources', 'Maintains use of resources as the project progresses'],
+        needs: ["Doesn't identify resources", "Doesn't maintain use of resources as the project progresses"] },
+      { name: 'Works to establish and adhere to appropriate timelines',
+        meets: ['Creates a well-developed timeline', 'Meets deadlines'],
+        needs: ['Timeline is weak', "Doesn't meet deadlines"] },
+      { name: 'Reflects upon goals and evaluates processes and people involved to improve in the future',
+        meets: ['Reflects on goals', 'Evaluates ways to improve future processes and projects'],
+        needs: ['No reflection', 'Takes little or no time evaluating future projects'] },
+    ]
+  },
+};
+
+const SKILL_ORDER = ['teamwork','communication','problemsolving','decisionmaking','criticalthinking','adaptability','initiative','reliability','cultural','planning'];
+
+// Round 1 — one unlabeled scene per skill (skill recognition only)
+const ROUND1 = [
+  { skillId:'teamwork', text:"Two coworkers start raising their voices at each other over how to handle a customer complaint. Instead of picking a side or walking away, Priya steps in, lowers her own voice, and asks each of them to explain their concern one at a time until they calm down." },
+  { skillId:'communication', text:"During a training session, a coworker explains a new procedure. Malik repeats back what he heard in his own words to make sure he understood it correctly, then asks one follow-up question before starting the task." },
+  { skillId:'problemsolving', text:"A shipment arrives with the wrong items. Instead of immediately blaming the vendor, Sam checks the order confirmation and the packing slip and asks what happened at each step before deciding what actually went wrong." },
+  { skillId:'decisionmaking', text:"Before deciding how to handle a scheduling conflict between two events, Jordan lists out who needs to be involved in the decision and what information she'll need from the calendar system before making a call." },
+  { skillId:'criticalthinking', text:"While reviewing two reports on the same project, Devon notices the numbers don't match and flags exactly which figures are inconsistent before anyone acts on either report." },
+  { skillId:'adaptability', text:"An hour before a scheduled event, the venue falls through. Instead of panicking, Yusuf reworks the plan, reassigns tasks, and the event still runs on time." },
+  { skillId:'initiative', text:"Grace writes down exactly what career she's aiming for after high school and lists three concrete steps she'll take this year to get closer to it." },
+  { skillId:'reliability', text:"Given a checklist for closing procedures, Noah follows each step in order without skipping any, even the ones that feel unnecessary that day." },
+  { skillId:'cultural', text:"A coworker shares something personal about a family situation. Later, when others ask about it, Elena keeps the details to herself and simply says it's not hers to share." },
+  { skillId:'planning', text:"With five tasks on her list for the day, Aaliyah ranks them by deadline and impact before starting, so the most urgent ones get done first." },
+];
+
+// Round 2 — labeled skill + indicator, student judges Meets Expectation vs Needs Practice
+const ROUND2 = [
+  { skillId:'teamwork', indicatorIndex:0, correct:'needs', text:"When a tough issue comes up in the group chat, Malik goes quiet and doesn't say anything, even though he has an opinion." },
+  { skillId:'communication', indicatorIndex:4, correct:'meets', text:"Presenting the same project update, Elena uses casual, simple language with her peer group, then switches to more formal, detailed language when reporting to her supervisor." },
+  { skillId:'problemsolving', indicatorIndex:2, correct:'needs', text:"When the printer breaks before a deadline, Sam suggests only one fix — asking IT — and doesn't consider any other options." },
+  { skillId:'decisionmaking', indicatorIndex:4, correct:'meets', text:"After changing how the team handles intake forms, Priya checks back in two weeks later, asks the team what's working and what isn't, and writes it down." },
+  { skillId:'criticalthinking', indicatorIndex:3, correct:'needs', text:"After reading through customer complaints and sales data, Devon says \"I guess it's just a bad month\" without pointing to anything specific in the data." },
+  { skillId:'adaptability', indicatorIndex:4, correct:'meets', text:"Given a vague assignment with no clear steps, Yusuf asks his supervisor two clarifying questions before starting instead of guessing." },
+  { skillId:'initiative', indicatorIndex:3, correct:'needs', text:"Grace has done strong work all semester but has nothing saved or organized to show for it — no resume updates, no samples kept." },
+  { skillId:'reliability', indicatorIndex:2, correct:'meets', text:"When a customer starts yelling about a mistake that wasn't Noah's fault, he keeps his voice steady and stays focused on solving the problem." },
+  { skillId:'cultural', indicatorIndex:1, correct:'needs', text:"When coworkers talk about traditions from their own backgrounds during lunch, Ben doesn't ask questions or engage — he just changes the subject." },
+  { skillId:'planning', indicatorIndex:3, correct:'meets', text:"Marcus builds a week-by-week timeline for his project before starting and hits every deadline on it." },
+];
+
+function buildRound1(){
+  document.getElementById('round1').innerHTML = ROUND1.map((item,i) => {
+    const correctId = item.skillId;
+    return `
+    <div class="q-card">
+      <div class="q-top"><div class="q-num font-heading">${i+1}</div></div>
+      <p class="q-text">${item.text}</p>
+      <div class="choice-grid" id="r1-choices-${i}">
+        ${SKILL_ORDER.map(id => `<button class="choice-btn font-heading" onclick="pickSkill(${i},'${id}','${correctId}',this)">${RUBRIC[id].title}</button>`).join('')}
+      </div>
+      <div class="reveal" id="r1-reveal-${i}">
+        <div class="reveal-label font-heading">Correct Answer</div>
+        <div class="reveal-col is-correct"><ul><li>${RUBRIC[correctId].title}</li></ul></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function pickSkill(i, pickedId, correctId, btn){
+  const container = document.getElementById('r1-choices-'+i);
+  if (container.dataset.answered) return;
+  container.dataset.answered = '1';
+  const buttons = container.querySelectorAll('.choice-btn');
+  buttons.forEach(b => {
+    b.disabled = true;
+    if (b === btn) b.classList.add(pickedId===correctId ? 'picked-right' : 'picked-wrong');
+    if (b.textContent === RUBRIC[correctId].title) b.classList.add('reveal-right');
+  });
+  document.getElementById('r1-reveal-'+i).classList.add('shown');
+}
+
+function buildRound2(){
+  document.getElementById('round2').innerHTML = ROUND2.map((item,i) => {
+    const skill = RUBRIC[item.skillId];
+    const indicator = skill.indicators[item.indicatorIndex];
+    return `
+    <div class="q-card">
+      <div class="q-top"><div class="q-num font-heading">${i+1}</div><span class="skill-badge font-heading">${skill.title}</span></div>
+      <div class="indicator-line"><strong>Indicator:</strong> ${indicator.name}</div>
+      <p class="q-text">${item.text}</p>
+      <div class="choice-grid binary" id="r2-choices-${i}">
+        <button class="choice-btn binary-btn font-heading" onclick="pickBinary(${i},'meets','${item.correct}',this)">Meets Expectation</button>
+        <button class="choice-btn binary-btn font-heading" onclick="pickBinary(${i},'needs','${item.correct}',this)">Needs Practice</button>
+      </div>
+      <div class="reveal" id="r2-reveal-${i}">
+        <div class="reveal-label font-heading">Actual Rubric — ${indicator.name}</div>
+        <div class="reveal-cols">
+          <div class="reveal-col${item.correct==='meets'?' is-correct':''}">
+            <div class="reveal-col-label font-heading">Meets Expectation</div>
+            <ul>${indicator.meets.map(m=>`<li>${m}</li>`).join('')}</ul>
+          </div>
+          <div class="reveal-col${item.correct==='needs'?' is-correct':''}">
+            <div class="reveal-col-label font-heading">Needs Practice</div>
+            <ul>${indicator.needs.map(n=>`<li>${n}</li>`).join('')}</ul>
+          </div>
+        </div>
+        <p class="match-note"></p>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function pickBinary(i, picked, correct, btn){
+  const container = document.getElementById('r2-choices-'+i);
+  if (container.dataset.answered) return;
+  container.dataset.answered = '1';
+  const buttons = container.querySelectorAll('.choice-btn');
+  const correctLabel = correct==='meets' ? 'Meets Expectation' : 'Needs Practice';
+  buttons.forEach(b => {
+    b.disabled = true;
+    const isThisCorrect = (b.textContent.trim()==='Meets Expectation' && correct==='meets') || (b.textContent.trim()==='Needs Practice' && correct==='needs');
+    if (b === btn) b.classList.add(picked===correct ? 'picked-right' : 'picked-wrong');
+    if (isThisCorrect) b.classList.add('reveal-right');
+  });
+  const matchNote = picked===correct
+    ? "You matched the rubric exactly."
+    : `You guessed the other side — the real answer is <strong>${correctLabel}</strong>.`;
+  const revealEl = document.getElementById('r2-reveal-'+i);
+  revealEl.querySelector('.match-note').innerHTML = matchNote;
+  revealEl.classList.add('shown');
+}
+
+function buildRefList(){
+  document.getElementById('refList').innerHTML = SKILL_ORDER.map((id,idx) => {
+    const skill = RUBRIC[id];
+    return `
+    <div class="ref-card" id="ref-card-${idx}">
+      <div class="ref-head" onclick="toggleRef(${idx})">
+        <div>
+          <div class="ref-head-title font-heading">${idx+1}. ${skill.title}</div>
+          <div class="ref-head-sub">${skill.summary}</div>
+        </div>
+        <svg class="ref-chevron" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="ref-body">
+        ${skill.indicators.map(ind => `
+          <div class="ref-indicator">
+            <div class="ref-indicator-name">${ind.name}</div>
+            <div class="ref-cols">
+              <div class="ref-col meets"><div class="ref-col-label font-heading">Meets Expectation</div><ul>${ind.meets.map(m=>`<li>${m}</li>`).join('')}</ul></div>
+              <div class="ref-col needs"><div class="ref-col-label font-heading">Needs Practice</div><ul>${ind.needs.map(n=>`<li>${n}</li>`).join('')}</ul></div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleRef(idx){
+  document.getElementById('ref-card-'+idx).classList.toggle('open');
+}
+
+function revealAllForPrint(){
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('shown'));
+  document.querySelectorAll('.ref-card').forEach(el => el.classList.add('open'));
+}
+
+function printStudentWorksheet(){
+  document.body.classList.add('print-student');
+  window.print();
+}
+window.addEventListener('afterprint', () => document.body.classList.remove('print-student'));
+
+buildRound1();
+buildRound2();
+buildRefList();
+
+if (new URLSearchParams(location.search).get('mode') === 'student') {
+  document.body.classList.add('print-student');
+}
+</script>
+</body>
+</html>
